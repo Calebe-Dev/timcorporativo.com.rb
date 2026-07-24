@@ -15,7 +15,14 @@
 	let website = $state('');
 
 	let enviando = $state(false);
-	/** @type {'' | 'ok' | 'erro'} */
+	/**
+	 * '' nada · 'ok' lead registrado de verdade · 'zap' registro falhou mas o
+	 * WhatsApp abriu · 'erro' nada funcionou.
+	 * A distinção entre 'ok' e 'zap' existe para não afirmar "recebemos seus
+	 * dados" quando não recebemos nada — enquanto os secrets da Function não
+	 * estiverem gravados, TODO envio cai em 'zap'.
+	 * @type {'' | 'ok' | 'zap' | 'erro'}
+	 */
 	let status = $state('');
 
 	// Atribuição de campanha: guardamos o PRIMEIRO toque da sessão, senão a
@@ -103,9 +110,10 @@
 			await registrarLead();
 			status = 'ok';
 		} catch {
-			// O lead pode não ter sido registrado — mas o WhatsApp já abriu, então
-			// o contato comercial não se perde. Só avisamos se o popup foi bloqueado.
-			status = janela ? 'ok' : 'erro';
+			// Não registramos nada — então não dizemos que registramos. Se o
+			// WhatsApp abriu, o contato ainda acontece por lá ('zap'); se nem isso,
+			// é erro de verdade e o visitante precisa de um caminho alternativo.
+			status = janela ? 'zap' : 'erro';
 		} finally {
 			enviando = false;
 		}
@@ -170,6 +178,11 @@
 	{#if status === 'ok'}
 		<p class="text-xs font-medium text-green-700" role="status">
 			Recebemos seus dados — um consultor vai entrar em contato. Se o WhatsApp não abriu, chame em
+			<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
+		</p>
+	{:else if status === 'zap'}
+		<p class="text-xs font-medium text-slate-600" role="status">
+			Continue a conversa pelo WhatsApp que abrimos para você. Se a janela não abriu, chame em
 			<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
 		</p>
 	{:else if status === 'erro'}

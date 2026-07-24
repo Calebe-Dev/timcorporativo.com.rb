@@ -11,3 +11,6 @@ vite.config.ts.timestamp-*
 
 # Secrets locais da Pages Function (git-ignorado)
 .dev.vars
+
+# Estado local do wrangler/miniflare (nunca versionar)
+.wrangler
