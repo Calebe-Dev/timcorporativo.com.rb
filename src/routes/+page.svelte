@@ -2,6 +2,7 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import SiteMap from '$lib/components/SiteMap.svelte';
 	import ContactForm from '$lib/components/ContactForm.svelte';
 	import Faq from '$lib/components/Faq.svelte';
 	import {
@@ -15,6 +16,9 @@
 		contact,
 		whatsappLink
 	} from '$lib/site.js';
+
+	// Vem do +layout.server.js da raiz — alimenta o mapa do site.
+	let { data } = $props();
 </script>
 
 <Seo />
@@ -78,7 +82,9 @@
 	</section>
 
 	<!-- FAIXA DE CONFIANÇA -->
-	<section class="border-b border-tim-100 bg-white">
+	<!-- Faixa de números: sem título por design, então é <div> e não <section> —
+	     `section` sem heading não entra no outline do documento. -->
+	<div class="border-b border-tim-100 bg-white">
 		<div
 			class="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-6 text-center sm:grid-cols-4"
 		>
@@ -87,7 +93,7 @@
 			<div><p class="text-2xl font-bold text-tim-700">Consultivo</p><p class="text-xs text-slate-500">atendimento dedicado</p></div>
 			<div><p class="text-2xl font-bold text-tim-700">Nacional</p><p class="text-xs text-slate-500">cobertura TIM</p></div>
 		</div>
-	</section>
+	</div>
 
 	<!-- SOLUÇÕES -->
 	<section id="solucoes" class="bg-slate-50 py-16 sm:py-20">
@@ -194,7 +200,10 @@
 	</section>
 
 	<!-- CONTEÚDO EDITORIAL (herdado da home original — preserva as queries de pesquisa) -->
-	<section id="conteudo" class="bg-white py-16 sm:py-20">
+	<!-- Agrupa os blocos editoriais. Cada bloco é um <article> com seu próprio h2,
+	     que pertence ao outline DO ARTICLE — a section ficaria sem heading. Como o
+	     design não prevê título aqui, é <div>. -->
+	<div id="conteudo" class="bg-white py-16 sm:py-20">
 		<div class="mx-auto max-w-4xl px-4">
 			<div class="space-y-12">
 				{#each contentSections as c}
@@ -209,7 +218,7 @@
 				{/each}
 			</div>
 		</div>
-	</section>
+	</div>
 
 	<!-- AUTORIDADE (Renovação Segura + 15 anos — herdado da home original) -->
 	<section class="bg-slate-50 py-16 sm:py-20">
@@ -271,5 +280,8 @@
 		</div>
 	</section>
 </main>
+
+<!-- A home já tem o formulário em #contato logo acima; aqui entra só o mapa. -->
+<SiteMap artigos={data.artigosRecentes} total={data.totalArtigos} />
 
 <Footer />

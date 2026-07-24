@@ -1,7 +1,11 @@
 <script>
 	import BlogShell from '$lib/components/BlogShell.svelte';
 
-	let { children } = $props();
+	// `data` traz o que o +layout.server.js da raiz carregou (memoizado):
+	// é assim que o mapa do site recebe a lista de artigos em toda rota.
+	let { children, data } = $props();
 </script>
 
-<BlogShell>{@render children()}</BlogShell>
+<BlogShell artigos={data.artigosRecentes} total={data.totalArtigos}>
+	{@render children()}
+</BlogShell>

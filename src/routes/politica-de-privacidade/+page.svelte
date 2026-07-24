@@ -2,6 +2,9 @@
 	import BlogShell from '$lib/components/BlogShell.svelte';
 	import { site, contact } from '$lib/site.js';
 
+	// Vem do +layout.server.js da raiz — alimenta o mapa do site.
+	let { data } = $props();
+
 	// Data da última revisão. Atualize sempre que o tratamento de dados mudar —
 	// é o que permite ao titular saber qual versão aceitou.
 	const atualizadoEm = '24 de julho de 2026';
@@ -48,7 +51,11 @@
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonld)}</` + `script>`}
 </svelte:head>
 
-<BlogShell subtitulo="Política de Privacidade">
+<BlogShell
+	subtitulo="Política de Privacidade"
+	artigos={data.artigosRecentes}
+	total={data.totalArtigos}
+>
 	<article class="mx-auto max-w-3xl">
 		<h1 class="mb-2 text-3xl font-bold text-slate-900">Política de Privacidade</h1>
 		<p class="mb-8 text-sm text-slate-500">Última atualização: {atualizadoEm}</p>
