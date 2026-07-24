@@ -1,0 +1,38 @@
+name: Deploy to Cloudflare Pages
+
+# Push na main → build (SSG, busca o blog no OC Hub/Directus) → deploy no projeto
+# Pages "timcorporativo" (Direct Upload) via wrangler. Mantém o domínio atual.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        env:
+          # $env/static/private exige estas variáveis em tempo de build.
+          OCHUB_DIRECTUS_URL: ${{ secrets.OCHUB_DIRECTUS_URL }}
+          OCHUB_API_TOKEN: ${{ secrets.OCHUB_API_TOKEN }}
+          OCHUB_SITE_UUID: ${{ secrets.OCHUB_SITE_UUID }}
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build --project-name=timcorporativo --branch=main
