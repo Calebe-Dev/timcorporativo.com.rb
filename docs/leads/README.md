@@ -92,16 +92,17 @@ em produção — a Function lê `context.env`, que vem dos secrets/vars do proj
 | Item | Estado |
 | --- | --- |
 | Projeto Pages `timcorporativo` | ativo, serve `timcorporativo.com.br` e `.pages.dev` |
-| Secrets no projeto | eram **zero**; gravados `OCHUB_DIRECTUS_URL`, `OCHUB_SITE_UUID`, `LEAD_TO`, `LEAD_ORIGEM` |
+| Secrets no projeto | 6 gravados: `OCHUB_DIRECTUS_URL`, `OCHUB_SITE_UUID`, `LEAD_TO`, `LEAD_ORIGEM`, `MAIL_API_KEY`, `TURNSTILE_SECRET_KEY` |
 | Buckets R2 | só `esquadrias-martins-leads` (outro projeto) |
 | Zona DNS | na Cloudflare (`gina/mcgrory.ns.cloudflare.com`) |
-| `send.timcorporativo.com.br` | **não existe** — sem SPF, sem DKIM, sem MX |
+| `send.timcorporativo.com.br` | não existe — e **não é mais necessário**: o Mail Service tem domínio de envio próprio |
 | CREATE público em `oc_crm_lead` | ativo (POST sem auth aceito) |
 | Deploy automático (GitHub Actions) | **quebrado** — os secrets `OCHUB_*` não existem no repo GitHub, o build aborta. Todo deploy é manual pelo servidor. |
 
 **Estado funcional em produção (verificado 24/07/2026):** `POST /api/lead` responde
-`{"ok":true,"cms":true,"email":false}` — **a gravação no CRM está ativa**; o e-mail
-segue desligado até existir `MAIL_API_KEY` (§5.1).
+`{"ok":true,"cms":true,"email":true}` com token válido do Turnstile — **pipeline
+completo no ar**: CRM + e-mail + anti-spam. Sem token o retorno é 403 `captcha`,
+que é o comportamento correto com `TURNSTILE_SECRET_KEY` gravada.
 
 ### Secrets a gravar
 
@@ -112,7 +113,7 @@ npx wrangler pages secret put OCHUB_SITE_UUID    --project-name=timcorporativo
 npx wrangler pages secret put LEAD_TO            --project-name=timcorporativo
 npx wrangler pages secret put LEAD_ORIGEM        --project-name=timcorporativo
 
-# ⏳ pendentes (dependem da chave do Mail Service / widget Turnstile — §5)
+# ✅ gravados em 24/07/2026
 npx wrangler pages secret put MAIL_API_KEY       --project-name=timcorporativo
 npx wrangler pages secret put TURNSTILE_SECRET_KEY --project-name=timcorporativo
 

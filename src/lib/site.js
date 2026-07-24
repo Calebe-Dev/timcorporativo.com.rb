@@ -34,7 +34,7 @@ export const contact = {
 // server-side. Essa é a ordem segura: primeiro publicar o widget e confirmar que
 // o lead passa, só então gravar TURNSTILE_SECRET_KEY. Com a secret gravada e o
 // formulário sem enviar token, a Function rejeita TODOS os leads com 403.
-export const turnstileSiteKey = '';
+export const turnstileSiteKey = '0x4AAAAAAD860rBYjiTD51kA';
 
 export function whatsappLink(text = contact.whatsappText) {
 	return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}`;
