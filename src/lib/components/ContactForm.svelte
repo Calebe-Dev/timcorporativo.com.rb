@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { formOptions, whatsappLink } from '$lib/site.js';
+	import { formOptions, whatsappLink, turnstileSiteKey } from '$lib/site.js';
 
 	let nome = $state('');
 	let email = $state('');
@@ -30,6 +30,11 @@
 	let utm = $state({});
 	let pagina = $state('/');
 
+	// Anti-spam. Enquanto `turnstileSiteKey` estiver vazia nada é carregado e o
+	// formulário se comporta exatamente como antes.
+	let turnstileToken = $state('');
+	let caixaTurnstile;
+
 	const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 	const UTM_STORE = 'tim_utm';
 
@@ -52,7 +57,36 @@
 			// sessionStorage bloqueado (modo restrito/iframe): seguimos sem atribuição.
 			utm = {};
 		}
+
+		if (turnstileSiteKey) carregarTurnstile();
 	});
+
+	/**
+	 * Carrega o Turnstile em modo `explicit` — assim o widget só aparece onde
+	 * queremos e o token chega por callback, sem depender de um <form> nativo.
+	 * Qualquer falha aqui é silenciosa de propósito: sem token o lead ainda vai,
+	 * e quem decide aceitar ou não é o servidor.
+	 */
+	function carregarTurnstile() {
+		const render = () => {
+			if (!window.turnstile || !caixaTurnstile) return;
+			window.turnstile.render(caixaTurnstile, {
+				sitekey: turnstileSiteKey,
+				callback: (t) => (turnstileToken = t),
+				'expired-callback': () => (turnstileToken = ''),
+				'error-callback': () => (turnstileToken = '')
+			});
+		};
+
+		if (window.turnstile) return render();
+
+		const s = document.createElement('script');
+		s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+		s.async = true;
+		s.defer = true;
+		s.onload = render;
+		document.head.appendChild(s);
+	}
 
 	function resumo() {
 		return [
@@ -88,6 +122,8 @@
 				mensagem,
 				website,
 				pagina,
+				// Nome exigido pelo Turnstile e lido por worker/turnstile.js.
+				'cf-turnstile-response': turnstileToken,
 				...utm
 			}),
 			keepalive: true
@@ -161,6 +197,12 @@
 			<input bind:value={website} name="website" tabindex="-1" autocomplete="off" />
 		</label>
 	</div>
+
+	{#if turnstileSiteKey}
+		<!-- Widget anti-spam. No modo Managed costuma ser invisível; ocupa espaço
+		     só quando a Cloudflare decide desafiar o visitante. -->
+		<div bind:this={caixaTurnstile}></div>
+	{/if}
 
 	<button
 		type="submit"

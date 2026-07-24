@@ -27,6 +27,15 @@ export const contact = {
 	yearsExperience: 15
 };
 
+// Site Key do Cloudflare Turnstile. É pública por natureza (vai no HTML), ao
+// contrário da Secret Key, que só existe como secret da Pages Function.
+//
+// Vazia = widget NÃO renderiza e o formulário segue só com honeypot + validação
+// server-side. Essa é a ordem segura: primeiro publicar o widget e confirmar que
+// o lead passa, só então gravar TURNSTILE_SECRET_KEY. Com a secret gravada e o
+// formulário sem enviar token, a Function rejeita TODOS os leads com 403.
+export const turnstileSiteKey = '';
+
 export function whatsappLink(text = contact.whatsappText) {
 	return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}`;
 }
