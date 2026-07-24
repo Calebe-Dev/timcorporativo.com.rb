@@ -5,6 +5,24 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#004fbb" />
+
+		<!-- Verificação do Google Search Console — mesma tag do site WordPress
+		     anterior (snippet 2670). Mantê-la preserva a propriedade já verificada. -->
+		<meta name="google-site-verification" content="3PZLGrA470_oq1V9tNyjRtmPWBhlPacImk6vsutSIVI" />
+
+		<!-- GA4 — as duas propriedades que rodavam no site anterior (snippets 4212 e
+		     4215). Portadas como estavam para não quebrar a continuidade histórica. -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-N8PJH573Q8"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', 'G-N8PJH573Q8');
+			gtag('config', 'G-KT584R0KVS');
+		</script>
+
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
