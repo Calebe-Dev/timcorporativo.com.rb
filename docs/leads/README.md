@@ -1,6 +1,6 @@
 # Envio de leads — arquitetura e operação
 
-**Endpoint:** `POST /api/lead` · **Destinos:** OC Hub CRM (Directus) + e-mail interno (Resend)
+**Endpoint:** `POST /api/lead` · **Destinos:** OC Hub CRM (Directus) + e-mail interno (Grupo OC Mail Service)
 **Última atualização:** 2026-07-24
 
 ---
@@ -30,11 +30,11 @@ Visitante → POST /api/lead (JSON)
   4. Validação server-side            falhou → 400
   5. EM PARALELO, independentes:
        ├── CRM: POST /items/oc_crm_lead   (fonte durável)
-       └── E-mail: Resend → comercial     (aviso, Reply-To = lead)
+       └── E-mail: Mail Service → comercial  (aviso; e-mail do lead no corpo)
   6. pelo menos 1 destino OK → 200 · os DOIS falharam → 502 (+ lead no log)
 ```
 
-**Por que dois destinos independentes:** um CRM lento ou um Resend fora do ar não podem
+**Por que dois destinos independentes:** um CRM lento ou o Mail Service fora do ar não podem
 derrubar o outro. Basta um funcionar para o lead estar salvo. Os dois carregam o **mesmo
 `ID do lead`** (UUID gerado na Function) — é o que liga o e-mail ao registro no CRM sem
 precisar sequenciar as duas chamadas.
@@ -50,7 +50,7 @@ precisar sequenciar as duas chamadas.
 | `worker/lead.js` | Orquestração: guardas, anti-spam, fan-out, resposta |
 | `worker/validate.js` | Validação e normalização server-side |
 | `worker/cms.js` | Gravação no OC Hub (Directus) |
-| `worker/email.js` | Aviso interno via Resend |
+| `worker/email.js` | Aviso interno via Grupo OC Mail Service (template `lead-notification`) |
 | `worker/turnstile.js` | Verificação anti-spam |
 | `static/_routes.json` | Garante que **só** `/api/*` invoca a Function |
 | `src/lib/components/ContactForm.svelte` | Formulário: captura + WhatsApp |
@@ -101,7 +101,7 @@ em produção — a Function lê `context.env`, que vem dos secrets/vars do proj
 
 **Estado funcional em produção (verificado 24/07/2026):** `POST /api/lead` responde
 `{"ok":true,"cms":true,"email":false}` — **a gravação no CRM está ativa**; o e-mail
-segue desligado até existir `RESEND_API_KEY` (§5.1).
+segue desligado até existir `MAIL_API_KEY` (§5.1).
 
 ### Secrets a gravar
 
@@ -112,10 +112,13 @@ npx wrangler pages secret put OCHUB_SITE_UUID    --project-name=timcorporativo
 npx wrangler pages secret put LEAD_TO            --project-name=timcorporativo
 npx wrangler pages secret put LEAD_ORIGEM        --project-name=timcorporativo
 
-# ⏳ pendentes (dependem de conta Resend / widget Turnstile — §5)
-npx wrangler pages secret put RESEND_API_KEY     --project-name=timcorporativo
-npx wrangler pages secret put LEAD_FROM          --project-name=timcorporativo
+# ⏳ pendentes (dependem da chave do Mail Service / widget Turnstile — §5)
+npx wrangler pages secret put MAIL_API_KEY       --project-name=timcorporativo
 npx wrangler pages secret put TURNSTILE_SECRET_KEY --project-name=timcorporativo
+
+# MAIL_SERVICE_URL não é segredo — pode ir como variável comum no painel
+# (Settings → Environment variables). Se ficar vazia, worker/email.js usa
+# https://mail-api.grupooc.com.br/api/email/send como padrão.
 ```
 
 > ⚠️ **Secret novo só vale no deploy seguinte.** Depois de gravar, refaça o deploy
@@ -135,7 +138,8 @@ O código não quebra com secret faltando — cada destino falha isolado e o out
 
 | Faltando | Efeito |
 | --- | --- |
-| `RESEND_API_KEY` / `LEAD_FROM` / `LEAD_TO` | sem e-mail; **lead ainda vai para o CRM** |
+| `MAIL_API_KEY` | sem e-mail; **lead ainda vai para o CRM** |
+| `LEAD_TO` | e-mail ainda chega aos destinatários fixos do serviço; só não há cópia |
 | `OCHUB_DIRECTUS_URL` / `OCHUB_SITE_UUID` | sem CRM; **lead ainda vai por e-mail** |
 | `TURNSTILE_SECRET_KEY` | verificação **pulada**; só honeypot + validação |
 | tudo | 502 ao visitante, lead no log, WhatsApp segue funcionando |
@@ -144,10 +148,23 @@ O código não quebra com secret faltando — cada destino falha isolado e o out
 
 ## 5. Pendências que dependem do dono (não dá para fazer por código)
 
-1. **Conta Resend + domínio de envio.** Criar/verificar `send.timcorporativo.com.br`
-   (subdomínio isolado, para não mexer no MX do domínio principal) e publicar SPF/DKIM
-   na zona Cloudflare. Mesmo padrão já usado em `esquadriasmartins.com.br`.
+1. **Chave do Grupo OC Mail Service.** Painel admin do serviço → aba **API Keys** →
+   rótulo `timcorporativo` → Gerar. Formato `mail-<slug>-<hex>`. Gravar como
+   `MAIL_API_KEY` (§4). Validar antes de testar o formulário, sem disparar e-mail:
+
+   ```bash
+   curl -s -H "X-API-Key: SUA_CHAVE" https://mail-api.grupooc.com.br/api/email/templates
+   ```
+
    → sem isso não há e-mail; o CRM continua recebendo.
+
+   > Gerar chave é aditivo: não invalida as existentes nem exige restart. Já o botão
+   > **Revogar** tem efeito imediato e o painel não mostra qual site usa qual chave —
+   > confira o rótulo antes.
+
+   Vantagem sobre o plano anterior (Resend): o serviço já tem domínio de envio próprio,
+   então **`send.timcorporativo.com.br` deixou de ser necessário** — nada de SPF/DKIM
+   para publicar nesta zona.
 2. **Turnstile.** Criar widget para `timcorporativo.com.br` + `timcorporativo.pages.dev`,
    aplicar a Site Key no formulário (script + campo `cf-turnstile-response`; a Function
    já lê esse campo) e só então gravar a Secret Key.
@@ -191,8 +208,10 @@ payload inválido, honeypot preenchido, ou rode com um `.env` sem as `OCHUB_*`.
 ## 7. Limites do plano gratuito
 
 - **Workers/Functions:** 100.000 requisições/dia — só `/api/*` conta (páginas são asset).
-- **Resend free:** 100 e-mails/dia · 3.000/mês. 1 e-mail por lead ⇒ este é o gargalo real.
-  Passando disso de forma consistente, avaliar Resend Pro ou Amazon SES.
+- **Grupo OC Mail Service:** rate limit de **100 requisições / 15 min compartilhado entre
+  todos os sites** integrados ao serviço — não é cota deste site sozinho. Um pico noutro
+  projeto do grupo consome o mesmo balde. Resposta 429 traz `RateLimit-Remaining`.
+  O envio é síncrono (1,5 s a 4 s por e-mail), daí o timeout de 15 s em `worker/email.js`.
 - **Directus/OC Hub:** infraestrutura própria, sem cota da Cloudflare.
 
 ---

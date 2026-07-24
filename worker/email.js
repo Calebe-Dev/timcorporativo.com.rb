@@ -1,20 +1,36 @@
-// Aviso interno por e-mail via API do Resend (HTTP, sem SMTP) — mesmo padrão já
-// usado no projeto esquadriasmartins.com.br. Um e-mail por lead, para a equipe
-// comercial; `Reply-To` é o e-mail do lead, então responder no cliente de e-mail
-// já fala com a empresa interessada.
+// Aviso interno por e-mail via Grupo OC Mail Service (mail-api.grupooc.com.br).
+// Contrato: https://mail-api.grupooc.com.br/docs/integracao-email.md
 //
-// Trocar de provedor = mexer só neste arquivo.
+// Trocar de provedor = mexer só neste arquivo. `enviarAvisoInterno` mantém a
+// mesma assinatura de antes, então `lead.js` não muda.
+//
+// Três particularidades do serviço que moldam este arquivo:
+//
+//  1. O corpo do e-mail vem de um template `.hbs` que vive na imagem Docker do
+//     serviço. Não dá para mandar HTML próprio. Usamos o template genérico
+//     `lead-notification`, que expõe apenas name/email/phone/company/message/
+//     source/timestamp — por isso todo o resto do lead é empacotado em `message`.
+//  2. O destinatário é FIXO no servidor (marketing.grupooc@gmail.com e
+//     contato@grupooc.com.br). O campo `to` é obrigatório na validação mas
+//     descartado. `cc` e `bcc`, esses sim, são respeitados — é por `cc` que
+//     LEAD_TO continua recebendo.
+//  3. A validação recusa qualquer chave fora de to/subject/template/data/cc/bcc
+//     com 400. Não acrescente campos ao corpo sem conferir a doc.
 
 import { origemTrafego } from './validate.js';
 
-const RESEND_URL = 'https://api.resend.com/emails';
-const TIMEOUT_MS = 10000;
+const TEMPLATE = 'lead-notification';
 
-const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' };
+// `to` é obrigatório na validação e descartado pelo servidor. Um endereço
+// sintaticamente válido e obviamente inerte deixa claro que não é destino real.
+const DESTINO_IGNORADO = 'lead@nao-usado.com';
 
-function esc(s) {
-	return String(s).replace(/[&<>"]/g, (c) => ESCAPES[c]);
-}
+// A doc mede 1,5 s a 4 s por envio (SMTP síncrono) e recomenda ao menos 15 s.
+const TIMEOUT_MS = 15000;
+
+const URL_PADRAO = 'https://mail-api.grupooc.com.br/api/email/send';
+
+const MAX_ASSUNTO = 200;
 
 /** Formata o celular só para exibição (o CRM guarda os dígitos crus). */
 function telefoneLegivel(d) {
@@ -22,48 +38,70 @@ function telefoneLegivel(d) {
 	return m ? `(${m[1]}) ${m[2]}-${m[3]}` : d;
 }
 
-const CAMPOS = [
-	['nome', 'Nome'],
-	['email', 'E-mail'],
-	['celular', 'Celular / WhatsApp'],
-	['cnpj', 'CNPJ'],
-	['linhas', 'Nº de linhas'],
-	['operadora', 'Operadora atual'],
-	['mensagem', 'Mensagem']
-];
-
-/** Só as linhas preenchidas — e-mail curto é e-mail lido. */
-function linhasPreenchidas(lead) {
-	return CAMPOS.map(([k, label]) => [label, k === 'celular' ? telefoneLegivel(lead[k]) : lead[k]]).filter(
-		([, v]) => v
-	);
+/** CNPJ em 00.000.000/0000-00 quando vier completo; senão devolve como está. */
+function cnpjLegivel(d) {
+	if (!d) return '';
+	const m = d.match(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/);
+	return m ? `${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}` : d;
 }
 
-function montarHtml(lead, aviso, rodape) {
-	const linhas = linhasPreenchidas(lead)
-		.map(
-			([label, valor]) =>
-				`<tr><td style="padding:6px 12px;font-weight:600;color:#333;white-space:nowrap;vertical-align:top">${esc(
-					label
-				)}</td><td style="padding:6px 12px;color:#111">${esc(valor).replaceAll('\n', '<br>')}</td></tr>`
-		)
-		.join('');
+/**
+ * O template só tem um campo livre (`message`), então tudo que não cabe em
+ * name/email/phone/company entra aqui — senão o comercial recebe um e-mail sem
+ * nº de linhas, operadora nem origem da campanha, que é o que qualifica o lead.
+ */
+function montarMensagem(lead, verificado) {
+	const blocos = [];
 
-	const zap = `https://wa.me/55${esc(lead.celular)}`;
+	if (!verificado) {
+		blocos.push(
+			'[ATENCAO] O anti-spam estava indisponivel no momento do envio — ' +
+				'este lead NAO foi verificado. Confira antes de tratar.'
+		);
+	}
 
-	return `<div style="font-family:Arial,sans-serif;max-width:640px">
-<div style="padding:20px 0 14px;border-bottom:3px solid #003B7E;margin-bottom:20px">
-	<span style="font-size:20px;font-weight:700;color:#003B7E">TIM Corporativo</span>
-</div>
-<h2 style="color:#111;margin:0 0 12px">Novo lead pelo site</h2>
-${aviso}
-<table style="border-collapse:collapse;width:100%">${linhas}</table>
-<p style="margin:20px 0 0">
-	<a href="${zap}" style="display:inline-block;background:#25D366;color:#fff;text-decoration:none;padding:10px 18px;border-radius:999px;font-weight:600">Chamar no WhatsApp</a>
-	<a href="mailto:${esc(lead.email)}" style="display:inline-block;margin-left:8px;color:#003B7E">Responder por e-mail</a>
-</p>
-<p style="margin-top:20px;color:#888;font-size:12px">${esc(rodape)}</p>
-</div>`;
+	if (lead.mensagem) blocos.push(lead.mensagem);
+
+	const detalhes = [
+		['CNPJ', cnpjLegivel(lead.cnpj)],
+		['No de linhas', lead.linhas],
+		['Operadora atual', lead.operadora],
+		['Origem do trafego', origemTrafego(lead)],
+		['Pagina', lead.pagina],
+		// Mesmo id gravado em `observacoes` no CRM — é o que liga os dois registros.
+		['ID do lead', lead.id]
+	]
+		.filter(([, v]) => v)
+		.map(([k, v]) => `${k}: ${v}`);
+
+	if (detalhes.length) blocos.push(detalhes.join('\n'));
+
+	// O serviço não suporta Reply-To, então o e-mail do lead precisa estar
+	// visível no corpo para responder sem ter que procurar.
+	blocos.push(`Responder para: ${lead.email}`);
+
+	return blocos.join('\n\n');
+}
+
+/** Lista de e-mails separada por vírgula -> array limpo. */
+function listaEmails(valor) {
+	return String(valor || '')
+		.split(',')
+		.map((s) => s.trim())
+		.filter(Boolean);
+}
+
+/** Mensagem de erro útil, seguindo a tabela de diagnóstico da doc (§8). */
+function explicar(status, corpo) {
+	const dicas = {
+		400: 'payload invalido (campo faltando ou chave extra)',
+		401: 'X-API-Key nao chegou — secret ausente neste ambiente',
+		403: 'chave invalida ou revogada',
+		429: 'rate limit (100 req/15 min, compartilhado entre todos os sites)',
+		500: 'template inexistente ou falha no envio'
+	};
+	const dica = dicas[status] ? ` — ${dicas[status]}` : '';
+	return `mail-service ${status}${dica}: ${corpo.slice(0, 200)}`;
 }
 
 /**
@@ -75,51 +113,47 @@ ${aviso}
  * @param {{ verificado: boolean }} contexto
  */
 export async function enviarAvisoInterno(env, lead, { verificado }) {
-	if (!env.RESEND_API_KEY) throw new Error('RESEND_API_KEY não configurada');
-	if (!env.LEAD_FROM || !env.LEAD_TO) throw new Error('LEAD_FROM/LEAD_TO não configurados');
+	if (!env.MAIL_API_KEY) throw new Error('MAIL_API_KEY não configurada');
 
-	// `verificado: false` = o anti-spam esteve indisponível (fail-open) e este
-	// lead não passou por verificação. A equipe precisa saber antes de tratar.
-	const aviso = verificado
-		? ''
-		: '<p style="margin:0 0 12px;padding:8px 12px;background:#fff4e5;border:1px solid #d98c00;color:#7a4a00;font-size:13px">⚠️ O anti-spam estava indisponível no momento — este lead NÃO foi verificado. Confira antes de tratar.</p>';
+	const url = (env.MAIL_SERVICE_URL || URL_PADRAO).trim();
 
-	const rodape = [
-		`Origem do tráfego: ${origemTrafego(lead)}`,
-		`Página: ${lead.pagina}`,
-		`Recebido em: ${lead.recebidoEm}`,
-		// Mesmo id gravado em `observacoes` no CRM — use para achar o registro lá.
-		`ID do lead: ${lead.id}`
-	].join(' · ');
+	const assunto = `${verificado ? '' : '[verificar] '}Novo lead TIM Corporativo: ${lead.nome}`.slice(
+		0,
+		MAX_ASSUNTO
+	);
 
-	const texto =
-		(verificado ? '' : '[NAO VERIFICADO - anti-spam indisponivel]\n\n') +
-		linhasPreenchidas(lead)
-			.map(([label, valor]) => `${label}: ${valor}`)
-			.join('\n') +
-		`\n\n${rodape}`;
+	const corpo = {
+		to: DESTINO_IGNORADO,
+		subject: assunto,
+		template: TEMPLATE,
+		data: {
+			name: lead.nome,
+			email: lead.email,
+			phone: telefoneLegivel(lead.celular),
+			// Não coletamos razão social; o CNPJ é o identificador que temos.
+			company: cnpjLegivel(lead.cnpj),
+			message: montarMensagem(lead, verificado),
+			source: env.LEAD_ORIGEM || 'timcorporativo.com.br',
+			timestamp: lead.recebidoEm
+		}
+	};
 
-	const res = await fetch(RESEND_URL, {
+	// O destinatário fixo do serviço não cobre quem estiver em LEAD_TO; `cc` sim.
+	const cc = listaEmails(env.LEAD_TO);
+	if (cc.length) corpo.cc = cc;
+
+	const res = await fetch(url, {
 		method: 'POST',
 		headers: {
-			Authorization: `Bearer ${env.RESEND_API_KEY}`,
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'X-API-Key': env.MAIL_API_KEY.trim()
 		},
-		body: JSON.stringify({
-			from: env.LEAD_FROM,
-			to: env.LEAD_TO.split(',')
-				.map((s) => s.trim())
-				.filter(Boolean),
-			reply_to: lead.email,
-			subject: `${verificado ? '' : '[verificar] '}Novo lead TIM Corporativo: ${lead.nome}`,
-			html: montarHtml(lead, aviso, rodape),
-			text: texto
-		}),
+		body: JSON.stringify(corpo),
 		signal: AbortSignal.timeout(TIMEOUT_MS)
 	});
 
 	if (!res.ok) {
-		const corpo = await res.text().catch(() => '');
-		throw new Error(`resend ${res.status}: ${corpo.slice(0, 200)}`);
+		const texto = await res.text().catch(() => '');
+		throw new Error(explicar(res.status, texto));
 	}
 }
