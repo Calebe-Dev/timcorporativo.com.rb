@@ -9,7 +9,9 @@ export const site = {
 	description:
 		'Planos TIM Empresa com TIM Black Empresa, TIM Fibra Empresa e TIM UltraFibra para PMEs e grandes empresas. Atendimento consultivo de representante autorizado.',
 	logo: '/wp-content/uploads/2025/10/tim-logo-2022.svg',
-	ogImage: '/wp-content/uploads/2026/05/TIM-Capa-Gancho.png'
+	// JPEG e não WebP: crawler de rede social (LinkedIn, entre outros) nem sempre
+	// renderiza WebP. O PNG original continua no lugar, para previews já em cache.
+	ogImage: '/wp-content/uploads/2026/05/TIM-Capa-Gancho.jpg'
 };
 
 export const contact = {
@@ -55,7 +57,7 @@ export const hero = {
 	title: 'Planos TIM Empresa: Black, Fibra e UltraFibra',
 	subtitle:
 		'Soluções de telefonia móvel, internet fibra e conectividade corporativa para pequenas, médias e grandes empresas — com atendimento consultivo de um representante autorizado TIM.',
-	image: '/wp-content/uploads/2025/10/grupo-de-pessoas-diversas-tendo-uma-reuniao-de-negocios-scaled.jpg',
+	image: '/wp-content/uploads/2025/10/grupo-de-pessoas-diversas-tendo-uma-reuniao-de-negocios-scaled.webp',
 	bullets: [
 		'Internet fibra e telefonia empresarial',
 		'Atendimento consultivo especializado',
@@ -66,17 +68,17 @@ export const hero = {
 export const solutions = [
 	{
 		name: 'TIM Black Empresa',
-		image: '/wp-content/uploads/2026/05/TIM-Black-Empresa.png',
+		image: '/wp-content/uploads/2026/05/TIM-Black-Empresa.webp',
 		text: 'Planos móveis para equipes que dependem de dados, voz e aplicativos na rotina profissional — vendedores, gestores e atendimento externo.'
 	},
 	{
 		name: 'TIM Fibra Empresa',
-		image: '/wp-content/uploads/2026/05/TIM-Fibra-Empresa.png',
+		image: '/wp-content/uploads/2026/05/TIM-Fibra-Empresa.webp',
 		text: 'Internet fixa estável para lojas, escritórios, sistemas online, emissão de notas e reuniões por vídeo, com disponibilidade avaliada por endereço.'
 	},
 	{
 		name: 'TIM UltraFibra',
-		image: '/wp-content/uploads/2026/05/TIM-Telefonia-Movel.png',
+		image: '/wp-content/uploads/2026/05/TIM-Telefonia-Movel.webp',
 		text: 'Alta velocidade para operações digitais que dependem de conexão estável, atendimento e sistemas em nuvem no dia a dia.'
 	}
 ];

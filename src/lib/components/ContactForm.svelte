@@ -179,11 +179,13 @@
 			autocomplete="tel"
 		/>
 		<input class={field} bind:value={cnpj} placeholder="CNPJ" inputmode="numeric" />
-		<select class={field} bind:value={linhas}>
+		<!-- `aria-label`: a primeira <option> serve de rótulo visual, mas leitor de
+		     tela anuncia o <select> sem nome se não houver label associado. -->
+		<select class={field} bind:value={linhas} aria-label="Número de linhas">
 			<option value="">Nº de linhas</option>
 			{#each formOptions.linhas as opt}<option>{opt}</option>{/each}
 		</select>
-		<select class={field} bind:value={operadora}>
+		<select class={field} bind:value={operadora} aria-label="Operadora atual">
 			<option value="">Operadora atual</option>
 			{#each formOptions.operadoras as opt}<option>{opt}</option>{/each}
 		</select>

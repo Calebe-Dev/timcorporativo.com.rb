@@ -3,6 +3,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import SiteMap from '$lib/components/SiteMap.svelte';
+	import OcHubOffers from '$lib/components/OcHubOffers.svelte';
 	import ContactForm from '$lib/components/ContactForm.svelte';
 	import Faq from '$lib/components/Faq.svelte';
 	import {
@@ -110,13 +111,17 @@
 						class="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
 					>
 						<div class="aspect-video overflow-hidden bg-tim-50">
+							<!-- 800x800 é o tamanho real do arquivo .webp. O box é definido
+							     pelo `aspect-video` do pai; estes atributos só informam a
+							     proporção intrínseca ao browser. -->
 							<img
 								src={s.image}
 								alt={s.name}
 								class="h-full w-full object-cover"
 								loading="lazy"
-								width="1200"
-								height="1200"
+								decoding="async"
+								width="800"
+								height="800"
 							/>
 						</div>
 						<div class="flex flex-1 flex-col p-5">
@@ -178,6 +183,11 @@
 						>
 					</div>
 				{/each}
+			</div>
+
+			<!-- Ofertas vindas do OC Hub, logo abaixo dos perfis de plano. -->
+			<div class="mt-10">
+				<OcHubOffers layout="row" limit={10} sort="price_asc" />
 			</div>
 		</div>
 	</section>
