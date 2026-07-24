@@ -12,7 +12,19 @@ const config = {
 			fallback: '404.html',
 			precompress: false,
 			strict: true
-		})
+		}),
+		prerender: {
+			// Links quebrados DENTRO do conteúdo dos artigos (vindos do OC Hub)
+			// não devem derrubar o build — apenas avisamos, para correção no CMS.
+			// Links quebrados em páginas que nós controlamos continuam sendo fatais.
+			handleHttpError: ({ path, referrer, message }) => {
+				if (referrer && referrer.startsWith('/blog/')) {
+					console.warn(`⚠️  [blog] link do artigo aponta para rota inexistente: ${path} (em ${referrer})`);
+					return;
+				}
+				throw new Error(message);
+			}
+		}
 	}
 };
 

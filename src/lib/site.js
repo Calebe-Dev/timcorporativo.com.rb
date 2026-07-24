@@ -37,6 +37,7 @@ export const nav = [
 	{ label: 'Planos', href: '#planos' },
 	{ label: 'Vantagens', href: '#vantagens' },
 	{ label: 'Dúvidas', href: '#faq' },
+	{ label: 'Blog', href: '/blog' },
 	{ label: 'Contato', href: '#contato' }
 ];
 
