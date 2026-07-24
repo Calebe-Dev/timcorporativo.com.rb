@@ -236,6 +236,9 @@
 
 	<p class="text-xs text-slate-500">
 		Seus dados são usados apenas para retorno do contato comercial. Atendimento de representante
-		autorizado TIM.
+		autorizado TIM. Saiba como tratamos suas informações na
+		<a class="underline hover:text-tim-600" href="/politica-de-privacidade">
+			Política de Privacidade</a
+		>.
 	</p>
 </form>

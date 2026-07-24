@@ -30,6 +30,7 @@ export async function GET() {
 	const urls = [
 		{ loc: `${site.url}/`, priority: '1.0' },
 		{ loc: `${site.url}/blog`, priority: '0.8' },
+		{ loc: `${site.url}/politica-de-privacidade`, priority: '0.3' },
 		...posts.map((a) => ({
 			// Barra final: é a URL que o WordPress servia, que o Google indexou e
 			// que hoje responde 200 direto (ver trailingSlash em /[slug]).

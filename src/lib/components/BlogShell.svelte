@@ -1,7 +1,7 @@
 <script>
 	import { site, contact, whatsappLink } from '$lib/site.js';
 
-	let { children } = $props();
+	let { children, subtitulo = 'Blog empresarial' } = $props();
 </script>
 
 <!--
@@ -17,7 +17,7 @@
 				<img src={site.logo} alt="TIM" class="h-9 w-9" width="36" height="36" />
 				<span class="leading-tight">
 					<span class="block text-base font-bold text-tim-800">TIM Corporativo</span>
-					<span class="block text-[11px] font-medium text-tim-500">Blog empresarial</span>
+					<span class="block text-[11px] font-medium text-tim-500">{subtitulo}</span>
 				</span>
 			</a>
 			<nav class="flex items-center gap-4 text-sm font-medium">

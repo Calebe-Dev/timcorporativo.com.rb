@@ -2,7 +2,12 @@ import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 // Rotas que existem no repositório (as demais são artigos vindos do CMS).
-const PAGINAS_PROPRIAS = new Set(['/', '/blog', '/sitemap.xml']);
+const PAGINAS_PROPRIAS = new Set([
+	'/',
+	'/blog',
+	'/sitemap.xml',
+	'/politica-de-privacidade'
+]);
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {

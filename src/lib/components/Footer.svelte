@@ -21,6 +21,11 @@
 				{#each nav as item}
 					<li><a href={item.href} class="text-tim-200 hover:text-white">{item.label}</a></li>
 				{/each}
+				<li>
+					<a href="/politica-de-privacidade" class="text-tim-200 hover:text-white">
+						Política de Privacidade
+					</a>
+				</li>
 			</ul>
 		</div>
 
