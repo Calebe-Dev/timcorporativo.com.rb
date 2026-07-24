@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* Fonte oficial TIM Sans (importada de wp-content/uploads). */
+@font-face {
+	font-family: 'TIM Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src:
+		url('/wp-content/uploads/2025/10/c875cb65af48db4e990ed39d981b9ef1.woff2') format('woff2'),
+		url('/wp-content/uploads/2025/10/c875cb65af48db4e990ed39d981b9ef1.woff') format('woff');
+}
+@font-face {
+	font-family: 'TIM Sans';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src:
+		url('/wp-content/uploads/2025/10/57b88f8a459956fcac90a4e1a8e0f97b.woff2') format('woff2'),
+		url('/wp-content/uploads/2025/10/57b88f8a459956fcac90a4e1a8e0f97b.woff') format('woff');
+}
+
+/* Tokens de marca TIM (azul institucional). */
+@theme {
+	--font-sans:
+		'TIM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+	--color-tim-50: #e8f1fd;
+	--color-tim-100: #cfe2fb;
+	--color-tim-200: #a3c6f6;
+	--color-tim-300: #6fa4ef;
+	--color-tim-400: #3d82e6;
+	--color-tim-500: #0f62d6;
+	--color-tim-600: #004fbb;
+	--color-tim-700: #003f96;
+	--color-tim-800: #002d6e;
+	--color-tim-900: #001f4d;
+	--color-tim-950: #00142f;
+
+	--color-accent-400: #ff6a3d;
+	--color-accent-500: #f5451f;
+	--color-accent-600: #d63512;
+}
+
+:root {
+	color-scheme: light;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+/* Compensa o header fixo ao navegar por âncoras. */
+:target,
+[id] {
+	scroll-margin-top: 5rem;
+}
