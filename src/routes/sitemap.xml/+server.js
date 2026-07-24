@@ -31,7 +31,9 @@ export async function GET() {
 		{ loc: `${site.url}/`, priority: '1.0' },
 		{ loc: `${site.url}/blog`, priority: '0.8' },
 		...posts.map((a) => ({
-			loc: `${site.url}/blog/${a.slug}`,
+			// Barra final: é a URL que o WordPress servia, que o Google indexou e
+			// que hoje responde 200 direto (ver trailingSlash em /[slug]).
+			loc: `${site.url}/${a.slug}/`,
 			lastmod: lastmod(a),
 			priority: '0.7'
 		}))

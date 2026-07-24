@@ -92,24 +92,34 @@ em produção — a Function lê `context.env`, que vem dos secrets/vars do proj
 | Item | Estado |
 | --- | --- |
 | Projeto Pages `timcorporativo` | ativo, serve `timcorporativo.com.br` e `.pages.dev` |
-| **Secrets no projeto** | **nenhum** — a lista voltou vazia |
+| Secrets no projeto | eram **zero**; gravados `OCHUB_DIRECTUS_URL`, `OCHUB_SITE_UUID`, `LEAD_TO`, `LEAD_ORIGEM` |
 | Buckets R2 | só `esquadrias-martins-leads` (outro projeto) |
 | Zona DNS | na Cloudflare (`gina/mcgrory.ns.cloudflare.com`) |
 | `send.timcorporativo.com.br` | **não existe** — sem SPF, sem DKIM, sem MX |
 | CREATE público em `oc_crm_lead` | ativo (POST sem auth aceito) |
+| Deploy automático (GitHub Actions) | **quebrado** — os secrets `OCHUB_*` não existem no repo GitHub, o build aborta. Todo deploy é manual pelo servidor. |
 
-Ou seja: **nada estava configurado**. Tudo abaixo é setup novo.
+**Estado funcional em produção (verificado 24/07/2026):** `POST /api/lead` responde
+`{"ok":true,"cms":true,"email":false}` — **a gravação no CRM está ativa**; o e-mail
+segue desligado até existir `RESEND_API_KEY` (§5.1).
 
 ### Secrets a gravar
 
 ```bash
+# ✅ já gravados em 24/07/2026
 npx wrangler pages secret put OCHUB_DIRECTUS_URL --project-name=timcorporativo
 npx wrangler pages secret put OCHUB_SITE_UUID    --project-name=timcorporativo
+npx wrangler pages secret put LEAD_TO            --project-name=timcorporativo
+npx wrangler pages secret put LEAD_ORIGEM        --project-name=timcorporativo
+
+# ⏳ pendentes (dependem de conta Resend / widget Turnstile — §5)
 npx wrangler pages secret put RESEND_API_KEY     --project-name=timcorporativo
 npx wrangler pages secret put LEAD_FROM          --project-name=timcorporativo
-npx wrangler pages secret put LEAD_TO            --project-name=timcorporativo
 npx wrangler pages secret put TURNSTILE_SECRET_KEY --project-name=timcorporativo
 ```
+
+> ⚠️ **Secret novo só vale no deploy seguinte.** Depois de gravar, refaça o deploy
+> (§6) — senão a Function continua rodando com o env antigo.
 
 Opcionais: `OCHUB_LEADS_TOKEN` (só se a política pública do Directus for fechada) e
 `LEAD_ORIGEM` (default já é "Site TIM Corporativo").

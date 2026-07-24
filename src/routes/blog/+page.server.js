@@ -19,7 +19,7 @@ export async function load() {
 		}))
 		.sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''));
 
-	// Alguns artigos do CMS compartilham o mesmo slug; a rota /blog/<slug> só
+	// Alguns artigos do CMS compartilham o mesmo slug; a rota /<slug> só
 	// pode renderizar um deles. Deduplicamos por slug (mantendo o mais recente)
 	// para não exibir cards repetidos apontando para a mesma URL.
 	const seen = new Set();

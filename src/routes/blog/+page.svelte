@@ -47,7 +47,7 @@
 		{#each items as post (post.id)}
 			<li>
 				<a
-					href="/blog/{post.slug}"
+					href="/{post.slug}/"
 					class="flex h-full flex-col rounded-xl border border-slate-200 p-5 transition hover:border-tim-300 hover:shadow-md"
 				>
 					{#if post.date}

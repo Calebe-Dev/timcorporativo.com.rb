@@ -15,6 +15,7 @@ export const ochubConfig = {
 	logLevel: 'silent'
 };
 
-// URL base das rotas do blog. O SDK monta o canonical como `${siteUrl}/${slug}`,
-// então incluímos `/blog` aqui para o canonical/JSON-LD apontarem para /blog/<slug>.
-export const blogBaseUrl = `${site.url}/blog`;
+// URL base dos artigos. O SDK monta o canonical como `${siteUrl}/${slug}`.
+// Os posts vivem na RAIZ (/<slug>), como no WordPress original: assim cada URL
+// já indexada pelo Google responde 200 no próprio endereço, sem redirect.
+export const blogBaseUrl = site.url;
