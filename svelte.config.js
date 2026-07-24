@@ -23,6 +23,15 @@ const config = {
 					return;
 				}
 				throw new Error(message);
+			},
+			// Mesma regra para âncoras internas: artigos recuperados do site antigo
+			// trazem índices apontando para ids que nem sempre sobreviveram.
+			handleMissingId: ({ path, id, referrers, message }) => {
+				if (referrers.every((r) => r.startsWith('/blog/'))) {
+					console.warn(`⚠️  [blog] âncora não encontrada: ${path}#${id}`);
+					return;
+				}
+				throw new Error(message);
 			}
 		}
 	}
