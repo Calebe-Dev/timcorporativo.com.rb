@@ -18,7 +18,11 @@ export const site = {
 	ogImageWidth: 1200,
 	ogImageHeight: 630,
 	ogImageAlt:
-		'Planos TIM Empresa — sua empresa ainda paga caro pela telefonia móvel? Descubra os planos TIM.'
+		'Planos TIM Empresa — sua empresa ainda paga caro pela telefonia móvel? Descubra os planos TIM.',
+	// Para a meta keywords (auditorias pedem; o Google a ignora desde 2009, mas
+	// outros buscadores e ferramentas ainda leem — e não custa nada).
+	keywords:
+		'tim empresa, plano tim empresa, tim black empresa, tim fibra empresa, tim ultrafibra, tim corporativo, plano tim cnpj, contratar tim empresa, portabilidade tim empresa, representante autorizado tim'
 };
 
 export const contact = {

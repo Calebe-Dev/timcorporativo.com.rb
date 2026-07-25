@@ -6,6 +6,7 @@
 		description = site.description,
 		path = '/',
 		image = site.ogImage,
+		keywords = site.keywords,
 		// Service + OfferCatalog só onde os planos aparecem de fato (home).
 		// Página legal/blog marca apenas WebPage + Breadcrumb — dado estruturado
 		// deve refletir o conteúdo visível da página.
@@ -140,6 +141,9 @@
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
+	<meta name="keywords" content={keywords} />
+	<meta name="author" content="{site.name} — {site.legalName}" />
+	<meta name="publisher" content={site.legalName} />
 	<meta name="robots" content="index, follow, max-image-preview:large" />
 	<link rel="canonical" href={canonical} />
 

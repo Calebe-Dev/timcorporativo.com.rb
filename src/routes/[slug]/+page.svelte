@@ -16,6 +16,8 @@
 	<!-- Bloco de SEO gerado pelo SDK: title, meta description, keywords, OG e JSON-LD (Article). -->
 	{@html seo.html}
 	<meta name="robots" content="index, follow, max-image-preview:large" />
+	<meta name="author" content="{site.name} — Grupo OC" />
+	<meta name="publisher" content="Grupo OC" />
 	<meta property="og:site_name" content="TIM Corporativo" />
 	<meta property="og:locale" content="pt_BR" />
 	<!-- O SDK não emite imagem nem Twitter Card — sem isso o artigo compartilhado

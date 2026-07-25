@@ -122,10 +122,10 @@
 					<article
 						class="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
 					>
-						<div class="aspect-video overflow-hidden bg-tim-50">
-							<!-- 800x800 é o tamanho real do arquivo .webp. O box é definido
-							     pelo `aspect-video` do pai; estes atributos só informam a
-							     proporção intrínseca ao browser. -->
+						<!-- As artes são quadradas com texto no topo e na base: qualquer corte
+						     (object-cover em caixa 16:9) decapitava o conteúdo. Caixa quadrada
+						     mostra a arte inteira. -->
+						<div class="aspect-square overflow-hidden bg-tim-50">
 							<img
 								src={s.image}
 								alt={s.name}
