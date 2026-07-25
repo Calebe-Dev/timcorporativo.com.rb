@@ -23,6 +23,35 @@
 
 	// Vem do +layout.server.js da raiz — alimenta o mapa do site.
 	let { data } = $props();
+
+	// Avaliações REAIS do perfil do Grupo OC no Google (transcritas em jul/2026).
+	// Trechos verbatim — não editar nem inventar; […] marca corte do original.
+	// Sem JSON-LD de Review/AggregateRating: marcação de avaliação da própria
+	// empresa no próprio site é "self-serving" e o Google a ignora/penaliza.
+	const avaliacaoGoogle = {
+		nota: '4,9',
+		total: 110,
+		url: 'https://share.google/cjTKDhFjkYiTJCAx8'
+	};
+	const depoimentos = [
+		{
+			nome: 'Renato Caetano',
+			contexto: '32 anos na área de tecnologia',
+			texto: 'Atuo há 32 anos na área de tecnologia. […] O Grupo OC foi um achado!'
+		},
+		{
+			nome: 'Alfredo Junior',
+			contexto: 'Avaliação no Google',
+			texto:
+				'Empresa top! Entenderam perfeitamente a nossa necessidade e desenrolaram tudo com muito eficiência e rapidez. Acompanhamento integral do processo. Só tenho a agradecer.'
+		},
+		{
+			nome: 'Alexandre Mendonça',
+			contexto: 'Avaliação no Google',
+			texto:
+				'Melhor experiência com internet empresarial! O Grupo OC me surpreendeu pela qualidade e profissionalismo no atendimento […]'
+		}
+	];
 </script>
 
 <Seo />
@@ -336,6 +365,70 @@
 				Dúvidas frequentes sobre TIM Empresa
 			</h2>
 			<div class="mt-10"><Faq /></div>
+		</div>
+	</section>
+
+	<!-- DEPOIMENTOS / PROVA SOCIAL -->
+	<!-- Imediatamente antes do formulário: prova social junto ao ponto de decisão.
+	     Fundo branco mantém a alternância (faq slate-50 → aqui white → contato
+	     tim-50). -->
+	<section id="depoimentos" class="bg-white py-16 sm:py-20">
+		<div class="mx-auto max-w-6xl px-4">
+			<h2 class="text-balance text-center text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
+				Quem contrata, recomenda
+			</h2>
+			<p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
+				Empresas de todos os portes — incluindo marcas como a <strong>BYD</strong> — confiam no
+				Grupo OC para cuidar da telecom do CNPJ.
+			</p>
+
+			<!-- Selo da nota: link para o perfil real no Google, onde as 110
+			     avaliações podem ser conferidas — a prova é verificável, não alegada. -->
+			<a
+				href={avaliacaoGoogle.url}
+				target="_blank"
+				rel="noopener"
+				class="mx-auto mt-5 flex w-fit items-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-tim-300 hover:text-tim-700"
+			>
+				<span class="flex" aria-hidden="true">
+					{#each Array(5) as _}
+						<svg class="h-4 w-4 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+							<path
+								d="M9.05 2.93c.3-.92 1.6-.92 1.9 0l1.07 3.29a1 1 0 0 0 .95.69h3.46c.97 0 1.37 1.24.59 1.81l-2.8 2.03a1 1 0 0 0-.36 1.12l1.07 3.29c.3.92-.76 1.69-1.54 1.12l-2.8-2.03a1 1 0 0 0-1.18 0l-2.8 2.03c-.78.57-1.83-.2-1.54-1.12l1.07-3.29a1 1 0 0 0-.36-1.12L2.98 8.72c-.78-.57-.38-1.81.6-1.81h3.45a1 1 0 0 0 .95-.69l1.07-3.3z"
+							/>
+						</svg>
+					{/each}
+				</span>
+				{avaliacaoGoogle.nota} no Google · {avaliacaoGoogle.total} avaliações
+			</a>
+
+			<div class="mt-10 grid gap-6 md:grid-cols-3">
+				{#each depoimentos as d}
+					<figure class="flex flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6">
+						<span class="flex" aria-label="5 de 5 estrelas">
+							{#each Array(5) as _}
+								<svg
+									class="h-4 w-4 text-amber-400"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									aria-hidden="true"
+								>
+									<path
+										d="M9.05 2.93c.3-.92 1.6-.92 1.9 0l1.07 3.29a1 1 0 0 0 .95.69h3.46c.97 0 1.37 1.24.59 1.81l-2.8 2.03a1 1 0 0 0-.36 1.12l1.07 3.29c.3.92-.76 1.69-1.54 1.12l-2.8-2.03a1 1 0 0 0-1.18 0l-2.8 2.03c-.78.57-1.83-.2-1.54-1.12l1.07-3.29a1 1 0 0 0-.36-1.12L2.98 8.72c-.78-.57-.38-1.81.6-1.81h3.45a1 1 0 0 0 .95-.69l1.07-3.3z"
+									/>
+								</svg>
+							{/each}
+						</span>
+						<blockquote class="mt-3 flex-1 text-sm leading-relaxed text-slate-700">
+							“{d.texto}”
+						</blockquote>
+						<figcaption class="mt-4 text-sm font-semibold text-slate-900">
+							{d.nome}
+							<span class="block text-xs font-normal text-slate-500">{d.contexto}</span>
+						</figcaption>
+					</figure>
+				{/each}
+			</div>
 		</div>
 	</section>
 
