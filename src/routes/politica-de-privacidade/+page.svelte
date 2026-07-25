@@ -8,7 +8,7 @@
 
 	// Data da última revisão. Atualize sempre que o tratamento de dados mudar —
 	// é o que permite ao titular saber qual versão aceitou.
-	const atualizadoEm = '24 de julho de 2026';
+	const atualizadoEm = '25 de julho de 2026';
 
 	const titulo = 'Política de Privacidade | TIM Corporativo';
 	const descricao =
@@ -198,10 +198,11 @@
 
 		<h2 class={h2}>7. Cookies e tecnologias semelhantes</h2>
 		<p class={p}>
-			Usamos armazenamento local do navegador para guardar a origem da sua visita durante a sessão
-			e cookies das ferramentas de análise de audiência. Você pode bloquear ou apagar cookies nas
-			configurações do seu navegador — o site continua funcionando, mas a medição de audiência
-			deixa de registrar sua visita.
+			Os cookies de análise de audiência (Google Analytics) só são criados depois que você aceita
+			no banner de cookies — se recusar, nenhum cookie de análise é gravado e o site funciona do
+			mesmo jeito. Sua escolha fica registrada no armazenamento local do navegador, que também
+			guarda a origem da sua visita durante a sessão. Para mudar de ideia, apague os dados do site
+			nas configurações do navegador e o banner aparecerá novamente.
 		</p>
 
 		<h2 class={h2}>8. Seus direitos</h2>

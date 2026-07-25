@@ -12,23 +12,34 @@
 		     anterior (snippet 2670). Mantê-la preserva a propriedade já verificada. -->
 		<meta name="google-site-verification" content="3PZLGrA470_oq1V9tNyjRtmPWBhlPacImk6vsutSIVI" />
 
-		<!-- GA4 — as duas propriedades que rodavam no site anterior (snippets 4212 e
-		     4215). Portadas como estavam para não quebrar a continuidade histórica. -->
-		<!-- G-N8PJH573Q8 DESATIVADA temporariamente: essa Google Tag carrega junto a
-		     UA-250391626-1 (Universal Analytics, desligado pelo Google em jul/2023) —
-		     ~123 KB de script morto por visita. A correção definitiva é no painel do
-		     Google (remover a UA da combinação da tag); feita lá, é só descomentar:
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-N8PJH573Q8"></script>
-		-->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-KT584R0KVS"></script>
+		<!-- GA4 condicionado ao consentimento (LGPD): nada de cookie de análise antes
+		     do aceite no banner (CookieConsent.svelte). `carregarAnalytics` é chamada
+		     aqui (visitante que já aceitou) ou pelo banner, no clique de aceitar.
+
+		     G-N8PJH573Q8 segue DESATIVADA: essa Google Tag carrega junto a
+		     UA-250391626-1 (Universal Analytics, morto desde jul/2023) — ~123 KB de
+		     script inútil. Corrigido o GTM no painel do Google, descomente a linha
+		     marcada abaixo. -->
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
 			}
-			gtag('js', new Date());
-			// gtag('config', 'G-N8PJH573Q8'); — reative junto com o <script> acima.
-			gtag('config', 'G-KT584R0KVS');
+			window.gtag = gtag;
+			window.carregarAnalytics = function () {
+				if (window.__analyticsCarregado) return;
+				window.__analyticsCarregado = true;
+				var s = document.createElement('script');
+				s.async = true;
+				s.src = 'https://www.googletagmanager.com/gtag/js?id=G-KT584R0KVS';
+				document.head.appendChild(s);
+				gtag('js', new Date());
+				// gtag('config', 'G-N8PJH573Q8'); — reative quando o GTM for corrigido.
+				gtag('config', 'G-KT584R0KVS');
+			};
+			if (localStorage.getItem('consentimento-cookies') === 'aceito') {
+				window.carregarAnalytics();
+			}
 		</script>
 
 		%sveltekit.head%
