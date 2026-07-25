@@ -3,7 +3,13 @@
 	import ContactSection from '$lib/components/ContactSection.svelte';
 	import SiteMap from '$lib/components/SiteMap.svelte';
 
-	let { children, subtitulo = 'Blog empresarial', artigos = [], total = 0 } = $props();
+	let {
+		children,
+		subtitulo = 'Blog empresarial',
+		artigos = [],
+		total = 0,
+		tituloArtigos = 'Últimos artigos'
+	} = $props();
 </script>
 
 <!--
@@ -44,7 +50,7 @@
 	<!-- Formulário e mapa do site: presentes em toda página editorial, na mesma
 	     ordem da home — conversão primeiro, mapa depois, rodapé por último. -->
 	<ContactSection id="fale-conosco" />
-	<SiteMap {artigos} {total} />
+	<SiteMap {artigos} {total} {tituloArtigos} />
 
 	<!-- Rodapé enxuto. -->
 	<footer class="border-t border-slate-200 bg-slate-50">

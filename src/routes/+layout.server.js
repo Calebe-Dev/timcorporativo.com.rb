@@ -6,5 +6,9 @@ import { listarArtigos } from '$lib/server/ochub.js';
 export async function load() {
 	const artigos = await listarArtigos();
 	// O mapa do site mostra os mais recentes; a lista completa vive em /blog.
-	return { artigosRecentes: artigos.slice(0, 12), totalArtigos: artigos.length };
+	// Só slug/title descem ao cliente — keywords/date ficam no servidor.
+	return {
+		artigosRecentes: artigos.slice(0, 12).map(({ slug, title }) => ({ slug, title })),
+		totalArtigos: artigos.length
+	};
 }

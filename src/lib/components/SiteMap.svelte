@@ -3,7 +3,9 @@
 
 	// `artigos` vem do +layout.server.js (memoizado). Se faltar, o mapa ainda
 	// renderiza as demais colunas — nenhuma página quebra por causa do CMS.
-	let { artigos = [], total = 0 } = $props();
+	// `tituloArtigos` muda nas páginas de artigo ("Mais artigos do blog"), onde a
+	// lista vem em anel e não são necessariamente os mais recentes.
+	let { artigos = [], total = 0, tituloArtigos = 'Últimos artigos' } = $props();
 
 	// Âncoras da home: de dentro de um artigo precisam do caminho absoluto,
 	// senão "#planos" tentaria uma seção que não existe naquela página.
@@ -38,7 +40,7 @@
 
 			<nav aria-label="Conteúdo" class="lg:col-span-2">
 				<h3 class="text-sm font-semibold text-tim-800">
-					Últimos artigos
+					{tituloArtigos}
 					{#if total}<span class="font-normal text-slate-500">({total} no total)</span>{/if}
 				</h3>
 				{#if artigos.length}

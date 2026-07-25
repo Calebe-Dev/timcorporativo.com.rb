@@ -1,7 +1,71 @@
 import { error } from '@sveltejs/kit';
 import { createArticleEntries, createArticleLoad } from '@grupooc/ochub-sdk/ssg/sveltekit';
-import { ochubConfig, blogBaseUrl } from '$lib/server/ochub.js';
+import { ochubConfig, blogBaseUrl, listarArtigos } from '$lib/server/ochub.js';
 import { site } from '$lib/site.js';
+
+// ---------------------------------------------------------------------------
+// "Leia também": 4 artigos afins calculados no build por sobreposição de
+// palavras do título + keywords do CMS. 130 dos 189 artigos não tinham NENHUM
+// link interno no corpo; este bloco dá a todos eles links contextuais sem
+// editar nada no OC Hub.
+// ---------------------------------------------------------------------------
+
+// Palavras que aparecem em quase todo artigo do site — sem valor para medir
+// afinidade (inclui as genéricas de pt-BR e as onipresentes do nicho).
+const RUIDO = new Set([
+	'de', 'da', 'do', 'das', 'dos', 'para', 'com', 'sem', 'em', 'no', 'na', 'nos',
+	'nas', 'por', 'que', 'qual', 'quais', 'um', 'uma', 'os', 'as', 'ao', 'aos',
+	'seu', 'sua', 'seus', 'suas', 'como', 'mais', 'sobre', 'entre', 'tudo', 'voce',
+	'sao', 'ser', 'tem', 'nao', 'the', 'and',
+	'tim', 'empresa', 'empresas', 'empresarial', 'corporativo', 'corporativa',
+	'guia', 'completo', 'completa', 'plano', 'planos', '2024', '2025', '2026'
+]);
+
+/** Título + keywords → conjunto de termos normalizados (sem acento, ≥3 letras). */
+function termos(artigo) {
+	return new Set(
+		`${artigo.title ?? ''} ${artigo.keywords ?? ''}`
+			.toLowerCase()
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
+			.split(/[^a-z0-9]+/)
+			.filter((t) => t.length >= 3 && !RUIDO.has(t))
+	);
+}
+
+// Memoiza os conjuntos por slug: são ~190 artigos × ~190 páginas no build.
+const cacheTermos = new Map();
+function termosDe(artigo) {
+	let t = cacheTermos.get(artigo.slug);
+	if (!t) {
+		t = termos(artigo);
+		cacheTermos.set(artigo.slug, t);
+	}
+	return t;
+}
+
+/** Os 4 mais afins ao slug atual; completa com os mais recentes se faltar. */
+function leiaTambem(artigos, slugAtual, quantos = 4) {
+	const atual = artigos.find((a) => a.slug === slugAtual);
+	const base = atual ? termosDe(atual) : new Set();
+
+	const pontuados = artigos
+		.filter((a) => a.slug !== slugAtual)
+		.map((a) => {
+			let pontos = 0;
+			for (const t of termosDe(a)) if (base.has(t)) pontos++;
+			return { a, pontos };
+		})
+		.sort((x, y) => y.pontos - x.pontos || (y.a.date ?? '').localeCompare(x.a.date ?? ''));
+
+	// Afinidade real primeiro (≥2 termos em comum); recentes preenchem o resto.
+	const afins = pontuados.filter((x) => x.pontos >= 2).slice(0, quantos);
+	for (const x of pontuados) {
+		if (afins.length >= quantos) break;
+		if (!afins.includes(x)) afins.push(x);
+	}
+	return afins.map(({ a }) => ({ slug: a.slug, title: a.title }));
+}
 
 // O JSON-LD Article do SDK vem sem author, publisher e image — o Rich Results
 // Test acusa "Author is missing / Publisher is missing" e o artigo perde
@@ -65,5 +129,7 @@ export async function load(event) {
 			dados.seo.html.replaceAll(`"${semBarra}"`, `"${semBarra}/"`)
 		);
 	}
+
+	dados.relacionados = leiaTambem(await listarArtigos(), event.params.slug);
 	return dados;
 }

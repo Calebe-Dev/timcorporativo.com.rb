@@ -55,6 +55,26 @@
 	{@html article.html_content}
 </article>
 
+{#if data.relacionados?.length}
+	<!-- Linkagem interna contextual, calculada no build por afinidade de
+	     título/keywords — ver leiaTambem() em +page.server.js. -->
+	<nav aria-labelledby="leia-tambem" class="mt-12 border-t border-slate-200 pt-8">
+		<h2 id="leia-tambem" class="text-lg font-bold text-tim-900">Leia também</h2>
+		<ul class="mt-4 grid gap-3 sm:grid-cols-2">
+			{#each data.relacionados as r}
+				<li>
+					<a
+						href="/{r.slug}/"
+						class="block h-full rounded-lg border border-slate-200 p-4 text-sm font-medium text-slate-700 transition hover:border-tim-300 hover:bg-tim-50/50 hover:text-tim-700"
+					>
+						{r.title}
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</nav>
+{/if}
+
 <!-- Chamada para ação — consultoria via WhatsApp. -->
 <aside class="mt-12 rounded-xl border border-tim-100 bg-tim-50 p-6">
 	<h2 class="text-lg font-semibold text-tim-900">Precisa de ajuda para escolher o plano ideal?</h2>

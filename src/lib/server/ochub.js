@@ -38,6 +38,9 @@ export function listarArtigos() {
 				.map((a) => ({
 					slug: a.slug,
 					title: a.title,
+					// Usada só no servidor (afinidade do "Leia também") — as loads
+					// devolvem ao cliente apenas slug/title, sem este campo.
+					keywords: a.keywords ?? '',
 					date: a.published_at ?? a.created_at
 				}))
 				.sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''));

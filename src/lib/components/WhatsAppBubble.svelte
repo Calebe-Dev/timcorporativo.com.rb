@@ -1,11 +1,276 @@
 <script>
-	import { contact, whatsappLink } from '$lib/site.js';
+	import { onMount } from 'svelte';
+	import { contact, whatsappLink, turnstileSiteKey } from '$lib/site.js';
+
+	// Painel de contato rápido: 3 campos (mínimo que /api/lead aceita — nome,
+	// celular e e-mail são obrigatórios no servidor, ver worker/validate.js).
+	// O clique no botão abre o painel em vez de ir direto ao wa.me; quem preferir
+	// pular o formulário tem o atalho "ir direto" dentro do painel. Sem JS, o
+	// botão continua sendo um <a> normal para o WhatsApp.
+	let aberto = $state(false);
+	let nome = $state('');
+	let celular = $state('');
+	let email = $state('');
+	let website = $state(''); // honeypot — humano nunca vê nem preenche
+	let enviando = $state(false);
+	/** @type {'' | 'ok' | 'zap' | 'erro'} — mesma semântica do ContactForm. */
+	let status = $state('');
+
+	let pagina = $state('/');
+	let utm = $state({});
+	/** @type {HTMLInputElement | undefined} */
+	let campoNome;
+
+	// Turnstile: mesmo padrão lazy do ContactForm — nada é carregado até o
+	// visitante abrir o painel (o widget custa ~470 KB + cookies de terceiro).
+	let turnstileToken = $state('');
+	let caixaTurnstile = $state(null);
+	let turnstileIniciado = false;
+	/** @type {Promise<string> | null} */
+	let tokenPronto = null;
+	/** @type {((t: string) => void) | null} */
+	let resolverToken = null;
+	const ESPERA_TOKEN_MS = 4000;
+
+	const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+
+	onMount(() => {
+		pagina = window.location.pathname;
+		try {
+			// Primeiro toque da sessão — gravado pelo ContactForm sob a mesma chave.
+			utm = JSON.parse(sessionStorage.getItem('tim_utm') || '{}');
+			const params = new URLSearchParams(window.location.search);
+			for (const k of UTM_KEYS) {
+				const v = params.get(k);
+				if (v && !utm[k]) utm[k] = v;
+			}
+		} catch {
+			utm = {};
+		}
+	});
+
+	function alternar(e) {
+		e.preventDefault();
+		aberto = !aberto;
+		if (aberto) {
+			iniciarTurnstile();
+			// Foco no primeiro campo quando o painel terminar de montar.
+			setTimeout(() => campoNome?.focus(), 50);
+		}
+	}
+
+	function fechar() {
+		aberto = false;
+	}
+
+	function aoTeclar(e) {
+		if (e.key === 'Escape' && aberto) fechar();
+	}
+
+	function iniciarTurnstile() {
+		if (turnstileIniciado || !turnstileSiteKey) return;
+		turnstileIniciado = true;
+		tokenPronto = new Promise((resolve) => (resolverToken = resolve));
+
+		const render = () => {
+			if (!window.turnstile || !caixaTurnstile) return;
+			window.turnstile.render(caixaTurnstile, {
+				sitekey: turnstileSiteKey,
+				callback: (t) => {
+					turnstileToken = t;
+					resolverToken?.(t);
+				},
+				'expired-callback': () => (turnstileToken = ''),
+				'error-callback': () => {
+					turnstileToken = '';
+					resolverToken?.('');
+				}
+			});
+		};
+
+		// O script pode já estar na página (carregado pelo ContactForm).
+		if (window.turnstile) return render();
+		const existente = document.querySelector('script[src^="https://challenges.cloudflare.com/turnstile"]');
+		if (existente) {
+			existente.addEventListener('load', render);
+			return;
+		}
+		const s = document.createElement('script');
+		s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+		s.async = true;
+		s.defer = true;
+		s.onload = render;
+		s.onerror = () => resolverToken?.('');
+		document.head.appendChild(s);
+	}
+
+	function resumo() {
+		return [
+			'Olá! Quero falar com um consultor TIM Empresas.',
+			`Nome: ${nome}`,
+			`Celular: ${celular}`,
+			`E-mail: ${email}`
+		].join('\n');
+	}
+
+	async function enviar(e) {
+		e.preventDefault();
+		if (enviando) return;
+		enviando = true;
+		status = '';
+
+		// WhatsApp abre PRIMEIRO, de forma síncrona — depois de um await o browser
+		// deixa de tratar como gesto do usuário e bloqueia o popup (ver ContactForm).
+		const janela = window.open(whatsappLink(resumo()), '_blank', 'noopener');
+
+		if (tokenPronto && !turnstileToken) {
+			await Promise.race([tokenPronto, new Promise((r) => setTimeout(r, ESPERA_TOKEN_MS))]);
+		}
+
+		try {
+			const res = await fetch('/api/lead', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					nome,
+					email,
+					celular,
+					mensagem: 'Contato rápido pelo botão flutuante do WhatsApp',
+					website,
+					pagina,
+					'cf-turnstile-response': turnstileToken,
+					...utm
+				}),
+				keepalive: true
+			});
+			if (!res.ok) throw new Error(`api ${res.status}`);
+			status = 'ok';
+		} catch {
+			status = janela ? 'zap' : 'erro';
+		} finally {
+			enviando = false;
+		}
+	}
+
+	const field =
+		'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-tim-500 focus:ring-2 focus:ring-tim-200';
 </script>
+
+<svelte:window onkeydown={aoTeclar} />
+
+{#if aberto}
+	<!-- Painel de contato rápido, ancorado acima do botão. -->
+	<div
+		class="painel fixed right-4 z-50 w-[min(21rem,calc(100vw-2rem))] rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl"
+		role="dialog"
+		aria-label="Fale com um consultor no WhatsApp"
+	>
+		<div class="flex items-start justify-between gap-2">
+			<p class="text-sm font-semibold text-slate-900">
+				Fale com um consultor
+				<span class="block text-xs font-normal text-slate-500">
+					Deixe seus dados e siga direto para o WhatsApp.
+				</span>
+			</p>
+			<button
+				type="button"
+				class="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+				aria-label="Fechar"
+				onclick={fechar}
+			>
+				<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" d="M6 6l12 12M6 18L18 6" />
+				</svg>
+			</button>
+		</div>
+
+		<form class="mt-3 space-y-2.5" onsubmit={enviar}>
+			<input
+				class={field}
+				bind:this={campoNome}
+				bind:value={nome}
+				placeholder="Nome*"
+				aria-label="Nome"
+				required
+				autocomplete="name"
+			/>
+			<input
+				class={field}
+				bind:value={celular}
+				type="tel"
+				placeholder="Celular / WhatsApp*"
+				aria-label="Celular ou WhatsApp"
+				required
+				autocomplete="tel"
+			/>
+			<input
+				class={field}
+				bind:value={email}
+				type="email"
+				placeholder="E-mail*"
+				aria-label="E-mail"
+				required
+				autocomplete="email"
+			/>
+
+			<!-- Honeypot: fora da tela e da navegação por teclado/leitor de tela. -->
+			<div class="absolute left-[-9999px]" aria-hidden="true">
+				<label>
+					Não preencha este campo
+					<input bind:value={website} name="website" tabindex="-1" autocomplete="off" />
+				</label>
+			</div>
+
+			{#if turnstileSiteKey}
+				<div bind:this={caixaTurnstile}></div>
+			{/if}
+
+			<button
+				type="submit"
+				disabled={enviando}
+				class="w-full rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#1ebe5b] disabled:opacity-70"
+			>
+				{enviando ? 'Enviando…' : 'Continuar no WhatsApp'}
+			</button>
+
+			{#if status === 'ok'}
+				<p class="text-xs font-medium text-green-700" role="status">
+					Recebemos seus dados! Se o WhatsApp não abriu, chame em
+					<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
+				</p>
+			{:else if status === 'zap'}
+				<p class="text-xs font-medium text-slate-600" role="status">
+					Continue pelo WhatsApp que abrimos para você. Se a janela não abriu, chame em
+					<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
+				</p>
+			{:else if status === 'erro'}
+				<p class="text-xs font-medium text-red-700" role="alert">
+					Não conseguimos enviar. Fale direto pelo
+					<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">WhatsApp</a>.
+				</p>
+			{/if}
+
+			<p class="text-center text-xs text-slate-500">
+				<a
+					class="underline hover:text-tim-600"
+					href={whatsappLink()}
+					target="_blank"
+					rel="noopener"
+					onclick={fechar}
+				>
+					Prefiro ir direto ao WhatsApp
+				</a>
+			</p>
+		</form>
+	</div>
+{/if}
 
 <!--
 	Botão flutuante de WhatsApp, presente em todas as páginas.
 
 	Detalhes que não são estéticos:
+	- continua sendo <a> (fallback sem JS vai direto ao wa.me); com JS o clique
+	  abre o painel de contato rápido acima.
 	- `aria-label` explícito: o conteúdo é só um ícone, sem ele o leitor de tela
 	  anuncia apenas "link".
 	- `focus-visible` com anel: é um alvo alcançável por teclado e precisa de
@@ -20,6 +285,9 @@
 	rel="noopener"
 	class="bolha fixed right-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-105 hover:bg-[#1ebe5b] active:scale-90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:h-14 sm:w-14"
 	aria-label="Falar com um consultor no WhatsApp — {contact.whatsappLabel}"
+	aria-expanded={aberto}
+	aria-haspopup="dialog"
+	onclick={alternar}
 >
 	<!-- Anel de pulso: filho com z-index negativo fica atrás do fundo do próprio
 	     link (o `fixed` + z-50 cria o contexto de empilhamento). Não intercepta
@@ -54,6 +322,19 @@
 		}
 	}
 
+	.painel {
+		/* Acima do botão (4rem de altura no mobile + 1rem de vão). */
+		bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+		animation: subir 0.2s ease-out both;
+	}
+
+	@keyframes subir {
+		from {
+			opacity: 0;
+			transform: translateY(0.5rem);
+		}
+	}
+
 	.anel {
 		z-index: -1;
 		pointer-events: none;
@@ -77,7 +358,8 @@
 
 	@media (prefers-reduced-motion: reduce) {
 		.bolha,
-		.anel {
+		.anel,
+		.painel {
 			animation: none;
 		}
 	}
