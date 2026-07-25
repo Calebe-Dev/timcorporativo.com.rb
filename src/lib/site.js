@@ -37,6 +37,8 @@ export const contact = {
 	addressRegion: 'SP',
 	cnpj: '23.474.830/0001-56',
 	facebook: 'https://www.facebook.com/grupoocwearepeople',
+	instagram: 'https://www.instagram.com/grupooc/',
+	linkedin: 'https://www.linkedin.com/company/grupo-oc-we-are-people/',
 	yearsExperience: 15
 };
 
@@ -67,8 +69,10 @@ export const nav = [
 export const hero = {
 	badge: `Representante autorizado TIM · +${contact.yearsExperience} anos`,
 	title: 'Planos TIM Empresa: Black, Fibra e UltraFibra',
+	// 30+ palavras de propósito: é o primeiro parágrafo da página, que buscadores
+	// e mecanismos de resposta (IA) usam como resumo do site.
 	subtitle:
-		'Soluções de telefonia móvel, internet fibra e conectividade corporativa para pequenas, médias e grandes empresas — com atendimento consultivo de um representante autorizado TIM.',
+		'Soluções de telefonia móvel, internet fibra e conectividade corporativa para pequenas, médias e grandes empresas — com atendimento consultivo de um representante autorizado TIM. Compare TIM Black Empresa, TIM Fibra e UltraFibra e receba uma proposta sob medida para o seu CNPJ.',
 	image: '/wp-content/uploads/2025/10/grupo-de-pessoas-diversas-tendo-uma-reuniao-de-negocios-scaled.webp',
 	bullets: [
 		'Internet fibra e telefonia empresarial',

@@ -205,13 +205,23 @@
 <!-- `focusin` (e não `focus`) porque borbulha: um único handler no <form> cobre
      todos os campos. É o gatilho do anti-spam — ver `iniciarTurnstile`. -->
 <form class="space-y-3" onsubmit={enviar} onfocusin={iniciarTurnstile}>
+	<!-- `aria-label` em todo campo com placeholder: placeholder some ao digitar e
+	     leitor de tela anuncia "editar texto" sem nome. -->
 	<div class="grid gap-3 sm:grid-cols-2">
-		<input class={field} bind:value={nome} placeholder="Nome*" required autocomplete="name" />
+		<input
+			class={field}
+			bind:value={nome}
+			placeholder="Nome*"
+			aria-label="Nome"
+			required
+			autocomplete="name"
+		/>
 		<input
 			class={field}
 			bind:value={email}
 			type="email"
 			placeholder="E-mail*"
+			aria-label="E-mail"
 			required
 			autocomplete="email"
 		/>
@@ -220,10 +230,17 @@
 			bind:value={celular}
 			type="tel"
 			placeholder="Celular / WhatsApp*"
+			aria-label="Celular ou WhatsApp"
 			required
 			autocomplete="tel"
 		/>
-		<input class={field} bind:value={cnpj} placeholder="CNPJ" inputmode="numeric" />
+		<input
+			class={field}
+			bind:value={cnpj}
+			placeholder="CNPJ"
+			aria-label="CNPJ"
+			inputmode="numeric"
+		/>
 		<!-- `aria-label`: a primeira <option> serve de rótulo visual, mas leitor de
 		     tela anuncia o <select> sem nome se não houver label associado. -->
 		<select class={field} bind:value={linhas} aria-label="Número de linhas">
@@ -235,7 +252,13 @@
 			{#each formOptions.operadoras as opt}<option>{opt}</option>{/each}
 		</select>
 	</div>
-	<textarea class={field} bind:value={mensagem} rows="3" placeholder="Mensagem (opcional)"></textarea>
+	<textarea
+		class={field}
+		bind:value={mensagem}
+		rows="3"
+		placeholder="Mensagem (opcional)"
+		aria-label="Mensagem"
+	></textarea>
 
 	<!-- Honeypot: fora da tela e fora da navegação por teclado/leitor de tela. -->
 	<div class="absolute left-[-9999px]" aria-hidden="true">

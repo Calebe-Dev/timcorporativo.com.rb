@@ -37,8 +37,10 @@
 </nav>
 
 {#if dateLabel}
+	<!-- Byline visível casada com o author do JSON-LD (sinal E-E-A-T). -->
 	<p class="mb-4 text-sm font-medium text-slate-500">
-		Publicado em <time datetime={date}>{dateLabel}</time>
+		Por <span class="text-slate-700">{site.name} — Grupo OC</span> · Publicado em
+		<time datetime={date}>{dateLabel}</time>
 	</p>
 {/if}
 

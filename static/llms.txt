@@ -1,0 +1,26 @@
+# TIM Corporativo
+
+> Site do Grupo OC, representante autorizado TIM para empresas no Brasil
+> (Sorocaba/SP, atendimento nacional). Venda consultiva de planos TIM Empresa
+> para CNPJ: TIM Black Empresa (móvel), TIM Fibra Empresa e TIM UltraFibra
+> (internet fixa). Não é o site oficial da operadora TIM S.A.
+
+O contato comercial é feito por formulário, telefone (15 3500-8940) ou
+WhatsApp (15 99651-0375). A contratação segue 4 passos: diagnóstico gratuito,
+proposta personalizada, documentação simples e ativação acompanhada.
+Portabilidade mantém os números atuais.
+
+## Páginas principais
+
+- [Home — planos e como contratar](https://timcorporativo.com.br/): soluções,
+  passos de contratação, portabilidade, FAQ com 10 perguntas e formulário.
+- [Blog](https://timcorporativo.com.br/blog): guias sobre TIM Empresa, TIM
+  Black, fibra, link dedicado e telecom B2B.
+- [Política de Privacidade](https://timcorporativo.com.br/politica-de-privacidade)
+
+## Fatos úteis
+
+- Operador do site: Grupo OC (representante autorizado TIM, +15 anos).
+- Endereço: Rua Tereza Lopes, 677 — Vila Hortência, Sorocaba/SP.
+- Planos sem preço tabelado público: proposta sob consulta por CNPJ.
+- Sitemap completo: https://timcorporativo.com.br/sitemap.xml

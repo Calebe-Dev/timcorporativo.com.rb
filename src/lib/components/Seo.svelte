@@ -2,7 +2,8 @@
 	import { site, contact, faq, solutions } from '$lib/site.js';
 
 	let {
-		title = `${site.name}: TIM Empresa, Black, Fibra e UltraFibra`,
+		// Separador "|" (Marca | Tópico): padrão que melhora CTR na SERP.
+		title = `${site.name} | TIM Empresa: Black, Fibra e UltraFibra`,
 		description = site.description,
 		path = '/',
 		image = site.ogImage,
@@ -43,7 +44,7 @@
 				email: contact.emails[0],
 				// Sem preço tabelado: a venda é consultiva, por proposta.
 				priceRange: 'Sob consulta',
-				sameAs: [contact.facebook],
+				sameAs: [contact.facebook, contact.instagram, contact.linkedin],
 				areaServed: { '@type': 'Country', name: 'Brasil' },
 				address: {
 					'@type': 'PostalAddress',
@@ -90,6 +91,7 @@
 				inLanguage: 'pt-BR',
 				isPartOf: { '@id': `${site.url}/#website` },
 				about: { '@id': `${site.url}/#organization` },
+				author: { '@id': `${site.url}/#organization` },
 				primaryImageOfPage: { '@type': 'ImageObject', url: imageAbs },
 				// Data do build (SSG): o site inteiro é regerado a cada deploy.
 				dateModified: new Date().toISOString().slice(0, 10)
