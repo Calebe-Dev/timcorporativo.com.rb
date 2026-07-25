@@ -1,4 +1,4 @@
-import { listarArtigos } from '$lib/server/ochub.js';
+import { listarArtigos } from '$lib/server/artigos.js';
 
 // Mapa do site em ANEL nas páginas de artigo. Antes, todas as páginas do site
 // linkavam os mesmos 12 artigos mais recentes — a cauda longa (130+ artigos)

@@ -20,31 +20,6 @@ export const ochubConfig = {
 // já indexada pelo Google responde 200 no próprio endereço, sem redirect.
 export const blogBaseUrl = site.url;
 
-// Lista de artigos para o mapa do site, que aparece em TODAS as páginas.
-// Sem memoização isto viraria uma chamada ao CMS por página pré-renderizada
-// (~190 no build). A promise é guardada no módulo: o build roda num processo só,
-// então o CMS é consultado uma única vez.
-let promessaArtigos;
-
-export function listarArtigos() {
-	if (!promessaArtigos) {
-		promessaArtigos = (async () => {
-			const { OcHubCMS } = await import('@grupooc/ochub-sdk');
-			const cms = new OcHubCMS({ config: ochubConfig });
-			const artigos = await cms.getAllArticles();
-			const vistos = new Set();
-			return artigos
-				.filter((a) => a.slug && !vistos.has(a.slug) && vistos.add(a.slug))
-				.map((a) => ({
-					slug: a.slug,
-					title: a.title,
-					// Usada só no servidor (afinidade do "Leia também") — as loads
-					// devolvem ao cliente apenas slug/title, sem este campo.
-					keywords: a.keywords ?? '',
-					date: a.published_at ?? a.created_at
-				}))
-				.sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''));
-		})();
-	}
-	return promessaArtigos;
-}
+// A listagem de artigos saiu daqui: agora vive em $lib/server/artigos.js, que
+// mescla o snapshot local (content/artigos/) com o CMS. Este módulo mantém só
+// a configuração de conexão.

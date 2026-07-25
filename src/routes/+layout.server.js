@@ -1,4 +1,4 @@
-import { listarArtigos } from '$lib/server/ochub.js';
+import { listarArtigos } from '$lib/server/artigos.js';
 
 // Roda no build para cada página pré-renderizada, mas `listarArtigos` é
 // memoizada — o CMS é consultado uma vez só. Os dados descem para todos os

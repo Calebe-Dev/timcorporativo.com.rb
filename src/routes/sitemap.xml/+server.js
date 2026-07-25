@@ -1,5 +1,4 @@
-import { OcHubCMS } from '@grupooc/ochub-sdk';
-import { ochubConfig } from '$lib/server/ochub.js';
+import { todosArtigos } from '$lib/server/artigos.js';
 import { site } from '$lib/site.js';
 
 // Gerado no build (SSG). O crawler do SvelteKit inclui rotas sem parâmetros
@@ -17,15 +16,10 @@ function xmlEscape(s) {
 }
 
 export async function GET() {
-	const cms = new OcHubCMS({ config: ochubConfig });
-	const articles = await cms.getAllArticles();
-
-	// Deduplica por slug (mantendo o mais recente) — igual à listagem.
-	const seen = new Set();
-	const posts = articles
-		.filter((a) => a.slug)
-		.sort((a, b) => (lastmod(b) ?? '').localeCompare(lastmod(a) ?? ''))
-		.filter((a) => (seen.has(a.slug) ? false : (seen.add(a.slug), true)));
+	// Fonte mesclada (snapshot + CMS), já deduplicada por slug.
+	const posts = [...(await todosArtigos())].sort((a, b) =>
+		(lastmod(b) ?? '').localeCompare(lastmod(a) ?? '')
+	);
 
 	const urls = [
 		{ loc: `${site.url}/`, priority: '1.0' },
