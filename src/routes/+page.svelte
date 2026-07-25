@@ -13,6 +13,8 @@
 		plans,
 		advantages,
 		contentSections,
+		comoContratar,
+		portabilidade,
 		authority,
 		contact,
 		whatsappLink
@@ -51,10 +53,14 @@
 				<span class="h-2 w-2 rounded-full bg-accent-400"></span>
 				{hero.badge}
 			</span>
-			<h1 class="mt-4 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+			<h1
+				class="mt-4 max-w-3xl text-balance text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl"
+			>
 				{hero.title}
 			</h1>
-			<p class="mt-4 max-w-2xl text-base text-tim-100 sm:text-lg">{hero.subtitle}</p>
+			<p class="mt-4 max-w-2xl text-base leading-relaxed text-tim-100 sm:text-lg">
+				{hero.subtitle}
+			</p>
 
 			<ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-tim-100">
 				{#each hero.bullets as b}
@@ -70,7 +76,7 @@
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
 				<a
 					href="#contato"
-					class="rounded-full bg-accent-600 px-6 py-3 text-center text-sm font-semibold text-white shadow-lg hover:bg-accent-700"
+					class="rounded-full bg-accent-600 px-6 py-3 text-center text-sm font-semibold text-white shadow-lg hover:bg-accent-700 sm:px-7 sm:py-3.5 sm:text-base"
 				>
 					Solicitar proposta
 				</a>
@@ -78,7 +84,7 @@
 					href={whatsappLink()}
 					target="_blank"
 					rel="noopener"
-					class="rounded-full bg-white px-6 py-3 text-center text-sm font-semibold text-tim-800 hover:bg-tim-50"
+					class="rounded-full bg-white px-6 py-3 text-center text-sm font-semibold text-tim-800 hover:bg-tim-50 sm:px-7 sm:py-3.5 sm:text-base"
 				>
 					Falar no WhatsApp
 				</a>
@@ -91,19 +97,19 @@
 	     `section` sem heading não entra no outline do documento. -->
 	<div class="border-b border-tim-100 bg-white">
 		<div
-			class="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-6 text-center sm:grid-cols-4"
+			class="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-6 text-center sm:grid-cols-4 sm:py-8"
 		>
-			<div><p class="text-2xl font-bold text-tim-700">+{contact.yearsExperience} anos</p><p class="text-xs text-slate-500">de mercado</p></div>
-			<div><p class="text-2xl font-bold text-tim-700">Autorizado</p><p class="text-xs text-slate-500">representante TIM</p></div>
-			<div><p class="text-2xl font-bold text-tim-700">Consultivo</p><p class="text-xs text-slate-500">atendimento dedicado</p></div>
-			<div><p class="text-2xl font-bold text-tim-700">Nacional</p><p class="text-xs text-slate-500">cobertura TIM</p></div>
+			<div><p class="text-xl font-bold text-tim-700 sm:text-2xl lg:text-3xl">+{contact.yearsExperience} anos</p><p class="text-xs text-slate-500 sm:text-sm">de mercado</p></div>
+			<div><p class="text-xl font-bold text-tim-700 sm:text-2xl lg:text-3xl">Autorizado</p><p class="text-xs text-slate-500 sm:text-sm">representante TIM</p></div>
+			<div><p class="text-xl font-bold text-tim-700 sm:text-2xl lg:text-3xl">Consultivo</p><p class="text-xs text-slate-500 sm:text-sm">atendimento dedicado</p></div>
+			<div><p class="text-xl font-bold text-tim-700 sm:text-2xl lg:text-3xl">Nacional</p><p class="text-xs text-slate-500 sm:text-sm">cobertura TIM</p></div>
 		</div>
 	</div>
 
 	<!-- SOLUÇÕES -->
 	<section id="solucoes" class="bg-slate-50 py-16 sm:py-20">
 		<div class="mx-auto max-w-6xl px-4">
-			<h2 class="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+			<h2 class="text-balance text-center text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
 				Soluções TIM Empresa
 			</h2>
 			<p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
@@ -129,8 +135,8 @@
 							/>
 						</div>
 						<div class="flex flex-1 flex-col p-5">
-							<h3 class="text-lg font-bold text-tim-800">{s.name}</h3>
-							<p class="mt-2 flex-1 text-sm text-slate-600">{s.text}</p>
+							<h3 class="text-lg font-bold text-tim-800 sm:text-xl">{s.name}</h3>
+							<p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600 sm:text-base">{s.text}</p>
 							<a
 								href="#contato"
 								class="mt-4 text-sm font-semibold text-tim-600 hover:text-tim-700"
@@ -146,7 +152,7 @@
 	<!-- POR QUE ESCOLHER -->
 	<section class="bg-white py-16 sm:py-20">
 		<div class="mx-auto max-w-6xl px-4">
-			<h2 class="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+			<h2 class="text-balance text-center text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
 				Por que escolher a TIM Corporativo
 			</h2>
 			<div class="mt-10 grid gap-6 sm:grid-cols-3">
@@ -168,7 +174,7 @@
 	<!-- PLANOS / PERFIS -->
 	<section id="planos" class="bg-tim-900 py-16 text-white sm:py-20">
 		<div class="mx-auto max-w-6xl px-4">
-			<h2 class="text-center text-2xl font-bold sm:text-3xl">
+			<h2 class="text-balance text-center text-2xl font-bold sm:text-3xl lg:text-4xl">
 				Planos para cada perfil de empresa
 			</h2>
 			<p class="mx-auto mt-3 max-w-2xl text-center text-tim-200">
@@ -178,8 +184,8 @@
 			<div class="mt-10 grid gap-6 md:grid-cols-3">
 				{#each plans as p}
 					<div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-						<h3 class="text-lg font-bold text-white">{p.name}</h3>
-						<p class="mt-2 text-sm text-tim-100">{p.text}</p>
+						<h3 class="text-lg font-bold text-white sm:text-xl">{p.name}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-tim-100 sm:text-base">{p.text}</p>
 						<a
 							href="#contato"
 							class="mt-4 inline-block rounded-full bg-accent-600 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-700"
@@ -199,7 +205,7 @@
 	<!-- VANTAGENS -->
 	<section id="vantagens" class="bg-slate-50 py-16 sm:py-20">
 		<div class="mx-auto max-w-6xl px-4">
-			<h2 class="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+			<h2 class="text-balance text-center text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
 				Vantagens das soluções TIM Empresa
 			</h2>
 			<div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -222,10 +228,10 @@
 			<div class="space-y-12">
 				{#each contentSections as c}
 					<article id={c.id}>
-						<h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">{c.title}</h2>
+						<h2 class="text-balance text-2xl font-bold text-slate-900 sm:text-3xl">{c.title}</h2>
 						<div class="mt-4 space-y-4">
 							{#each c.paragraphs as p}
-								<p class="text-slate-600">{p}</p>
+								<p class="leading-relaxed text-slate-600 sm:text-lg">{p}</p>
 							{/each}
 						</div>
 					</article>
@@ -234,8 +240,63 @@
 		</div>
 	</div>
 
+	<!-- COMO CONTRATAR — jornada de compra. Cobre as queries transacionais
+	     ("como contratar TIM Empresa", "comprar plano TIM empresarial") que o
+	     conteúdo editorial de marca acima não alcança. -->
+	<section id="como-contratar" class="bg-slate-50 py-16 sm:py-20">
+		<div class="mx-auto max-w-6xl px-4">
+			<h2 class="text-balance text-center text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
+				{comoContratar.title}
+			</h2>
+			<p class="mx-auto mt-3 max-w-2xl text-center leading-relaxed text-slate-600">
+				{comoContratar.subtitle}
+			</p>
+			<!-- <ol>: os passos têm ordem real, e leitor de tela anuncia "lista, 4 itens". -->
+			<ol class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+				{#each comoContratar.steps as passo, i}
+					<li class="relative rounded-2xl border border-slate-200 bg-white p-6">
+						<span
+							class="flex h-10 w-10 items-center justify-center rounded-full bg-tim-600 text-base font-bold text-white"
+							aria-hidden="true">{i + 1}</span
+						>
+						<h3 class="mt-4 font-bold text-tim-800 sm:text-lg">{passo.title}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">{passo.text}</p>
+					</li>
+				{/each}
+			</ol>
+
+			<!-- Portabilidade: a objeção nº 1 de quem já tem operadora. -->
+			<div class="mt-10 rounded-2xl bg-tim-800 p-8 text-white sm:p-10">
+				<div class="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
+					<div>
+						<h3 class="text-balance text-xl font-bold sm:text-2xl">{portabilidade.title}</h3>
+						{#each portabilidade.paragraphs as p}
+							<p class="mt-3 leading-relaxed text-tim-100 sm:text-base">{p}</p>
+						{/each}
+					</div>
+					<div class="flex flex-col gap-3 sm:flex-row lg:flex-col">
+						<a
+							href="#contato"
+							class="rounded-full bg-accent-600 px-6 py-3 text-center text-sm font-semibold text-white hover:bg-accent-700 sm:text-base"
+						>
+							Simular portabilidade
+						</a>
+						<a
+							href={whatsappLink('Olá! Quero fazer a portabilidade da minha empresa para a TIM. Pode me ajudar?')}
+							target="_blank"
+							rel="noopener"
+							class="rounded-full bg-white/10 px-6 py-3 text-center text-sm font-semibold text-white ring-1 ring-white/25 hover:bg-white/15 sm:text-base"
+						>
+							Tirar dúvidas no WhatsApp
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<!-- AUTORIDADE (Renovação Segura + 15 anos — herdado da home original) -->
-	<section class="bg-slate-50 py-16 sm:py-20">
+	<section class="bg-white py-16 sm:py-20">
 		<div class="mx-auto grid max-w-6xl gap-6 px-4 md:grid-cols-2">
 			<div class="rounded-2xl border border-slate-200 bg-white p-8">
 				<h2 class="text-xl font-bold text-tim-800">{authority.renovacao.title}</h2>
@@ -260,9 +321,11 @@
 	</section>
 
 	<!-- FAQ -->
-	<section id="faq" class="bg-white py-16 sm:py-20">
+	<!-- slate-50 (era white) para manter a alternância de fundos depois que a
+	     seção "Como contratar" entrou antes da autoridade. -->
+	<section id="faq" class="bg-slate-50 py-16 sm:py-20">
 		<div class="mx-auto max-w-6xl px-4">
-			<h2 class="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+			<h2 class="text-balance text-center text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
 				Dúvidas frequentes sobre TIM Empresa
 			</h2>
 			<div class="mt-10"><Faq /></div>
@@ -281,7 +344,7 @@
 					combinação entre linhas móveis, internet fibra e serviços corporativos.
 				</p>
 				<p class="mt-3 font-medium text-tim-800">{authority.blackTagline}</p>
-				<ul class="mt-6 space-y-3 text-sm text-slate-700">
+				<ul class="mt-6 space-y-3 text-sm text-slate-700 sm:text-base">
 					<li>📞 Telefone: <a class="font-semibold text-tim-700" href={contact.phoneHref}>{contact.phoneLabel}</a></li>
 					<li>💬 WhatsApp: <a class="font-semibold text-tim-700" target="_blank" rel="noopener" href={whatsappLink()}>{contact.whatsappLabel}</a></li>
 					<li>✉️ E-mail: <a class="font-semibold text-tim-700" href="mailto:{contact.emails[0]}">{contact.emails[0]}</a></li>

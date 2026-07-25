@@ -11,21 +11,32 @@
 	const canonical = site.url + (path === '/' ? '/' : path);
 	const imageAbs = image.startsWith('http') ? image : site.url + image;
 
+	// Slug estável para o @id de cada serviço, para o catálogo poder referenciá-los.
+	const serviceId = (name) =>
+		`${site.url}/#service-${name.toLowerCase().replace(/\s+/g, '-')}`;
+
 	// Grafo JSON-LD consolidado (uma única fonte, sem @id conflitantes).
 	const jsonld = {
 		'@context': 'https://schema.org',
 		'@graph': [
 			{
-				'@type': 'Organization',
+				// LocalBusiness além de Organization: temos endereço físico e
+				// telefone locais — habilita o entendimento de negócio local
+				// (Sorocaba/SP) sem perder o vínculo de organização nacional.
+				'@type': ['Organization', 'LocalBusiness'],
 				'@id': `${site.url}/#organization`,
 				name: site.name,
 				legalName: site.legalName,
 				url: `${site.url}/`,
 				logo: `${site.url}${site.logo}`,
-				description: `Representante autorizado TIM para empresas, operado pelo ${site.legalName}.`,
+				image: `${site.url}${site.logo}`,
+				description: `Representante autorizado TIM para empresas, operado pelo ${site.legalName}. Venda consultiva de planos TIM Empresa: TIM Black Empresa, TIM Fibra e UltraFibra.`,
 				telephone: '+55-15-3500-8940',
 				email: contact.emails[0],
+				// Sem preço tabelado: a venda é consultiva, por proposta.
+				priceRange: 'Sob consulta',
 				sameAs: [contact.facebook],
+				areaServed: { '@type': 'Country', name: 'Brasil' },
 				address: {
 					'@type': 'PostalAddress',
 					streetAddress: 'Rua Tereza Lopes, 677 - Vila Hortência',
@@ -40,6 +51,14 @@
 					contactType: 'sales',
 					areaServed: 'BR',
 					availableLanguage: ['pt-BR']
+				},
+				hasOfferCatalog: {
+					'@type': 'OfferCatalog',
+					name: 'Planos TIM Empresa',
+					itemListElement: solutions.map((s) => ({
+						'@type': 'Offer',
+						itemOffered: { '@id': serviceId(s.name) }
+					}))
 				}
 			},
 			{
@@ -58,25 +77,49 @@
 				description,
 				inLanguage: 'pt-BR',
 				isPartOf: { '@id': `${site.url}/#website` },
-				about: { '@id': `${site.url}/#organization` }
+				about: { '@id': `${site.url}/#organization` },
+				primaryImageOfPage: { '@type': 'ImageObject', url: imageAbs },
+				// Data do build (SSG): o site inteiro é regerado a cada deploy.
+				dateModified: new Date().toISOString().slice(0, 10)
 			},
+			// Breadcrumb apenas fora da home — na raiz seria um item só, ruído.
+			...(path !== '/'
+				? [
+						{
+							'@type': 'BreadcrumbList',
+							'@id': `${canonical}#breadcrumb`,
+							itemListElement: [
+								{ '@type': 'ListItem', position: 1, name: 'Início', item: `${site.url}/` },
+								{ '@type': 'ListItem', position: 2, name: title, item: canonical }
+							]
+						}
+					]
+				: []),
 			...solutions.map((s) => ({
 				'@type': 'Service',
+				'@id': serviceId(s.name),
 				name: s.name,
 				serviceType: 'Telecomunicações empresariais',
 				provider: { '@id': `${site.url}/#organization` },
 				areaServed: { '@type': 'Country', name: 'Brasil' },
 				description: s.text
 			})),
-			{
-				'@type': 'FAQPage',
-				'@id': `${canonical}#faq`,
-				mainEntity: faq.map((f) => ({
-					'@type': 'Question',
-					name: f.q,
-					acceptedAnswer: { '@type': 'Answer', text: f.a }
-				}))
-			}
+			// FAQPage só na home: é onde o FAQ aparece de fato. Emitir a marcação
+			// em páginas sem o conteúdo visível viola a diretriz de dados
+			// estruturados do Google e arrisca ação manual.
+			...(path === '/'
+				? [
+						{
+							'@type': 'FAQPage',
+							'@id': `${canonical}#faq`,
+							mainEntity: faq.map((f) => ({
+								'@type': 'Question',
+								name: f.q,
+								acceptedAnswer: { '@type': 'Answer', text: f.a }
+							}))
+						}
+					]
+				: [])
 		]
 	};
 </script>

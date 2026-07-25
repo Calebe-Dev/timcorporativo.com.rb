@@ -6,8 +6,10 @@ export const site = {
 	legalName: 'Grupo OC',
 	tagline: 'Representante autorizado TIM para empresas',
 	url: 'https://timcorporativo.com.br',
+	// ~150 caracteres: cabe inteira na SERP e cobre a intenção de compra
+	// (contratar/CNPJ/proposta) além das queries de marca já consolidadas.
 	description:
-		'Planos TIM Empresa com TIM Black Empresa, TIM Fibra Empresa e TIM UltraFibra para PMEs e grandes empresas. Atendimento consultivo de representante autorizado.',
+		'Planos TIM Empresa para CNPJ: TIM Black Empresa, TIM Fibra e UltraFibra. Compare, contrate com representante autorizado e receba proposta personalizada.',
 	logo: '/wp-content/uploads/2025/10/tim-logo-2022.svg',
 	// JPEG e não WebP: crawler de rede social (LinkedIn, entre outros) nem sempre
 	// renderiza WebP. O PNG original continua no lugar, para previews já em cache.
@@ -47,6 +49,7 @@ export const nav = [
 	{ label: 'Soluções', href: '#solucoes' },
 	{ label: 'Planos', href: '#planos' },
 	{ label: 'Vantagens', href: '#vantagens' },
+	{ label: 'Contratar', href: '#como-contratar' },
 	{ label: 'Dúvidas', href: '#faq' },
 	{ label: 'Blog', href: '/blog' },
 	{ label: 'Contato', href: '#contato' }
@@ -151,6 +154,42 @@ export const contentSections = [
 	}
 ];
 
+// Jornada de contratação — cobre as queries transacionais ("como contratar
+// TIM Empresa", "comprar plano TIM empresarial", "plano TIM CNPJ") que os
+// blocos editoriais de marca acima não alcançam. Nada aqui promete prazo ou
+// preço que não controlamos: a compra é consultiva e o texto reflete isso.
+export const comoContratar = {
+	title: 'Como contratar seu plano TIM Empresa',
+	subtitle:
+		'Da análise à ativação: compra 100% consultiva, sem burocracia e sem sair da empresa — direto com um representante autorizado TIM.',
+	steps: [
+		{
+			title: 'Diagnóstico gratuito',
+			text: 'Conte como sua empresa usa telefonia e internet hoje: quantidade de linhas, operadora atual e o que precisa melhorar.'
+		},
+		{
+			title: 'Proposta personalizada',
+			text: 'O consultor compara TIM Black Empresa, TIM Fibra e UltraFibra para o seu CNPJ e monta a proposta com descontos progressivos.'
+		},
+		{
+			title: 'Documentação simples',
+			text: 'CNPJ ativo e documentos do representante legal. A análise de crédito empresarial é conduzida pelo próprio consultor.'
+		},
+		{
+			title: 'Ativação acompanhada',
+			text: 'Portabilidade sem trocar de número e ativação com acompanhamento até as linhas estarem funcionando na sua operação.'
+		}
+	]
+};
+
+export const portabilidade = {
+	title: 'Portabilidade TIM Empresa: troque de operadora sem trocar de número',
+	paragraphs: [
+		'Sua empresa pode migrar para os planos TIM Empresa mantendo todos os números atuais — fixos e móveis. A portabilidade é agendada e acompanhada pelo consultor, e as linhas continuam funcionando durante todo o processo.',
+		'Para comparar, basta apresentar a fatura da operadora atual: o consultor analisa o contrato vigente, identifica cobranças que podem ser reduzidas e apresenta a proposta TIM equivalente ou superior antes de qualquer decisão.'
+	]
+};
+
 // Blocos de autoridade e fechamento herdados da home original.
 export const authority = {
 	blackTagline: 'Tire suas dúvidas ou contrate um plano TIM Empresa com internet, voz, Waze e WhatsApp inclusos.',
@@ -192,6 +231,22 @@ export const faq = [
 	{
 		q: 'Como receber uma proposta TIM Empresas?',
 		a: 'Preencha o formulário ou fale pelo WhatsApp para que um consultor avalie o perfil da empresa e indique a melhor combinação entre linhas móveis, fibra e serviços corporativos.'
+	},
+	{
+		q: 'Como comprar um plano TIM empresarial?',
+		a: 'A compra é consultiva e feita sem sair da empresa: você envia os dados pelo formulário ou WhatsApp, um consultor compara os planos TIM Empresa para o seu CNPJ e a contratação é concluída com a documentação da empresa.'
+	},
+	{
+		q: 'Quanto custa um plano TIM Empresa?',
+		a: 'O valor depende da quantidade de linhas, da franquia de dados e da combinação com internet fibra. Há descontos progressivos a partir de 10 linhas, e o consultor apresenta uma proposta personalizada sem compromisso.'
+	},
+	{
+		q: 'Como funciona a portabilidade para a TIM Empresa?',
+		a: 'Sua empresa mantém os números atuais: a migração é agendada e acompanhada pelo consultor, e as linhas seguem funcionando durante o processo. Basta apresentar a fatura da operadora atual para a análise comparativa.'
+	},
+	{
+		q: 'Qual o prazo para ativar as linhas?',
+		a: 'O prazo varia conforme a análise de crédito, a quantidade de linhas e a disponibilidade no endereço. Após a aprovação da proposta, o consultor informa o cronograma e acompanha cada etapa da ativação.'
 	}
 ];
 

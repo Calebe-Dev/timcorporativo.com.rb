@@ -28,7 +28,7 @@
 				</button>
 			</h3>
 			{#if openIndex === i}
-				<div class="px-5 pb-5 text-sm leading-relaxed text-slate-600">{item.a}</div>
+				<div class="px-5 pb-5 text-sm leading-relaxed text-slate-600 sm:text-base">{item.a}</div>
 			{/if}
 		</div>
 	{/each}
