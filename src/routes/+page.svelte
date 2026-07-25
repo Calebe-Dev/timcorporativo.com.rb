@@ -108,6 +108,42 @@
 		</div>
 	</div>
 
+	<!-- PLANOS / OFERTAS -->
+	<!-- Logo após o hero + faixa de confiança: quem chega com intenção de compra
+	     ("plano tim empresa preço") vê oferta concreta na segunda dobra, sem
+	     rolar cinco seções institucionais. Dentro da seção, as ofertas do OC Hub
+	     (cards com preço) vêm ANTES dos perfis genéricos — preço primeiro é a
+	     âncora de conversão; os perfis ficam como leitura de apoio. -->
+	<section id="planos" class="bg-tim-900 py-16 text-white sm:py-20">
+		<div class="mx-auto max-w-6xl px-4">
+			<h2 class="text-balance text-center text-2xl font-bold sm:text-3xl lg:text-4xl">
+				Ofertas e planos para cada perfil de empresa
+			</h2>
+			<p class="mx-auto mt-3 max-w-2xl text-center text-tim-200">
+				Descontos progressivos a partir de 10 linhas. Escolha entre TIM Black Empresa, TIM Fibra
+				Empresa e TIM UltraFibra.
+			</p>
+
+			<div class="mt-10">
+				<OcHubOffers layout="row" limit={10} sort="price_asc" />
+			</div>
+
+			<div class="mt-10 grid gap-6 md:grid-cols-3">
+				{#each plans as p}
+					<div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
+						<h3 class="text-lg font-bold text-white sm:text-xl">{p.name}</h3>
+						<p class="mt-2 text-sm leading-relaxed text-tim-100 sm:text-base">{p.text}</p>
+						<a
+							href="#contato"
+							class="mt-4 inline-block rounded-full bg-accent-600 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-700"
+							>Pedir proposta</a
+						>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
+
 	<!-- SOLUÇÕES -->
 	<section id="solucoes" class="bg-slate-50 py-16 sm:py-20">
 		<div class="mx-auto max-w-6xl px-4">
@@ -169,37 +205,6 @@
 						<p class="mt-2 text-sm text-slate-600">{d.text}</p>
 					</div>
 				{/each}
-			</div>
-		</div>
-	</section>
-
-	<!-- PLANOS / PERFIS -->
-	<section id="planos" class="bg-tim-900 py-16 text-white sm:py-20">
-		<div class="mx-auto max-w-6xl px-4">
-			<h2 class="text-balance text-center text-2xl font-bold sm:text-3xl lg:text-4xl">
-				Planos para cada perfil de empresa
-			</h2>
-			<p class="mx-auto mt-3 max-w-2xl text-center text-tim-200">
-				Descontos progressivos a partir de 10 linhas. Escolha entre TIM Black Empresa, TIM Fibra
-				Empresa e TIM UltraFibra.
-			</p>
-			<div class="mt-10 grid gap-6 md:grid-cols-3">
-				{#each plans as p}
-					<div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-						<h3 class="text-lg font-bold text-white sm:text-xl">{p.name}</h3>
-						<p class="mt-2 text-sm leading-relaxed text-tim-100 sm:text-base">{p.text}</p>
-						<a
-							href="#contato"
-							class="mt-4 inline-block rounded-full bg-accent-600 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-700"
-							>Pedir proposta</a
-						>
-					</div>
-				{/each}
-			</div>
-
-			<!-- Ofertas vindas do OC Hub, logo abaixo dos perfis de plano. -->
-			<div class="mt-10">
-				<OcHubOffers layout="row" limit={10} sort="price_asc" />
 			</div>
 		</div>
 	</section>
