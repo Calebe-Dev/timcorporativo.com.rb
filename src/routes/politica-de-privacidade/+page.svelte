@@ -1,5 +1,6 @@
 <script>
 	import BlogShell from '$lib/components/BlogShell.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import { site, contact } from '$lib/site.js';
 
 	// Vem do +layout.server.js da raiz — alimenta o mapa do site.
@@ -9,25 +10,9 @@
 	// é o que permite ao titular saber qual versão aceitou.
 	const atualizadoEm = '24 de julho de 2026';
 
-	const canonical = `${site.url}/politica-de-privacidade`;
 	const titulo = 'Política de Privacidade | TIM Corporativo';
 	const descricao =
 		'Como o Grupo OC coleta, usa, compartilha e protege os dados enviados pelo site TIM Corporativo, e como exercer seus direitos previstos na LGPD.';
-
-	// Schema mínimo e honesto: é uma WebPage, e só. Sem Service/FAQPage — marcar
-	// uma página legal com esses tipos seria dado estruturado enganoso.
-	const jsonld = {
-		'@context': 'https://schema.org',
-		'@type': 'WebPage',
-		'@id': canonical,
-		url: canonical,
-		name: 'Política de Privacidade',
-		description: descricao,
-		inLanguage: 'pt-BR',
-		isPartOf: { '@id': `${site.url}/#website` },
-		publisher: { '@id': `${site.url}/#organization` },
-		dateModified: '2026-07-24'
-	};
 
 	const h2 = 'mt-10 mb-3 text-xl font-bold text-slate-900';
 	const h3 = 'mt-6 mb-2 text-base font-semibold text-slate-900';
@@ -37,19 +22,9 @@
 	const td = 'border border-slate-200 px-3 py-2 align-top';
 </script>
 
-<svelte:head>
-	<title>{titulo}</title>
-	<meta name="description" content={descricao} />
-	<meta name="robots" content="index, follow" />
-	<link rel="canonical" href={canonical} />
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content={site.name} />
-	<meta property="og:locale" content="pt_BR" />
-	<meta property="og:title" content={titulo} />
-	<meta property="og:description" content={descricao} />
-	<meta property="og:url" content={canonical} />
-	{@html `<script type="application/ld+json">${JSON.stringify(jsonld)}</` + `script>`}
-</svelte:head>
+<!-- Head central: canonical, OG com imagem, Twitter Card e JSON-LD (WebPage +
+     breadcrumb; sem Service/FAQPage — o componente omite ambos fora da home). -->
+<Seo title={titulo} description={descricao} path="/politica-de-privacidade" />
 
 <BlogShell
 	subtitulo="Política de Privacidade"

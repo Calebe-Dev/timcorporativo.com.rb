@@ -40,7 +40,10 @@ export async function GET() {
 		}))
 	];
 
+	// O xml-stylesheet é só para humanos: navegador abre /sitemap.xml e vê uma
+	// página formatada em vez do aviso "no style information". Crawlers ignoram.
 	const body = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
 	.map(

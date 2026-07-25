@@ -1,6 +1,34 @@
 import { error } from '@sveltejs/kit';
 import { createArticleEntries, createArticleLoad } from '@grupooc/ochub-sdk/ssg/sveltekit';
 import { ochubConfig, blogBaseUrl } from '$lib/server/ochub.js';
+import { site } from '$lib/site.js';
+
+// O JSON-LD Article do SDK vem sem author, publisher e image — o Rich Results
+// Test acusa "Author is missing / Publisher is missing" e o artigo perde
+// elegibilidade a rich results. Completamos os campos aqui, no build.
+function completarArticleLd(html) {
+	return html.replace(
+		/(<script type="application\/ld\+json">)(.*?)(<\/script>)/s,
+		(original, abre, json, fecha) => {
+			try {
+				const ld = JSON.parse(json);
+				if (ld['@type'] === 'Article') {
+					ld.image ??= [`${site.url}${site.ogImage}`];
+					ld.author ??= { '@type': 'Organization', name: site.name, url: `${site.url}/` };
+					ld.publisher ??= {
+						'@type': 'Organization',
+						name: site.name,
+						logo: { '@type': 'ImageObject', url: `${site.url}${site.logo}` }
+					};
+					ld.mainEntityOfPage ??= { '@type': 'WebPage', '@id': ld.url };
+				}
+				return abre + JSON.stringify(ld) + fecha;
+			} catch {
+				return original; // JSON inesperado: melhor manter o bloco do SDK intacto
+			}
+		}
+	);
+}
 
 // Gera uma rota estática para cada artigo publicado do site (no build).
 export const entries = createArticleEntries(ochubConfig);
@@ -33,7 +61,9 @@ export async function load(event) {
 	// no JSON-LD — senão o canonical apontaria para uma URL que só redireciona.
 	const semBarra = `${blogBaseUrl}/${event.params.slug}`;
 	if (dados?.seo?.html) {
-		dados.seo.html = dados.seo.html.replaceAll(`"${semBarra}"`, `"${semBarra}/"`);
+		dados.seo.html = completarArticleLd(
+			dados.seo.html.replaceAll(`"${semBarra}"`, `"${semBarra}/"`)
+		);
 	}
 	return dados;
 }

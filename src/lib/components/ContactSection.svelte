@@ -1,6 +1,6 @@
 <script>
 	import ContactForm from '$lib/components/ContactForm.svelte';
-	import { contact, whatsappLink } from '$lib/site.js';
+	import ContactChannels from '$lib/components/ContactChannels.svelte';
 
 	// `id` é prop porque a home já usa "contato" no menu; nas páginas de blog
 	// usamos outro valor para não existirem dois ids iguais caso convivam.
@@ -17,32 +17,7 @@
 				Preencha o formulário e um consultor avalia o perfil da sua empresa para indicar a melhor
 				combinação entre linhas móveis, internet fibra e serviços corporativos.
 			</p>
-			<ul class="mt-6 space-y-3 text-sm text-slate-700">
-				<li>
-					📞 Telefone:
-					<a class="font-semibold text-tim-700 hover:underline" href={contact.phoneHref}>
-						{contact.phoneLabel}
-					</a>
-				</li>
-				<li>
-					💬 WhatsApp:
-					<a
-						class="font-semibold text-tim-700 hover:underline"
-						target="_blank"
-						rel="noopener"
-						href={whatsappLink()}
-					>
-						{contact.whatsappLabel}
-					</a>
-				</li>
-				<li>
-					✉️ E-mail:
-					<a class="font-semibold text-tim-700 hover:underline" href="mailto:{contact.emails[0]}">
-						{contact.emails[0]}
-					</a>
-				</li>
-				<li>📍 {contact.address}</li>
-			</ul>
+			<ContactChannels />
 		</div>
 		<div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 			<ContactForm />

@@ -1,10 +1,10 @@
 <script>
+	import Seo from '$lib/components/Seo.svelte';
 	import { site } from '$lib/site.js';
 
 	let { data } = $props();
 	const { items } = data;
 
-	const canonical = `${site.url}/blog`;
 	const pageTitle = `Blog · ${site.name} — TIM Empresa, Fibra e Link Dedicado`;
 	const pageDesc =
 		'Guias e análises sobre TIM Empresa, TIM Black, TIM Fibra, UltraFibra e link dedicado: como escolher, contratar e otimizar telecom corporativo.';
@@ -19,18 +19,9 @@
 	}
 </script>
 
-<svelte:head>
-	<title>{pageTitle}</title>
-	<meta name="description" content={pageDesc} />
-	<meta name="robots" content="index, follow, max-image-preview:large" />
-	<link rel="canonical" href={canonical} />
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content={site.name} />
-	<meta property="og:locale" content="pt_BR" />
-	<meta property="og:title" content={pageTitle} />
-	<meta property="og:description" content={pageDesc} />
-	<meta property="og:url" content={canonical} />
-</svelte:head>
+<!-- Head completo (canonical, OG com imagem, Twitter Card, JSON-LD com
+     breadcrumb) vem do componente central — mesma fonte da home. -->
+<Seo title={pageTitle} description={pageDesc} path="/blog" />
 
 <header class="mb-8">
 	<h1 class="text-3xl font-bold tracking-tight text-tim-900 sm:text-4xl">Blog TIM Corporativo</h1>

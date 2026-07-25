@@ -8,7 +8,7 @@
 <header id="topo" class="sticky top-0 z-40 border-b border-tim-100 bg-white/95 backdrop-blur">
 	<div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
 		<a href="#topo" class="flex items-center gap-2" onclick={close}>
-			<img src={site.logo} alt="TIM" class="h-9 w-9" width="36" height="36" />
+			<img src={site.logo} alt="TIM" class="h-11 w-11" width="44" height="44" />
 			<span class="leading-tight">
 				<span class="block text-base font-bold text-tim-800">TIM Corporativo</span>
 				<span class="block text-[11px] font-medium text-tim-500">Representante autorizado</span>

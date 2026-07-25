@@ -5,11 +5,18 @@
 		title = `${site.name}: TIM Empresa, Black, Fibra e UltraFibra`,
 		description = site.description,
 		path = '/',
-		image = site.ogImage
+		image = site.ogImage,
+		// Service + OfferCatalog só onde os planos aparecem de fato (home).
+		// Página legal/blog marca apenas WebPage + Breadcrumb — dado estruturado
+		// deve refletir o conteúdo visível da página.
+		services = path === '/'
 	} = $props();
 
 	const canonical = site.url + (path === '/' ? '/' : path);
 	const imageAbs = image.startsWith('http') ? image : site.url + image;
+	// Dimensões/alt valem para a imagem padrão do site; quem passa outra imagem
+	// não recebe medidas erradas.
+	const isDefaultImage = image === site.ogImage;
 
 	// Slug estável para o @id de cada serviço, para o catálogo poder referenciá-los.
 	const serviceId = (name) =>
@@ -52,14 +59,18 @@
 					areaServed: 'BR',
 					availableLanguage: ['pt-BR']
 				},
-				hasOfferCatalog: {
-					'@type': 'OfferCatalog',
-					name: 'Planos TIM Empresa',
-					itemListElement: solutions.map((s) => ({
-						'@type': 'Offer',
-						itemOffered: { '@id': serviceId(s.name) }
-					}))
-				}
+				...(services
+					? {
+							hasOfferCatalog: {
+								'@type': 'OfferCatalog',
+								name: 'Planos TIM Empresa',
+								itemListElement: solutions.map((s) => ({
+									'@type': 'Offer',
+									itemOffered: { '@id': serviceId(s.name) }
+								}))
+							}
+						}
+					: {})
 			},
 			{
 				'@type': 'WebSite',
@@ -95,15 +106,17 @@
 						}
 					]
 				: []),
-			...solutions.map((s) => ({
-				'@type': 'Service',
-				'@id': serviceId(s.name),
-				name: s.name,
-				serviceType: 'Telecomunicações empresariais',
-				provider: { '@id': `${site.url}/#organization` },
-				areaServed: { '@type': 'Country', name: 'Brasil' },
-				description: s.text
-			})),
+			...(services
+				? solutions.map((s) => ({
+						'@type': 'Service',
+						'@id': serviceId(s.name),
+						name: s.name,
+						serviceType: 'Telecomunicações empresariais',
+						provider: { '@id': `${site.url}/#organization` },
+						areaServed: { '@type': 'Country', name: 'Brasil' },
+						description: s.text
+					}))
+				: []),
 			// FAQPage só na home: é onde o FAQ aparece de fato. Emitir a marcação
 			// em páginas sem o conteúdo visível viola a diretriz de dados
 			// estruturados do Google e arrisca ação manual.
@@ -137,11 +150,20 @@
 	<meta property="og:description" content={description} />
 	<meta property="og:url" content={canonical} />
 	<meta property="og:image" content={imageAbs} />
+	{#if isDefaultImage}
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content={String(site.ogImageWidth)} />
+		<meta property="og:image:height" content={String(site.ogImageHeight)} />
+		<meta property="og:image:alt" content={site.ogImageAlt} />
+	{/if}
 
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content={imageAbs} />
+	{#if isDefaultImage}
+		<meta name="twitter:image:alt" content={site.ogImageAlt} />
+	{/if}
 
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonld)}</` + `script>`}
 </svelte:head>

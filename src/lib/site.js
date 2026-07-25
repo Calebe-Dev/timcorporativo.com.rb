@@ -12,8 +12,13 @@ export const site = {
 		'Planos TIM Empresa para CNPJ: TIM Black Empresa, TIM Fibra e UltraFibra. Compare, contrate com representante autorizado e receba proposta personalizada.',
 	logo: '/wp-content/uploads/2025/10/tim-logo-2022.svg',
 	// JPEG e não WebP: crawler de rede social (LinkedIn, entre outros) nem sempre
-	// renderiza WebP. O PNG original continua no lugar, para previews já em cache.
-	ogImage: '/wp-content/uploads/2026/05/TIM-Capa-Gancho.jpg'
+	// renderiza WebP. Recorte 1200×630 (proporção 1.91:1 que Facebook, WhatsApp e
+	// X esperam — o quadrado 1200×1200 era cortado de forma imprevisível).
+	ogImage: '/wp-content/uploads/2026/05/TIM-Capa-Gancho-og.jpg',
+	ogImageWidth: 1200,
+	ogImageHeight: 630,
+	ogImageAlt:
+		'Planos TIM Empresa — sua empresa ainda paga caro pela telefonia móvel? Descubra os planos TIM.'
 };
 
 export const contact = {

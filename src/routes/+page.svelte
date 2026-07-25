@@ -5,6 +5,7 @@
 	import SiteMap from '$lib/components/SiteMap.svelte';
 	import OcHubOffers from '$lib/components/OcHubOffers.svelte';
 	import ContactForm from '$lib/components/ContactForm.svelte';
+	import ContactChannels from '$lib/components/ContactChannels.svelte';
 	import Faq from '$lib/components/Faq.svelte';
 	import {
 		hero,
@@ -38,12 +39,13 @@
 			src={hero.image}
 			alt=""
 			aria-hidden="true"
-			class="absolute inset-0 h-full w-full object-cover opacity-20"
+			class="absolute inset-0 h-full w-full object-cover"
 			loading="eager"
 			fetchpriority="high"
 		/>
+		<!-- Véu mínimo para o texto branco continuar legível (WCAG) sem esconder a foto. -->
 		<div
-			class="absolute inset-0 bg-gradient-to-b from-tim-800/85 to-tim-900/95"
+			class="absolute inset-0 bg-gradient-to-b from-tim-900/60 via-tim-900/45 to-tim-950/70"
 			aria-hidden="true"
 		></div>
 		<div class="relative mx-auto max-w-6xl px-4 py-16 sm:py-20 lg:py-28">
@@ -344,12 +346,7 @@
 					combinação entre linhas móveis, internet fibra e serviços corporativos.
 				</p>
 				<p class="mt-3 font-medium text-tim-800">{authority.blackTagline}</p>
-				<ul class="mt-6 space-y-3 text-sm text-slate-700 sm:text-base">
-					<li>📞 Telefone: <a class="font-semibold text-tim-700" href={contact.phoneHref}>{contact.phoneLabel}</a></li>
-					<li>💬 WhatsApp: <a class="font-semibold text-tim-700" target="_blank" rel="noopener" href={whatsappLink()}>{contact.whatsappLabel}</a></li>
-					<li>✉️ E-mail: <a class="font-semibold text-tim-700" href="mailto:{contact.emails[0]}">{contact.emails[0]}</a></li>
-					<li>📍 {contact.address}</li>
-				</ul>
+				<ContactChannels />
 			</div>
 			<div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 				<ContactForm />

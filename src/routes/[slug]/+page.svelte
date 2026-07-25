@@ -1,8 +1,10 @@
 <script>
-	import { whatsappLink } from '$lib/site.js';
+	import { site, whatsappLink } from '$lib/site.js';
 
 	let { data } = $props();
 	const { article, seo } = data;
+
+	const ogImageAbs = site.url + site.ogImage;
 
 	const date = article.published_at ?? article.created_at;
 	const dateLabel = date
@@ -16,6 +18,16 @@
 	<meta name="robots" content="index, follow, max-image-preview:large" />
 	<meta property="og:site_name" content="TIM Corporativo" />
 	<meta property="og:locale" content="pt_BR" />
+	<!-- O SDK não emite imagem nem Twitter Card — sem isso o artigo compartilhado
+	     sai como link pelado no WhatsApp/LinkedIn/X. -->
+	<meta property="og:image" content={ogImageAbs} />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta property="og:image:width" content={String(site.ogImageWidth)} />
+	<meta property="og:image:height" content={String(site.ogImageHeight)} />
+	<meta property="og:image:alt" content={site.ogImageAlt} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content={ogImageAbs} />
+	<meta name="twitter:image:alt" content={site.ogImageAlt} />
 </svelte:head>
 
 <nav class="mb-6 text-sm">
