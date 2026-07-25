@@ -1,24 +1,22 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
-/* Fonte oficial TIM Sans (importada de wp-content/uploads). */
+/* Fonte oficial TIM Sans (importada de wp-content/uploads).
+   Só woff2: todo navegador que roda este site suporta o formato desde 2020, e o
+   fallback .woff era 154 KB de arquivo que ninguém jamais baixou. */
 @font-face {
 	font-family: 'TIM Sans';
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
-	src:
-		url('/wp-content/uploads/2025/10/c875cb65af48db4e990ed39d981b9ef1.woff2') format('woff2'),
-		url('/wp-content/uploads/2025/10/c875cb65af48db4e990ed39d981b9ef1.woff') format('woff');
+	src: url('/wp-content/uploads/2025/10/c875cb65af48db4e990ed39d981b9ef1.woff2') format('woff2');
 }
 @font-face {
 	font-family: 'TIM Sans';
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
-	src:
-		url('/wp-content/uploads/2025/10/57b88f8a459956fcac90a4e1a8e0f97b.woff2') format('woff2'),
-		url('/wp-content/uploads/2025/10/57b88f8a459956fcac90a4e1a8e0f97b.woff') format('woff');
+	src: url('/wp-content/uploads/2025/10/57b88f8a459956fcac90a4e1a8e0f97b.woff2') format('woff2');
 }
 
 /* Tokens de marca TIM (azul institucional). */
@@ -39,8 +37,11 @@
 	--color-tim-950: #00142f;
 
 	--color-accent-400: #ff6a3d;
+	/* accent-500 tem contraste 3,64:1 com texto branco — reprova no WCAG AA (4,5:1).
+	   Fica aqui para fundos decorativos, mas botão com texto branco usa o 600 (4,8:1). */
 	--color-accent-500: #f5451f;
 	--color-accent-600: #d63512;
+	--color-accent-700: #b02b0c;
 }
 
 :root {

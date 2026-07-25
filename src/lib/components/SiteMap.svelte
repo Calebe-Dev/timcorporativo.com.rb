@@ -39,7 +39,7 @@
 			<nav aria-label="Conteúdo" class="lg:col-span-2">
 				<h3 class="text-sm font-semibold text-tim-800">
 					Últimos artigos
-					{#if total}<span class="font-normal text-slate-400">({total} no total)</span>{/if}
+					{#if total}<span class="font-normal text-slate-500">({total} no total)</span>{/if}
 				</h3>
 				{#if artigos.length}
 					<ul class="mt-3 grid gap-2 text-sm sm:grid-cols-2">
@@ -98,7 +98,7 @@
 						</a>
 					</li>
 				</ul>
-				<p class="mt-4 text-xs text-slate-400">CNPJ {contact.cnpj} · {site.legalName}</p>
+				<p class="mt-4 text-xs text-slate-500">CNPJ {contact.cnpj} · {site.legalName}</p>
 			</div>
 		</div>
 	</div>

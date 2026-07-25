@@ -21,6 +21,19 @@ const config = {
 			precompress: false,
 			strict: true
 		}),
+		// CSS abaixo deste tamanho (bruto, em bytes) é embutido no <head> em vez de
+		// virar <link>. O bundle inteiro tem ~45 KB, então cabe: some uma
+		// requisição bloqueante a menos no caminho crítico de TODA página.
+		//
+		// Era o gargalo real do LCP da home — a imagem do hero terminava de baixar
+		// aos 304ms mas só pintava aos 482ms, esperando este CSS chegar e ser
+		// parseado (172ms de elementRenderDelay + 159ms de bloqueio no Lighthouse).
+		//
+		// Se o CSS crescer além do limite o SvelteKit volta a emitir <link> em
+		// silêncio — se a nota de performance cair sem motivo aparente, confira
+		// aqui primeiro.
+		inlineStyleThreshold: 50000,
+
 		prerender: {
 			// Páginas que nós escrevemos. Os artigos ficam na raiz (/<slug>), então
 			// "veio de um artigo" = a referrer não é nenhuma destas.

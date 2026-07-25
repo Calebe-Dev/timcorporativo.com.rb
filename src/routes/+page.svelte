@@ -29,12 +29,16 @@
 <main>
 	<!-- HERO -->
 	<section class="relative overflow-hidden bg-tim-800 text-white">
+		<!-- Elemento de LCP da home. `fetchpriority="high"` promove a imagem de
+		     prioridade Medium para High no preload scanner: sem isso ela disputa
+		     banda com CSS e JS na abertura. -->
 		<img
 			src={hero.image}
 			alt=""
 			aria-hidden="true"
 			class="absolute inset-0 h-full w-full object-cover opacity-20"
 			loading="eager"
+			fetchpriority="high"
 		/>
 		<div
 			class="absolute inset-0 bg-gradient-to-b from-tim-800/85 to-tim-900/95"
@@ -66,7 +70,7 @@
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
 				<a
 					href="#contato"
-					class="rounded-full bg-accent-500 px-6 py-3 text-center text-sm font-semibold text-white shadow-lg hover:bg-accent-600"
+					class="rounded-full bg-accent-600 px-6 py-3 text-center text-sm font-semibold text-white shadow-lg hover:bg-accent-700"
 				>
 					Solicitar proposta
 				</a>
@@ -178,7 +182,7 @@
 						<p class="mt-2 text-sm text-tim-100">{p.text}</p>
 						<a
 							href="#contato"
-							class="mt-4 inline-block rounded-full bg-accent-500 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-600"
+							class="mt-4 inline-block rounded-full bg-accent-600 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-700"
 							>Pedir proposta</a
 						>
 					</div>
@@ -238,7 +242,7 @@
 				<p class="mt-3 text-slate-600">{authority.renovacao.text}</p>
 				<a
 					href="#contato"
-					class="mt-5 inline-block rounded-full bg-accent-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent-600"
+					class="mt-5 inline-block rounded-full bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent-700"
 					>Renovação Segura →</a
 				>
 			</div>

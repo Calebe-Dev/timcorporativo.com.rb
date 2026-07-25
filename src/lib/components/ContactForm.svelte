@@ -35,6 +35,21 @@
 	let turnstileToken = $state('');
 	let caixaTurnstile;
 
+	// O Turnstile custa ~470 KB (script + iframe + XHR + worker) e planta 8 cookies
+	// de terceiro. Carregá-lo no load da página fazia todo visitante pagar esse
+	// preço por um formulário que fica no fim da rolagem — e derrubava a nota de
+	// best-practices em 5 pontos. Agora ele só sobe no primeiro foco de campo.
+	let turnstileIniciado = false;
+	/** @type {Promise<string> | null} — resolve quando o token chega. */
+	let tokenPronto = null;
+	/** @type {((t: string) => void) | null} */
+	let resolverToken = null;
+
+	// Margem entre o foco no primeiro campo e o submit. Preencher nome, e-mail e
+	// celular leva dezenas de segundos; o Managed resolve em ~1s. O timeout existe
+	// só para o caso patológico, e mesmo ele não perde o lead: cai no WhatsApp.
+	const ESPERA_TOKEN_MS = 4000;
+
 	const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 	const UTM_STORE = 'tim_utm';
 
@@ -57,9 +72,18 @@
 			// sessionStorage bloqueado (modo restrito/iframe): seguimos sem atribuição.
 			utm = {};
 		}
-
-		if (turnstileSiteKey) carregarTurnstile();
 	});
+
+	/**
+	 * Dispara no primeiro `focusin` do formulário. Idempotente: o `focusin`
+	 * borbulha de todo campo, então isto roda a cada tab do visitante.
+	 */
+	function iniciarTurnstile() {
+		if (turnstileIniciado || !turnstileSiteKey) return;
+		turnstileIniciado = true;
+		tokenPronto = new Promise((resolve) => (resolverToken = resolve));
+		carregarTurnstile();
+	}
 
 	/**
 	 * Carrega o Turnstile em modo `explicit` — assim o widget só aparece onde
@@ -72,9 +96,17 @@
 			if (!window.turnstile || !caixaTurnstile) return;
 			window.turnstile.render(caixaTurnstile, {
 				sitekey: turnstileSiteKey,
-				callback: (t) => (turnstileToken = t),
+				callback: (t) => {
+					turnstileToken = t;
+					resolverToken?.(t);
+				},
 				'expired-callback': () => (turnstileToken = ''),
-				'error-callback': () => (turnstileToken = '')
+				'error-callback': () => {
+					turnstileToken = '';
+					// Destrava o submit: sem isto, uma falha do widget faria o
+					// visitante esperar o timeout inteiro à toa.
+					resolverToken?.('');
+				}
 			});
 		};
 
@@ -85,6 +117,7 @@
 		s.async = true;
 		s.defer = true;
 		s.onload = render;
+		s.onerror = () => resolverToken?.('');
 		document.head.appendChild(s);
 	}
 
@@ -142,6 +175,16 @@
 		// A captura do lead segue em paralelo, sem travar o atendimento.
 		const janela = window.open(whatsappLink(resumo()), '_blank', 'noopener');
 
+		// Com a secret gravada, o servidor rejeita lead sem token (403 `captcha`).
+		// Como agora o widget só começa a carregar no primeiro foco, damos a ele
+		// uma janela para concluir. Seguro fazer depois do window.open acima.
+		if (tokenPronto && !turnstileToken) {
+			await Promise.race([
+				tokenPronto,
+				new Promise((r) => setTimeout(r, ESPERA_TOKEN_MS))
+			]);
+		}
+
 		try {
 			await registrarLead();
 			status = 'ok';
@@ -159,7 +202,9 @@
 		'w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-tim-500 focus:ring-2 focus:ring-tim-200';
 </script>
 
-<form class="space-y-3" onsubmit={enviar}>
+<!-- `focusin` (e não `focus`) porque borbulha: um único handler no <form> cobre
+     todos os campos. É o gatilho do anti-spam — ver `iniciarTurnstile`. -->
+<form class="space-y-3" onsubmit={enviar} onfocusin={iniciarTurnstile}>
 	<div class="grid gap-3 sm:grid-cols-2">
 		<input class={field} bind:value={nome} placeholder="Nome*" required autocomplete="name" />
 		<input
@@ -209,7 +254,7 @@
 	<button
 		type="submit"
 		disabled={enviando}
-		class="flex w-full items-center justify-center gap-2 rounded-full bg-accent-500 px-5 py-3 text-center text-sm font-semibold text-white hover:bg-accent-600 disabled:opacity-70"
+		class="flex w-full items-center justify-center gap-2 rounded-full bg-accent-600 px-5 py-3 text-center text-sm font-semibold text-white hover:bg-accent-700 disabled:opacity-70"
 	>
 		<svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
 			><path

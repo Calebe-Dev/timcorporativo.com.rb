@@ -1,0 +1,59 @@
+# Headers do Cloudflare Pages. Este arquivo sai de static/ para a raiz do build.
+#
+# Ordem importa: a Pages aplica TODAS as regras cujo padrão casa, e as mais
+# específicas vêm depois para poder sobrescrever o bloco global.
+
+/*
+  # Clickjacking. O site não é embutido em lugar nenhum; DENY é mais forte que
+  # SAMEORIGIN e cobre a auditoria clickjacking-mitigation do Lighthouse.
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # HSTS. 2 anos + preload é o que o hstspreload.org exige. Só ative o preload
+  # de fato (submetendo o domínio) depois de confirmar que NENHUM subdomínio
+  # precisa de HTTP puro — a decisão é irreversível na prática.
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # Nada aqui usa câmera, microfone, geolocalização ou pagamento.
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()
+
+  # COOP: isola a janela de popups de outra origem. `same-origin-allow-popups`
+  # e não `same-origin` porque o formulário abre o WhatsApp com window.open.
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+
+  # CSP em Report-Only de propósito. Uma diretiva errada aqui derruba o
+  # analytics, o Turnstile ou o widget de ofertas em produção sem aviso.
+  # Rode assim, confira o console por algumas semanas, e só então troque o nome
+  # do header para Content-Security-Policy.
+  #
+  # 'unsafe-inline' em script-src é inevitável hoje: o snippet do gtag e os
+  # scripts de hidratação do SvelteKit são inline. Remover exige nonce, que a
+  # Pages não injeta em site estático.
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com https://challenges.cloudflare.com https://ochub.grupooc.com.br blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.google-analytics.com https://ochub-api.grupooc.com.br https://challenges.cloudflare.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://cloudflareinsights.com https://ochub-api.grupooc.com.br https://challenges.cloudflare.com https://*.challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+
+# Assets do SvelteKit: o nome carrega hash do conteúdo, então mudança de arquivo
+# = mudança de URL. Podem ser cacheados para sempre com segurança.
+/_app/immutable/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Mídia e fontes do WordPress herdado. NÃO têm hash no nome — se uma imagem for
+# trocada mantendo o nome, o cache vence contra a atualização. Uma semana no
+# browser, um ano no edge (que a gente consegue purgar pelo painel).
+/wp-content/uploads/*
+  Cache-Control: public, max-age=604800, s-maxage=31536000, stale-while-revalidate=86400
+
+/favicon.svg
+  Cache-Control: public, max-age=604800
+
+# HTML: sempre revalidar. O conteúdo vem do CMS e um deploy precisa aparecer na
+# hora; o 304 mantém o custo baixo quando nada mudou.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# A API de leads nunca pode ser cacheada — a resposta é por requisição.
+/api/*
+  Cache-Control: no-store

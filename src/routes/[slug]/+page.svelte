@@ -23,7 +23,7 @@
 </nav>
 
 {#if dateLabel}
-	<p class="mb-4 text-sm font-medium text-slate-400">
+	<p class="mb-4 text-sm font-medium text-slate-500">
 		Publicado em <time datetime={date}>{dateLabel}</time>
 	</p>
 {/if}

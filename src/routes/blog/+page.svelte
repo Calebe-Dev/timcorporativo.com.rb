@@ -35,7 +35,7 @@
 <header class="mb-8">
 	<h1 class="text-3xl font-bold tracking-tight text-tim-900 sm:text-4xl">Blog TIM Corporativo</h1>
 	<p class="mt-2 max-w-2xl text-slate-600">{pageDesc}</p>
-	<p class="mt-1 text-sm text-slate-400">{items.length} artigos publicados</p>
+	<p class="mt-1 text-sm text-slate-500">{items.length} artigos publicados</p>
 </header>
 
 {#if items.length === 0}
