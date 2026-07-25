@@ -87,14 +87,11 @@
 
 				<h3 class="mt-6 text-sm font-semibold text-tim-800">Institucional</h3>
 				<ul class="mt-3 space-y-2 text-sm">
+					<!-- Sem link para /sitemap.xml aqui: o sitemap é interface de robô
+					     (descoberto via robots.txt), não navegação para pessoas. -->
 					<li>
 						<a class="text-slate-600 hover:text-tim-600 hover:underline" href="/politica-de-privacidade">
 							Política de Privacidade
-						</a>
-					</li>
-					<li>
-						<a class="text-slate-600 hover:text-tim-600 hover:underline" href="/sitemap.xml">
-							Sitemap XML
 						</a>
 					</li>
 				</ul>
