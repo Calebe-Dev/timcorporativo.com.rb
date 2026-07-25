@@ -11,6 +11,11 @@ export const site = {
 	description:
 		'Planos TIM Empresa para CNPJ: TIM Black Empresa, TIM Fibra e UltraFibra. Compare, contrate com representante autorizado e receba proposta personalizada.',
 	logo: '/wp-content/uploads/2025/10/tim-logo-2022.svg',
+	// Mesma arte com o viewBox recortado na caixa do logotipo (556×162): a
+	// original centra a marca num quadrado 700×700 e fica minúscula em altura
+	// fixa. Arquivo novo (não sobrescrever o antigo!): uploads têm cache de 1
+	// ano na borda — mudar conteúdo mantendo o nome serviria versão velha.
+	logoWide: '/wp-content/uploads/2025/10/tim-logo-2022-wide.svg',
 	// JPEG e não WebP: crawler de rede social (LinkedIn, entre outros) nem sempre
 	// renderiza WebP. Recorte 1200×630 (proporção 1.91:1 que Facebook, WhatsApp e
 	// X esperam — o quadrado 1200×1200 era cortado de forma imprevisível).
