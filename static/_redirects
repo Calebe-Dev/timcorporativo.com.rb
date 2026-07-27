@@ -1,0 +1,151 @@
+# Redirects do Cloudflare Pages. Este arquivo sai de static/ para a raiz do build.
+#
+# Primeira regra que casa vence — nada aqui pode colidir com um slug vivo.
+# Ambas as formas (com e sem barra final) estao escritas porque a Pages casa
+# o path literal; o destino usa sempre a forma canonica, com barra.
+#
+# NAO adicione redirect para /wp-content/*, /wp-admin/* ou /cdn-cgi/*: sao
+# sobras do WordPress antigo sem valor de link. 404 e a resposta correta —
+# 301 para destino nao equivalente o Google trata como soft 404.
+
+# --- paginas do site antigo que nao existem mais ---------------------------
+/conteudos            /blog          301
+/conteudos/           /blog          301
+/tag/*                /blog          301
+/solucoes-corporativas   /#solucoes  301
+/solucoes-corporativas/  /#solucoes  301
+
+# --- artigos arquivados -> artigo vivo equivalente --------------------------
+# Fonte: docs/paginas-arquivadas/ (143 posts do WP antigo, todos 404 hoje).
+# Ordenado por impressoes_12m do frontmatter. So entrou par com equivalencia
+# real de intencao de busca; o resto segue 404 de proposito.
+
+# 100+ impressoes/ano
+/tim-black-empresa-vs-vivo-claro-comparativo-2026	/comparativo-operadoras-tim-vivo-claro-empresas/	301
+/tim-black-empresa-vs-vivo-claro-comparativo-2026/	/comparativo-operadoras-tim-vivo-claro-empresas/	301
+/tim-corporativo-conectividade-e-solucoes-a-medida	/empresas-tim-solucoes-para-negocios-de-todos-os-portes/	301
+/tim-corporativo-conectividade-e-solucoes-a-medida/	/empresas-tim-solucoes-para-negocios-de-todos-os-portes/	301
+/tim-ultrafibra-cobertura-expansao-mapa-2026	/tim-ultrafibra-planos-2026-preco-cobertura/	301
+/tim-ultrafibra-cobertura-expansao-mapa-2026/	/tim-ultrafibra-planos-2026-preco-cobertura/	301
+/tim-corporativo-comparacao-planos-empresariais-guia	/plano-tim-empresas-comparativo-2026/	301
+/tim-corporativo-comparacao-planos-empresariais-guia/	/plano-tim-empresas-comparativo-2026/	301
+/plano-tim-pj-beneficios-fiscais-contratacao-rapida-cnpj	/plano-tim-pj-cnpj-2026/	301
+/plano-tim-pj-beneficios-fiscais-contratacao-rapida-cnpj/	/plano-tim-pj-cnpj-2026/	301
+/tim-empresas-2026-guia-completo-reducao-custos	/tim-empresa-guia-executivo-reduzir-custos/	301
+/tim-empresas-2026-guia-completo-reducao-custos/	/tim-empresa-guia-executivo-reduzir-custos/	301
+/tim-black-empresa-black-friday-2025-ofertas-descontos	/tim-empresas-black-friday-2025-ofertas-exclusivas/	301
+/tim-black-empresa-black-friday-2025-ofertas-descontos/	/tim-empresas-black-friday-2025-ofertas-exclusivas/	301
+/plano-tim-empresa-solucoes-personalizadas-para-2025	/plano-empresarial-tim-como-escolher-a-melhor-solucao/	301
+/plano-tim-empresa-solucoes-personalizadas-para-2025/	/plano-empresarial-tim-como-escolher-a-melhor-solucao/	301
+/meu-tim-empresa-como-contratar-os-melhores-planos-corporativos-para-sua-companhia	/planos-corporativos-tim-qual-escolher-guia-completo-2026/	301
+/meu-tim-empresa-como-contratar-os-melhores-planos-corporativos-para-sua-companhia/	/planos-corporativos-tim-qual-escolher-guia-completo-2026/	301
+/tim-empresarial-vs-tim-corporativo-qual-diferenca-guia	/tim-empresarial/	301
+/tim-empresarial-vs-tim-corporativo-qual-diferenca-guia/	/tim-empresarial/	301
+/tim-black-empresas-preparacao-negociacao-black-friday	/planejamento-troca-plano-tim-empresas-black-friday/	301
+/tim-black-empresas-preparacao-negociacao-black-friday/	/planejamento-troca-plano-tim-empresas-black-friday/	301
+/trocar-operadora-tim-sem-risco-consultoria-portabilidade	/portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero/	301
+/trocar-operadora-tim-sem-risco-consultoria-portabilidade/	/portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero/	301
+/ofertas-planos-empresariais-tim-pme-2026	/tim-empresas-planos-precos-2026-contratar/	301
+/ofertas-planos-empresariais-tim-pme-2026/	/tim-empresas-planos-precos-2026-contratar/	301
+/como-contratar-tim-black-empresa-janeiro-2026	/contratar-tim-empresa-guia-2026/	301
+/como-contratar-tim-black-empresa-janeiro-2026/	/contratar-tim-empresa-guia-2026/	301
+/tim-corporativo-2026-solucoes-5g-iot-pabx-nuvem-grupo-oc	/tim-corporativo-2026-iot-5g-eficiencia-industrial/	301
+/tim-corporativo-2026-solucoes-5g-iot-pabx-nuvem-grupo-oc/	/tim-corporativo-2026-iot-5g-eficiencia-industrial/	301
+/tim-black-empresa-guia-completo-2026	/tim-black-empresa-guia-completo-2025/	301
+/tim-black-empresa-guia-completo-2026/	/tim-black-empresa-guia-completo-2025/	301
+
+# 20-99 impressoes/ano
+/inovando-o-futuro-dos-negocios-com-a-tim-empresas	/empresas-tim-solucoes-para-negocios-de-todos-os-portes/	301
+/inovando-o-futuro-dos-negocios-com-a-tim-empresas/	/empresas-tim-solucoes-para-negocios-de-todos-os-portes/	301
+/link-dedicado-quando-contratar	/link-dedicado-tim-o-que-e-quando-contratar/	301
+/link-dedicado-quando-contratar/	/link-dedicado-tim-o-que-e-quando-contratar/	301
+/tim-black-vs-vivo-empresa-comparativo-completo-roi-2026	/vale-a-pena-migrar-para-tim-black-empresa-analise-completa-de-roi-2026/	301
+/tim-black-vs-vivo-empresa-comparativo-completo-roi-2026/	/vale-a-pena-migrar-para-tim-black-empresa-analise-completa-de-roi-2026/	301
+/migrar-vivo-tim-empresas-2026-roi	/tim-empresa-migracao-roi-b2b/	301
+/migrar-vivo-tim-empresas-2026-roi/	/tim-empresa-migracao-roi-b2b/	301
+/razoes-escolher-tim-empresa-parceria-negocios	/tim-empresarial-beneficios-2026/	301
+/razoes-escolher-tim-empresa-parceria-negocios/	/tim-empresarial-beneficios-2026/	301
+/tendencias-telefonia-corporativa-2025-5g-ia-iot	/tim-5g-ai-empresas-2026-tendencias/	301
+/tendencias-telefonia-corporativa-2025-5g-ia-iot/	/tim-5g-ai-empresas-2026-tendencias/	301
+/fechamento-fiscal-2025-contrato-tim	/feche-seu-contrato-tim-antes-de-2026-e-economize-ate-40/	301
+/fechamento-fiscal-2025-contrato-tim/	/feche-seu-contrato-tim-antes-de-2026-e-economize-ate-40/	301
+/desconto-progressivo-tim-black-calculadora-tabelas-2026	/tim-black-empresa-desconto-progressivo-2026/	301
+/desconto-progressivo-tim-black-calculadora-tabelas-2026/	/tim-black-empresa-desconto-progressivo-2026/	301
+/5g-tim-empresarial-transformar-negocio-2025	/5g-tim-empresarial-velocidades-ultra-rapidas-latencia-baixa-iot-2025/	301
+/5g-tim-empresarial-transformar-negocio-2025/	/5g-tim-empresarial-velocidades-ultra-rapidas-latencia-baixa-iot-2025/	301
+/preco-pabx-nuvem	/tim-empresas-pabx-nuvem-checklist/	301
+/preco-pabx-nuvem/	/tim-empresas-pabx-nuvem-checklist/	301
+/plano-tim-empresas-conectividade-economia-pme	/tim-empresa-pme-2026/	301
+/plano-tim-empresas-conectividade-economia-pme/	/tim-empresa-pme-2026/	301
+/migracao-operadora-telefonica-passo-passo	/migracao-operadora-tim-empresas-processo-cuidados/	301
+/migracao-operadora-telefonica-passo-passo/	/migracao-operadora-tim-empresas-processo-cuidados/	301
+/7-motivos-para-contratar-um-plano-de-celular-empresarial	/7-motivos-para-contratar-um-plano-de-celular-empresarial-2/	301
+/7-motivos-para-contratar-um-plano-de-celular-empresarial/	/7-motivos-para-contratar-um-plano-de-celular-empresarial-2/	301
+/pabx-goto-telefone-canais-de-atendimento	/goto-connect-vs-teams-zoom-comparativo-pabx-2026/	301
+/pabx-goto-telefone-canais-de-atendimento/	/goto-connect-vs-teams-zoom-comparativo-pabx-2026/	301
+/fatura-tim-empresas-consultoria-otimizar-custos	/tim-conta-empresarial-como-entender-otimizar-fatura/	301
+/fatura-tim-empresas-consultoria-otimizar-custos/	/tim-conta-empresarial-como-entender-otimizar-fatura/	301
+/como-contratar-tim-black-empresa-guia-passo-a-passo	/contratar-tim-empresa-guia-b2b/	301
+/como-contratar-tim-black-empresa-guia-passo-a-passo/	/contratar-tim-empresa-guia-b2b/	301
+/conheca-a-internet-dedicada-vivo	/melhores-opcoes-de-link-dedicado-corporativo-no-brasil-2026/	301
+/conheca-a-internet-dedicada-vivo/	/melhores-opcoes-de-link-dedicado-corporativo-no-brasil-2026/	301
+/vivo-empresas-2026-por-que-empresas-migraram-tim-analise-custos	/tim-empresas-vs-vivo-empresas-qual-operadora-corporativa-entrega-mais-estabilidade/	301
+/vivo-empresas-2026-por-que-empresas-migraram-tim-analise-custos/	/tim-empresas-vs-vivo-empresas-qual-operadora-corporativa-entrega-mais-estabilidade/	301
+/tim-black-empresa-5g-vantagem-competitiva-2026	/tim-black-empresa-roi-performance-2026/	301
+/tim-black-empresa-5g-vantagem-competitiva-2026/	/tim-black-empresa-roi-performance-2026/	301
+/tim-black-empresa-vantagens-roi-analise-2026	/tim-black-empresa-roi-performance-2026/	301
+/tim-black-empresa-vantagens-roi-analise-2026/	/tim-black-empresa-roi-performance-2026/	301
+/internet-empresarial-tim-o-futuro-da-internet-nas-empresas	/internet-empresarial-tim-alta-velocidade-e-confiabilidade/	301
+/internet-empresarial-tim-o-futuro-da-internet-nas-empresas/	/internet-empresarial-tim-alta-velocidade-e-confiabilidade/	301
+/link-dedicado	/link-dedicado-tim-o-que-e-quando-contratar/	301
+/link-dedicado/	/link-dedicado-tim-o-que-e-quando-contratar/	301
+/a-era-da-telefonia-corporativa-mudou-com-tim-black-veja-como	/tim-black-empresa-acelere-o-crescimento-do-seu-negocio/	301
+/a-era-da-telefonia-corporativa-mudou-com-tim-black-veja-como/	/tim-black-empresa-acelere-o-crescimento-do-seu-negocio/	301
+/5g-no-agronegocio-a-revolucao-da-tim-empresas-no-campo-em-2026	/poder-rede-movel-tim-agronegocio-industria-4-0/	301
+/5g-no-agronegocio-a-revolucao-da-tim-empresas-no-campo-em-2026/	/poder-rede-movel-tim-agronegocio-industria-4-0/	301
+/5-aplicacoes-praticas-iot-agronegocio-conectividade-tim	/internet-das-coisas-iot-empresas-aplicacoes-praticas-2025/	301
+/5-aplicacoes-praticas-iot-agronegocio-conectividade-tim/	/internet-das-coisas-iot-empresas-aplicacoes-praticas-2025/	301
+/black-friday-empresarial-2025-comparativo-tim-vs-vivo-vs-claro	/tim-empresas-black-friday-2025-vs-vivo-claro/	301
+/black-friday-empresarial-2025-comparativo-tim-vs-vivo-vs-claro/	/tim-empresas-black-friday-2025-vs-vivo-claro/	301
+/planos-telefonia-empresarial-como-escolher-pme	/planos-tim-empresas-como-escolher/	301
+/planos-telefonia-empresarial-como-escolher-pme/	/planos-tim-empresas-como-escolher/	301
+/corporativo-tim-cuidado-com-os-custos-com-roaming	/consultor-tim-explica-roaming-nacional-e-internacional/	301
+/corporativo-tim-cuidado-com-os-custos-com-roaming/	/consultor-tim-explica-roaming-nacional-e-internacional/	301
+/agro-4-0-conectividade-tim-corporativo-produtividade	/poder-rede-movel-tim-agronegocio-industria-4-0/	301
+/agro-4-0-conectividade-tim-corporativo-produtividade/	/poder-rede-movel-tim-agronegocio-industria-4-0/	301
+/tim-corporativo-2026-comunicacao-integrada-guia-completo	/tim-empresas-guia-completo-2026-contratar/	301
+/tim-corporativo-2026-comunicacao-integrada-guia-completo/	/tim-empresas-guia-completo-2026-contratar/	301
+/internet-dedicada	/internet-dedicada-tim-vs-mpls-tradicional-o-que-mudou-em-2026/	301
+/internet-dedicada/	/internet-dedicada-tim-vs-mpls-tradicional-o-que-mudou-em-2026/	301
+
+# 0-19 impressoes/ano
+/plano-tim-empresarial-reducao-custos-pme-2026	/tim-empresas-reduzir-custos-linhas-dados/	301
+/plano-tim-empresarial-reducao-custos-pme-2026/	/tim-empresas-reduzir-custos-linhas-dados/	301
+/otimizacao-custos-telefonia-estrategias	/eficiencia-operacional-tim-corporativo-reducao-custos-telecom/	301
+/otimizacao-custos-telefonia-estrategias/	/eficiencia-operacional-tim-corporativo-reducao-custos-telecom/	301
+/pabx-cloud-como-passar-mais-credibilidade-para-seu-negocio	/tim-empresas-pabx-nuvem-checklist/	301
+/pabx-cloud-como-passar-mais-credibilidade-para-seu-negocio/	/tim-empresas-pabx-nuvem-checklist/	301
+/tim-corporativo-a-solucao-empresarial-para-2025	/a-tim-empresa-vai-transformar-seus-negocios-em-2025/	301
+/tim-corporativo-a-solucao-empresarial-para-2025/	/a-tim-empresa-vai-transformar-seus-negocios-em-2025/	301
+/telefonia-cloud-ia-modernizacao-call-center-2026	/tim-empresas-pabx-nuvem-checklist/	301
+/telefonia-cloud-ia-modernizacao-call-center-2026/	/tim-empresas-pabx-nuvem-checklist/	301
+/portal-gestao-telefonica-funcionalidades-essenciais	/tim-empresas-login-guia-gestao-faturas-linhas-portal/	301
+/portal-gestao-telefonica-funcionalidades-essenciais/	/tim-empresas-login-guia-gestao-faturas-linhas-portal/	301
+/link-de-internet-solucoes-dedicadas-para-internet-empresarial	/link-dedicado-tim-internet-empresarial-sla-99-9/	301
+/link-de-internet-solucoes-dedicadas-para-internet-empresarial/	/link-dedicado-tim-internet-empresarial-sla-99-9/	301
+/como-funciona-o-link-de-internet-e-quando-contratar	/link-dedicado-tim-o-que-e-quando-contratar/	301
+/como-funciona-o-link-de-internet-e-quando-contratar/	/link-dedicado-tim-o-que-e-quando-contratar/	301
+/pabx-em-nuvem-passo-a-passo	/tim-empresas-pabx-nuvem-checklist/	301
+/pabx-em-nuvem-passo-a-passo/	/tim-empresas-pabx-nuvem-checklist/	301
+/descubra-por-que-sua-empresa-precisa-de-link-dedicado	/7-sinais-de-que-sua-empresa-precisa-urgente-de-link-dedicado-e-nao-sabe/	301
+/descubra-por-que-sua-empresa-precisa-de-link-dedicado/	/7-sinais-de-que-sua-empresa-precisa-urgente-de-link-dedicado-e-nao-sabe/	301
+/tim-corporativo-para-empresas	/beneficios-tim-corporativo-para-empresas/	301
+/tim-corporativo-para-empresas/	/beneficios-tim-corporativo-para-empresas/	301
+/tim-empresas-superando-operadoras-com-planos-exclusivos	/comparativo-operadoras-tim-vivo-claro-empresas/	301
+/tim-empresas-superando-operadoras-com-planos-exclusivos/	/comparativo-operadoras-tim-vivo-claro-empresas/	301
+/viaje-conectado-com-o-roaming-tim-empresa	/consultor-tim-explica-roaming-nacional-e-internacional/	301
+/viaje-conectado-com-o-roaming-tim-empresa/	/consultor-tim-explica-roaming-nacional-e-internacional/	301
+/vantagens-do-tim-black-empresas	/planos-celular-empresas-tim-black/	301
+/vantagens-do-tim-black-empresas/	/planos-celular-empresas-tim-black/	301
+/tim-empresa-internet-fora-do-ar-podemos-ajudar	/tim-black-empresa-3g-fora-do-ar-entenda-o-que-fazer/	301
+/tim-empresa-internet-fora-do-ar-podemos-ajudar/	/tim-black-empresa-3g-fora-do-ar-entenda-o-que-fazer/	301
