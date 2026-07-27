@@ -2,9 +2,9 @@
 //
 // Ângulo de conversão: CONTROLE E CONFORMIDADE, não desconto. Quem compra aqui
 // é procurement ou TI, decide por processo e responde por auditoria interna.
-// O gancho é a conciliação inventário da operadora × base do RH — um
-// procedimento concreto, com resultado mensurável, que nenhuma página
-// institucional de operadora oferece. O CTA pede a conciliação, não a proposta.
+// O gancho é a conciliação inventário da operadora × base do RH — critério
+// concreto, com resultado mensurável, que nenhuma página institucional de
+// operadora explica. O CTA chama a conversa com o consultor, não a proposta.
 //
 // SEPARAÇÃO DE CANIBALIZAÇÃO (obrigatória): três artigos vivos já respondem
 // "qual plano para o meu porte" (tim-corporativo-qual-plano-e-ideal-para-mei-pme-e-grande-empresa,
@@ -20,8 +20,12 @@
 // - "gestor de contas nomeado", "SLA de ativação" e "relatório por centro de
 //   custo" são apresentados como itens NEGOCIÁVEIS do contrato, não como
 //   entrega garantida. Manter esse enquadramento.
-// - conciliação inventário × base do RH: confirmar que é procedimento de rotina
-//   e não exceção. É o elemento de E-E-A-T da página.
+//
+// A conciliação inventário × base do RH aparece como CRITÉRIO de gestão de
+// parque grande — o que qualquer operação deveria fazer, exigível de qualquer
+// fornecedor —, nunca como procedimento interno do Grupo OC. O que a página
+// promete é o que é verdade: um consultor checa a viabilidade e a operação antes
+// de qualquer proposta, e o desconto é progressivo a partir de dez linhas.
 
 export default {
 	slug: 'plano-corporativo-para-grandes-empresas',
@@ -47,10 +51,10 @@ export default {
 		bullets: [
 			'Contrato estruturado para grupo com vários CNPJs',
 			'Faturamento por unidade e rateio por centro de custo',
-			'Conciliação do inventário com a base do RH',
+			'Inventário × base do RH: o cruzamento que revela linha sem dono',
 			'Migração por ondas, com validação a cada lote'
 		],
-		ctaPrimario: 'Solicitar a conciliação do parque',
+		ctaPrimario: 'Falar com um consultor sobre o parque',
 		whatsapp:
 			'Olá! Temos um parque grande de linhas e queremos avaliar contrato, faturamento e gestão. Podem me ajudar?',
 		cartaoTitulo: 'O que muda em escala'
@@ -128,7 +132,7 @@ export default {
 					h3: 'Ciclo de vida da linha, da admissão ao desligamento',
 					paragrafos: [
 						'Admissão, troca de aparelho, afastamento, mudança de área e desligamento: cada evento precisa de um gatilho definido e de um responsável. O ponto mais caro do ciclo é sempre o mesmo — o desligamento, porque ele depende de alguém avisar, e esse alguém raramente é quem paga a conta.',
-						'A regra que aplicamos é direta: nenhuma linha entra no parque sem responsável nomeado e centro de custo preenchido. Parece burocracia até o dia da conciliação, quando é exatamente esse campo que permite identificar em minutos o que precisa ser desativado — em vez de abrir uma investigação por número.'
+						'A regra é direta e vale para qualquer fornecedor: nenhuma linha deveria entrar no parque sem responsável nomeado e centro de custo preenchido. Parece burocracia até o dia da conciliação, quando é exatamente esse campo que permite identificar em minutos o que precisa ser desativado — em vez de abrir uma investigação por número.'
 					]
 				}
 			]
@@ -242,21 +246,21 @@ export default {
 	],
 
 	passos: {
-		titulo: 'Como o Grupo OC opera contas corporativas',
+		titulo: 'Como avança um projeto de conta corporativa',
 		subtitulo:
 			'Quatro etapas, e a primeira não é comercial. Sem inventário conciliado, qualquer proposta para um parque grande é dimensionada sobre um número que ninguém confirmou.',
 		itens: [
 			{
 				title: 'Conciliação do inventário com a base do RH',
-				text: 'Cruzamos a base de linhas da operadora com a folha ativa e com o inventário de aparelhos do TI. O resultado é a lista do que existe, do que tem dono e do que não tem — e é essa lista que abre o projeto, não a proposta.'
+				text: 'O cruzamento entre a base de linhas da operadora, a folha ativa e o inventário de aparelhos do TI produz a lista do que existe, do que tem dono e do que não tem. É essa lista que abre o projeto, não a proposta — e é sobre ela que um consultor checa a real necessidade da operação.'
 			},
 			{
 				title: 'Desenho contratual e de faturamento',
-				text: 'Definimos como o contrato abriga os CNPJs do grupo, como a fatura é separada por unidade, qual o formato do relatório por centro de custo e quais SLAs de ativação e desativação entram no papel.'
+				text: 'Aqui se define como o contrato abriga os CNPJs do grupo, como a fatura é separada por unidade, qual o formato do relatório por centro de custo e quais SLAs de ativação e desativação entram no papel.'
 			},
 			{
 				title: 'Migração por ondas, com validação a cada lote',
-				text: 'Nenhum parque grande vira de uma vez. Migramos por lotes, começando pelas unidades de menor risco, validando cada onda antes de liberar a próxima. É o mesmo método que usamos em frota e em base instalada.'
+				text: 'Nenhum parque grande vira de uma vez. A migração vai por lotes, começando pelas unidades de menor risco e validando cada onda antes de liberar a próxima — o mesmo princípio que vale para frota e para base instalada.'
 			},
 			{
 				title: 'Rotina de revisão periódica',
@@ -288,8 +292,9 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — o que significa parques grandes de verdade, com várias unidades e rotatividade real.',
-			'O procedimento que abre todo projeto de parque grande é próprio e verificável no primeiro ciclo de fatura: conciliar a base de linhas da operadora com a folha ativa do RH e com o inventário de aparelhos do TI. As três listas nunca batem sozinhas, e a diferença entre elas é dinheiro saindo todo mês por linhas sem dono.',
-			'A regra de governança que aplicamos é igualmente simples de cobrar: nenhuma linha entra no parque sem responsável nomeado e centro de custo preenchido. É o único campo que transforma a desativação num procedimento de minutos, em vez de uma investigação número por número — e é a diferença entre um parque que se mantém organizado e um que volta ao caos em seis meses.'
+			'O que abre todo projeto de parque grande não é a proposta comercial, e o resultado é verificável já no primeiro ciclo de fatura: conciliar a base de linhas da operadora com a folha ativa do RH e com o inventário de aparelhos do TI. As três listas nunca batem sozinhas, e a diferença entre elas é dinheiro saindo todo mês por linhas sem dono.',
+			'A regra de governança é igualmente simples de cobrar, de nós ou de qualquer fornecedor: nenhuma linha entra no parque sem responsável nomeado e centro de custo preenchido. É o único campo que transforma a desativação num procedimento de minutos, em vez de uma investigação número por número — e é a diferença entre um parque que se mantém organizado e um que volta ao caos em seis meses.',
+			'Sobre a nossa parte, prometemos duas coisas objetivas: um consultor checa a viabilidade e o desenho da operação antes de qualquer proposta, e a condição comercial melhora conforme o volume, com desconto progressivo a partir de dez linhas.'
 		]
 	},
 
@@ -301,7 +306,7 @@ export default {
 		},
 		{
 			q: 'Como identifico linhas ativas de funcionários que já saíram?',
-			a: 'Conciliando o inventário da operadora com a base do RH e com o inventário de aparelhos do TI. É o primeiro diagnóstico que fazemos em parque grande, e costuma ser o que paga o projeto.'
+			a: 'Conciliando o inventário da operadora com a base do RH e com o inventário de aparelhos do TI. É o primeiro diagnóstico de qualquer parque grande, e costuma ser o que paga o projeto.'
 		},
 		{
 			q: 'O financeiro consegue relatório por centro de custo?',
@@ -313,25 +318,25 @@ export default {
 		},
 		{
 			q: 'Migrar um parque grande interrompe a operação?',
-			a: 'Não, quando é feito por ondas com validação a cada lote e possibilidade de parar entre elas. É o mesmo método que usamos em migração de frota e de base instalada.'
+			a: 'Não, quando é feito por ondas com validação a cada lote e possibilidade de parar entre elas. É o mesmo princípio que vale em migração de frota e de base instalada.'
 		},
 		{
-			q: 'A conciliação do parque tem custo se não contratarmos nada?',
-			a: 'Não. O levantamento e a leitura do contrato vigente são feitos sem cobrança e sem compromisso, e o resultado fica com a empresa mesmo que a decisão seja manter o fornecedor atual.'
+			q: 'Precisamos contratar alguma coisa para falar com um consultor?',
+			a: 'Não. Um consultor checa a viabilidade, o contrato vigente e o desenho do parque sem cobrança e sem compromisso, e o que sair dessa conversa fica com a empresa mesmo que a decisão seja manter o fornecedor atual.'
 		}
 	],
 
 	cta: {
-		titulo: 'Solicite a conciliação do seu parque de linhas',
+		titulo: 'Fale com um consultor sobre o seu parque de linhas',
 		texto:
-			'Envie a fatura consolidada e o contrato vigente: devolvemos a conciliação entre o inventário da operadora e a base ativa, a lista de linhas sem responsável e os pontos do contrato que valem renegociar na próxima janela. Sem cobrança pela análise.'
+			'Envie a fatura consolidada e o contrato vigente: um consultor checa a viabilidade e o desenho do parque, aponta onde o inventário não bate com a base ativa e quais pontos do contrato valem renegociar na próxima janela — inclusive o desconto progressivo por volume, que se aplica a partir de dez linhas. Sem cobrança pela conversa.'
 	},
 
 	service: {
 		name: 'Gestão de contrato e parque de telecom para grandes empresas',
 		serviceType: 'Consultoria de telecom corporativo',
 		description:
-			'Estruturação de contrato corporativo para grupos com vários CNPJs: faturamento por unidade, rateio por centro de custo, SLA de ativação e desativação, conciliação de inventário com a base de colaboradores e rotina de revisão periódica do parque.'
+			'Estruturação de contrato corporativo para grupos com vários CNPJs: faturamento por unidade, rateio por centro de custo, SLA de ativação e desativação e desconto progressivo por volume, com consultor dedicado à conta.'
 	},
 
 	relacionadas: [

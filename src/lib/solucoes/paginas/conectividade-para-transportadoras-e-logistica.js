@@ -6,11 +6,11 @@
 // linhas faturadas contra veículos em operação —, porque é a única conferência
 // que o gestor de frota consegue exigir sozinho e que ninguém faz por ele.
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: o método de inventário (cruzar linhas M2M
-// faturadas com a placa dos veículos ativos), a leitura de cobertura por
-// itinerário e a ativação de chips em lote descrevem o processo do Grupo OC.
-// Confirme com a equipe que é assim que vocês de fato conduzem — E-E-A-T só
-// vale se for verdade.
+// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// as duas coisas confirmadas: um consultor checa a viabilidade (no endereço do
+// CD, na cobertura das rotas, na operação) e a condição por volume progride a
+// partir de dez linhas. O critério técnico — três pontos de conexão, cobertura
+// lida por itinerário, SLA no CD — permanece: é conhecimento do setor.
 
 export default {
 	slug: 'conectividade-para-transportadoras-e-logistica',
@@ -32,27 +32,27 @@ export default {
 
 	hero: {
 		eyebrow: 'Transportadoras e logística',
-		sub: 'Rastreador que silencia no trecho errado, chip de caminhão que saiu da frota e continua faturando, doca parada porque o documento fiscal não sai. Antes de falar de plano, conferimos o que a sua operação tem ativo hoje e o que ela realmente usa.',
+		sub: 'Rastreador que silencia no trecho errado, chip de caminhão que saiu da frota e continua faturando, doca parada porque o documento fiscal não sai. Antes de falar de plano, um consultor checa o que a sua operação tem ativo hoje e o que ela realmente usa.',
 		bullets: [
-			'Inventário das linhas faturadas contra a frota em operação',
+			'Um consultor checa o que está ativo hoje na operação',
 			'Cobertura lida por itinerário, não por média de estado',
 			'Gestão centralizada dos chips M2M e das linhas de voz',
 			'Viabilidade e redundância no centro de distribuição'
 		],
-		ctaPrimario: 'Pedir o inventário da frota',
+		ctaPrimario: 'Falar com um consultor sobre a frota',
 		whatsapp:
 			'Olá! Tenho uma transportadora e quero avaliar os chips da frota e a internet do CD. Podem me ajudar?',
-		cartaoTitulo: 'Por onde começamos'
+		cartaoTitulo: 'Por onde a conversa começa'
 	},
 
 	keyFacts: [
 		{
 			label: 'O gasto que ninguém enxerga',
 			value: 'Chip ativo sem veículo',
-			nota: 'Linha que segue faturando depois que o caminhão saiu da frota é o achado mais frequente do inventário.'
+			nota: 'Linha que segue faturando depois que o caminhão saiu da frota é o gasto mais comum em operação com rotatividade.'
 		},
 		{
-			label: 'Como lemos cobertura',
+			label: 'Como se lê cobertura',
 			value: 'Por rota, não por estado',
 			nota: 'A média estadual esconde exatamente o trecho de rodovia em que o rastreador fica em silêncio.'
 		},
@@ -72,7 +72,7 @@ export default {
 			h2: 'Os três pontos de conexão de uma operação logística',
 			paragrafos: [
 				'Uma transportadora não tem um problema de conectividade: tem três, e eles não se resolvem com o mesmo contrato. O veículo precisa transmitir posição e telemetria de forma contínua e barata. O motorista precisa falar, receber ordem de coleta e registrar canhoto pelo celular. O centro de distribuição precisa de link fixo estável para o WMS, os coletores e a emissão de documento fiscal. São três perfis de consumo diferentes, com formas de gestão diferentes.',
-				'O erro mais caro que encontramos em diagnóstico de frota é tratar os três como uma coisa só. Chip de celular comum dentro de rastreador gera franquia desperdiçada e nenhuma gestão em lote; plano dimensionado para o motorista não serve para o equipamento embarcado; e link de CD contratado como banda larga de balcão deixa a doca parada sem prazo de reparo para cobrar de ninguém.'
+				'O erro mais caro em conectividade de frota é tratar os três como uma coisa só. Chip de celular comum dentro de rastreador gera franquia desperdiçada e nenhuma gestão em lote; plano dimensionado para o motorista não serve para o equipamento embarcado; e link de CD contratado como banda larga de balcão deixa a doca parada sem prazo de reparo para cobrar de ninguém.'
 			],
 			lista: [
 				'Veículo: chip M2M, dado pequeno e contínuo, gestão em lote',
@@ -93,7 +93,7 @@ export default {
 					h3: 'Rotas com sombra de cobertura',
 					paragrafos: [
 						'Toda operadora publica cobertura por município e por área. Uma transportadora não roda dentro de município: roda entre municípios. O trecho que decide o projeto é o de rodovia entre duas cidades, o pátio afastado, a estrada vicinal que leva à fazenda ou à pedreira — e é justamente ali que a média estadual esconde a sombra.',
-						'Por isso pedimos o itinerário, não o estado. Com as rotas em mãos dá para checar a cobertura trecho a trecho e dizer, antes do contrato, onde o rastreador vai ficar em silêncio e por quanto tempo. A diferença entre as gerações de rede também aparece aqui: onde só existe cobertura de tecnologia anterior, o rastreamento continua funcionando, mas aplicações que dependem de resposta imediata perdem o sentido.'
+						'Por isso o que vale é o itinerário, não o estado: com as rotas em mãos, um consultor checa a cobertura trecho a trecho e diz, antes do contrato, onde o rastreador vai ficar em silêncio e por quanto tempo. A diferença entre as gerações de rede também aparece aqui: onde só existe cobertura de tecnologia anterior, o rastreamento continua funcionando, mas aplicações que dependem de resposta imediata perdem o sentido.'
 					]
 				},
 				{
@@ -119,7 +119,7 @@ export default {
 			h2: 'Centro de distribuição e cross-docking',
 			paragrafos: [
 				'No CD, a conexão deixa de ser conveniência e vira etapa do processo. WMS em nuvem, coletores de código de barras, balança integrada, impressão de etiqueta e emissão de CT-e e MDF-e dependem da mesma via. Quando ela falha, a doca não desacelera: ela para. Caminhão carregado sem documento fiscal emitido não sai do pátio, e a conta aparece em hora de veículo parado e janela de entrega perdida.',
-				'É por isso que, no CD, o critério de escolha não é a velocidade anunciada e sim a existência de prazo de reparo em contrato somado a um caminho alternativo que entre sozinho. A pergunta que fazemos ao gestor é objetiva: quantos minutos de doca parada a operação suporta antes de perder a janela do cliente? A resposta define o arranjo — não o orçamento.'
+				'É por isso que, no CD, o critério de escolha não é a velocidade anunciada e sim a existência de prazo de reparo em contrato somado a um caminho alternativo que entre sozinho. A pergunta que decide é objetiva: quantos minutos de doca parada a operação suporta antes de perder a janela do cliente? A resposta define o arranjo — não o orçamento.'
 			],
 			lista: [
 				'WMS em nuvem e coletores dependem de disponibilidade contínua',
@@ -180,7 +180,7 @@ export default {
 					]
 				],
 				caption:
-					'Comparação de papéis técnicos, sem valores: as quatro camadas coexistem numa operação logística e o desenho depende do tamanho da frota, das rotas percorridas e do que o CD emite. Cada proposta é montada em cima do inventário levantado.'
+					'Comparação de papéis técnicos, sem valores: as quatro camadas coexistem numa operação logística e o desenho depende do tamanho da frota, das rotas percorridas e do que o CD emite. Cada proposta é montada depois que um consultor checa a viabilidade e o que a operação usa hoje.'
 			}
 		},
 		{
@@ -213,7 +213,7 @@ export default {
 			h2: 'O que define o investimento de uma operação logística',
 			paragrafos: [
 				'Não existe tabela de preço honesta para frota, e por isso não publicamos nenhuma: duas transportadoras com o mesmo número de caminhões podem exigir desenhos completamente diferentes conforme as rotas percorridas e o que cada rastreador transmite. O que dá para publicar é a lista das variáveis que entram na conta, para você reconhecer cada uma delas quando abrir a proposta.',
-				'Seis variáveis explicam quase toda a distância entre um orçamento e outro. A menos lembrada é a última: em distrito industrial recém-ocupado, a infraestrutura disponível no endereço do CD muda o desenho inteiro do projeto e precisa ser confirmada antes, não depois.'
+				'Sete variáveis explicam quase toda a distância entre um orçamento e outro. A menos lembrada é a penúltima: em distrito industrial recém-ocupado, a infraestrutura disponível no endereço do CD muda o desenho inteiro do projeto e precisa ser confirmada antes, não depois.'
 			],
 			lista: [
 				'Número de veículos e de equipamentos embarcados por veículo',
@@ -221,27 +221,28 @@ export default {
 				'Quantidade de linhas de voz e a rotatividade esperada da equipe',
 				'Banda do centro de distribuição e exigência de prazo de reparo',
 				'Existência de caminho alternativo automático no CD',
-				'Viabilidade técnica confirmada no endereço do CD e das filiais'
+				'Viabilidade técnica confirmada no endereço do CD e das filiais',
+				'Volume de linhas reunidas no contrato, com a condição progredindo a partir de dez'
 			]
 		}
 	],
 
 	passos: {
-		titulo: 'Como o Grupo OC monta o projeto de uma transportadora',
+		titulo: 'O que define o projeto de uma transportadora',
 		subtitulo:
-			'Quatro etapas, nesta ordem. O inventário vem antes da proposta porque proposta sem inventário só troca o nome da operadora na mesma conta.',
+			'Quatro etapas, nesta ordem. O levantamento vem antes da proposta porque proposta sem levantamento só troca o nome da operadora na mesma conta.',
 		itens: [
 			{
-				title: 'Inventário: linhas faturadas contra frota em operação',
-				text: 'Cruzamos as linhas que aparecem na fatura com a lista de veículos ativos, placa a placa. É a etapa que revela chip de caminhão vendido, linha de motorista desligado e equipamento que saiu de operação e continua consumindo.'
+				title: 'Levantamento da situação atual da operação',
+				text: 'Um consultor levanta a situação atual da operação e checa a viabilidade antes de qualquer proposta: quantas linhas estão ativas, o que a frota usa de fato e o que segue sendo cobrado sem uso correspondente — chip de caminhão vendido, linha de motorista desligado, equipamento fora de operação.'
 			},
 			{
 				title: 'Leitura de cobertura pelos itinerários da operação',
-				text: 'Pedimos as rotas que a frota percorre e checamos a cobertura trecho a trecho, em vez de olhar a média do estado. O resultado é um mapa do que vai funcionar e de onde o rastreador ficará em silêncio.'
+				text: 'As rotas que a frota percorre valem mais que a média do estado: é trecho a trecho que se sabe o que vai funcionar e onde o rastreador ficará em silêncio. Um consultor checa essa cobertura com o itinerário na mão, antes do contrato.'
 			},
 			{
 				title: 'Viabilidade do CD e desenho das camadas',
-				text: 'Confirmamos o que chega ao endereço do centro de distribuição e desenhamos as camadas lado a lado — chip embarcado, linhas de voz, link fixo e caminho alternativo —, cada uma com o papel definido por escrito.'
+				text: 'Um consultor checa a viabilidade no endereço do centro de distribuição, e as camadas são desenhadas lado a lado — chip embarcado, linhas de voz, link fixo e caminho alternativo —, cada uma com o papel definido por escrito.'
 			},
 			{
 				title: 'Ativação em lote, sem parar a operação',
@@ -257,7 +258,7 @@ export default {
 		},
 		{
 			q: '“Já temos os chips, só queremos pagar menos.”',
-			a: 'A primeira conversa nem chega a ser sobre plano. Começamos comparando linhas faturadas com veículos em operação, porque em frota com rotatividade é comum a fatura ficar maior que a própria frota. Desligar o que não deveria estar ativo vem antes de renegociar o que está.'
+			a: 'A primeira conversa nem chega a ser sobre plano: antes de renegociar, vale saber quantas linhas estão ativas e quantos veículos a operação realmente tem, porque em frota com rotatividade é comum a fatura ficar maior que a própria frota. Um consultor checa isso antes de falar em condição — e desligar o que não deveria estar ativo vem antes de renegociar o que está. Feito isso, o volume consolidado conta a favor: os descontos progressivos começam a partir de dez linhas.'
 		},
 		{
 			q: '“Nossa rota tem trecho sem sinal e nenhuma operadora resolve.”',
@@ -273,8 +274,8 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
-			'O método que orienta esta página é próprio e vale explicitar: em frota, o diagnóstico começa cruzando as linhas que aparecem na fatura com a lista de veículos em operação, placa a placa. Não é uma análise de plano — é uma conferência de inventário, e costuma ser ela que revela a maior parte do gasto que ninguém consegue explicar.',
-			'A segunda regra é sobre cobertura: lemos mapa por itinerário, nunca por média de estado. Uma transportadora não opera dentro de um município, opera entre eles, e o trecho que decide o projeto é sempre o mais vazio da rota.'
+			'O critério que orienta esta página vale explicitar: em frota, nada começa pelo plano. Antes de qualquer proposta, um consultor checa a viabilidade no endereço do CD e levanta a situação atual da operação — quantas linhas estão ativas e o que a frota de fato usa. Não é uma análise de catálogo: é uma conferência do que já existe, e costuma ser ela que revela a maior parte do gasto que ninguém consegue explicar.',
+			'A segunda regra é sobre cobertura: mapa se lê por itinerário, nunca por média de estado. Uma transportadora não opera dentro de um município, opera entre eles, e o trecho que decide o projeto é sempre o mais vazio da rota. Sobre condição comercial, o que é público vale para todo mundo: os descontos progressivos por volume começam a partir de dez linhas.'
 		]
 	},
 
@@ -286,7 +287,7 @@ export default {
 		},
 		{
 			q: 'O rastreador para quando o caminhão entra numa área sem sinal?',
-			a: 'O equipamento armazena os eventos e transmite quando o sinal volta; o que muda é a latência da informação, não a perda dela. Por isso avaliamos cobertura por itinerário, e não por média de estado.'
+			a: 'O equipamento armazena os eventos e transmite quando o sinal volta; o que muda é a latência da informação, não a perda dela. Por isso a cobertura se avalia por itinerário, e não por média de estado.'
 		},
 		{
 			q: 'Consigo ver o consumo de cada veículo?',
@@ -294,7 +295,7 @@ export default {
 		},
 		{
 			q: 'A transportadora pode ter chips e linhas de voz no mesmo contrato?',
-			a: 'Pode, e é o arranjo que recomendamos: um contrato, um ponto de atendimento e uma fatura conferível por linha. Fornecedores separados costumam multiplicar o tempo gasto só para descobrir de quem é o problema.'
+			a: 'Pode, e é o arranjo que recomendamos: um contrato, um ponto de atendimento e uma fatura conferível por linha. Fornecedores separados costumam multiplicar o tempo gasto só para descobrir de quem é o problema — e reunir tudo no mesmo contrato ainda consolida o volume de linhas, que é o que faz a condição progredir a partir de dez.'
 		},
 		{
 			q: 'Quanto tempo leva para ativar os chips de uma frota inteira?',
@@ -303,16 +304,16 @@ export default {
 	],
 
 	cta: {
-		titulo: 'Envie a fatura e a lista de veículos: devolvemos o inventário',
+		titulo: 'Fale com um consultor sobre a frota e o CD',
 		texto:
-			'Um consultor cruza as linhas faturadas com a frota em operação, lê a cobertura pelos itinerários que você percorre e só então apresenta proposta. O inventário é entregue sem custo e sem obrigar a contratar.'
+			'Um consultor levanta a situação atual da operação, checa a viabilidade no endereço do centro de distribuição e a cobertura nos itinerários que você percorre — e só então apresenta proposta. Sem compromisso de contratação.'
 	},
 
 	service: {
 		name: 'Conectividade e gestão de linhas para transportadoras e logística',
 		serviceType: 'Conectividade M2M e corporativa para logística',
 		description:
-			'Projeto de conectividade para transportadoras e operadores logísticos: chips M2M para rastreamento e telemetria, linhas de voz e dados para motoristas, link fixo com redundância no centro de distribuição e inventário de linhas por veículo.'
+			'Projeto de conectividade para transportadoras e operadores logísticos: chips M2M para rastreamento e telemetria, linhas de voz e dados para motoristas e link fixo com redundância no centro de distribuição, com viabilidade checada por endereço e por itinerário.'
 	},
 
 	relacionadas: [

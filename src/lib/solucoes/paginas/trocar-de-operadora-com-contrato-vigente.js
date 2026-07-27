@@ -11,11 +11,14 @@
 // escrito em contrato e o que conferir. Nenhuma frase pode afirmar que multa é
 // abusiva, que pode ser cancelada ou que existe direito de saída sem ônus.
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: os itens contratuais descritos abaixo (permanência
-// mínima, renovação automática, comodato, aviso prévio) refletem o que a equipe
-// encontra com frequência em contratos empresariais. Confirme com quem faz a
-// leitura dos contratos que é assim que vocês conduzem — e que nenhum número de
-// prazo ou percentual foi introduzido na revisão.
+// ⚠ O QUE ESTA PÁGINA PODE PROMETER: só duas coisas — (1) um consultor checa a
+// viabilidade dos caminhos possíveis para a empresa (o que o contrato prevê, o
+// que já está livre, o que a operação aguenta) e (2) o desconto progressivo
+// melhora conforme o volume, a partir de dez linhas. Os itens contratuais
+// descritos abaixo (permanência mínima, renovação automática, comodato, aviso
+// prévio) são CRITÉRIO DO SETOR sobre o que conferir no próprio contrato, nunca
+// rotina interna de leitura ou de condução de migração. Nenhum número de prazo
+// ou percentual pode ser introduzido na revisão.
 
 export default {
 	slug: 'trocar-de-operadora-com-contrato-vigente',
@@ -39,12 +42,12 @@ export default {
 		eyebrow: 'Contrato vigente',
 		sub: 'Sua empresa quer mudar, mas o contrato com a operadora atual ainda não venceu. Antes de concluir que está presa, vale saber que a decisão tem mais de dois desfechos possíveis — e que a leitura do contrato costuma revelar caminhos que ninguém apresentou.',
 		bullets: [
-			'Leitura do contrato vigente antes da proposta',
-			'Quatro caminhos avaliados, não só sair ou ficar',
+			'O que o contrato vigente prevê, checado antes da proposta',
+			'Quatro caminhos possíveis, não só sair ou ficar',
 			'Migração parcial para reduzir custo e risco',
 			'Portabilidade preserva os números fixos e móveis'
 		],
-		ctaPrimario: 'Enviar contrato para leitura',
+		ctaPrimario: 'Falar com um consultor sobre o contrato',
 		whatsapp:
 			'Olá! Quero trocar de operadora, mas meu contrato ainda está vigente. Podem avaliar?',
 		cartaoTitulo: 'Por onde a análise começa'
@@ -85,7 +88,7 @@ export default {
 			id: 'quatro-caminhos',
 			h2: 'Os quatro caminhos possíveis',
 			paragrafos: [
-				'Quase toda empresa que nos procura nessa situação enxerga apenas dois desfechos: aguentar até o vencimento ou romper e arcar com o que vier. Os outros dois caminhos — migração parcial e renegociação — costumam ser os mais adequados, e são justamente os que ninguém apresenta, porque exigem entender o contrato atual antes de vender qualquer coisa.'
+				'Quase toda empresa nessa situação enxerga apenas dois desfechos: aguentar até o vencimento ou romper e arcar com o que vier. Os outros dois caminhos — migração parcial e renegociação — costumam ser os mais adequados, e são justamente os que ninguém apresenta, porque exigem entender o contrato atual antes de vender qualquer coisa.'
 			],
 			subsecoes: [
 				{
@@ -135,7 +138,7 @@ export default {
 				{
 					h3: 'Permanência mínima e vigência não são a mesma coisa',
 					paragrafos: [
-						'Confundir as duas é o erro mais comum que encontramos. A vigência é o prazo de duração do contrato; a permanência mínima é o período em que a empresa se comprometeu a manter determinado serviço, normalmente em troca de alguma condição comercial concedida na contratação.',
+						'Confundir as duas é o erro mais comum nessa conversa. A vigência é o prazo de duração do contrato; a permanência mínima é o período em que a empresa se comprometeu a manter determinado serviço, normalmente em troca de alguma condição comercial concedida na contratação.',
 						'Elas podem ter datas diferentes, e podem existir várias permanências mínimas dentro de um mesmo contrato — uma por serviço ou por lote de ativação. É por isso que a resposta "meu contrato vence em tal mês" quase nunca é suficiente para desenhar a migração.'
 					]
 				},
@@ -143,14 +146,14 @@ export default {
 					h3: 'Renovação automática: a cláusula que reinicia o relógio',
 					paragrafos: [
 						'Muitos contratos empresariais preveem renovação automática caso nenhuma das partes se manifeste dentro de um prazo definido no próprio documento. Quem descobre isso tarde encontra o contrato renovado sem que ninguém tenha assinado nada de novo.',
-						'É o motivo pelo qual tratamos a data do aviso — e não a data do vencimento — como o marco real do calendário. Quando a empresa se organiza pelo vencimento, a janela para se manifestar frequentemente já passou.'
+						'É o motivo pelo qual a data do aviso — e não a data do vencimento — é o marco real do calendário. Quando a empresa se organiza pelo vencimento, a janela para se manifestar frequentemente já passou.'
 					]
 				},
 				{
 					h3: 'Equipamento em comodato: o item esquecido',
 					paragrafos: [
 						'Roteadores, modems, aparelhos e centrais cedidos em comodato pertencem à operadora e precisam ser devolvidos no encerramento, com registro do que foi entregue e quando. É o item que mais gera cobrança posterior, meses depois de todos acharem que o assunto estava encerrado.',
-						'Na transição, ele entra no checklist com nome e número de série. Protocolo de devolução guardado vale mais que a lembrança de quem entregou.'
+						'Na transição, ele precisa entrar no checklist com nome e número de série. Protocolo de devolução guardado vale mais que a lembrança de quem entregou.'
 					]
 				}
 			],
@@ -247,25 +250,25 @@ export default {
 	],
 
 	passos: {
-		titulo: 'Como conduzimos uma transição com contrato vigente',
+		titulo: 'O que um consultor checa numa transição com contrato vigente',
 		subtitulo:
-			'Quatro etapas nesta ordem. A leitura do contrato vem antes da proposta porque propor sem entender o vínculo atual é como orçar uma reforma sem ver a planta.',
+			'Quatro conferências nesta ordem. O contrato vem antes da proposta porque propor sem entender o vínculo atual é como orçar uma reforma sem ver a planta.',
 		itens: [
 			{
-				title: 'Leitura do contrato e da fatura atual',
-				text: 'Levantamos vigências, permanências mínimas, serviços agregados, equipamentos em comodato e a data em que o aviso precisa ser dado. Sem esse mapa, qualquer proposta é chute com papel timbrado.'
+				title: 'O que o contrato e a fatura mostram',
+				text: 'Vigências, permanências mínimas, serviços agregados, equipamentos em comodato e a data em que o aviso precisa ser dado. Sem esse mapa, qualquer proposta é chute com papel timbrado.'
 			},
 			{
-				title: 'Desenho do caminho viável',
-				text: 'Apresentamos qual dos quatro caminhos se aplica ao seu caso e o que cada um implica — inclusive quando a conclusão é permanecer onde está até o vencimento, o que acontece com frequência.'
+				title: 'Qual dos quatro caminhos é viável',
+				text: 'Um consultor checa a viabilidade de cada rota para o seu caso e o que ela implica — inclusive quando a conclusão é permanecer onde está até o vencimento, o que acontece com frequência.'
 			},
 			{
-				title: 'Ativação em paralelo',
-				text: 'O novo acesso é instalado e testado com a estrutura antiga ainda no ar. A portabilidade dos números é agendada em janela combinada, e a empresa nunca fica sem meio de comunicação durante a virada.'
+				title: 'A ordem que evita ficar sem comunicação',
+				text: 'O critério a exigir de qualquer fornecedor: o acesso novo é instalado e testado com a estrutura antiga ainda no ar, e a portabilidade dos números acontece em janela combinada com a empresa.'
 			},
 			{
-				title: 'Desligamento só depois da validação',
-				text: 'O serviço anterior é encerrado quando o novo estiver operando e validado, com protocolo de solicitação, devolução de equipamentos registrada e acompanhamento das faturas seguintes até o encerramento aparecer nelas.'
+				title: 'O que conferir depois da virada',
+				text: 'Serviço anterior encerrado só depois do novo validado, protocolo de solicitação guardado, devolução de equipamentos registrada e faturas seguintes conferidas até o encerramento aparecer nelas.'
 			}
 		]
 	},
@@ -273,7 +276,7 @@ export default {
 	objecoes: [
 		{
 			q: '“Vou ter que pagar multa de qualquer jeito.”',
-			a: 'Talvez sim, talvez não — e essa resposta só sai do seu contrato. O que costuma definir é se ainda existe permanência mínima vigente sobre os serviços que você quer mover, e sobre quais deles. Em boa parte dos casos que analisamos, uma parte da operação está livre e outra não, o que muda a conversa de "sair ou ficar" para "migrar o que já pode e programar o resto".'
+			a: 'Talvez sim, talvez não — e essa resposta só sai do seu contrato. O que costuma definir é se ainda existe permanência mínima vigente sobre os serviços que você quer mover, e sobre quais deles. Em boa parte dos contratos empresariais, uma parte da operação está livre e outra não, o que muda a conversa de "sair ou ficar" para "migrar o que já pode e programar o resto".'
 		},
 		{
 			q: '“A operadora não vai deixar eu sair.”',
@@ -297,9 +300,9 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
-			'A regra de trabalho que orienta esta página é própria e inverte a ordem padrão do mercado: lemos o contrato vigente antes de apresentar proposta. A ordem usual — proposta primeiro, contrato depois — produz migrações que só revelam o custo real quando já não há como voltar atrás. Ler antes custa uma reunião e evita esse tipo de surpresa.',
-			'Também é parte do método dizer quando o melhor caminho é ficar. Uma leitura de contrato que termina em "renegocie onde você está" é um resultado legítimo do nosso diagnóstico, e acontece com frequência suficiente para estar escrito aqui.',
-			'Por fim, o limite do que fazemos: analisamos contrato do ponto de vista comercial e operacional de telecom. Não emitimos parecer jurídico, não avaliamos a validade de cláusulas e não recomendamos conduta processual. Quando a discussão entra nesse terreno, o lugar dela é com o advogado da empresa.'
+			'O critério que orienta esta página inverte a ordem padrão do mercado: o contrato vigente vem antes da proposta. A ordem usual — proposta primeiro, contrato depois — produz migrações que só revelam o custo real quando já não há como voltar atrás. Conferir antes custa uma reunião e evita esse tipo de surpresa.',
+			'Também faz parte do critério dizer quando o melhor caminho é ficar. Terminar em "renegocie onde você está" é um desfecho legítimo, e acontece com frequência suficiente para estar escrito aqui. O que fica prometido é curto: um consultor checa a viabilidade dos caminhos possíveis para a sua empresa, sem custo, e o desconto progressivo melhora conforme o volume de linhas do contrato, a partir de dez.',
+			'Por fim, o limite: esta página trata de contrato do ponto de vista comercial e operacional de telecom. Não há parecer jurídico, avaliação de validade de cláusula nem recomendação de conduta processual. Quando a discussão entra nesse terreno, o lugar dela é com o advogado da empresa.'
 		]
 	},
 
@@ -328,16 +331,16 @@ export default {
 	],
 
 	cta: {
-		titulo: 'Envie seu contrato e sua fatura: devolvemos os caminhos possíveis',
+		titulo: 'Descubra quais dos quatro caminhos estão abertos para você',
 		texto:
-			'Um consultor lê o contrato vigente, identifica vigências e permanências, e apresenta quais dos quatro caminhos estão disponíveis para a sua empresa — inclusive quando o melhor deles é permanecer onde você está. Sem compromisso e sem cobrança pela análise.'
+			'Um consultor checa a viabilidade de cada rota para a sua empresa: o que o contrato vigente prevê, o que já está livre de permanência e o que a operação aguenta — inclusive quando o melhor caminho é permanecer onde você está. Sem compromisso e sem cobrança.'
 	},
 
 	service: {
 		name: 'Migração de operadora com contrato vigente',
 		serviceType: 'Consultoria em migração de telecomunicações empresariais',
 		description:
-			'Leitura do contrato de telecom vigente, mapeamento de vigências e permanências mínimas, desenho do caminho de migração viável e condução da transição com ativação em paralelo e portabilidade dos números da empresa.'
+			'Migração de telecom empresarial com contrato ainda vigente: um consultor checa vigências e permanências mínimas, indica o caminho de migração viável e a portabilidade preserva os números da empresa.'
 	},
 
 	relacionadas: [

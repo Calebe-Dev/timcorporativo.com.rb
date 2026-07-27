@@ -41,11 +41,11 @@ export default {
 		sub: 'A pergunta é legítima e quase ninguém responde: se o serviço é da TIM nos dois casos, por que passar por um canal autorizado? Esta página compara os dois caminhos ponto a ponto, mostra em que situações contratar direto é a escolha certa e entrega o checklist para você qualificar qualquer canal — inclusive nós.',
 		bullets: [
 			'O contrato e a garantia seguem sendo da operadora',
-			'Leitura da fatura atual antes de qualquer proposta',
+			'Um consultor lê a fatura atual antes de qualquer proposta',
 			'Consultor nomeado no pós-venda, não só uma central',
 			'Checklist aberto para qualificar qualquer canal'
 		],
-		ctaPrimario: 'Pedir uma segunda leitura da fatura',
+		ctaPrimario: 'Falar com um consultor sobre a fatura',
 		whatsapp:
 			'Olá! Quero entender a diferença entre contratar a TIM direto ou por um canal autorizado.',
 		cartaoTitulo: 'O que muda de verdade'
@@ -166,7 +166,7 @@ export default {
 					[
 						'Condições por volume de linhas',
 						'Política comercial vigente',
-						'Mesma política, avaliada junto com o restante do parque'
+						'Mesma política, com a condição progressiva a partir de dez linhas avaliada junto do parque'
 					],
 					[
 						'Acompanhamento da portabilidade',
@@ -238,21 +238,21 @@ export default {
 	],
 
 	passos: {
-		titulo: 'Como conduzimos uma contratação',
+		titulo: 'Como uma contratação consultiva é conduzida',
 		subtitulo:
 			'Quatro etapas, nesta ordem. O diagnóstico vem antes da proposta porque proposta sem diagnóstico é catálogo com o nome da sua empresa no cabeçalho.',
 		itens: [
 			{
 				title: 'Leitura da fatura e do contrato vigente',
-				text: 'Antes de falar em plano, olhamos o que já existe: serviços contratados, uso efetivo, cobranças herdadas de contratos antigos, prazo de fidelidade e datas de renovação. É a etapa que revela o que a empresa paga sem usar.'
+				text: 'Antes de falar em plano, um consultor checa o que já existe: serviços contratados, uso efetivo, cobranças herdadas de contratos antigos, prazo de fidelidade e datas de renovação. É a etapa que revela o que a empresa paga sem usar.'
 			},
 			{
 				title: 'Viabilidade e desenho da proposta',
-				text: 'Confirmamos o que de fato chega ao endereço e desenhamos as alternativas viáveis lado a lado, com o que cada uma resolve e o que cada uma deixa de fora. A decisão é sua e informada, não uma escolha entre uma opção e nenhuma.'
+				text: 'Um consultor checa a viabilidade no endereço e as alternativas possíveis são apresentadas lado a lado, com o que cada uma resolve e o que cada uma deixa de fora. A decisão é sua e informada, não uma escolha entre uma opção e nenhuma.'
 			},
 			{
 				title: 'Documentação e análise de crédito',
-				text: 'CNPJ ativo e documentos do representante legal. A análise de crédito empresarial é conduzida com a operadora pelo próprio consultor, que acompanha o retorno e avisa quando algo precisa ser complementado.'
+				text: 'CNPJ ativo e documentos do representante legal. A análise de crédito empresarial é feita pela operadora, e o consultor acompanha o retorno junto com a empresa quando algo precisa ser complementado.'
 			},
 			{
 				title: 'Portabilidade, ativação e ponto de contato',
@@ -313,7 +313,7 @@ export default {
 		},
 		{
 			q: 'Já tenho um gerente na operadora. Vale a pena trocar?',
-			a: 'Se o atendimento atual resolve e as condições são revisadas periodicamente, pode não valer. Nesse caso, uma segunda leitura da fatura basta para confirmar — e isso fazemos sem compromisso.'
+			a: 'Se o atendimento atual resolve e as condições são revisadas periodicamente, pode não valer. Nesse caso, uma segunda leitura da fatura basta para confirmar — e um consultor faz essa leitura sem compromisso de contratação.'
 		},
 		{
 			q: 'Existe alguma condição que só o canal consegue?',
@@ -324,7 +324,7 @@ export default {
 	cta: {
 		titulo: 'Peça uma segunda leitura da sua fatura, sem compromisso',
 		texto:
-			'Envie a fatura da operadora atual e devolvemos a leitura do que está contratado, do que é efetivamente usado e do que pode ser reorganizado — antes de qualquer proposta, sem cobrança pela análise e sem obrigação de contratar nada.'
+			'Envie a fatura da operadora atual e um consultor checa o que está contratado, o que é efetivamente usado e o que pode ser reorganizado — antes de qualquer proposta e sem obrigação de contratar nada. Se o parque reunir dez linhas ou mais, a condição progressiva por volume entra na mesma conversa.'
 	},
 
 	service: {

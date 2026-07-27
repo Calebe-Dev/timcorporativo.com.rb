@@ -12,9 +12,11 @@
 // domínio do mesmo grupo. Não transformar esta página em comparativo de
 // operadoras — seria disputar a própria SERP.
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: o inventário "chips na fatura contra
-// equipamentos em campo" e a migração por ondas com lote piloto na pior rota
-// descrevem o método do Grupo OC. Confirme com a equipe antes de publicar.
+// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// as duas coisas confirmadas: um consultor checa a viabilidade (na cobertura da
+// rota, no parque, na necessidade) e a condição por volume progride a partir de
+// dez linhas. O critério técnico — inventário de parque, validação antes de
+// virar tudo, cobertura por rota — fica, porque é conhecimento do setor.
 //
 // ⚠ REVISAR: os recursos de plataforma citados no comparativo e no checklist
 // (ativação e bloqueio em lote, APN privada, relatório de consumo por chip)
@@ -37,21 +39,21 @@ export default {
 
 	cardTitulo: 'Chip M2M e IoT',
 	cardTexto:
-		'Rastreador, telemetria, maquininha e sensor não precisam de um chip de celular: precisam de parque gerenciado, ativação em lote e cobertura medida na rota.',
+		'Rastreador, telemetria, maquininha e sensor não precisam de um chip de celular: precisam de parque gerenciado, ativação em lote e cobertura avaliada na rota real.',
 
 	hero: {
 		eyebrow: 'Chip M2M e IoT',
 		sub: 'Rastreadores, medidores, maquininhas e sensores transmitem sozinhos, o dia inteiro, muitas vezes de dentro de um veículo em movimento. O que decide esse projeto não é o chip em si: é como o parque inteiro é ativado, bloqueado, medido e trocado sem parar a operação.',
 		bullets: [
-			'Inventário do parque: fatura contra equipamentos em campo',
+			'Um consultor checa o que o parque tem ativo hoje',
 			'Ativação, bloqueio e troca tratados em lote',
 			'Cobertura avaliada por rota e por planta',
-			'Migração por ondas, com lote piloto validado'
+			'Migração por ondas, sem virar o parque de uma vez'
 		],
-		ctaPrimario: 'Pedir o inventário do parque',
+		ctaPrimario: 'Falar com um consultor sobre o parque',
 		whatsapp:
 			'Olá! Preciso de chips M2M para os nossos equipamentos. Podem avaliar o nosso parque?',
-		cartaoTitulo: 'Por onde começamos'
+		cartaoTitulo: 'Por onde a conversa começa'
 	},
 
 	keyFacts: [
@@ -61,9 +63,9 @@ export default {
 			nota: 'Um chip avulso é compra. Centenas em campo, dentro de equipamento que se move, é operação.'
 		},
 		{
-			label: 'A regra da migração',
-			value: 'Piloto na pior rota',
-			nota: 'Nenhuma onda de migração começa antes de o lote piloto rodar no trecho de pior sinal — não na sede.'
+			label: 'Antes de qualquer plano',
+			value: 'Viabilidade checada',
+			nota: 'Um consultor checa a cobertura nas rotas e nos endereços onde os equipamentos de fato ficam.'
 		},
 		{
 			label: 'Experiência',
@@ -119,14 +121,14 @@ export default {
 			id: 'parque',
 			h2: 'O problema de quem já tem chips não é o chip: é o parque',
 			paragrafos: [
-				'Quem está começando pergunta sobre o chip. Quem já tem trezentos equipamentos em campo pergunta outra coisa: quantos chips eu estou pagando e quantos equipamentos eu realmente tenho rodando? Nas operações que auditamos, essas duas contas quase nunca fecham na primeira tentativa.',
+				'Quem está começando pergunta sobre o chip. Quem já tem trezentos equipamentos em campo pergunta outra coisa: quantos chips eu estou pagando e quantos equipamentos eu realmente tenho rodando? Em parque grande, essas duas contas quase nunca fecham na primeira tentativa.',
 				'A distância entre elas é dinheiro parado e risco. Chip ativo em equipamento que foi desativado continua na fatura. Chip que saiu junto com um veículo vendido continua na fatura. Equipamento com defeito que passou a transmitir sem parar aparece como consumo fora do padrão — e, sem acompanhamento por chip, ninguém percebe até o fechamento.'
 			],
 			subsecoes: [
 				{
 					h3: 'Inventário: chips na fatura contra equipamentos em campo',
 					paragrafos: [
-						'É o primeiro trabalho que fazemos e o que mais devolve resultado imediato. De um lado, a lista de chips ativos na fatura; do outro, a lista de equipamentos que a operação reconhece como instalados. O confronto entre as duas listas separa o parque em quatro grupos: chip com equipamento ativo, chip sem equipamento, equipamento sem chip identificado e chip com consumo incompatível com a função.',
+						'É o primeiro trabalho de qualquer gestão de parque e o que mais devolve resultado imediato. De um lado, a lista de chips ativos na fatura; do outro, a lista de equipamentos que a operação reconhece como instalados. O confronto entre as duas listas separa o parque em quatro grupos: chip com equipamento ativo, chip sem equipamento, equipamento sem chip identificado e chip com consumo incompatível com a função.',
 						'Os dois grupos do meio são o achado. Chip sem equipamento correspondente é custo puro, e some da conta assim que é bloqueado. Equipamento sem chip identificado é o oposto: alguém está transmitindo por uma linha que a gestão não rastreia, o que costuma indicar contratação paralela feita pela empresa que instalou o rastreador.'
 					]
 				},
@@ -141,7 +143,7 @@ export default {
 					h3: 'Cobertura medida por rota e por planta',
 					paragrafos: [
 						'Cobertura de operadora é sempre apresentada como percentual de população atendida, e esse número não responde à pergunta da sua operação. O que importa é o comportamento nos lugares onde os seus equipamentos estão: o trecho de rodovia entre duas cidades, o pátio coberto onde o caminhão fica parado, a área de subsolo, a planta com estrutura metálica, a zona rural onde ficam os medidores.',
-						'Por isso pedimos as rotas e os endereços antes de discutir plano. Um parque de telemetria dentro de galpão tem problema diferente de um parque de rastreamento em rodovia, e a decisão sobre armazenamento local de dados no equipamento — para transmitir quando o sinal voltar — depende dessa leitura.'
+						'Por isso as rotas e os endereços precisam estar na mesa antes de discutir plano: é a viabilidade nesses pontos que um consultor checa antes de propor qualquer coisa. Um parque de telemetria dentro de galpão tem problema diferente de um parque de rastreamento em rodovia, e a decisão sobre armazenamento local de dados no equipamento — para transmitir quando o sinal voltar — depende dessa leitura.'
 					]
 				}
 			]
@@ -150,7 +152,7 @@ export default {
 			id: 'comparativo',
 			h2: 'Perfis de contratação de M2M',
 			paragrafos: [
-				'Não existe um desenho único de projeto M2M: o que muda com o tamanho do parque não é apenas a quantidade de chips, e sim a forma de operá-los. A tabela abaixo organiza os perfis que encontramos com mais frequência, sem valores, para dimensionar a conversa antes da proposta.'
+				'Não existe um desenho único de projeto M2M: o que muda com o tamanho do parque não é apenas a quantidade de chips, e sim a forma de operá-los. A tabela abaixo organiza os perfis mais frequentes, sem valores, para dimensionar a conversa antes da proposta.'
 			],
 			tabela: {
 				head: [
@@ -232,27 +234,28 @@ export default {
 				'Franquia individual ou pool compartilhado entre os chips',
 				'Necessidade de IP fixo, APN privada ou integração com o seu sistema',
 				'Nível de gestão: plataforma, permissões, relatórios e integrações',
-				'Prazo de contrato e condições para crescer ou reduzir o parque'
+				'Prazo de contrato e condições para crescer ou reduzir o parque',
+				'Volume de linhas reunidas no contrato, com a condição progredindo a partir de dez'
 			]
 		}
 	],
 
 	passos: {
-		titulo: 'Como migramos um parque que já está em campo',
+		titulo: 'O que exige um parque que já está em campo',
 		subtitulo:
 			'Quatro etapas, nesta ordem. Nenhuma onda de migração começa antes de a anterior estar validada em campo — parque em produção não aceita big bang.',
 		itens: [
 			{
 				title: 'Inventário e confronto com a fatura',
-				text: 'Cruzamos a lista de chips ativos com a lista de equipamentos que a operação reconhece em campo. O resultado separa o que está correto, o que está ativo sem equipamento e o que consome fora do padrão.'
+				text: 'Um consultor checa a situação atual do parque: a lista de chips ativos na fatura ao lado da lista de equipamentos que a operação reconhece em campo. O resultado separa o que está correto, o que está ativo sem equipamento e o que consome fora do padrão.'
 			},
 			{
-				title: 'Lote piloto na pior condição',
-				text: 'Escolhemos um lote pequeno e o colocamos na rota ou na área de pior sinal do parque, não na sede. Piloto que roda no estacionamento da matriz não prova nada sobre o comportamento em campo.'
+				title: 'Validação antes de virar o parque inteiro',
+				text: 'Parque em produção não aceita virada de uma vez: um lote pequeno precisa rodar antes, e na condição mais difícil da operação — a rota ou a área de pior sinal. Piloto que roda no estacionamento da matriz não prova nada sobre o comportamento em campo.'
 			},
 			{
 				title: 'Validação em campo e ajuste de configuração',
-				text: 'Acompanhamos a transmissão do lote piloto por um ciclo completo de operação e ajustamos a configuração de rede dos equipamentos junto com o fornecedor do sistema antes de liberar o restante.'
+				text: 'A transmissão desse lote precisa ser acompanhada por um ciclo completo de operação, com a configuração de rede dos equipamentos ajustada junto ao fornecedor do sistema antes de liberar o restante.'
 			},
 			{
 				title: 'Migração por ondas, com janela e reversão',
@@ -268,11 +271,11 @@ export default {
 		},
 		{
 			q: '“Já pago pouco por chip.”',
-			a: 'O custo de um parque quase nunca está no valor unitário. Está no chip ativo sem equipamento correspondente, no deslocamento de um técnico para trocar um chip que poderia ter sido tratado remotamente e no equipamento com defeito que consome sem que ninguém veja. O inventário mostra esses três em números antes de qualquer negociação comercial.'
+			a: 'O custo de um parque quase nunca está no valor unitário. Está no chip ativo sem equipamento correspondente, no deslocamento de um técnico para trocar um chip que poderia ter sido tratado remotamente e no equipamento com defeito que consome sem que ninguém veja. Esses três aparecem em números assim que alguém compara a fatura com o que está em campo — e é isso que um consultor checa antes de qualquer negociação comercial. Vale lembrar que a condição por volume também conta: os descontos progressivos começam a partir de dez linhas.'
 		},
 		{
 			q: '“Migrar centenas de chips vai parar a operação.”',
-			a: 'Vai parar se for feito de uma vez. Por isso a migração acontece por ondas, com lote piloto validado em campo antes da primeira onda e caminho de reversão definido para cada uma. Na maioria dos casos não é preciso trocar o equipamento: troca-se o chip e ajusta-se a configuração de rede.'
+			a: 'Vai parar se for feito de uma vez. Por isso migração de parque se faz por ondas, com um lote validado em campo antes da primeira e caminho de reversão definido para cada uma. Na maioria dos casos não é preciso trocar o equipamento: troca-se o chip e ajusta-se a configuração de rede.'
 		},
 		{
 			q: '“Só quero o chip, não quero plataforma.”',
@@ -284,7 +287,7 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD. A leitura de fatura corporativa é parte do trabalho diário, e é dela que vem o método descrito aqui.',
-			'A regra de decisão desta página é própria: em M2M, a unidade de gestão é o parque e não a linha. Na prática isso significa que nenhuma proposta sai antes do confronto entre os chips da fatura e os equipamentos que a operação reconhece em campo — e que nenhuma onda de migração começa antes de o lote piloto rodar na pior rota do parque, não na sede.',
+			'O critério que orienta esta página: em M2M, a unidade de gestão é o parque e não a linha. Na prática, isso significa que proposta séria nenhuma sai antes de alguém comparar os chips da fatura com os equipamentos que a operação reconhece em campo — e é essa checagem, junto com a viabilidade de cobertura nas rotas, que um consultor faz antes de apresentar qualquer plano. Sobre condição comercial, o que é público vale para todo mundo: os descontos progressivos por volume começam a partir de dez linhas.',
 			'Também vale dizer o que não fazemos: não substituímos o fornecedor do rastreador, do sistema de telemetria ou da plataforma de gestão de frota. Cuidamos da camada de conectividade e da gestão do parque de chips, que é onde o desperdício se acumula sem aparecer.'
 		]
 	},
@@ -305,7 +308,7 @@ export default {
 		},
 		{
 			q: 'Consigo migrar o parque sem parar a operação?',
-			a: 'Sim, com lote piloto validado em campo antes da primeira onda e migração conduzida por ondas, cada uma com janela combinada e caminho de reversão. É como conduzimos.'
+			a: 'Sim, com um lote validado em campo antes da primeira onda e migração conduzida por ondas, cada uma com janela combinada e caminho de reversão. É o padrão para parque em produção.'
 		},
 		{
 			q: 'Preciso trocar os equipamentos para migrar de operadora?',
@@ -314,16 +317,16 @@ export default {
 	],
 
 	cta: {
-		titulo: 'Envie a fatura e a lista de equipamentos',
+		titulo: 'Fale com um consultor sobre o seu parque',
 		texto:
-			'Devolvemos o inventário do parque: quais chips estão ativos, quais não têm equipamento correspondente em campo e onde o consumo foge do padrão. Sem compromisso e sem cobrança pelo diagnóstico.'
+			'Com a fatura e a lista de equipamentos em mãos, um consultor checa a situação atual do parque — quais chips estão ativos, quais não têm equipamento correspondente em campo e onde o consumo foge do padrão — e a viabilidade de cobertura nas rotas onde eles operam. Sem compromisso de contratação.'
 	},
 
 	service: {
 		name: 'Conectividade M2M e IoT para rastreamento e telemetria',
 		serviceType: 'Conectividade M2M/IoT',
 		description:
-			'Contratação e gestão de parque de chips M2M para rastreamento, telemetria, meios de pagamento e monitoramento: inventário do parque, ativação e bloqueio em lote, avaliação de cobertura por rota e migração por ondas com lote piloto.'
+			'Contratação e gestão de parque de chips M2M para rastreamento, telemetria, meios de pagamento e monitoramento: um consultor checa a cobertura por rota e a viabilidade do parque, com desconto progressivo a partir de dez linhas.'
 	},
 
 	relacionadas: [

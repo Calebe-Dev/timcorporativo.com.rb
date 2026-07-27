@@ -4,8 +4,8 @@
 // Quem busca este termo já decidiu avaliar; o que trava é o receio de perder
 // número, parar a operação e descobrir tarde uma cláusula do contrato antigo.
 // A página entrega dois artefatos que ninguém entrega na SERP — o inventário
-// de 12 itens e o roteiro de seis passos — e o CTA é o de menor atrito: envie
-// a fatura, receba o inventário preenchido.
+// de 12 itens e o roteiro de seis passos — e o CTA é o de menor atrito: falar
+// com um consultor antes de qualquer proposta.
 //
 // DECISÃO EDITORIAL DELIBERADA: a página NÃO especula sobre a situação de
 // nenhuma empresa e não usa prazo, alarme ou "fim de serviço" como gatilho.
@@ -13,12 +13,13 @@
 // de migração, que é atemporal. Texto que envelhece em três meses não sustenta
 // uma LP, e insinuação sobre concorrente destrói a credibilidade da comparação.
 //
+// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// as duas coisas confirmadas: um consultor checa a viabilidade (no endereço, na
+// operação, na necessidade) e a condição por volume progride a partir de dez
+// linhas. Critério técnico do setor — ordem da portabilidade, ativação em
+// paralelo, leitura de contrato — permanece, porque não é alegação sobre nós.
+//
 // ⚠ REVISAR ANTES DE PUBLICAR:
-// - "ativação em paralelo antes do desligamento" e "o fixo entra primeiro na
-//   fila": confirmar que é assim que a equipe conduz, sempre. É o elemento de
-//   E-E-A-T da página inteira.
-// - migração por ondas com validação a cada lote: confirmar que há histórico
-//   real desse método em base instalada, e não só em contas pequenas.
 // - nenhum prazo de portabilidade aparece no texto de propósito (segue a
 //   regulamentação vigente e não o controlamos). Manter assim.
 
@@ -38,18 +39,18 @@ export default {
 
 	cardTitulo: 'Alternativa à Oi empresarial',
 	cardTexto:
-		'Inventário do que está contratado, portabilidade dos fixos e ativação em paralelo antes do desligamento. O roteiro de quem já migrou base instalada.',
+		'Inventário do que está contratado, portabilidade dos fixos e ativação em paralelo antes do desligamento — com um consultor checando a viabilidade endereço a endereço.',
 
 	hero: {
 		eyebrow: 'Migração de base instalada',
 		sub: 'Se você chegou até aqui, alguma coisa já acendeu o sinal: uma comunicação recebida, uma troca de contato comercial, uma renovação chegando. Esta página não especula sobre a situação de nenhuma empresa — trata do que está sob o seu controle, que é o destino de cada serviço contratado e a ordem em que a migração acontece.',
 		bullets: [
-			'Inventário antes de qualquer proposta',
+			'Um consultor checa a viabilidade antes da proposta',
 			'Portabilidade preserva fixos, móveis e faixas DDR',
 			'Ativação em paralelo antes do desligamento',
-			'Migração por ondas, com validação a cada lote'
+			'Condição por volume: progressiva a partir de dez linhas'
 		],
-		ctaPrimario: 'Receber o inventário de migração',
+		ctaPrimario: 'Falar com um consultor sobre a migração',
 		whatsapp:
 			'Olá! Minha empresa é cliente Oi e quero avaliar alternativas de migração. Podem me ajudar?',
 		cartaoTitulo: 'A ordem que evita janela sem serviço'
@@ -109,7 +110,7 @@ export default {
 					h3: 'Circuitos e contratos com vigência em aberto',
 					paragrafos: [
 						'Nem todo serviço pode ser desligado quando a empresa quiser. Contratos de acesso de dados costumam ter vigência, multa proporcional e prazo de aviso prévio, e a leitura desses três itens muda o cronograma inteiro do projeto.',
-						'Há três caminhos possíveis e nenhum deles é universal: aguardar o vencimento com a migração já desenhada, negociar a saída antecipada ou migrar por etapas, começando pelos serviços sem trava contratual. A escolha depende do que está escrito no contrato, e é por isso que lemos o contrato antes de propor qualquer coisa.'
+						'Há três caminhos possíveis e nenhum deles é universal: aguardar o vencimento com a migração já desenhada, negociar a saída antecipada ou migrar por etapas, começando pelos serviços sem trava contratual. A escolha depende do que está escrito no contrato — e é por isso que um consultor checa o contrato e a viabilidade de cada endereço antes de qualquer proposta.'
 					]
 				}
 			]
@@ -118,7 +119,7 @@ export default {
 			id: 'roteiro',
 			h2: 'Roteiro de migração em seis passos',
 			paragrafos: [
-				'Esta é a sequência que usamos em migração de base instalada. A ordem não é estética: cada passo depende do anterior, e trocar a ordem é o que produz janela sem serviço, número perdido e fatura dupla por meses.'
+				'Esta é a sequência que uma migração de base instalada exige. A ordem não é estética: cada passo depende do anterior, e trocar a ordem é o que produz janela sem serviço, número perdido e fatura dupla por meses.'
 			],
 			lista: [
 				'Passo 1 — Inventário: levantar tudo que está contratado, endereço a endereço, com contratos e vigências em mãos',
@@ -192,7 +193,7 @@ export default {
 			id: 'inventario',
 			h2: 'Inventário: doze itens antes de migrar qualquer coisa',
 			paragrafos: [
-				'Este é o levantamento que entregamos preenchido quando uma empresa nos envia a fatura e o contrato. Publicamos a lista aberta porque ela é útil mesmo para quem vai conduzir a migração sozinho ou com outro fornecedor: sem esses doze itens, qualquer proposta recebida é um chute com papel timbrado.'
+				'Este é o levantamento que precede qualquer decisão de migração, e é por ele que um consultor começa ao checar a viabilidade da operação. Publicamos a lista aberta porque ela é útil mesmo para quem vai conduzir a migração sozinho ou com outro fornecedor: sem esses doze itens, qualquer proposta recebida é um chute com papel timbrado.'
 			],
 			checklist: {
 				titulo: 'Inventário de migração — doze itens',
@@ -226,27 +227,28 @@ export default {
 				'Banda contratada por unidade, com o upload dimensionado pelo uso efetivo',
 				'Exigência de SLA e o prazo de reparo que a operação suporta',
 				'Volume de números a portar, incluindo faixas DDR',
-				'Prazo desejado para a transição e o tamanho de cada onda de migração'
+				'Prazo desejado para a transição e o tamanho de cada onda de migração',
+				'Volume de linhas reunidas no contrato, com a condição progredindo a partir de dez'
 			]
 		}
 	],
 
 	passos: {
-		titulo: 'Como conduzimos uma migração de base instalada',
+		titulo: 'O que uma migração de base instalada exige',
 		subtitulo:
-			'Quatro etapas de projeto, com uma regra inegociável: nada é desligado antes de o substituto estar validado e funcionando.',
+			'Quatro etapas de projeto e uma regra que não muda: nada é desligado antes de o substituto estar validado e funcionando.',
 		itens: [
 			{
 				title: 'Inventário e leitura de contrato',
-				text: 'Recebemos a fatura e os contratos e devolvemos o levantamento dos doze itens preenchido: o que está ativo, onde, com que vigência, com que multa e com quais números atrelados. É o documento que a empresa passa a ter mesmo que não contrate nada conosco.'
+				text: 'A partir da fatura e dos contratos, um consultor checa a situação atual da operação item a item: o que está ativo, onde, com que vigência, com que multa e com quais números atrelados. É o levantamento que sustenta todas as decisões seguintes, e ele vem antes de qualquer proposta.'
 			},
 			{
 				title: 'Viabilidade endereço a endereço',
-				text: 'Consultamos a disponibilidade em cada endereço antes de desenhar qualquer proposta, considerando mais de uma tecnologia quando existe alternativa — inclusive conexão pela rede móvel onde não há infraestrutura de fibra instalada.'
+				text: 'Um consultor checa a viabilidade em cada endereço antes de desenhar qualquer proposta, considerando mais de uma tecnologia quando existe alternativa — inclusive conexão pela rede móvel onde não há infraestrutura de fibra instalada.'
 			},
 			{
 				title: 'Desenho do destino e cronograma por ondas',
-				text: 'Definimos para onde vai cada serviço e agrupamos a migração em ondas, começando pelas unidades de menor risco. A cada lote validado, o próximo é liberado — em vez de virar tudo de uma vez e descobrir o problema em vinte lugares ao mesmo tempo.'
+				text: 'Cada serviço precisa de um destino definido, e a migração é agrupada em ondas, começando pelas unidades de menor risco. A cada lote validado, o próximo é liberado — em vez de virar tudo de uma vez e descobrir o problema em vinte lugares ao mesmo tempo.'
 			},
 			{
 				title: 'Portabilidade, paralelo e encerramento formal',
@@ -266,11 +268,11 @@ export default {
 		},
 		{
 			q: '“Minha filial fica numa cidade onde a oferta é limitada.”',
-			a: 'É uma preocupação concreta e às vezes o legado leva vantagem exatamente aí: redes fixas antigas têm capilaridade em municípios onde a oferta mais nova ainda não chegou. Por isso consultamos viabilidade em mais de uma tecnologia por endereço, incluindo acesso pela rede móvel, e tratamos cada unidade individualmente. Se em algum endereço a alternativa não for melhor que o atual, a recomendação é manter — e isso entra no relatório.'
+			a: 'É uma preocupação concreta e às vezes o legado leva vantagem exatamente aí: redes fixas antigas têm capilaridade em municípios onde a oferta mais nova ainda não chegou. Por isso um consultor checa a viabilidade em mais de uma tecnologia por endereço, incluindo acesso pela rede móvel, e trata cada unidade individualmente. Se em algum endereço a alternativa não for melhor que o atual, a recomendação é manter — e isso é dito com todas as letras.'
 		},
 		{
 			q: '“Migrar vinte endereços é um projeto grande demais para agora.”',
-			a: 'É grande se for feito de uma vez, e é justamente por isso que não fazemos assim. A migração acontece por ondas, com validação a cada lote e um responsável interno acompanhando. O inventário, que é a parte mais trabalhosa, pode começar hoje sem nenhum compromisso de contratação — ele é útil para a empresa independentemente da decisão final.'
+			a: 'É grande se for feito de uma vez, e é justamente por isso que migração de base instalada se faz por ondas, com validação a cada lote e um responsável interno acompanhando. O levantamento, que é a parte mais trabalhosa, pode começar hoje: um consultor checa a viabilidade dos endereços e a situação atual da operação sem nenhum compromisso de contratação.'
 		}
 	],
 
@@ -278,8 +280,8 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
-			'A regra operacional que orienta esta página é própria e simples de cobrar: nada é desligado antes de o substituto estar validado, e a portabilidade dos números fixos entra primeiro na fila de trabalho. As duas regras existem porque os dois erros que mais custam numa migração são o corte antecipado e o número deixado para o fim.',
-			'Somos canal TIM e temos interesse comercial na sua decisão, o que torna importante dizer o seguinte: em parte dos casos o inventário mostra que o arranjo atual está adequado e o certo é não mexer. Quando é assim, é isso que devolvemos — e o levantamento fica com a empresa de qualquer forma.'
+			'O critério que orienta esta página não é nosso: é o que o setor aprendeu na prática. Nada deve ser desligado antes de o substituto estar validado, e a portabilidade dos números fixos precisa entrar primeiro na fila de trabalho. As duas regras existem porque os dois erros que mais custam numa migração são o corte antecipado e o número deixado para o fim.',
+			'Somos canal TIM e temos interesse comercial na sua decisão, o que torna importante dizer o seguinte: em parte dos casos o levantamento mostra que o arranjo atual está adequado e o certo é não mexer. Quando é assim, é isso que o consultor diz. Sobre condição comercial, o que é público vale para todo mundo: os descontos progressivos por volume começam a partir de dez linhas, e a faixa aplicável ao caso só existe dentro de uma proposta.'
 		]
 	},
 
@@ -291,11 +293,11 @@ export default {
 		},
 		{
 			q: 'E se o contrato atual ainda estiver vigente?',
-			a: 'Existem caminhos: aguardar o vencimento com a migração já desenhada, negociar a saída antecipada ou migrar por etapas apenas o que não tem trava contratual. O ponto de partida é ler o contrato, e isso fazemos antes de propor.'
+			a: 'Existem caminhos: aguardar o vencimento com a migração já desenhada, negociar a saída antecipada ou migrar por etapas apenas o que não tem trava contratual. O ponto de partida é ler o contrato, e um consultor confere isso antes de qualquer proposta.'
 		},
 		{
 			q: 'Minha unidade fica numa cidade com pouca oferta. Tem saída?',
-			a: 'Consultamos viabilidade em mais de uma tecnologia por endereço, inclusive conexão pela rede móvel onde não há fibra instalada. Quando nenhuma alternativa supera o serviço atual naquele endereço, a recomendação é manter.'
+			a: 'Um consultor checa a viabilidade em mais de uma tecnologia por endereço, inclusive conexão pela rede móvel onde não há fibra instalada. Quando nenhuma alternativa supera o serviço atual naquele endereço, a recomendação é manter.'
 		},
 		{
 			q: 'A operação para durante a migração?',
@@ -303,25 +305,25 @@ export default {
 		},
 		{
 			q: 'Quanto tempo leva migrar vários endereços?',
-			a: 'Depende do inventário e das viabilidades encontradas. O cronograma sai depois do levantamento e é organizado em ondas, com validação a cada lote — não a partir de uma estimativa genérica dada antes de conhecer a operação.'
+			a: 'Depende do levantamento e da viabilidade checada em cada endereço. O cronograma sai depois disso e é organizado em ondas, com validação a cada lote — não a partir de uma estimativa genérica dada antes de conhecer a operação.'
 		},
 		{
-			q: 'O inventário tem custo se eu não contratar?',
-			a: 'Não. O levantamento e a leitura de contrato são feitos sem cobrança e sem compromisso, e o documento fica com a empresa mesmo que a decisão seja manter o fornecedor atual.'
+			q: 'Preciso fechar contrato para conversar sobre a migração?',
+			a: 'Não. Um consultor checa a viabilidade dos endereços e a situação atual da operação sem compromisso de contratação, e se a conclusão for que o arranjo em vigor está adequado, é isso que você vai ouvir.'
 		}
 	],
 
 	cta: {
-		titulo: 'Envie a sua fatura e receba o inventário de migração',
+		titulo: 'Fale com um consultor antes de decidir a migração',
 		texto:
-			'A partir da fatura e do contrato atuais, devolvemos o levantamento dos doze itens preenchido, a viabilidade dos endereços e o roteiro de migração em ondas — antes de qualquer proposta e sem compromisso de contratação.'
+			'A partir da fatura e do contrato atuais, um consultor checa a viabilidade de cada endereço e a situação da operação, e percorre com você os doze itens do inventário — antes de qualquer proposta e sem compromisso de contratação. Havendo parque de linhas em jogo, a condição por volume entra na conversa: os descontos progressivos começam a partir de dez linhas.'
 	},
 
 	service: {
 		name: 'Migração de base instalada de telecom empresarial',
 		serviceType: 'Projeto de migração de operadora corporativa',
 		description:
-			'Condução de migração de serviços corporativos de telecom: inventário de circuitos, números e contratos, viabilidade por endereço, portabilidade de fixos e móveis com faixas DDR, ativação em paralelo ao legado e desligamento formalizado por ondas.'
+			'Migração de serviços corporativos de telecom para a TIM: um consultor checa a viabilidade por endereço e as condições do contrato atual, com portabilidade de fixos e móveis, inclusive faixas DDR.'
 	},
 
 	relacionadas: [

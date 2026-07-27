@@ -12,11 +12,12 @@
 // nomeado é um dado que envelhece e que não temos como sustentar. Se a equipe
 // quiser nomear regiões, cada afirmação precisa ser confirmada antes.
 //
-// ⚠ REVISAR (2): o processo de consulta descrito na última seção (consulta em
-// mais de uma tecnologia, visita quando o endereço é novo, proposta só depois da
-// confirmação) precisa bater com o que o time faz de fato.
+// A última seção não descreve processo interno: o que a página promete é o que é
+// verdade — um consultor checa a viabilidade do endereço antes de qualquer
+// proposta. O resto está escrito como critério de contratação, válido para
+// qualquer fornecedor.
 //
-// ⚠ REVISAR (3): restrição de rede — "link dedicado" é termo-alvo de
+// ⚠ REVISAR (2): restrição de rede — "link dedicado" é termo-alvo de
 // linkdedicada.com.br. Aqui ele aparece como COMPONENTE de arranjo técnico e
 // nunca como alvo de title, H1 ou keyword. Não reintroduzir.
 
@@ -40,12 +41,12 @@ export default {
 
 	hero: {
 		eyebrow: 'Sorocaba · Conectividade',
-		sub: 'Consulta de viabilidade feita pelo número do imóvel e em mais de uma tecnologia, com o arranjo escolhido a partir do que a sua operação não pode perder. Se a fibra não chegar ao endereço, existe caminho — e dizemos isso antes, não depois da assinatura.',
+		sub: 'Um consultor checa a viabilidade pelo número do imóvel, e o arranjo se escolhe a partir do que a sua operação não pode perder. Se a fibra não chegar ao endereço, existe caminho — e dizemos isso antes, não depois da assinatura.',
 		bullets: [
 			'Viabilidade confirmada por endereço, com número e complemento',
 			'Comparação entre fibra empresarial e conexão pela rede móvel',
 			'Redundância para a operação não parar durante o reparo',
-			'Consultor em Sorocaba, com visita ao imóvel quando necessário'
+			'Consultor em Sorocaba para checar a viabilidade do seu endereço'
 		],
 		ctaPrimario: 'Consultar viabilidade no meu endereço',
 		whatsapp:
@@ -109,7 +110,7 @@ export default {
 					h3: 'Prédios comerciais e condomínios empresariais',
 					paragrafos: [
 						'Em imóvel compartilhado, a viabilidade tem duas camadas. A primeira é a rede chegar até o prédio; a segunda é conseguir levar o cabo da entrada até a sua sala, o que envolve infraestrutura interna, tubulação disponível e autorização de quem administra o condomínio. É comum a operadora ter viabilidade e o projeto travar na segunda camada.',
-						'Quando o imóvel é antigo, o ponto de entrada e o caminho interno viram o item mais demorado do cronograma. Levantar isso na visita, antes da assinatura, evita a situação em que o serviço está contratado e a instalação não avança por um motivo que não é técnico.'
+						'Quando o imóvel é antigo, o ponto de entrada e o caminho interno viram o item mais demorado do cronograma. Levantar isso antes da assinatura, junto com a viabilidade, evita a situação em que o serviço está contratado e a instalação não avança por um motivo que não é técnico.'
 					]
 				},
 				{
@@ -201,10 +202,10 @@ export default {
 		},
 		{
 			id: 'como-consultamos',
-			h2: 'Como consultamos viabilidade antes de propor qualquer coisa',
+			h2: 'Por que a viabilidade vem antes da proposta',
 			paragrafos: [
-				'A consulta é feita com o endereço completo e em mais de uma tecnologia, porque a resposta positiva de uma não elimina a necessidade de comparar com a outra. Quando o endereço é novo, em imóvel antigo ou em área industrial, marcamos visita: metade dos problemas de instalação que já vimos estava visível na porta do prédio.',
-				'Só depois disso escrevemos proposta. É uma ordem que às vezes custa velocidade na primeira semana e economiza semanas depois — proposta emitida antes da confirmação é a origem mais comum de instalação que não acontece, e quem paga por ela é sempre a operação do cliente.'
+				'A consulta séria é feita com o endereço completo, porque a resposta muda de um número para o outro e porque a viabilidade de uma tecnologia não elimina a necessidade de comparar com a outra. É isso que um consultor checa antes de qualquer conversa comercial. Em endereço novo, imóvel antigo ou área industrial, boa parte dos problemas de instalação está visível já na porta do prédio.',
+				'Proposta escrita antes dessa confirmação é a origem mais comum de instalação que não acontece, e quem paga por ela é sempre a operação do cliente. Inverter a ordem às vezes custa velocidade na primeira semana e economiza semanas depois — vale para nós e para qualquer fornecedor que você estiver avaliando.'
 			]
 		}
 	],
@@ -216,19 +217,19 @@ export default {
 		itens: [
 			{
 				title: 'Consulta por endereço',
-				text: 'Levantamos o endereço com número e complemento e consultamos o que chega ali em mais de uma tecnologia. É a etapa em que descobrimos se a conversa é sobre fibra, sobre rede móvel ou sobre os dois.'
+				text: 'Com o endereço completo, número e complemento, um consultor checa a viabilidade e o que de fato chega ali. É a etapa em que se descobre se a conversa é sobre fibra, sobre rede móvel ou sobre as duas.'
 			},
 			{
-				title: 'Visita quando o endereço pede',
-				text: 'Imóvel antigo, prédio compartilhado, galpão ou endereço em área de expansão: nesses casos alguém vai ao local ver ponto de entrada, caminho interno e cobertura de sinal antes de qualquer promessa.'
+				title: 'O que o endereço exige olhar',
+				text: 'Imóvel antigo, prédio compartilhado, galpão ou endereço em área de expansão pedem atenção a ponto de entrada, caminho interno e cobertura de sinal. São itens a checar no local, antes de qualquer promessa.'
 			},
 			{
 				title: 'Proposta com os arranjos lado a lado',
-				text: 'Apresentamos o que é viável no seu endereço, com o que cada arranjo resolve, o que deixa de fora e onde entra redundância. A decisão fica sua, com as alternativas visíveis.'
+				text: 'A proposta traz o que é viável no seu endereço, com o que cada arranjo resolve, o que deixa de fora e onde entra redundância. A decisão fica sua, com as alternativas visíveis.'
 			},
 			{
-				title: 'Instalação acompanhada',
-				text: 'Agendamento, acompanhamento da equipe técnica e validação com a empresa rodando. Quando há troca de fornecedor, o serviço antigo só é desligado depois que o novo está funcionando.'
+				title: 'Instalação com data e validação',
+				text: 'Agendamento com data, acompanhamento da instalação e validação com a empresa rodando. Em troca de fornecedor, a regra a combinar antes é uma só: o serviço antigo sai do ar depois que o novo está funcionando.'
 			}
 		]
 	},
@@ -244,7 +245,7 @@ export default {
 		},
 		{
 			q: '“É prédio antigo, não tem estrutura para passar cabo.”',
-			a: 'Em geral tem, com adaptação. O que muda é o prazo: ponto de entrada, tubulação disponível e autorização de quem administra o condomínio entram no cronograma. É exatamente por isso que esse levantamento é feito na visita, antes de assinar, e não no dia da instalação.'
+			a: 'Em geral tem, com adaptação. O que muda é o prazo: ponto de entrada, tubulação disponível e autorização de quem administra o condomínio entram no cronograma. É exatamente por isso que esse levantamento entra antes de assinar, junto com a checagem de viabilidade, e não no dia da instalação.'
 		},
 		{
 			q: '“Instalação de internet empresarial demora demais.”',
@@ -256,7 +257,7 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em telecom empresarial e é representante autorizado TIM, com operação conduzida de Sorocaba — Rua Tereza Lopes, 677, Vila Hortência, CNPJ 23.474.830/0001-56. As 110 avaliações com nota 4,9 no perfil público do Google podem ser lidas por quem quiser conferir antes de ligar.',
-			'A regra de decisão que orienta a página é própria e vale explicitar: viabilidade é por ponto de atendimento, não por CEP, e proposta só depois da confirmação. Vem de repetição — a maior parte das instalações que atrasam foi vendida antes de alguém confirmar o que chegava ao imóvel.',
+			'A regra de decisão que orienta a página é própria e vale explicitar: viabilidade é por ponto de atendimento, não por CEP, e nenhuma proposta sai antes de um consultor checar o que chega ao endereço. Vem de repetição — a maior parte das instalações que atrasam foi vendida antes de alguém confirmar o que chegava ao imóvel.',
 			'Também não vendemos a ideia de que existe uma tecnologia superior em qualquer situação. Fibra e rede móvel resolvem problemas diferentes e, com frequência, o arranjo correto usa as duas: uma como caminho principal, outra como garantia de que a empresa continua atendendo enquanto o reparo acontece.'
 		]
 	},
@@ -288,7 +289,7 @@ export default {
 	cta: {
 		titulo: 'Consulte a viabilidade do seu endereço em Sorocaba',
 		texto:
-			'Informe o endereço com número e complemento e o consultor verifica o que chega ao imóvel em mais de uma tecnologia antes de qualquer proposta. Sem custo e sem compromisso de troca.'
+			'Informe o endereço com número e complemento: um consultor checa a viabilidade e o que chega ao imóvel antes de qualquer proposta. Sem custo e sem compromisso de troca.'
 	},
 
 	service: {

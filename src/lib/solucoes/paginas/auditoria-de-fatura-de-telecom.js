@@ -18,10 +18,14 @@
 // auditoria e consultoria em telefonia empresarial, anterior ao credenciamento
 // como canal TIM.
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: confirmar com a equipe de auditoria que (a) as
-// sete categorias abaixo são de fato as que mais aparecem, (b) o diagnóstico
-// inicial é mesmo sem custo dentro do atendimento consultivo, e (c) a auditoria
-// é entregue mesmo quando a conclusão é permanecer na operadora atual.
+// A página NÃO afirma procedimento interno do Grupo OC nem promete entrega
+// gratuita. O que é prometido são as duas coisas confirmadas: um consultor
+// checa a viabilidade (na fatura, na operação, na necessidade) e a condição por
+// volume progride a partir de dez linhas. O método de conciliação descrito é
+// critério do setor, não alegação sobre o que a nossa equipe executa.
+//
+// ⚠ REVISAR ANTES DE PUBLICAR: confirmar com a equipe de auditoria que as sete
+// categorias abaixo são de fato as que mais aparecem em campo.
 
 export default {
 	slug: 'auditoria-de-fatura-de-telecom',
@@ -30,7 +34,7 @@ export default {
 
 	title: 'Auditoria de Fatura de Telecom para Empresas',
 	description:
-		'Auditoria de fatura de telecom: identificamos linhas ociosas, serviços não usados e cobranças fora do contrato. Envie sua fatura e receba o diagnóstico.',
+		'Auditoria de fatura de telecom: onde aparecem linhas ociosas, serviços não usados e cobrança fora do contrato. Fale com um consultor sobre a sua fatura.',
 	keywords:
 		'auditoria de fatura de telecom, auditoria de contas telefônicas empresa, reduzir fatura de telecom, consultoria para revisar contas de telefonia, conferir fatura de operadora empresarial, gestão de despesas de telecom',
 	keywordPrimaria: 'auditoria de fatura de telecom',
@@ -46,11 +50,11 @@ export default {
 		sub: 'A conta de telecom da sua empresa cresce por inércia: gente que saiu e continua com linha ativa, serviço agregado que ninguém pediu para cancelar, plano desenhado para um consumo que mudou. A auditoria confere o que está contratado, o que está sendo cobrado e o que é realmente usado.',
 		bullets: [
 			'Conciliação entre contrato, fatura e uso real',
-			'Sete categorias de distorção conferidas uma a uma',
+			'Sete categorias de distorção que se repetem no setor',
 			'Vale mesmo que você não queira trocar de operadora',
-			'Diagnóstico inicial sem custo, dentro do atendimento consultivo'
+			'Um consultor checa a fatura e a operação antes de propor'
 		],
-		ctaPrimario: 'Enviar fatura para diagnóstico',
+		ctaPrimario: 'Falar com um consultor sobre a fatura',
 		whatsapp:
 			'Olá! Gostaria de enviar a fatura de telecom da minha empresa para uma auditoria. Como faço?',
 		cartaoTitulo: 'O que a auditoria confere'
@@ -101,7 +105,7 @@ export default {
 			id: 'sete-distorcoes',
 			h2: 'As sete distorções que mais aparecem',
 			paragrafos: [
-				'Depois de mais de 15 anos conciliando faturas empresariais, o que se aprende é que as distorções não são infinitas nem criativas. Elas se repetem, e cabem em sete categorias. Essa é a lista que percorremos linha por linha em toda auditoria — não porque seja bonita de mostrar, mas porque é o que a experiência de campo mostrou que aparece.',
+				'Depois de mais de 15 anos conciliando faturas empresariais, o que se aprende é que as distorções não são infinitas nem criativas. Elas se repetem, e cabem em sete categorias. Essa é a lista que precisa ser percorrida linha por linha em qualquer auditoria — não porque seja bonita de mostrar, mas porque é o que a experiência de campo mostra que aparece.',
 				'Nenhuma dessas categorias implica má-fé da operadora. Quase todas nascem dentro da própria empresa, de decisões pontuais que ninguém revisou depois, e permanecem porque não existe um momento no calendário em que alguém seja responsável por revisá-las.'
 			],
 			lista: [
@@ -150,8 +154,8 @@ export default {
 			id: 'como-e-feita',
 			h2: 'Como a conciliação é feita na prática',
 			paragrafos: [
-				'A parte que interessa de uma auditoria não é o relatório final — é o cruzamento que o produz. Três conciliações respondem pela maior parte do que encontramos, e nenhuma delas exige ferramenta cara: exigem que alguém tenha as duas listas na mão ao mesmo tempo e a disciplina de percorrê-las item a item.',
-				'É por isso que pedimos, além da fatura, o contrato vigente e a relação de linhas com responsáveis. Com fatura sozinha já se apura parte das distorções; com as três fontes, a conciliação fecha.'
+				'A parte que interessa de uma auditoria não é o relatório final — é o cruzamento que o produz. Três conciliações respondem pela maior parte do que aparece, e nenhuma delas exige ferramenta cara: exigem que alguém tenha as duas listas na mão ao mesmo tempo e a disciplina de percorrê-las item a item.',
+				'É por isso que a conciliação precisa, além da fatura, do contrato vigente e da relação de linhas com responsáveis. Com fatura sozinha já se apura parte das distorções; com as três fontes, ela fecha. É esse material que um consultor pede para checar a situação atual da operação.'
 			],
 			subsecoes: [
 				{
@@ -172,7 +176,7 @@ export default {
 					h3: 'Fatura contra contrato, cláusula por cláusula',
 					paragrafos: [
 						'A terceira conciliação confronta o que está sendo cobrado com o que o contrato e seus aditivos preveem. Entram nessa checagem os itens que ninguém confere de rotina: serviços cobrados sem previsão, equipamentos faturados após devolução, endereços ativos que não correspondem mais a nenhuma operação e a forma como o reajuste foi aplicado em relação ao que a cláusula estabelece.',
-						'Quando encontramos divergência, o encaminhamento é sempre o mesmo: registro do que foi apurado, solicitação formal à operadora pelo canal previsto no contrato e acompanhamento até a correção aparecer na fatura. Sem protocolo, correção combinada por telefone tende a não sobreviver ao ciclo seguinte.'
+						'Quando aparece divergência, o encaminhamento é sempre o mesmo: registro do que foi apurado, solicitação formal à operadora pelo canal previsto no contrato e acompanhamento até a correção aparecer na fatura. Sem protocolo, correção combinada por telefone tende a não sobreviver ao ciclo seguinte.'
 					]
 				}
 			]
@@ -252,23 +256,23 @@ export default {
 			paragrafos: [
 				'Não prometemos percentual de redução, e desconfie de quem prometer antes de ver a sua fatura. O resultado de uma auditoria depende inteiramente do que a conciliação encontrar: uma empresa que já mantém inventário atualizado e revisa contrato a cada ciclo pode terminar a auditoria sem nenhuma correção relevante, e esse também é um resultado legítimo — significa que a gestão está funcionando.',
 				'O que a auditoria entrega é um mapa: quais itens da fatura têm dono e finalidade identificados, quais não têm, onde a cobrança diverge do contrato e quais correções cabem ser solicitadas formalmente. A partir daí, cada correção segue o canal previsto no contrato, com protocolo, e é acompanhada até aparecer na fatura seguinte.',
-				'E há um limite explícito: a auditoria não é parecer jurídico. Apuramos divergência entre o que foi contratado e o que está sendo cobrado do ponto de vista comercial e operacional. Discussão sobre validade de cláusula, exigibilidade de valores ou conduta processual pertence ao advogado da empresa, e é para lá que encaminhamos quando o assunto entra nesse terreno.'
+				'E há um limite explícito: a auditoria não é parecer jurídico. O que se apura é a divergência entre o que foi contratado e o que está sendo cobrado, do ponto de vista comercial e operacional. Discussão sobre validade de cláusula, exigibilidade de valores ou conduta processual pertence ao advogado da empresa, e é para lá que o assunto vai quando entra nesse terreno.'
 			]
 		}
 	],
 
 	passos: {
-		titulo: 'Como conduzimos uma auditoria de fatura',
+		titulo: 'Como se conduz uma auditoria de fatura',
 		subtitulo:
 			'Cinco etapas. A última é a que separa auditoria de relatório: correção só conta quando aparece na fatura seguinte.',
 		itens: [
 			{
 				title: 'Coleta',
-				text: 'Faturas dos últimos ciclos, contrato vigente com aditivos e, quando existir, a relação de linhas com responsáveis. Com fatura e contrato já se apura a maior parte; o inventário fecha a conciliação com a base de pessoas.'
+				text: 'Um consultor checa o que a empresa tem em mãos: faturas dos últimos ciclos, contrato vigente com aditivos e, quando existir, a relação de linhas com responsáveis. Com fatura e contrato já se apura a maior parte; o inventário fecha a conciliação com a base de pessoas.'
 			},
 			{
 				title: 'Conciliação das três bases',
-				text: 'Cruzamos contratado, cobrado e usado: linhas contra pessoas, consumo contra franquia, fatura contra cláusula. É a etapa que consome mais tempo e a que produz todo o resto.'
+				text: 'Contratado, cobrado e usado são comparados entre si: linhas contra pessoas, consumo contra franquia, fatura contra cláusula. É a etapa que consome mais tempo e a que produz todo o resto.'
 			},
 			{
 				title: 'Apuração das distorções',
@@ -276,11 +280,11 @@ export default {
 			},
 			{
 				title: 'Plano de correção',
-				text: 'Definimos o que é solicitado à operadora, por qual canal, com qual protocolo e em que ordem. Correções que dependem de decisão interna da empresa ficam separadas das que dependem da operadora.'
+				text: 'O plano define o que é solicitado à operadora, por qual canal, com qual protocolo e em que ordem. Correções que dependem de decisão interna da empresa ficam separadas das que dependem da operadora.'
 			},
 			{
 				title: 'Acompanhamento na fatura seguinte',
-				text: 'Conferimos se cada correção solicitada de fato apareceu no ciclo seguinte. Item que voltou a ser cobrado é reaberto — é aqui que a auditoria deixa de ser um documento e vira resultado.'
+				text: 'Cada correção solicitada precisa ser conferida no ciclo seguinte. Item que voltou a ser cobrado é reaberto — é aqui que a auditoria deixa de ser um documento e vira resultado.'
 			}
 		]
 	},
@@ -300,7 +304,7 @@ export default {
 		},
 		{
 			q: '“Vocês só querem me vender TIM no fim das contas.”',
-			a: 'Somos representante autorizado TIM e não escondemos isso. Também somos uma consultoria de telecom cuja atividade de origem é auditoria, anterior a esse credenciamento. Auditoria que termina em ajuste de plano, cancelamento de serviço ocioso ou correção de cobrança na operadora atual é resultado entregue, e acontece. Se a conclusão for que trocar não compensa, é isso que está no relatório.'
+			a: 'Somos representante autorizado TIM e não escondemos isso. Também somos uma consultoria de telecom cuja atividade de origem é auditoria, anterior a esse credenciamento. Auditoria que termina em ajuste de plano, cancelamento de serviço ocioso ou correção de cobrança na operadora atual é resultado, e acontece. Se a conclusão for que trocar não compensa, é isso que o consultor vai dizer.'
 		},
 		{
 			q: '“Nosso contrato é grande demais para auditar.”',
@@ -314,7 +318,7 @@ export default {
 			'O Grupo OC atua há mais de 15 anos em gestão de telecomunicações, auditoria e consultoria em telefonia empresarial. Essa é a atividade de origem da empresa — anterior à condição de representante autorizado TIM, e é ela que sustenta o que está escrito nesta página. O perfil no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A lista das sete distorções não veio de catálogo de fornecedor nem de artigo genérico sobre redução de custos: veio de repetição. São as categorias que reaparecem, empresa após empresa, quando alguém finalmente coloca contrato, fatura e inventário lado a lado. Publicá-las abertamente é uma escolha — qualquer empresa pode conferir as sete internamente, sem nos contratar, e essa é a intenção.',
 			'A regra que orienta o método é a conciliação das três bases. Enquanto contratado, cobrado e usado forem verificados separadamente, cada um parece correto. A distorção só existe no espaço entre eles, e é por isso que auditoria não é sinônimo de ler a fatura com mais atenção.',
-			'Sobre o que não fazemos: não prometemos percentual de economia antes de ver a fatura, não emitimos parecer jurídico sobre cláusulas e não recomendamos conduta processual. Auditamos do ponto de vista comercial e operacional; o que passa disso vai para o advogado da empresa.'
+			'Sobre o que não fazemos: não prometemos percentual de economia antes de ver a fatura, não emitimos parecer jurídico sobre cláusulas e não recomendamos conduta processual. Auditamos do ponto de vista comercial e operacional; o que passa disso vai para o advogado da empresa. E sobre condição comercial, o que dá para adiantar é público: os descontos progressivos por volume começam a partir de dez linhas, e a faixa aplicável a cada contrato só existe dentro de uma proposta.'
 		]
 	},
 
@@ -334,11 +338,11 @@ export default {
 		},
 		{
 			q: 'Vocês cobram pela auditoria?',
-			a: 'O diagnóstico inicial é feito sem custo, dentro do atendimento consultivo. Escopos maiores, com muitos endereços ou histórico longo de contratos, são combinados caso a caso antes de qualquer trabalho começar.'
+			a: 'O escopo e as condições são combinados caso a caso e sempre por escrito, antes de qualquer trabalho começar: volume de linhas, número de endereços e histórico de contratos mudam o tamanho do serviço. O primeiro contato não tem compromisso — um consultor checa a fatura e a operação para dizer o que dá para apurar e por onde começar.'
 		},
 		{
 			q: 'Quanto tempo leva?',
-			a: 'Depende do volume de linhas, de endereços e do quanto a documentação está organizada. O retorno do diagnóstico inicial é rápido; o plano de correção acompanha o ciclo da fatura seguinte, porque é nela que a correção precisa aparecer para valer.'
+			a: 'Depende do volume de linhas, de endereços e do quanto a documentação está organizada. O primeiro retorno costuma ser rápido; o plano de correção acompanha o ciclo da fatura seguinte, porque é nela que a correção precisa aparecer para valer.'
 		},
 		{
 			q: 'A auditoria diz quanto vou economizar?',
@@ -349,14 +353,14 @@ export default {
 	cta: {
 		titulo: 'Envie sua fatura e receba o diagnóstico',
 		texto:
-			'Um consultor concilia a fatura com o contrato e com o uso real da sua operação, e devolve o que encontrou — linha por linha, com o encaminhamento de cada divergência. Vale mesmo que você não pretenda trocar de operadora. Diagnóstico inicial sem custo e sem compromisso.'
+			'Um consultor checa a fatura, o contrato e o uso real da sua operação e diz o que encontrou — linha por linha, com o encaminhamento de cada divergência. Vale mesmo que você não pretenda trocar de operadora, e o primeiro contato não tem compromisso de contratação.'
 	},
 
 	service: {
 		name: 'Auditoria de fatura de telecom para empresas',
 		serviceType: 'Auditoria e consultoria em telecomunicações',
 		description:
-			'Conciliação entre contrato, fatura e uso real de telecom empresarial: apuração de linhas ociosas, serviços agregados não utilizados, planos incompatíveis com o consumo, cobranças sem previsão contratual e acompanhamento das correções até a fatura seguinte.'
+			'Análise de fatura de telecom empresarial: um consultor checa o que está contratado, o que é cobrado e o que é usado, para localizar linhas ociosas, serviços agregados sem uso, plano incompatível com o consumo e cobrança sem previsão contratual.'
 	},
 
 	relacionadas: [

@@ -11,10 +11,10 @@
 // medido. Se em 90 dias não houver impressão no GSC, mantém-se como página de
 // posicionamento e não de aquisição — não é motivo para inflar o texto.
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: o escopo declarado na seção "Onde entra o Grupo
-// OC" precisa bater exatamente com o que a equipe executa neste tipo de
-// projeto. Prometer engenharia de radiofrequência que não se faz é o erro mais
-// caro que esta página poderia cometer.
+// A seção "Onde entra o Grupo OC" declara LIMITE, não procedimento: o que a
+// página promete é um consultor checando viabilidade e necessidade, e o que ela
+// nega é engenharia de radiofrequência, implantação de rádio e operação da rede
+// — prometer engenharia que não se faz é o erro mais caro possível aqui.
 //
 // ⚠ REVISAR: o texto trata espectro e arquitetura em termos gerais, de
 // propósito — nenhuma faixa, banda ou modelo de licenciamento é citado, porque
@@ -51,7 +51,7 @@ export default {
 		ctaPrimario: 'Agendar conversa técnica',
 		whatsapp:
 			'Olá! Quero avaliar um projeto de rede privativa 5G para a nossa planta. Podem me orientar?',
-		cartaoTitulo: 'O que avaliamos primeiro'
+		cartaoTitulo: 'O que se avalia primeiro'
 	},
 
 	keyFacts: [
@@ -113,7 +113,7 @@ export default {
 					h3: 'Latência previsível não é a mesma coisa que latência baixa',
 					paragrafos: [
 						'Boa parte do material comercial sobre 5G industrial fala em latência baixa, e o chão de fábrica raramente precisa disso. O que a automação precisa é de latência previsível: um comportamento que se repete igual, sempre, inclusive no pior momento do turno. Um sistema que responde de forma estável é operável; um que responde muito rápido quase sempre e trava de vez em quando não é.',
-						'Essa distinção muda o critério de avaliação do projeto. Em vez de perguntar quanto a rede entrega no melhor caso, a pergunta útil é quanto ela varia entre o melhor e o pior caso, medida no ponto onde o equipamento trabalha. É o mesmo raciocínio que aplicamos em conectividade de escritório, com uma exigência bem maior de constância.'
+						'Essa distinção muda o critério de avaliação do projeto. Em vez de perguntar quanto a rede entrega no melhor caso, a pergunta útil é quanto ela varia entre o melhor e o pior caso, medida no ponto onde o equipamento trabalha. É o mesmo raciocínio que vale em conectividade de escritório, com uma exigência bem maior de constância.'
 					]
 				},
 				{
@@ -199,7 +199,7 @@ export default {
 			id: 'checklist',
 			h2: 'Perguntas antes de abrir um projeto de 5G privativo',
 			paragrafos: [
-				'Este é o roteiro que usamos na primeira conversa técnica. Ele serve tanto para avançar quanto para concluir, com tranquilidade, que o projeto não se justifica agora — e essa segunda conclusão é frequente.'
+				'Este é o roteiro da primeira conversa técnica, e ele é público. Serve tanto para avançar quanto para concluir, com tranquilidade, que o projeto não se justifica agora — e essa segunda conclusão é frequente.'
 			],
 			checklist: {
 				titulo: 'Dez perguntas para a reunião de qualificação',
@@ -222,9 +222,9 @@ export default {
 			id: 'nosso-papel',
 			h2: 'Onde entra o Grupo OC neste tipo de projeto',
 			paragrafos: [
-				'Vale ser explícito sobre escopo, porque este é o tipo de projeto em que promessa vaga custa caro. Atuamos como canal consultivo: conduzimos a qualificação técnica, organizamos as informações da planta que a engenharia vai precisar, articulamos a conversa com a operadora e acompanhamos o piloto e as fases seguintes junto ao cliente.',
-				'O que não fazemos é o projeto de radiofrequência, a implantação da infraestrutura de rádio e a operação da rede depois de pronta. Isso é engenharia especializada, executada pela operadora e por seus parceiros de implantação. Nosso papel é garantir que a empresa chegue nessa mesa com o problema bem descrito, com o inventário levantado e com um critério de sucesso definido — o que costuma ser a diferença entre um projeto que anda e um que fica em avaliação por um ano.',
-				'A parte mais útil dessa atuação, francamente, acontece antes: em boa parte das conversas concluímos junto com o cliente que o problema relatado é de projeto de rede sem fio convencional, e não de tecnologia. Encaminhar isso corretamente vale mais para a relação do que empurrar um projeto que não se sustentaria na avaliação interna do cliente.'
+				'Vale ser explícito sobre escopo, porque este é o tipo de projeto em que promessa vaga custa caro. Atuamos como canal consultivo: um consultor checa a viabilidade e a necessidade com a sua operação e com a sua TI, e é essa conversa que leva o caso à engenharia da operadora com o problema já bem descrito.',
+				'O que não fazemos é o projeto de radiofrequência, a implantação da infraestrutura de rádio e a operação da rede depois de pronta. Isso é engenharia especializada, executada pela operadora e por seus parceiros de implantação. O que vale levar para essa mesa é o problema bem descrito, o inventário levantado e um critério de sucesso definido — costuma ser a diferença entre um projeto que anda e um que fica em avaliação por um ano.',
+				'A parte mais útil dessa atuação, francamente, acontece antes: em boa parte das conversas a conclusão é que o problema relatado é de projeto de rede sem fio convencional, e não de tecnologia. Dizer isso vale mais para a relação do que empurrar um projeto que não se sustentaria na avaliação interna do cliente.'
 			]
 		},
 		{
@@ -252,11 +252,11 @@ export default {
 		itens: [
 			{
 				title: 'Qualificação técnica do caso',
-				text: 'Percorremos as dez perguntas do roteiro com a operação e com a TI. Saímos com uma de duas conclusões: o caso justifica rede privativa, ou o problema se resolve com projeto de rede sem fio convencional.'
+				text: 'As dez perguntas do roteiro são percorridas com a operação e com a TI, e um consultor checa a necessidade junto com você. Saem daí uma de duas conclusões: o caso justifica rede privativa, ou o problema se resolve com projeto de rede sem fio convencional.'
 			},
 			{
 				title: 'Levantamento e desenho com a engenharia',
-				text: 'Organizamos layout, materiais da planta, inventário de dispositivos e restrições de dado, e levamos esse conjunto para a engenharia da operadora desenhar a solução. Sem esse material, o desenho vira estimativa.'
+				text: 'Layout, materiais da planta, inventário de dispositivos e restrições de dado precisam estar organizados antes de a engenharia da operadora desenhar a solução. Sem esse material, o desenho vira estimativa.'
 			},
 			{
 				title: 'Piloto com critério de sucesso definido',
@@ -293,7 +293,7 @@ export default {
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira inclui operações industriais do porte da BYD — o que dá acesso ao tipo de conversa técnica que este projeto exige.',
 			'A regra de decisão desta página é própria e vale explicitar: o critério que separa quem precisa de rede privativa de quem não precisa é a existência de ativo crítico em movimento dentro da planta. Sem ativo móvel relevante, um projeto de rede sem fio convencional bem executado quase sempre resolve — e é isso que recomendamos, mesmo sendo o caminho comercialmente menor.',
-			'A segunda coisa que preferimos deixar clara é o limite do nosso escopo. Conduzimos a qualificação, organizamos o levantamento e articulamos a conversa com a engenharia da operadora; não executamos projeto de radiofrequência nem operamos a rede depois de implantada. Canal que promete engenharia que não faz cria expectativa que a implantação não sustenta.'
+			'A segunda coisa que preferimos deixar clara é o limite do nosso escopo. Um consultor checa a viabilidade e a necessidade antes de qualquer proposta e leva o caso à engenharia da operadora; não executamos projeto de radiofrequência nem operamos a rede depois de implantada. Canal que promete engenharia que não faz cria expectativa que a implantação não sustenta.'
 		]
 	},
 
@@ -324,7 +324,7 @@ export default {
 	cta: {
 		titulo: 'Agende uma conversa técnica sobre a sua planta',
 		texto:
-			'Uma reunião com o roteiro de qualificação, junto com a sua operação e a sua TI. Saímos dela com uma conclusão clara: o caso justifica um projeto de rede privativa, ou o problema se resolve por um caminho mais simples. Sem compromisso.'
+			'Uma conversa com o roteiro de qualificação, junto com a sua operação e a sua TI: um consultor checa a viabilidade e a necessidade do caso. Sai dela uma conclusão clara: o projeto de rede privativa se justifica, ou o problema se resolve por um caminho mais simples. Sem compromisso.'
 	},
 
 	service: {

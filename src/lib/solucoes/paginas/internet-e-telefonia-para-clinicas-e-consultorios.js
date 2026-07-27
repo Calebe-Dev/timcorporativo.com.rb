@@ -4,10 +4,12 @@
 // não acorda querendo economizar em telecom; acorda com paciente na recepção e
 // agendamento fora do ar. A página inteira fala dessa dor.
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: os critérios técnicos abaixo (relação
-// upload/download, comportamento de TISS na queda, tempo de reparo) descrevem o
-// método de diagnóstico do Grupo OC. Confirme com a equipe que é assim que
-// vocês de fato conduzem — E-E-A-T só vale se for verdade.
+// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// as duas coisas confirmadas: um consultor checa a viabilidade (no endereço, na
+// operação, na necessidade) e a condição por volume progride a partir de dez
+// linhas. Os critérios técnicos — relação upload/download, comportamento do
+// convênio na queda, SLA valendo mais que velocidade — permanecem: são
+// conhecimento do setor, não alegação sobre o que a nossa equipe executa.
 
 export default {
 	slug: 'internet-e-telefonia-para-clinicas-e-consultorios',
@@ -29,17 +31,17 @@ export default {
 
 	hero: {
 		eyebrow: 'Clínicas e consultórios',
-		sub: 'Prontuário eletrônico, agendamento online, transmissão de guias de convênio e teleconsulta rodam na sua conexão. Quando ela cai, a fila da recepção não para de crescer. Avaliamos o que a sua clínica realmente precisa — e o que está pagando sem usar.',
+		sub: 'Prontuário eletrônico, agendamento online, transmissão de guias de convênio e teleconsulta rodam na sua conexão. Quando ela cai, a fila da recepção não para de crescer. Um consultor checa o que a sua clínica realmente precisa — e o que ela paga sem usar.',
 		bullets: [
-			'Diagnóstico da operação e da fatura atual',
+			'Um consultor checa a operação e a fatura atual',
 			'Viabilidade técnica confirmada no endereço',
 			'Portabilidade sem perder o número da clínica',
 			'Backup móvel para a voz não cair junto'
 		],
-		ctaPrimario: 'Receber diagnóstico da clínica',
+		ctaPrimario: 'Falar com um consultor sobre a clínica',
 		whatsapp:
 			'Olá! Tenho uma clínica e quero avaliar a internet e a telefonia. Podem me ajudar?',
-		cartaoTitulo: 'O que avaliamos primeiro'
+		cartaoTitulo: 'O que decide antes de assinar'
 	},
 
 	keyFacts: [
@@ -76,14 +78,14 @@ export default {
 					h3: 'Prontuário eletrônico e sistemas em nuvem',
 					paragrafos: [
 						'Sistema de gestão clínica em nuvem depende de latência baixa e de disponibilidade contínua — não de velocidade de pico. Uma conexão de 500 Mbps que oscila entrega uma experiência pior que uma de 100 Mbps estável: o software trava no meio do cadastro, a tela de agenda demora a atualizar e dois atendentes acabam marcando o mesmo horário.',
-						'É por isso que, no dimensionamento, contamos terminais simultâneos e não metros quadrados. Uma clínica com quatro consultórios, recepção e sala de exames tem picos previsíveis de acesso concorrente, e é esse número que define a banda — não o tamanho da sala de espera.'
+						'É por isso que o dimensionamento se faz por terminais simultâneos, e não por metros quadrados. Uma clínica com quatro consultórios, recepção e sala de exames tem picos previsíveis de acesso concorrente, e é esse número que define a banda — não o tamanho da sala de espera.'
 					]
 				},
 				{
 					h3: 'Telemedicina e teleconsulta',
 					paragrafos: [
 						'Teleconsulta é o caso em que a assimetria da banda larga comum aparece de forma mais cruel. O paciente enxerga o médico com nitidez, e o médico vê o paciente travando — porque quem envia vídeo usa a via de subida, e é justamente ela que os planos residenciais entregam em fração do download.',
-						'Se a clínica faz teleconsulta ou envia exames de imagem, o upload deixa de ser detalhe técnico e vira o requisito principal. É a primeira pergunta que fazemos no diagnóstico.'
+						'Se a clínica faz teleconsulta ou envia exames de imagem, o upload deixa de ser detalhe técnico e vira o requisito principal. É a primeira pergunta que um consultor precisa fazer antes de sugerir qualquer plano.'
 					]
 				},
 				{
@@ -175,7 +177,7 @@ export default {
 			h2: 'O que define o investimento em conectividade de uma clínica',
 			paragrafos: [
 				'Não publicamos valores porque não existe tabela honesta para este tipo de projeto: o mesmo consultório em dois endereços diferentes pode ter viabilidades técnicas distintas, e isso muda tudo. O que dá para explicar com clareza são as variáveis que compõem o custo, para você chegar na conversa sabendo o que está sendo cotado.',
-				'Cinco fatores respondem por praticamente toda a diferença entre uma proposta e outra: a banda contratada, a existência ou não de SLA e qual o prazo dele, a quantidade de ramais e de unidades, a presença de backup móvel e o prazo de contrato. Um sexto fator, menos óbvio, é a viabilidade no endereço — em rua sem infraestrutura instalada, a alternativa técnica muda e o desenho do projeto muda junto.'
+				'Cinco fatores respondem por praticamente toda a diferença entre uma proposta e outra: a banda contratada, a existência ou não de SLA e qual o prazo dele, a quantidade de ramais e de unidades, a presença de backup móvel e o prazo de contrato. Um sexto fator, menos óbvio, é a viabilidade no endereço — em rua sem infraestrutura instalada, a alternativa técnica muda e o desenho do projeto muda junto. E há um sétimo, que só aparece em clínica com várias unidades ou muitos ramais: o volume de linhas reunidas no mesmo contrato, que faz a condição progredir a partir de dez.'
 			],
 			lista: [
 				'Banda contratada, com upload dimensionado pelo uso real',
@@ -183,31 +185,32 @@ export default {
 				'Número de ramais, de consultórios e de unidades',
 				'Backup móvel para continuidade durante a falha',
 				'Prazo de contrato e condições de renovação',
-				'Viabilidade técnica confirmada no endereço da clínica'
+				'Viabilidade técnica confirmada no endereço da clínica',
+				'Volume de linhas reunidas no contrato, com a condição progredindo a partir de dez'
 			]
 		}
 	],
 
 	passos: {
-		titulo: 'Como conduzimos o projeto de uma clínica',
+		titulo: 'O que define o projeto de uma clínica',
 		subtitulo:
 			'Quatro etapas, nesta ordem. O diagnóstico vem antes da proposta porque proposta sem diagnóstico é chute com papel timbrado.',
 		itens: [
 			{
 				title: 'Diagnóstico da operação e da fatura',
-				text: 'Mapeamos como a clínica trabalha — sistemas em nuvem, teleconsulta, número de terminais, fluxo de atendimento telefônico — e lemos a fatura atual para identificar o que está contratado, o que é usado e o que é pago sem uso.'
+				text: 'Um consultor checa como a clínica trabalha — sistemas em nuvem, teleconsulta, número de terminais, fluxo de atendimento telefônico — e a fatura atual, para separar o que está contratado, o que é usado e o que é pago sem uso.'
 			},
 			{
 				title: 'Viabilidade técnica no endereço',
-				text: 'Confirmamos o que de fato chega ao endereço da clínica antes de prometer qualquer coisa. É a etapa que evita a proposta bonita que não pode ser instalada.'
+				text: 'Um consultor checa a viabilidade no endereço da clínica antes de prometer qualquer coisa. É a etapa que evita a proposta bonita que não pode ser instalada.'
 			},
 			{
 				title: 'Proposta comparando arranjos',
-				text: 'Apresentamos os arranjos viáveis lado a lado, com o que cada um resolve e o que cada um deixa de fora, para a decisão ser sua e informada — não uma escolha entre uma opção e nenhuma.'
+				text: 'A proposta traz os arranjos viáveis lado a lado, com o que cada um resolve e o que cada um deixa de fora, para a decisão ser sua e informada — não uma escolha entre uma opção e nenhuma.'
 			},
 			{
 				title: 'Portabilidade e ativação acompanhada',
-				text: 'A clínica mantém os números já divulgados a pacientes e convênios. Agendamos a janela, acompanhamos a ativação e só encerramos o projeto quando a operação está rodando.'
+				text: 'A clínica mantém os números já divulgados a pacientes e convênios. A janela de portabilidade é agendada com a clínica e o consultor acompanha a ativação até a operação estar rodando.'
 			}
 		]
 	},
@@ -239,7 +242,7 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
-			'A regra de decisão que orienta esta página é própria e vale a pena explicitar: quando o sistema principal da clínica está em nuvem, o SLA contratado importa mais que a velocidade contratada. É por isso que começamos todo diagnóstico perguntando pelo upload e pelo prazo de reparo, e não pelo número que aparece grande na proposta da concorrência.',
+			'A regra de decisão que orienta esta página é própria e vale a pena explicitar: quando o sistema principal da clínica está em nuvem, o SLA contratado importa mais que a velocidade contratada. É por isso que a primeira pergunta precisa ser sobre o upload e sobre o prazo de reparo, e não sobre o número que aparece grande na proposta da concorrência — e é isso que um consultor checa, junto com a viabilidade no endereço, antes de qualquer recomendação.',
 			'Não vendemos conformidade com a LGPD, e desconfie de quem vender: conformidade depende de processo interno, contrato e responsável designado. O que fazemos é entregar a infraestrutura que permite à clínica adotar as medidas técnicas que a lei espera.'
 		]
 	},
@@ -264,14 +267,14 @@ export default {
 		},
 		{
 			q: 'Como fica o atendimento telefônico quando a internet cai?',
-			a: 'Com backup móvel a voz continua; sem backup, ramal em nuvem cai junto. É o principal ponto que avaliamos no diagnóstico.'
+			a: 'Com backup móvel a voz continua; sem backup, ramal em nuvem cai junto. É o principal ponto a checar antes de assinar qualquer contrato.'
 		}
 	],
 
 	cta: {
-		titulo: 'Receba um diagnóstico da conectividade da sua clínica',
+		titulo: 'Fale com um consultor sobre a sua clínica',
 		texto:
-			'Um consultor avalia a operação, lê a fatura atual e confirma a viabilidade no endereço antes de apresentar qualquer proposta. Sem compromisso e sem cobrança pelo diagnóstico.'
+			'Um consultor checa a operação, a fatura atual e a viabilidade no endereço antes de apresentar qualquer proposta — e, quando a clínica reúne dez linhas ou mais, a condição progressiva por volume entra na mesma conversa. Sem compromisso de contratação.'
 	},
 
 	service: {

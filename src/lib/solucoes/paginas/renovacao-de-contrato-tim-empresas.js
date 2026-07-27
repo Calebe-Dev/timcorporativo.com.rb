@@ -15,12 +15,16 @@
 // contrato". Não afirmar que renovação automática é ilegal, abusiva ou
 // cancelável — apenas que costuma ser desvantajosa quando a empresa mudou.
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: (a) confirmar que a revisão de contrato e o
-// acompanhamento de renovação são de fato prestados a cliente TIM cuja venda
-// original foi de outro canal; (b) confirmar com a equipe comercial que adicionar
-// linhas por aditivo, preservando condições, é o comportamento usual — e não uma
-// generalização nossa; (c) a mecânica das faixas de desconto progressivo por
-// volume deve ser descrita sem nenhum número, conforme R1.
+// ⚠ O QUE ESTA PÁGINA PODE PROMETER: só duas coisas, porque só elas são
+// verdade — (1) um consultor checa a viabilidade do que a empresa precisa
+// (endereço, operação, necessidade) e (2) o desconto progressivo melhora
+// conforme o volume, a partir de dez linhas. Nenhuma etapa interna de trabalho
+// é afirmada aqui: nada de inventário conciliado, acompanhamento de fatura ou
+// rotina de revisão descrita como procedimento do time.
+//
+// ⚠ R1: a mecânica do desconto por volume é descrita sem nenhum número além de
+// "dez linhas" — nada de faixa, percentual ou valor. Rode
+// `node scripts/validar-lps.mjs` antes de publicar.
 
 export default {
 	slug: 'renovacao-de-contrato-tim-empresas',
@@ -44,10 +48,10 @@ export default {
 		eyebrow: 'Renovação de contrato',
 		sub: 'A janela de renovação é o único momento do ciclo em que a sua empresa negocia com o vínculo ainda em aberto. Quem deixa passar renova nas condições antigas — desenhadas para o número de pessoas, o consumo e os endereços que a empresa tinha quando assinou.',
 		bullets: [
-			'Revisão do contrato vigente antes de qualquer proposta',
-			'Inventário de linhas conciliado com quem trabalha hoje',
-			'Vale também para quem já é cliente TIM por outro canal',
-			'Renovação acompanhada até as condições novas entrarem na fatura'
+			'Um consultor checa a necessidade da empresa antes de qualquer proposta',
+			'Linhas contratadas conferidas contra quem de fato usa cada uma',
+			'Cliente TIM de outro canal também pode falar com um consultor',
+			'Desconto progressivo que melhora conforme o volume, a partir de dez linhas'
 		],
 		ctaPrimario: 'Revisar contrato antes de renovar',
 		whatsapp:
@@ -67,9 +71,9 @@ export default {
 			nota: 'A empresa muda de tamanho todo ano; o contrato só muda quando alguém mexe.'
 		},
 		{
-			label: 'Base instalada',
-			value: 'Atendida igual',
-			nota: 'Cliente TIM que comprou por outro canal também recebe revisão e acompanhamento.'
+			label: 'Volume no contrato',
+			value: 'Desconto progressivo',
+			nota: 'A condição melhora conforme o volume de linhas do contrato, a partir de dez.'
 		}
 	],
 
@@ -125,27 +129,22 @@ export default {
 						'Por isso o calendário importa mais que a argumentação. Uma empresa que chega à renovação com inventário conciliado, consumo apurado e as perguntas certas na mão negocia melhor do que uma empresa que reclama muito no mês seguinte à renovação automática. O trabalho é o mesmo; a hora é que muda tudo.'
 					]
 				},
-				// ⚠ REVISAR: "inclusão de linhas por aditivo, preservando o desenho
-				// vigente" está escrito como comportamento USUAL, não como garantia
-				// contratual — e assim deve permanecer. Confirmar com o comercial; se
-				// houver qualquer dúvida, reduzir para "confira como o seu contrato
-				// trata a inclusão de linhas".
 				{
 					h3: 'Crescer no contrato sem recomeçar do zero',
 					paragrafos: [
-						'A dúvida mais frequente de quem está crescendo é se adicionar linhas obriga a refazer o contrato inteiro e recomeçar todos os prazos. Em geral a inclusão é feita por aditivo, preservando o desenho vigente — mas o ponto que precisa ser conferido caso a caso é como a faixa de desconto por volume se comporta com o novo total, e qual prazo passa a valer para as linhas incluídas.',
-						'É uma conferência simples e que quase ninguém faz: uma empresa pode estar acumulando linhas ao longo do ano sem que a condição comercial acompanhe o volume que ela já atingiu. A renovação é o momento natural para acertar isso, porque tudo é reavaliado de qualquer forma.'
+						'A dúvida mais frequente de quem está crescendo é se adicionar linhas obriga a refazer o contrato inteiro e recomeçar todos os prazos. A resposta está no documento assinado: confira como o seu contrato trata a inclusão de linhas, como a condição por volume se comporta com o novo total e qual prazo passa a valer para as linhas incluídas. São três perguntas objetivas, e um consultor checa cada uma antes de a empresa decidir qualquer coisa.',
+						'É uma conferência simples e que quase ninguém faz: uma empresa pode estar acumulando linhas ao longo do ano sem que a condição comercial acompanhe o volume que ela já atingiu. Como o desconto progressivo melhora conforme o volume, a partir de dez linhas, a renovação é o momento natural para acertar isso — tudo é reavaliado de qualquer forma.'
 					]
 				}
 			]
 		},
 		{
 			id: 'base-instalada',
-			h2: 'Já é cliente TIM por outro canal? O atendimento vale igual',
+			h2: 'Já é cliente TIM por outro canal? A conversa com um consultor vale igual',
 			paragrafos: [
-				'Existe uma confusão comum de quem já é cliente TIM: a ideia de que, tendo comprado direto ou por outro canal, não haveria por que falar com um representante autorizado. A relação contratual permanece com a operadora em qualquer um dos caminhos — o que muda é quem senta do seu lado para revisar o contrato antes de você assinar de novo.',
-				'Na prática, é para a base instalada que a revisão costuma render mais. Quem está no mesmo contrato há alguns ciclos acumulou mais camadas: linhas herdadas, serviços de negociações antigas, faixas de volume desatualizadas, aparelhos que já saíram de circulação. É esse acúmulo que a revisão de renovação existe para tratar.',
-				'Também é o que a home do site já anuncia como renovação segura: chegar à assinatura sabendo exatamente o que muda, o que permanece e o que entra na fatura no ciclo seguinte — em vez de descobrir depois.'
+				'Existe uma confusão comum de quem já é cliente TIM: a ideia de que, tendo comprado direto ou por outro canal, não haveria por que falar com um representante autorizado. A relação contratual permanece com a operadora em qualquer um dos caminhos — o que muda é ter, ou não ter, um consultor que cheque a necessidade da empresa antes de você assinar de novo.',
+				'Na prática, é para quem está há mais tempo no mesmo contrato que essa conferência costuma render mais. Alguns ciclos acumulam camadas: linhas herdadas, serviços de negociações antigas, condição de volume desatualizada, aparelhos que já saíram de circulação. É esse acúmulo que a janela de renovação existe para tratar.',
+				'O objetivo é o que a home do site chama de renovação segura: chegar à assinatura sabendo o que muda, o que permanece e o que entra na fatura no ciclo seguinte — em vez de descobrir depois. Quem acumulou linhas ao longo dos ciclos tem um motivo a mais para conferir, porque a condição comercial só acompanha o crescimento da empresa quando alguém olha para ela.'
 			]
 		},
 		{
@@ -218,25 +217,25 @@ export default {
 	],
 
 	passos: {
-		titulo: 'Como conduzimos uma renovação',
+		titulo: 'O que um consultor checa antes de uma renovação',
 		subtitulo:
-			'Quatro etapas antes da assinatura. Vale igualmente para quem já é cliente TIM e comprou por outro canal.',
+			'Quatro conferências antes da assinatura. Valem igualmente para quem já é cliente TIM e comprou por outro canal.',
 		itens: [
 			{
-				title: 'Revisão do contrato vigente',
-				text: 'Levantamos vencimento, data-limite de aviso, serviços contratados, cláusula de reajuste e condições que estavam valendo. É o retrato do que existe hoje, antes de qualquer discussão sobre o que vem depois.'
+				title: 'O que o contrato vigente prevê',
+				text: 'Vencimento, data-limite de aviso, serviços contratados, cláusula de reajuste e as condições que estavam valendo. É o retrato do que existe hoje, e ele precisa estar na mesa antes de qualquer discussão sobre o que vem depois.'
 			},
 			{
-				title: 'Conciliação de inventário e consumo',
-				text: 'Cruzamos as linhas ativas com quem trabalha na empresa e apuramos o consumo real por perfil de uso. É desta etapa que saem as decisões concretas: o que cancelar, o que redimensionar, o que manter.'
+				title: 'Linhas contra pessoas, franquia contra consumo',
+				text: 'Um consultor checa a necessidade real da operação: quantas linhas existem, quantas têm dono identificável e como o consumo se distribui por perfil de uso. É dessa conferência que saem as decisões concretas — o que cancelar, o que redimensionar, o que manter.'
 			},
 			{
-				title: 'Proposta comparando os três cenários',
-				text: 'Apresentamos renovação automática, renovação revisada e novo desenho lado a lado, com o que cada caminho muda na operação. A decisão fica com a empresa, informada — não entre uma opção e nenhuma.'
+				title: 'Em que ponto do volume a empresa está',
+				text: 'O desconto progressivo melhora conforme o volume de linhas, a partir de dez. Vale checar em que ponto o contrato está hoje e em que ponto ele estaria com o total de linhas que a empresa já usa — as duas respostas raramente coincidem.'
 			},
 			{
-				title: 'Renovação acompanhada',
-				text: 'Acompanhamos a assinatura, a entrada das condições novas e a fatura do ciclo seguinte, conferindo se o que foi acordado de fato apareceu nela. Ajuste combinado que não chega à fatura é ajuste que não aconteceu.'
+				title: 'Os três cenários, lado a lado',
+				text: 'Renovação automática, renovação revisada e novo desenho comparados pelo que cada caminho muda na operação. A decisão fica com a empresa, informada — não entre uma opção e nenhuma.'
 			}
 		]
 	},
@@ -244,7 +243,7 @@ export default {
 	objecoes: [
 		{
 			q: '“Já sou cliente TIM, não preciso de um canal.”',
-			a: 'A relação contratual continua com a operadora de qualquer forma — não é isso que muda. O que um representante autorizado acrescenta é alguém que revisa o contrato com você antes da assinatura, concilia o inventário e acompanha se o que foi acordado entrou na fatura. Base instalada é atendida igual, inclusive quando a venda original foi feita por outro caminho.'
+			a: 'A relação contratual continua com a operadora de qualquer forma — não é isso que muda. O que um representante autorizado acrescenta é um consultor que checa a necessidade da empresa antes da assinatura: quantas linhas fazem sentido, o que o documento vigente prevê e onde a empresa está no volume que define o desconto progressivo. Isso vale inclusive quando a venda original foi feita por outro caminho.'
 		},
 		{
 			q: '“Renovar dá trabalho e o resultado é sempre o mesmo.”',
@@ -268,8 +267,8 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão de telecomunicações, auditoria e consultoria em telefonia empresarial, e é representante autorizado TIM para empresas. O perfil no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
-			'A regra de trabalho desta página é própria: revisamos o contrato vigente antes de discutir a renovação. Parece óbvio e quase nunca é o que acontece — a conversa padrão de renovação começa pela oferta nova e trata o contrato atual como detalhe histórico. Invertida a ordem, muda o que se descobre: linhas sem dono, agregados esquecidos e faixas de volume defasadas só aparecem quando alguém olha para trás antes de olhar para frente.',
-			'A segunda escolha, também deliberada, é atender base instalada. Cliente TIM que comprou por outro canal recebe a mesma revisão de contrato e o mesmo acompanhamento de renovação. É a página que sustenta o compromisso de renovação segura que o site já anuncia: chegar à assinatura sabendo exatamente o que muda e o que permanece.',
+			'O critério que organiza esta página é de ordem: o contrato vigente vem antes da oferta nova. Parece óbvio e quase nunca é o que acontece — a conversa padrão de renovação começa pela proposta e trata o contrato atual como detalhe histórico. Invertida a ordem, muda o que se descobre: linhas sem dono, agregados esquecidos e condição de volume defasada só aparecem quando alguém olha para trás antes de olhar para frente.',
+			'O que esta página promete é curto e verificável, e cabe em duas frases. Um consultor checa a necessidade da empresa — linhas, consumo, endereços e o que o contrato vigente prevê — inclusive para quem já é cliente TIM por outro canal. E o desconto progressivo por volume melhora conforme o total de linhas do contrato, a partir de dez. Nada além disso é prometido aqui, e é de propósito.',
 			'Um limite explícito: descrevemos o que costuma estar previsto em contratos empresariais e o que vale conferir no seu. Não é orientação jurídica, não avaliamos validade de cláusula e não substituímos a leitura do contrato pelo jurídico da empresa.'
 		]
 	},
@@ -278,7 +277,7 @@ export default {
 	faq: [
 		{
 			q: 'Já sou cliente TIM. Posso ser atendido por um representante autorizado?',
-			a: 'Pode. A revisão do contrato e o acompanhamento na renovação são feitos igualmente para base instalada, mantendo a relação contratual com a operadora. Vale inclusive quando a contratação original foi feita por outro canal.'
+			a: 'Pode. Um consultor checa a necessidade da empresa — linhas, consumo e o que o contrato vigente prevê — mantendo a relação contratual com a operadora exatamente como está. Vale inclusive quando a contratação original foi feita por outro canal.'
 		},
 		{
 			q: 'Renovar automaticamente é ruim?',
@@ -290,25 +289,25 @@ export default {
 		},
 		{
 			q: 'Posso adicionar linhas sem reiniciar o contrato inteiro?',
-			a: 'Em geral a inclusão é feita por aditivo, preservando o desenho vigente. O que precisa ser conferido caso a caso é como a faixa de desconto por volume se comporta com o novo total de linhas e qual prazo passa a valer para as linhas incluídas.'
+			a: 'Depende do que o seu contrato prevê para inclusão de linhas — é a primeira coisa a conferir. As outras duas: como a condição por volume se comporta com o novo total, lembrando que o desconto progressivo melhora a partir de dez linhas, e qual prazo passa a valer para as linhas incluídas.'
 		},
 		{
 			q: 'O que muda na fatura depois da renovação?',
-			a: 'Depende do que foi acordado — e é exatamente por isso que acompanhamos a fatura do ciclo seguinte. Condição combinada que não aparece na fatura precisa ser reaberta com protocolo, e quanto antes isso for identificado, mais simples é corrigir.'
+			a: 'Depende do que foi acordado — e é exatamente por isso que vale conferir a fatura do ciclo seguinte contra o que ficou combinado. Condição acertada que não aparece na fatura precisa ser reaberta com protocolo, e quanto antes isso for identificado, mais simples é corrigir.'
 		}
 	],
 
 	cta: {
 		titulo: 'Revise seu contrato antes da renovação automática',
 		texto:
-			'Um consultor lê o contrato vigente, concilia o inventário de linhas com quem trabalha na empresa hoje e apresenta os três cenários de renovação lado a lado. Vale também para quem já é cliente TIM por outro canal. Sem compromisso e sem cobrança pela revisão.'
+			'Um consultor checa a necessidade da sua empresa antes da renovação: quantas linhas fazem sentido, o que o contrato vigente prevê e em que ponto do volume o contrato está hoje. Vale também para quem já é cliente TIM por outro canal. Sem compromisso e sem cobrança.'
 	},
 
 	service: {
 		name: 'Revisão e renovação de contrato TIM Empresas',
 		serviceType: 'Consultoria em contratos de telecomunicações empresariais',
 		description:
-			'Revisão do contrato TIM Empresas antes do vencimento: conciliação de inventário de linhas, apuração de consumo por perfil, conferência de serviços agregados e faixa de volume, com acompanhamento da renovação até a fatura do ciclo seguinte.'
+			'Revisão do contrato TIM Empresas antes do vencimento: um consultor checa serviços agregados, perfil de consumo e faixa de volume, com desconto progressivo a partir de dez linhas.'
 	},
 
 	relacionadas: [

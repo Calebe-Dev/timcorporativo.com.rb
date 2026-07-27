@@ -11,11 +11,12 @@
 // páginas). Antes de mexer no h1, no resumo ou nos ids de seção, confira as
 // âncoras que chegam aqui — id de seção é destino de link interno.
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: o processo descrito abaixo (consulta de
-// viabilidade em mais de uma tecnologia com o endereço normalizado, teste de
-// sinal no ponto exato da instalação e a regra "backup, não principal") descreve
-// o método do Grupo OC. Confirme com a equipe que é assim que vocês conduzem —
-// E-E-A-T só vale se for verdade.
+// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// as duas coisas confirmadas: um consultor checa a viabilidade (no endereço, na
+// operação, na necessidade) e a condição por volume progride a partir de dez
+// linhas. O critério técnico — "backup, não principal", endereço normalizado
+// antes da consulta, sinal medido no ponto certo — fica como conhecimento do
+// setor e como régua que o leitor deve exigir de qualquer fornecedor.
 
 export default {
 	slug: 'internet-5g-para-empresas-sem-fibra-no-endereco',
@@ -39,15 +40,15 @@ export default {
 		eyebrow: 'Endereço sem fibra',
 		sub: 'A operadora consultou o seu endereço e respondeu que não há viabilidade. Isso não significa que a empresa fica sem internet — significa que a saída passa por outra tecnologia, e que alguém precisa dizer com honestidade qual delas aguenta a sua operação.',
 		bullets: [
-			'Consulta de viabilidade em mais de uma tecnologia',
-			'Teste de sinal no ponto exato da instalação',
+			'Um consultor checa a viabilidade do endereço',
+			'O que exigir de teste de sinal antes de assinar',
 			'Rede móvel como link principal ou como redundância',
 			'Plano de saída para quando a fibra chegar'
 		],
 		ctaPrimario: 'Consultar viabilidade do endereço',
 		whatsapp:
 			'Olá! Meu endereço não tem viabilidade de fibra. Podem verificar quais opções atendem a minha empresa?',
-		cartaoTitulo: 'O que checamos primeiro'
+		cartaoTitulo: 'O que decide antes de assinar'
 	},
 
 	keyFacts: [
@@ -59,7 +60,7 @@ export default {
 		{
 			label: 'O teste que vale',
 			value: 'Sinal no ponto da antena',
-			nota: 'Medido onde o equipamento vai ficar e no horário de pico — não na calçada com o celular na mão.'
+			nota: 'Vale o que é medido onde o equipamento vai ficar, no horário de pico — não na calçada com o celular na mão.'
 		},
 		{
 			label: 'Experiência',
@@ -147,7 +148,7 @@ export default {
 					h3: 'Na prática, os caminhos se combinam',
 					paragrafos: [
 						'É comum a unidade entrar operando por rede móvel enquanto o processo de expansão avança e, quando a fibra chega, a conexão móvel virar o backup automático do acesso fixo — que é o uso mais seguro dela. O arranjo temporário deixa de ser desperdício e vira redundância permanente.',
-						'É exatamente por isso que discutimos prazo de contrato antes de assinar, e não na renovação. Uma solução pensada para durar alguns meses presa a um compromisso longo deixa de ser temporária, e o custo dessa distração aparece quando a fibra finalmente chega.'
+						'É exatamente por isso que o prazo de contrato se discute antes de assinar, e não na renovação. Uma solução pensada para durar alguns meses presa a um compromisso longo deixa de ser temporária, e o custo dessa distração aparece quando a fibra finalmente chega.'
 					]
 				}
 			]
@@ -230,11 +231,11 @@ export default {
 		},
 		{
 			id: 'viabilidade',
-			h2: 'Como consultamos a viabilidade real do endereço',
+			h2: 'Como se confirma a viabilidade real do endereço',
 			paragrafos: [
-				'Nosso processo começa por uma consulta de viabilidade em mais de uma tecnologia para o mesmo endereço, com o endereço normalizado antes da consulta. Só depois de saber o que efetivamente chega ali é que existe proposta — porque proposta feita antes da viabilidade é chute com papel timbrado.',
-				'Em seguida vem o teste de sinal no ponto exato onde o equipamento ficará, no horário de maior uso da operação. Medir na calçada, com o celular na mão, no melhor horário do dia, produz um número bonito e inútil. O que interessa é o comportamento no ponto de instalação enquanto a empresa está trabalhando.',
-				'A terceira etapa é a menos comercial de todas: verificar se há previsão de expansão de rede para aquele endereço. Quando existe, com data, e a operação consegue esperar, recomendamos esperar e resolver o intervalo com um arranjo temporário — mesmo sabendo que essa recomendação encurta o contrato.'
+				'A viabilidade precisa ser consultada em mais de uma tecnologia para o mesmo endereço, com o endereço normalizado antes da consulta: número correto, complemento certo, CEP do trecho. Só depois de saber o que efetivamente chega ali é que existe proposta — porque proposta feita antes da viabilidade é chute com papel timbrado. É essa checagem que um consultor faz logo no primeiro contato.',
+				'O segundo ponto é o sinal medido no lugar certo: no ponto exato onde o equipamento ficará e no horário de maior uso da operação. Medir na calçada, com o celular na mão, no melhor horário do dia, produz um número bonito e inútil. O que interessa é o comportamento no ponto de instalação enquanto a empresa está trabalhando — exija esse critério de qualquer fornecedor, inclusive de nós.',
+				'O terceiro ponto é o menos comercial de todos: verificar se há previsão de expansão de rede para aquele endereço. Quando existe, com data, e a operação consegue esperar, esperar costuma ser a melhor escolha, resolvendo o intervalo com um arranjo temporário — mesmo que isso encurte o contrato.'
 			]
 		},
 		{
@@ -250,31 +251,32 @@ export default {
 				'Necessidade de IP fixo e de acesso remoto à rede da unidade',
 				'Se a conexão é o link principal ou a redundância de outro acesso',
 				'Prazo de contrato e as condições de saída quando a fibra chegar',
-				'Quantidade de endereços atendidos no mesmo projeto'
+				'Quantidade de endereços atendidos no mesmo projeto',
+				'Volume de linhas reunidas no contrato, com a condição progredindo a partir de dez'
 			]
 		}
 	],
 
 	passos: {
-		titulo: 'Como conduzimos um endereço sem fibra',
+		titulo: 'O que decide um endereço sem fibra',
 		subtitulo:
-			'Quatro etapas, nesta ordem. As duas primeiras são de diagnóstico — e é nelas que decidimos se vale vender alguma coisa agora.',
+			'Quatro etapas, nesta ordem. As duas primeiras são de diagnóstico — e é nelas que se decide se vale contratar alguma coisa agora.',
 		itens: [
 			{
 				title: 'Consulta de viabilidade em mais de uma tecnologia',
-				text: 'Normalizamos o endereço e consultamos o que chega ali de fato, em mais de uma tecnologia, antes de propor qualquer coisa. Boa parte das negativas cai nesta etapa, por divergência de cadastro.'
+				text: 'Um consultor checa o que chega ao endereço de fato, em mais de uma tecnologia e com o endereço normalizado, antes de propor qualquer coisa. Boa parte das negativas cai nesta etapa, por divergência de cadastro.'
 			},
 			{
-				title: 'Teste de sinal no ponto de instalação',
-				text: 'Medimos onde o equipamento vai ficar e no horário de maior uso da operação. O resultado define se a rede móvel entra como link principal, como redundância ou não entra.'
+				title: 'Sinal avaliado no ponto de instalação',
+				text: 'O que vale é o comportamento onde o equipamento vai ficar, no horário de maior uso da operação. É esse resultado que define se a rede móvel entra como link principal, como redundância ou simplesmente não entra.'
 			},
 			{
 				title: 'Proposta com os caminhos viáveis lado a lado',
-				text: 'Apresentamos o que é possível no endereço, com o que cada arranjo resolve e o que deixa de fora — incluindo a opção de aguardar a expansão da rede quando ela for a melhor escolha.'
+				text: 'A proposta mostra o que é possível no endereço, com o que cada arranjo resolve e o que deixa de fora — incluindo a opção de aguardar a expansão da rede quando ela for a melhor escolha.'
 			},
 			{
 				title: 'Ativação acompanhada e plano de saída',
-				text: 'Acompanhamos instalação, apontamento da antena e os primeiros dias de uso. O contrato é fechado já com a resposta para o que acontece quando a fibra chegar ao endereço.'
+				text: 'Instalação, apontamento da antena e primeiros dias de uso são acompanhados pelo consultor que conduziu a contratação. O contrato é fechado já com a resposta para o que acontece quando a fibra chegar ao endereço.'
 			}
 		]
 	},
@@ -323,7 +325,7 @@ export default {
 		},
 		{
 			q: 'E quando a fibra chegar ao meu endereço?',
-			a: 'É por isso que discutimos prazo contratual antes de fechar. A pergunta “como eu saio disso quando a fibra chegar” entra na proposta — e o caminho mais comum é a conexão móvel virar backup do acesso fixo.'
+			a: 'É por isso que o prazo contratual precisa ser discutido antes de fechar. A pergunta “como eu saio disso quando a fibra chegar” entra na proposta — e o caminho mais comum é a conexão móvel virar backup do acesso fixo.'
 		},
 		{
 			q: 'Dá para usar a rede móvel como backup da fibra?',
@@ -334,7 +336,7 @@ export default {
 	cta: {
 		titulo: 'Consulte a viabilidade do seu endereço',
 		texto:
-			'Um consultor confere o endereço em mais de uma tecnologia, avalia o sinal no ponto de instalação e diz com clareza o que atende a sua operação — inclusive quando a recomendação for aguardar a fibra. Sem compromisso e sem cobrança pela consulta.'
+			'Um consultor checa a viabilidade do endereço em mais de uma tecnologia, avalia o que o sinal sustenta no ponto de instalação e diz com clareza o que atende a sua operação — inclusive quando a recomendação for aguardar a fibra. Sem compromisso de contratação.'
 	},
 
 	service: {

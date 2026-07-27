@@ -35,6 +35,25 @@ export const CLUSTERS = {
 		descricao:
 			'Comparações honestas para quem está escolhendo entre caminhos de contratação, operadoras e portes de atendimento.'
 	},
+	// Preço é a intenção comercial mais quente que existe — e a que mais exige
+	// disciplina aqui, por dois motivos.
+	//
+	// 1. O acervo já tem 31 artigos de preço/desconto/ROI, sendo QUATRO quase
+	//    idênticos sobre "planos TIM corporativo preços". Estas páginas existem
+	//    para consolidar a intenção, não para engrossar a fila. A separação está
+	//    escrita na ficha de cada uma.
+	// 2. "melhores preços TIM corporativo", "...para empresas" e "...empresarial"
+	//    são a MESMA intenção e devolvem a mesma SERP. Viraram UMA página, com as
+	//    variações como H2 e FAQ. Três páginas seriam doorway — violação de
+	//    política, não otimização.
+	//
+	// Nenhuma delas publica valor: respondem a busca de preço com os fatores que
+	// compõem o custo, que é o que a venda consultiva permite sustentar.
+	precos: {
+		titulo: 'Preços, descontos e ROI',
+		descricao:
+			'O que determina o valor de um contrato de telecom empresarial, como funciona o desconto por volume e como comparar propostas sem cair na conta de linha isolada.'
+	},
 	contrato: {
 		titulo: 'Contrato, fatura e migração',
 		descricao:

@@ -21,8 +21,13 @@
 // ⚠ REVISAR ANTES DE PUBLICAR: NENHUM prazo de instalação em dias foi escrito
 // nesta página, de propósito — o prazo depende de tecnologia, endereço e
 // necessidade de rede nova. Se a equipe quiser publicar prazo típico, precisa ser
-// dado real e verificável, não estimativa. Confirmar também que a consulta de
-// viabilidade em endereço candidato (antes da locação) é praticada assim.
+// dado real e verificável, não estimativa.
+//
+// ⚠ O QUE ESTA PÁGINA PODE PROMETER: só duas coisas — (1) um consultor checa a
+// viabilidade no endereço candidato e a necessidade da nova unidade e (2) o
+// desconto progressivo melhora conforme o volume, a partir de dez linhas.
+// Nenhuma etapa interna de execução (acompanhamento de obra, teste de carga,
+// liberação da unidade) é afirmada como rotina do time.
 
 export default {
 	slug: 'telecom-para-abertura-de-filial',
@@ -46,10 +51,10 @@ export default {
 		eyebrow: 'Abertura de filial',
 		sub: 'A obra tem data de inauguração e o cronograma de telecom quase nunca entra nela. Quando entra tarde, a unidade abre operando pelo celular de alguém — ou não abre. A ordem correta começa antes do que a maioria imagina: no momento em que o endereço é escolhido.',
 		bullets: [
-			'Consulta de viabilidade no endereço candidato',
+			'Um consultor checa a viabilidade no endereço candidato',
 			'Alternativa técnica quando a rede fixa não chega',
 			'Infraestrutura interna prevista ainda na obra',
-			'Ativação e teste antes da data de inauguração'
+			'Data de ativação anterior à data de inauguração'
 		],
 		ctaPrimario: 'Consultar viabilidade do endereço',
 		whatsapp:
@@ -92,7 +97,7 @@ export default {
 			id: 'por-que-atrasa',
 			h2: 'Por que a inauguração atrasa por causa de telecom',
 			paragrafos: [
-				'Nas aberturas que acompanhamos, o atraso quase nunca vem de uma surpresa técnica exótica. Vem de quatro erros de sequência, todos evitáveis, todos cometidos por gente competente que simplesmente tratou telecom como item de compra e não como item de cronograma.',
+				'Em abertura de unidade, o atraso quase nunca vem de uma surpresa técnica exótica. Vem de quatro erros de sequência, todos evitáveis, todos cometidos por gente competente que simplesmente tratou telecom como item de compra e não como item de cronograma.',
 				'O padrão se repete: a unidade fica pronta, bonita, com equipe contratada e data anunciada — e sem conexão. A operação improvisa por rede móvel de celular pessoal, o sistema de gestão fica lento, a maquininha cai no horário de pico e a primeira impressão do cliente na unidade nova é a de uma empresa desorganizada.'
 			],
 			lista: [
@@ -141,7 +146,7 @@ export default {
 			h2: 'Filial não é empresa nova: o que herdar da matriz',
 			paragrafos: [
 				'O reflexo mais comum ao abrir uma unidade é contratar tudo do zero, como se fosse uma empresa recém-criada. Na maioria dos casos isso é desperdício em três frentes: descarta condições comerciais que a empresa já conquistou, cria uma segunda relação de atendimento onde havia uma, e produz uma fatura separada que ninguém concilia com a primeira.',
-				'Uma filial pode entrar no contrato já existente, somando ao volume total da empresa em vez de começar uma contagem paralela. Isso preserva a faixa de desconto por volume conquistada, mantém um único ponto de atendimento para as duas unidades e simplifica a gestão de linhas, aparelhos e endereços — o que, meses depois, é a diferença entre uma fatura auditável e um quebra-cabeça.',
+				'Uma filial pode entrar no contrato já existente, somando ao volume total da empresa em vez de começar uma contagem paralela. Isso mantém um único ponto de atendimento para as duas unidades e simplifica a gestão de linhas, aparelhos e endereços — o que, meses depois, é a diferença entre uma fatura auditável e um quebra-cabeça. E faz o total contar junto: o desconto progressivo melhora conforme o volume, a partir de dez linhas.',
 				'A telefonia segue a mesma lógica. Antes de gerar um número novo para a unidade nova, vale decidir se a filial deve ter identidade telefônica própria ou operar integrada à estrutura que já existe, com transferência entre unidades. As duas escolhas são defensáveis; a que dá errado é a que ninguém tomou, quando a filial acaba com um número improvisado que nunca é divulgado direito.'
 			]
 		},
@@ -197,7 +202,7 @@ export default {
 			id: 'checklist',
 			h2: 'Doze itens do cronograma de telecom da nova unidade',
 			paragrafos: [
-				'Este é o checklist que usamos para acompanhar uma abertura. Ele cabe em uma página e evita a conversa mais desconfortável de um projeto de expansão: a de explicar por que a unidade pronta não pode abrir.'
+				'Este é o checklist que uma abertura de unidade exige, e ele vale para qualquer fornecedor que estiver no projeto. Cabe em uma página e evita a conversa mais desconfortável de uma expansão: a de explicar por que a unidade pronta não pode abrir.'
 			],
 			checklist: {
 				titulo: 'Cronograma de telecom da filial',
@@ -221,25 +226,25 @@ export default {
 	],
 
 	passos: {
-		titulo: 'Como acompanhamos a abertura de uma unidade',
+		titulo: 'O que um consultor checa na abertura de uma unidade',
 		subtitulo:
-			'Quatro etapas encaixadas no cronograma da obra — não depois dele. A primeira acontece antes de a locação ser assinada.',
+			'Quatro conferências encaixadas no cronograma da obra — não depois dele. A primeira acontece antes de a locação ser assinada.',
 		itens: [
 			{
 				title: 'Viabilidade no endereço candidato',
-				text: 'Consultamos o que de fato chega ao endereço antes de qualquer compromisso de locação. Quando há mais de um imóvel na disputa, a consulta é feita para todos — e vira mais um critério objetivo na escolha.'
+				text: 'Um consultor checa a viabilidade do endereço antes de qualquer compromisso de locação. Quando há mais de um imóvel na disputa, a checagem vale para todos — e vira mais um critério objetivo na escolha do ponto.'
 			},
 			{
-				title: 'Desenho do arranjo da unidade',
-				text: 'Definimos conexão principal, redundância e telefonia conforme o perfil da nova unidade, e listamos o que a obra precisa deixar pronto: ponto de entrada, tubulação, elétrica e local do rack.'
+				title: 'O que a nova unidade precisa',
+				text: 'Conexão principal, redundância e telefonia mudam conforme o perfil da unidade, e a obra precisa receber a lista do que deve deixar pronto: ponto de entrada, tubulação, elétrica e local do rack.'
 			},
 			{
-				title: 'Contratação com data de ativação',
-				text: 'A contratação é feita com data-alvo anterior à inauguração e com o prazo confirmado por escrito. Sempre que possível, a filial entra no contrato existente da empresa, preservando as condições já conquistadas.'
+				title: 'Data de ativação antes da inauguração',
+				text: 'A contratação precisa de data-alvo anterior à abertura e de prazo confirmado por escrito. Quando a filial entra no contrato que a empresa já tem, o volume soma — e o desconto progressivo melhora a partir de dez linhas.'
 			},
 			{
-				title: 'Ativação, teste e liberação',
-				text: 'Acompanhamos a instalação e o teste com carga real — sistemas, meios de pagamento e telefonia — antes da data de abertura. A unidade só é considerada liberada quando o teste passa, não quando o técnico vai embora.'
+				title: 'Teste antes de considerar a unidade pronta',
+				text: 'Sistemas, meios de pagamento e telefonia precisam ser testados com carga real antes da data de abertura. Unidade liberada é a que passou no teste, não a que ficou pronta quando o técnico foi embora.'
 			}
 		]
 	},
@@ -272,7 +277,7 @@ export default {
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — o que inclui acompanhar aberturas de unidades com data de inauguração já anunciada.',
 			'A recomendação que sustenta esta página é uma só, e é de campo: consulte a viabilidade antes de assinar o contrato de locação. Ela não aparece nos materiais sobre abertura de filial porque quem escreve sobre isso trata da constituição da unidade — inscrição, alvará, contabilidade — e não do que chega de rede no imóvel. É uma lacuna que custa caro exatamente porque é barata de resolver.',
-			'A segunda regra é de sequência: definimos o arranjo antes do fim da obra, para que ponto de entrada, tubulação, elétrica e local do rack entrem na planta enquanto a parede ainda está aberta. Depois que o forro fecha, o mesmo cabo passa a custar uma pequena reforma.',
+			'A segunda regra é de sequência: o arranjo precisa estar definido antes do fim da obra, para que ponto de entrada, tubulação, elétrica e local do rack entrem na planta enquanto a parede ainda está aberta. Depois que o forro fecha, o mesmo cabo passa a custar uma pequena reforma.',
 			'Não publicamos prazo de instalação em dias nesta página, e é uma escolha. O prazo depende da tecnologia disponível no endereço e de haver ou não necessidade de rede nova — publicar um número médio serviria para gerar expectativa, não para planejar. O prazo que vale é o confirmado por escrito para o seu endereço.'
 		]
 	},
@@ -289,7 +294,7 @@ export default {
 		},
 		{
 			q: 'A filial pode entrar no contrato da matriz?',
-			a: 'Pode, e em geral deve. Somar a nova unidade ao contrato existente preserva a faixa de desconto por volume já conquistada, mantém um único ponto de atendimento e simplifica a gestão de linhas, endereços e faturas.'
+			a: 'Pode, e em geral deve. Somar a nova unidade ao contrato existente mantém um único ponto de atendimento, simplifica a gestão de linhas, endereços e faturas e faz o volume contar junto: o desconto progressivo melhora conforme o total de linhas, a partir de dez.'
 		},
 		{
 			q: 'Consigo integrar o telefone da matriz com o da filial?',
@@ -304,14 +309,14 @@ export default {
 	cta: {
 		titulo: 'Consulte a viabilidade do endereço da nova unidade',
 		texto:
-			'Informe o endereço completo da filial — mesmo que ainda seja um candidato entre outros — e um consultor verifica o que chega até lá, quais alternativas existem e o que precisa entrar no cronograma da obra. Sem compromisso e sem cobrança pela consulta.'
+			'Informe o endereço completo da filial — mesmo que ainda seja um candidato entre outros — e um consultor checa a viabilidade: o que chega até lá, quais alternativas existem e o que precisa entrar no cronograma da obra. Sem compromisso e sem cobrança pela checagem.'
 	},
 
 	service: {
 		name: 'Telecom para abertura de filial',
 		serviceType: 'Projeto de conectividade para nova unidade empresarial',
 		description:
-			'Consulta de viabilidade em endereço candidato, desenho do arranjo de conectividade e telefonia da nova unidade, definição da infraestrutura interna a prever na obra e acompanhamento da ativação até o teste anterior à inauguração.'
+			'Conectividade e telefonia para unidade nova: um consultor checa a viabilidade no endereço candidato, indica o arranjo adequado e a infraestrutura interna a prever na obra, com desconto progressivo a partir de dez linhas.'
 	},
 
 	relacionadas: [

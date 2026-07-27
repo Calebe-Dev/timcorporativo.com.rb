@@ -3,13 +3,13 @@
 // Ângulo de conversão: VENDA PERDIDA NA HORA DO MOVIMENTO, não custo mensal.
 // Varejista não compra banda; compra a certeza de que o caixa fecha a venda no
 // sábado cheio. A página inteira gira em torno do pico e da comutação que
-// ninguém testou — daí a pergunta que abre toda visita técnica: qual foi a data
-// do último teste de failover?
+// ninguém testou — daí a pergunta que o lojista deveria fazer a qualquer
+// fornecedor: qual foi a data do último teste de failover?
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: o protocolo de piloto em uma loja antes do
-// rollout, a exigência de registrar a data do último teste de comutação e o
-// ponto único de atendimento para a rede descrevem o processo do Grupo OC.
-// Confirme com a equipe que é assim que vocês conduzem.
+// Piloto antes do rollout, data do último teste de comutação e ponto único de
+// atendimento aparecem como CRITÉRIO de contratação — exigível de qualquer
+// fornecedor —, nunca como procedimento interno do Grupo OC. O que a página
+// promete é o que é verdade: um consultor checa a viabilidade de cada endereço.
 
 export default {
 	slug: 'internet-para-redes-de-lojas-e-varejo',
@@ -31,17 +31,17 @@ export default {
 
 	hero: {
 		eyebrow: 'Redes de lojas e varejo',
-		sub: 'PDV que não autoriza cartão, emissão fiscal travada e fila crescendo no sábado. O prejuízo do varejo não é medido em megabits, e sim nas horas em que a loja mais vende. Avaliamos o que cada unidade tem hoje e o que falta para ela não parar.',
+		sub: 'PDV que não autoriza cartão, emissão fiscal travada e fila crescendo no sábado. O prejuízo do varejo não é medido em megabits, e sim nas horas em que a loja mais vende. Um consultor checa a viabilidade de cada endereço e o que falta para a unidade não parar.',
 		bullets: [
 			'Dimensionamento pelo pico de movimento, não pela média',
-			'Comutação automática testada, com data registrada',
+			'Comutação automática testada, com data conhecida',
 			'Wi-Fi de cliente separado da rede do caixa',
 			'Contrato consolidado e um canal só para toda a rede'
 		],
-		ctaPrimario: 'Receber o plano de redundância',
+		ctaPrimario: 'Falar com um consultor',
 		whatsapp:
 			'Olá! Tenho loja física e quero avaliar a internet e o backup do PDV. Podem me ajudar?',
-		cartaoTitulo: 'O que checamos primeiro'
+		cartaoTitulo: 'O que se checa primeiro'
 	},
 
 	keyFacts: [
@@ -85,7 +85,7 @@ export default {
 			h2: 'A conta que o varejo raramente faz',
 			paragrafos: [
 				'O custo de uma queda no varejo não se distribui igualmente pelo mês: ele se concentra em poucas horas do ano. Uma hora de caixa fora do ar numa terça de manhã custa pouco. A mesma hora num sábado de dezembro custa o que a loja faturaria em vários dias comuns somados — e traz uma perda que não volta, porque o cliente que foi embora sem comprar raramente retorna no dia seguinte.',
-				'Quando o varejista faz essa conta com o próprio faturamento por hora — e é uma conta que só ele consegue fazer, porque só ele tem o dado —, a discussão sobre redundância muda de natureza. Deixa de ser um item a cortar do orçamento e vira proteção para o pior dia do calendário. Não temos como calcular isso por você, mas é a primeira informação que pedimos no diagnóstico, porque é ela que define o quanto de redundância faz sentido.'
+				'Quando o varejista faz essa conta com o próprio faturamento por hora — e é uma conta que só ele consegue fazer, porque só ele tem o dado —, a discussão sobre redundância muda de natureza. Deixa de ser um item a cortar do orçamento e vira proteção para o pior dia do calendário. Não temos como calcular isso por você, mas é a primeira informação que um consultor pede ao checar a operação, porque é ela que define o quanto de redundância faz sentido.'
 			]
 		},
 		{
@@ -100,7 +100,7 @@ export default {
 					h3: 'Backup automático contra puxar do celular do gerente',
 					paragrafos: [
 						'Roteamento manual pelo celular do gerente é um plano de contingência que depende de três coisas darem certo ao mesmo tempo: o gerente estar na loja, o aparelho ter bateria e alguém saber trocar a configuração. Comutação automática não depende de ninguém — o equipamento identifica a falha e assume o caminho alternativo enquanto a fila continua andando.',
-						'A pergunta que fazemos em toda visita técnica é uma só, e ela raramente tem resposta: qual foi a data do último teste de comutação? Redundância que nunca foi acionada é suposição. No nosso protocolo, o failover é testado na entrega da loja e a data fica registrada no projeto da unidade — sem isso, ele não é considerado entregue.'
+						'A pergunta que raramente tem resposta é uma só: qual foi a data do último teste de comutação? Redundância que nunca foi acionada é suposição, não proteção. Failover testado na entrega da loja, com a data registrada no projeto da unidade, é o padrão que vale exigir de qualquer fornecedor — sem isso, ninguém consegue afirmar que a loja está coberta.'
 					]
 				},
 				{
@@ -160,7 +160,7 @@ export default {
 					]
 				],
 				caption:
-					'Comparação de arranjos técnicos e de gestão, sem valores: o desenho depende da viabilidade em cada endereço, do que a loja emite e de quanto a operação suporta parada. O projeto sai do diagnóstico feito unidade por unidade.'
+					'Comparação de arranjos técnicos e de gestão, sem valores: o desenho depende da viabilidade em cada endereço, do que a loja emite e de quanto a operação suporta parada. O projeto só se fecha depois de um consultor checar a viabilidade unidade por unidade.'
 			}
 		},
 		{
@@ -205,25 +205,25 @@ export default {
 	],
 
 	passos: {
-		titulo: 'Como o Grupo OC implanta conectividade em rede de lojas',
+		titulo: 'Como avança um projeto de conectividade em rede de lojas',
 		subtitulo:
-			'Quatro etapas, nesta ordem. Nenhuma rede é implantada de uma vez: primeiro uma loja vira padrão, depois o padrão vira rollout.',
+			'Quatro etapas, nesta ordem. Rede nenhuma deveria ser implantada de uma vez: primeiro uma loja vira padrão, depois o padrão vira rollout.',
 		itens: [
 			{
 				title: 'Diagnóstico por unidade e leitura das faturas',
-				text: 'Levantamos o que cada loja tem hoje, o que emite, o que depende de rede e o que está sendo pago sem uso. Em rede com contratos assinados em épocas diferentes, essa etapa costuma render mais que a negociação seguinte.'
+				text: 'Um consultor checa a viabilidade e o cenário de cada loja: o que ela tem hoje, o que emite, o que depende de rede e o que está sendo pago sem uso. Em rede com contratos assinados em épocas diferentes, essa etapa costuma render mais que a negociação seguinte.'
 			},
 			{
 				title: 'Piloto em uma loja',
-				text: 'Escolhemos uma unidade representativa e implantamos ali o desenho completo: link, segmentação, comutação automática e teste de failover com data registrada. Nada é replicado antes de funcionar numa loja com movimento.'
+				text: 'Uma unidade representativa recebe o desenho completo antes das outras: link, segmentação, comutação automática e teste de failover com data registrada. O princípio é não replicar nada antes de funcionar numa loja com movimento.'
 			},
 			{
 				title: 'Padrão validado e rollout por lotes',
-				text: 'O que funcionou no piloto vira o padrão da rede e é replicado por lotes, respeitando o calendário comercial. Nenhuma unidade é migrada em véspera de data de pico.'
+				text: 'O que funcionou no piloto vira o padrão da rede e é replicado por lotes, respeitando o calendário comercial. Unidade nenhuma deveria ser migrada em véspera de data de pico.'
 			},
 			{
 				title: 'Ponto único de atendimento',
-				text: 'Concluído o rollout, a rede passa a ter um só canal para abrir chamado, um consultor que conhece o desenho de cada unidade e faturamento organizado loja por loja.'
+				text: 'Concluído o rollout, o que evita retrabalho é a rede ter um só canal para abrir chamado, um consultor que conhece o desenho de cada unidade e o faturamento organizado loja por loja. É item para deixar acertado no contrato, não para descobrir depois.'
 			}
 		]
 	},
@@ -251,8 +251,9 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
-			'A regra de decisão desta página é própria e explícita: redundância só existe se tiver data do último teste. Failover contratado e nunca acionado é uma linha no contrato, não uma proteção — por isso testamos a comutação na entrega da loja e registramos a data no projeto da unidade.',
-			'A segunda regra é de implantação: nenhuma rede é replicada antes de uma unidade virar padrão validado. O piloto existe para que o erro apareça numa loja só, e não em vinte ao mesmo tempo, na mesma semana.'
+			'A regra de decisão desta página é própria e explícita: redundância só existe se tiver data do último teste. Failover contratado e nunca acionado é uma linha no contrato, não uma proteção — e essa é a primeira pergunta a fazer a quem já atende as suas lojas hoje, nós inclusive.',
+			'A segunda regra é de implantação: nenhuma rede deveria ser replicada antes de uma unidade virar padrão validado. O piloto existe para que o erro apareça numa loja só, e não em vinte ao mesmo tempo, na mesma semana.',
+			'O que prometemos, e é o que dá para prometer, é objetivo: um consultor checa a viabilidade endereço por endereço antes de qualquer proposta, e a condição comercial melhora conforme o volume, com desconto progressivo a partir de dez linhas.'
 		]
 	},
 
@@ -272,18 +273,18 @@ export default {
 		},
 		{
 			q: 'Quanto tempo leva para instalar em uma loja nova?',
-			a: 'Depende da viabilidade técnica no endereço, que é a primeira coisa que confirmamos — antes de qualquer proposta. O cronograma é informado depois dessa checagem, junto com o desenho da unidade.'
+			a: 'Depende da viabilidade técnica no endereço, e é a primeira coisa que um consultor checa — antes de qualquer proposta. O cronograma é informado depois dessa checagem, junto com o desenho da unidade.'
 		},
 		{
 			q: 'O Wi-Fi do cliente pode usar o mesmo link do PDV?',
-			a: 'Pode, desde que em rede separada e com prioridade para a operação. Misturar Wi-Fi de cliente com a rede do caixa é o erro que mais aparece nos nossos diagnósticos de varejo.'
+			a: 'Pode, desde que em rede separada e com prioridade para a operação. Misturar Wi-Fi de cliente com a rede do caixa é o erro que mais aparece em loja que já tem rede instalada.'
 		}
 	],
 
 	cta: {
-		titulo: 'Mapeamos suas lojas e devolvemos o plano de redundância',
+		titulo: 'Fale com um consultor sobre as suas lojas',
 		texto:
-			'Informe quantas unidades você tem e o que cada uma emite. Um consultor confere a viabilidade endereço por endereço e apresenta o desenho antes de qualquer proposta comercial.'
+			'Informe quantas unidades você tem e o que cada uma emite. Um consultor checa a viabilidade endereço por endereço antes de qualquer proposta comercial — e, quando o volume de linhas cresce, o desconto progressivo entra na conta a partir de dez linhas.'
 	},
 
 	service: {

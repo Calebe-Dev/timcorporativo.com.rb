@@ -10,11 +10,13 @@
 // vocabulário da comparação (redundância de rota, SLA uniforme, multiendereço)
 // em vez de disputar adjetivo.
 //
+// A página DECLARA o conflito de interesse ("somos canal TIM") dentro do próprio
+// comparativo — isso é verificável na leitura e fica. O que não entra é
+// procedimento interno: os seis critérios são públicos, aplicáveis pelo leitor
+// sozinho, e a única promessa é a que é verdade — um consultor checa a operação
+// e a viabilidade antes de qualquer recomendação.
+//
 // ⚠ REVISAR ANTES DE PUBLICAR:
-// - a página DECLARA o conflito de interesse ("somos canal TIM") dentro do
-//   próprio comparativo e afirma que já recomendamos manter o provedor atual
-//   como backup. Confirmar que isso de fato acontece — se não acontecer, a
-//   frase precisa sair, porque é ela que sustenta a credibilidade do texto.
 // - nenhuma afirmação sobre topologia de rede de operadora ou provedor
 //   específico entra aqui: o texto compara MODELOS, não marcas. Manter assim.
 
@@ -211,35 +213,35 @@ export default {
 		},
 		{
 			id: 'como-avaliamos',
-			h2: 'Como conduzimos essa avaliação — e o nosso conflito de interesse',
+			h2: 'O que decide essa avaliação — e o nosso conflito de interesse',
 			paragrafos: [
 				'O Grupo OC é representante autorizado TIM. Isso significa que temos interesse comercial em um dos lados desta comparação, e escrever um comparativo sem declarar isso seria uma peça de venda disfarçada. Está declarado, então, no cartão do topo da página e aqui.',
-				'O que fazemos com essa limitação é aplicar os seis critérios ao caso concreto e mostrar o resultado, mesmo quando ele não nos favorece. Quando a empresa tem um endereço único, prazo curto e um provedor local com histórico consistente, dizemos isso. Em parte dos casos a recomendação que sai da análise é manter o fornecedor atual e usar o segundo acesso apenas como caminho alternativo — e essa também é uma proposta legítima.',
-				'A régua que usamos para decidir é própria e cabe em uma frase: conte quantos endereços e quantas horas de parada a operação suporta. Um endereço e tolerância de algumas horas empurram a decisão para o fornecedor mais próximo e mais rápido. Vários endereços ou tolerância perto de zero empurram para a padronização e para a redundância — e, nesse caso, o arranjo híbrido costuma ser a resposta, não a escolha entre um e outro.'
+				'O que dá para fazer com essa limitação é deixar os seis critérios públicos, para você aplicá-los ao seu caso mesmo que a conclusão não nos favoreça. Empresa com endereço único, prazo curto e um provedor local de histórico consistente tem, nos critérios, motivo para ficar onde está. E manter o fornecedor atual usando o segundo acesso apenas como caminho alternativo é um desenho legítimo, não um consolo.',
+				'A régua de decisão é própria e cabe em uma frase, sem depender de consultor para ser aplicada: conte quantos endereços e quantas horas de parada a operação suporta. Um endereço e tolerância de algumas horas empurram a decisão para o fornecedor mais próximo e mais rápido. Vários endereços ou tolerância perto de zero empurram para a padronização e para a redundância — e, nesse caso, o arranjo híbrido costuma ser a resposta, não a escolha entre um e outro.'
 			]
 		}
 	],
 
 	passos: {
-		titulo: 'Como comparamos duas propostas na prática',
+		titulo: 'Como comparar duas propostas na prática',
 		subtitulo:
-			'Traga as duas cotações. A comparação é feita linha a linha, com os critérios visíveis — e o resultado é seu, contrate com quem contratar.',
+			'Traga as duas cotações: um consultor checa a sua operação e os critérios ficam visíveis, linha a linha — o resultado é seu, contrate com quem contratar.',
 		itens: [
 			{
 				title: 'Normalização das propostas',
-				text: 'Colocamos as duas no mesmo formato antes de comparar qualquer coisa: banda de descida e de subida, garantia de banda, SLA, prazo de reparo, IP fixo, prazo de contrato e condições de reajuste. Metade das diferenças aparece só nessa etapa.'
+				text: 'As duas vão para o mesmo formato antes de qualquer comparação: banda de descida e de subida, garantia de banda, SLA, prazo de reparo, IP fixo, prazo de contrato e condições de reajuste. Metade das diferenças aparece só nessa etapa.'
 			},
 			{
 				title: 'Levantamento da operação',
-				text: 'Quantos endereços, quantos usuários simultâneos, quais sistemas dependem da conexão e quanto tempo a operação aguenta parada. Sem esses quatro números, comparar propostas é comparar folhetos.'
+				text: 'Quantos endereços, quantos usuários simultâneos, quais sistemas dependem da conexão e quanto tempo a operação aguenta parada. São os quatro números que um consultor checa antes de opinar sobre qualquer proposta — sem eles, comparar é comparar folhetos.'
 			},
 			{
 				title: 'Aplicação dos seis critérios',
 				text: 'Cada proposta recebe a mesma régua, e as lacunas viram perguntas para os fornecedores. É comum uma das duas mudar de posição depois que as respostas chegam por escrito.'
 			},
 			{
-				title: 'Recomendação com o porquê explícito',
-				text: 'Entregamos a recomendação com o critério que a determinou, inclusive quando ela é manter o fornecedor atual. Se o desenho indicado for híbrido, definimos quem responde por diagnosticar cada falha.'
+				title: 'Decisão com o porquê explícito',
+				text: 'A recomendação vem com o critério que a determinou, inclusive quando ela aponta para manter o fornecedor atual. Se o desenho indicado for híbrido, quem responde por diagnosticar cada falha precisa estar definido antes da assinatura.'
 			}
 		]
 	},
@@ -266,8 +268,8 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — o que significa que já comparamos propostas de provedores regionais e de operadoras nacionais na mesma mesa muitas vezes.',
-			'Somos representante autorizado TIM e está escrito na própria página comparativa, não em uma nota de rodapé. A comparação que oferecemos é a dos critérios; a recomendação depende do seu caso e há situações em que ela aponta para manter o fornecedor atual, inclusive um provedor regional, com o segundo acesso entrando apenas como caminho alternativo.',
+			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — perfis que convivem, no dia a dia, com os dois modelos de fornecimento comparados nesta página.',
+			'Somos representante autorizado TIM e está escrito na própria página comparativa, não em uma nota de rodapé. O que oferecemos é a régua dos critérios e um consultor que checa a viabilidade e a sua operação antes de qualquer recomendação; o resultado depende do seu caso, e há situações em que o critério aponta para manter o fornecedor atual, inclusive um provedor regional, com o segundo acesso entrando apenas como caminho alternativo.',
 			'A regra de decisão é própria e dispensa consultor para ser aplicada: conte endereços e horas de parada toleradas. Um endereço com alguma tolerância favorece o fornecedor mais próximo; vários endereços ou tolerância próxima de zero favorecem padronização e redundância. Se a sua resposta ficar no meio do caminho, o desenho correto quase sempre é o híbrido.'
 		]
 	},
@@ -288,7 +290,7 @@ export default {
 		},
 		{
 			q: 'Vocês são canal TIM. Essa comparação é imparcial?',
-			a: 'Somos canal autorizado TIM e isso está declarado na página. A comparação é dos critérios, e eles funcionam com qualquer fornecedor. A recomendação depende do seu caso, e há situações em que indicamos manter o fornecedor atual.'
+			a: 'Somos canal autorizado TIM e isso está declarado na página. A comparação é dos critérios, e eles funcionam com qualquer fornecedor — você consegue aplicá-los sozinho. O resultado depende do seu caso, e há situações em que o critério aponta para manter o fornecedor atual.'
 		},
 		{
 			q: 'O que é redundância de rota, na prática?',
@@ -299,7 +301,7 @@ export default {
 	cta: {
 		titulo: 'Traga as duas propostas: comparamos linha a linha',
 		texto:
-			'Envie as cotações que você já tem em mãos, sejam elas de quem forem. Normalizamos as duas no mesmo formato, aplicamos os seis critérios e devolvemos a leitura com o porquê de cada ponto — sem cobrança e sem compromisso de contratar.'
+			'Envie as cotações que você já tem em mãos, sejam elas de quem forem. Um consultor checa a viabilidade do seu endereço e a sua operação — endereços, tolerância a parada e o que depende da conexão — e passa os seis critérios com você, ponto a ponto. Sem cobrança e sem compromisso de contratar.'
 	},
 
 	service: {

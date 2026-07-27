@@ -6,10 +6,10 @@
 // objeção nº 1 de toda direção escolar — e ancora a decisão na janela de recesso,
 // porque escola não para para receber instalação.
 //
-// ⚠ REVISAR ANTES DE PUBLICAR: o critério de dimensionar por dispositivo
-// simultâneo no pico, o levantamento de campo sala por sala e a prática de
-// posicionar a implantação na janela de recesso descrevem o método do Grupo OC
-// em projeto escolar. Confirme com a equipe antes de publicar.
+// O critério de dimensionar por dispositivo simultâneo no pico e a janela de
+// recesso são CRITÉRIOS do setor e continuam na página — o que não aparece é
+// procedimento interno do Grupo OC. O que a página promete é o que é verdade: um
+// consultor checa a viabilidade no endereço e o uso real de cada área.
 
 export default {
 	slug: 'internet-para-escolas-e-instituicoes-de-ensino',
@@ -31,17 +31,17 @@ export default {
 
 	hero: {
 		eyebrow: 'Escolas e instituições de ensino',
-		sub: 'Contratar mais banda e continuar com a aula travando é a queixa mais comum de quem dirige escola. O gargalo costuma estar na distribuição dentro do prédio, não na estrada que chega até ele. Fazemos o levantamento sala por sala antes de propor qualquer coisa.',
+		sub: 'Contratar mais banda e continuar com a aula travando é a queixa mais comum de quem dirige escola. O gargalo costuma estar na distribuição dentro do prédio, não na estrada que chega até ele. Um consultor checa a viabilidade no endereço e o uso real de cada área antes de propor qualquer coisa.',
 		bullets: [
-			'Levantamento de campo por sala e por ponto de acesso',
+			'Viabilidade e uso de cada sala checados antes da proposta',
 			'Dimensionamento por dispositivo simultâneo no pico',
 			'Secretaria, aula, câmeras e visitante em redes separadas',
-			'Implantação planejada para a janela de recesso'
+			'Janela de recesso como referência do cronograma'
 		],
-		ctaPrimario: 'Agendar o levantamento da escola',
+		ctaPrimario: 'Falar com um consultor',
 		whatsapp:
 			'Olá! Sou de uma escola e quero avaliar a internet e o Wi-Fi das salas. Podem me ajudar?',
-		cartaoTitulo: 'O que avaliamos primeiro'
+		cartaoTitulo: 'O que se avalia primeiro'
 	},
 
 	keyFacts: [
@@ -51,9 +51,9 @@ export default {
 			nota: 'Uma sala com dezenas de aparelhos satura o ponto de acesso independentemente da banda contratada.'
 		},
 		{
-			label: 'Como dimensionamos',
+			label: 'Como se dimensiona',
 			value: 'Por aparelho no pico',
-			nota: 'Contamos dispositivos conectados ao mesmo tempo em dia de prova — não metragem nem matrículas.'
+			nota: 'O que conta são os dispositivos conectados ao mesmo tempo em dia de prova — não metragem nem matrículas.'
 		},
 		{
 			label: 'Experiência',
@@ -91,7 +91,7 @@ export default {
 					h3: 'Densidade de dispositivos por sala',
 					paragrafos: [
 						'O dimensionamento de uma escola sai do número de aparelhos conectados simultaneamente no pico, não da metragem do prédio nem do total de matrículas. Uma sala com um carrinho de tablets em uso e uma sala com projeção passiva têm demandas incomparáveis, ainda que tenham exatamente o mesmo tamanho e o mesmo número de alunos sentados.',
-						'Na prática, isso significa levantar quantos pontos de acesso existem, onde estão instalados, quantos aparelhos cada um atende no horário de maior uso e quais salas têm uso pedagógico intensivo. É um levantamento de campo feito no prédio, com o mapa da escola na mão — não uma conta feita por telefone.'
+						'Na prática, isso significa levantar quantos pontos de acesso existem, onde estão instalados, quantos aparelhos cada um atende no horário de maior uso e quais salas têm uso pedagógico intensivo. São números que só existem dentro do prédio, com o mapa da escola na mão — nenhum deles sai de uma conta feita por telefone.'
 					]
 				},
 				{
@@ -115,7 +115,7 @@ export default {
 			h2: 'Segmentação: aluno, professor, administrativo e visitante',
 			paragrafos: [
 				'A secretaria guarda dado de menor de idade, contrato de matrícula e informação financeira de família. Ela nunca deve dividir o mesmo ambiente de rede com o aparelho pessoal de aluno. Essa é uma regra de desenho, não uma recomendação opcional, e vale igualmente na escola de bairro e na instituição com várias unidades.',
-				'O desenho usual separa quatro redes sobre o mesmo link, cada uma com sua prioridade e suas permissões. A rede de visitante — usada em reunião de pais, evento e por prestador de serviço — é a que mais frequentemente aparece aberta e ligada ao mesmo ambiente da secretaria nos diagnósticos que fazemos, geralmente porque foi criada às pressas para um evento e nunca mais foi revista.'
+				'O desenho usual separa quatro redes sobre o mesmo link, cada uma com sua prioridade e suas permissões. A rede de visitante — usada em reunião de pais, evento e por prestador de serviço — é a que mais frequentemente aparece aberta e ligada ao mesmo ambiente da secretaria em escola que já tem rede instalada, geralmente porque foi criada às pressas para um evento e nunca mais foi revista.'
 			],
 			lista: [
 				'Administrativa: secretaria, matrícula, financeiro e direção',
@@ -163,7 +163,7 @@ export default {
 					]
 				],
 				caption:
-					'Comparação de arranjos técnicos, sem valores: o desenho depende do número de aparelhos simultâneos no pico, do uso pedagógico de cada sala e da viabilidade no endereço. O arranjo definitivo sai do levantamento feito sala por sala.'
+					'Comparação de arranjos técnicos, sem valores: o desenho depende do número de aparelhos simultâneos no pico, do uso pedagógico de cada sala e da viabilidade no endereço. O arranjo definitivo só se fecha depois de um consultor checar a viabilidade e o uso real de cada área.'
 			}
 		},
 		{
@@ -174,7 +174,7 @@ export default {
 			],
 			checklist: {
 				titulo: 'Dez itens antes de fechar o contrato da escola',
-				intro: 'Leve o levantamento de campo junto: sem ele, qualquer proposta é palpite bem formatado.',
+				intro: 'Leve junto os números de uso de cada sala: sem eles, qualquer proposta é palpite bem formatado.',
 				itens: [
 					'Bandas de descida e de subida contratadas, informadas separadamente',
 					'Número de aparelhos conectados simultaneamente no horário de pico',
@@ -193,8 +193,8 @@ export default {
 			id: 'janela-de-implantacao',
 			h2: 'A janela certa para trocar é o recesso',
 			paragrafos: [
-				'Escola não tem folga de calendário: tem recesso. Toda troca de operadora, mudança de link e reorganização de rede interna que fazemos em instituição de ensino é planejada para caber na janela sem aula, com a decisão tomada com antecedência suficiente para que a instalação não dependa de sorte nem de improviso.',
-				'Isso inverte a ordem natural da conversa comercial. Em vez de perguntar quando você quer contratar, perguntamos qual é o próximo recesso e trabalhamos de trás para frente: levantamento de campo, viabilidade no endereço, proposta, aprovação e implantação, tudo posicionado para terminar antes do primeiro sinal do ano letivo.',
+				'Escola não tem folga de calendário: tem recesso. Toda troca de operadora, mudança de link e reorganização de rede interna em instituição de ensino precisa caber na janela sem aula, com a decisão tomada com antecedência suficiente para que a instalação não dependa de sorte nem de improviso.',
+				'Isso inverte a ordem natural da conversa comercial. Em vez de partir de quando a escola quer contratar, a conta se faz de trás para frente, a partir do próximo recesso: levantamento do uso, viabilidade checada no endereço, proposta, aprovação e implantação, tudo posicionado para terminar antes do primeiro sinal do ano letivo.',
 				'Quando a necessidade aparece no meio do semestre — e às vezes aparece —, a implantação é feita em etapas, começando pelo que não interrompe aula: secretaria, portaria e áreas administrativas primeiro, salas e laboratório na janela seguinte.'
 			]
 		},
@@ -217,25 +217,25 @@ export default {
 	],
 
 	passos: {
-		titulo: 'Como conduzimos um projeto de instituição de ensino',
+		titulo: 'Como avança um projeto de instituição de ensino',
 		subtitulo:
 			'Quatro etapas, nesta ordem, encaixadas no calendário letivo — porque escola não para para receber instalação.',
 		itens: [
 			{
-				title: 'Levantamento de campo, sala por sala',
-				text: 'Contamos pontos de acesso, aparelhos simultâneos no pico e mapeamos quais salas têm uso pedagógico intensivo. É o levantamento que separa problema de link de problema de rede interna, e ele é feito dentro do prédio.'
+				title: 'Uso de cada sala levantado com a escola',
+				text: 'Pontos de acesso instalados, aparelhos simultâneos no pico e as salas de uso pedagógico intensivo. São os números que separam problema de link de problema de rede interna, e eles só aparecem dentro do prédio.'
 			},
 			{
 				title: 'Viabilidade no endereço e leitura do contrato atual',
-				text: 'Confirmamos o que de fato chega ao endereço da escola e lemos o contrato vigente para identificar o que está contratado, o que é usado e o que é pago sem uso.'
+				text: 'Um consultor checa a viabilidade no endereço da escola e o que o contrato vigente já cobre: o que está contratado, o que é usado e o que é pago sem uso.'
 			},
 			{
 				title: 'Proposta com as redes já desenhadas',
-				text: 'Apresentamos o arranjo com as quatro redes separadas — administrativa, pedagógica, visitante e segurança — e com a prioridade de cada uma definida por escrito, não combinada de boca.'
+				text: 'A proposta traz o arranjo com as quatro redes separadas — administrativa, pedagógica, visitante e segurança — e a prioridade de cada uma definida por escrito, não combinada de boca.'
 			},
 			{
 				title: 'Implantação na janela de recesso',
-				text: 'Agendamos instalação e portabilidade para o período sem aula. A estrutura antiga só é desligada depois de a nova ser validada, e o projeto é encerrado antes do início das aulas.'
+				text: 'Instalação e portabilidade combinadas para o período sem aula, com a estrutura antiga saindo do ar só depois de a nova estar validada. É a janela que o cronograma precisa respeitar para terminar antes do início das aulas.'
 			}
 		]
 	},
@@ -243,7 +243,7 @@ export default {
 	objecoes: [
 		{
 			q: '“Contratamos uma velocidade alta e mesmo assim cai.”',
-			a: 'É a queixa mais comum em escola e quase nunca se resolve com mais banda. Se dezenas de aparelhos disputam o mesmo ponto de acesso, o gargalo está na rede interna e o link poderia ser o dobro sem mudança perceptível na sala. O levantamento de campo diz em qual das duas camadas está o problema — e às vezes a resposta é que o link já está adequado e o dinheiro deve ir para outro lugar.'
+			a: 'É a queixa mais comum em escola e quase nunca se resolve com mais banda. Se dezenas de aparelhos disputam o mesmo ponto de acesso, o gargalo está na rede interna e o link poderia ser o dobro sem mudança perceptível na sala. Só olhando as duas camadas dá para saber onde está o problema — e às vezes a resposta é que o link já está adequado e o dinheiro deve ir para outro lugar.'
 		},
 		{
 			q: '“Wi-Fi é problema de quem vendeu os roteadores.”',
@@ -255,7 +255,7 @@ export default {
 		},
 		{
 			q: '“Trocar no meio do ano letivo é impossível.”',
-			a: 'Concordamos, e é por isso que trabalhamos com o recesso como data-alvo. Quando a necessidade não pode esperar, começamos pelas áreas que não interrompem aula — secretaria, portaria e administrativo — e deixamos a parte pedagógica para a janela sem alunos no prédio.'
+			a: 'Concordamos, e é por isso que o recesso costuma ser a data-alvo de qualquer projeto escolar. Quando a necessidade não pode esperar, o caminho é começar pelas áreas que não interrompem aula — secretaria, portaria e administrativo — e deixar a parte pedagógica para a janela sem alunos no prédio.'
 		}
 	],
 
@@ -263,7 +263,7 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
-			'O critério que orienta esta página é próprio: escola se dimensiona por aparelho conectado simultaneamente no pico — nunca por metragem, número de matrículas ou velocidade contratada. É por isso que o nosso levantamento é feito no prédio, sala por sala, antes de qualquer proposta ser escrita.',
+			'O critério que orienta esta página é próprio: escola se dimensiona por aparelho conectado simultaneamente no pico — nunca por metragem, número de matrículas ou velocidade contratada. É por isso que nenhuma proposta sai antes de um consultor checar a viabilidade no endereço e o uso real de cada área da escola.',
 			'A segunda regra é de calendário: projeto escolar se planeja de trás para frente, a partir do recesso. Instalação em semana de aula é a origem da maior parte das reclamações que ouvimos sobre trocas anteriores de fornecedor.'
 		]
 	},
@@ -284,7 +284,7 @@ export default {
 		},
 		{
 			q: 'Qual a melhor época para trocar a operadora da escola?',
-			a: 'O recesso. Planejamos levantamento, viabilidade e portabilidade para terminar antes do início das aulas, com o cronograma acertado ainda na fase de proposta.'
+			a: 'O recesso. Levantamento do uso, viabilidade e portabilidade precisam terminar antes do início das aulas, e é ainda na fase de proposta que esse cronograma se acerta com o consultor.'
 		},
 		{
 			q: 'A escola mantém o telefone da secretaria ao trocar de operadora?',
@@ -293,9 +293,9 @@ export default {
 	],
 
 	cta: {
-		titulo: 'Agende o levantamento antes do próximo ano letivo',
+		titulo: 'Fale com um consultor antes do próximo ano letivo',
 		texto:
-			'Um consultor percorre a escola sala por sala, confere a viabilidade no endereço e posiciona a implantação na janela de recesso. O levantamento não tem custo e não obriga a contratar.'
+			'Um consultor checa a viabilidade no endereço, levanta com a escola o uso de cada área e ajuda a posicionar a implantação na janela de recesso. A conversa não tem custo e não obriga a contratar.'
 	},
 
 	service: {

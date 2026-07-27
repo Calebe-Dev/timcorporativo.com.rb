@@ -6,22 +6,22 @@
 // conversa que as outras três não têm: uma planta não é um endereço, são quatro
 // ambientes com exigências distintas dentro do mesmo terreno.
 //
-// O elemento não-gerável por IA aqui é a MEDIÇÃO DE COBERTURA POR AMBIENTE
-// dentro da planta antes da proposta, e a articulação de planta + frota + equipe
-// externa num contrato só. Nenhuma IA genérica descreve isso porque depende de
-// alguém ter andado pelo galpão.
+// O elemento não-gerável por IA aqui é o CRITÉRIO DE COBERTURA POR AMBIENTE —
+// uma planta não é um endereço, são quatro ambientes com exigências distintas —
+// e a articulação de planta + frota + equipe externa num contrato só.
+//
+// ⚠ O QUE ESTA PÁGINA PODE PROMETER: só duas coisas — (1) um consultor checa a
+// viabilidade no endereço industrial e a necessidade de cada ambiente e (2) o
+// desconto progressivo melhora conforme o volume, a partir de dez linhas. O
+// critério técnico dos quatro ambientes permanece como CONHECIMENTO DO SETOR,
+// nunca como roteiro de visita ou medição executada pelo time.
 //
 // ⚠ REVISAR ANTES DE PUBLICAR (1): a BYD está entre os clientes atendidos pelo
 // Grupo OC — confirme com a diretoria o que pode ser dito publicamente sobre o
 // escopo desse atendimento. O texto abaixo cita apenas a relação, sem descrever
 // projeto, e é assim que deve permanecer se não houver autorização formal.
 //
-// ⚠ REVISAR (2): o roteiro de visita por ambiente (administrativo, chão de
-// fábrica, galpão/pátio, portaria) descreve como o time conduz projeto
-// industrial. Confirme antes de publicar — é a peça central de E-E-A-T da
-// página.
-//
-// ⚠ REVISAR (3): nenhum nome de distrito industrial foi usado, de propósito.
+// ⚠ REVISAR (2): nenhum nome de distrito industrial foi usado, de propósito.
 // Afirmar disponibilidade ou ausência de rede em área nomeada é dado que
 // envelhece e que não temos como sustentar por escrito.
 
@@ -32,7 +32,7 @@ export default {
 
 	title: 'Telecom para Indústrias em Sorocaba e Região',
 	description:
-		'Conectividade para indústrias em Sorocaba e região: galpão coberto, ERP e chão de fábrica conectados, com consultor que visita a planta.',
+		'Conectividade para indústrias em Sorocaba e região: galpão coberto, ERP e chão de fábrica conectados, com viabilidade checada por um consultor.',
 	keywords:
 		'internet para indústria em Sorocaba, conectividade para indústria região de Sorocaba, telecom para fábrica Votorantim, internet para galpão industrial Sorocaba, telefonia corporativa para indústria Sorocaba, conectividade para planta industrial Iperó',
 	keywordPrimaria: 'internet para indústria em Sorocaba',
@@ -41,21 +41,21 @@ export default {
 
 	cardTitulo: 'Indústrias em Sorocaba e região',
 	cardTexto:
-		'Uma planta não é um endereço: são quatro ambientes com exigências diferentes. O que medimos dentro do galpão antes de escrever qualquer proposta.',
+		'Uma planta não é um endereço: são quatro ambientes com exigências diferentes. O que precisa ser checado dentro do galpão antes de qualquer proposta.',
 
 	hero: {
 		eyebrow: 'Indústria · Sorocaba e região',
-		sub: 'Administrativo, chão de fábrica, galpão e portaria estão no mesmo terreno e não têm a mesma necessidade de rede. Visitamos a planta, medimos cobertura por ambiente e só então desenhamos o projeto — inclusive a frota e a equipe externa, no mesmo contrato.',
+		sub: 'Administrativo, chão de fábrica, galpão e portaria estão no mesmo terreno e não têm a mesma necessidade de rede. Um consultor checa a viabilidade no endereço industrial e a necessidade de cada ambiente antes de qualquer proposta — inclusive a frota e a equipe externa, no mesmo contrato.',
 		bullets: [
-			'Visita à planta com medição de sinal por ambiente',
+			'Um consultor checa a viabilidade no endereço da planta',
 			'Redundância para ERP, emissão fiscal e expedição não pararem',
 			'Cobertura em galpão, pátio e portaria, não só no escritório',
 			'Planta, frota e equipe de campo com um ponto de atendimento'
 		],
-		ctaPrimario: 'Agendar visita técnica à planta',
+		ctaPrimario: 'Checar a viabilidade da minha planta',
 		whatsapp:
-			'Olá! Temos uma indústria na região de Sorocaba e queremos avaliar a conectividade da planta. Podem visitar?',
-		cartaoTitulo: 'Como olhamos uma planta'
+			'Olá! Temos uma indústria na região de Sorocaba e queremos avaliar a conectividade da planta. Podem ajudar?',
+		cartaoTitulo: 'O que uma planta exige'
 	},
 
 	keyFacts: [
@@ -65,9 +65,9 @@ export default {
 			nota: 'Um endereço, quatro ambientes. Banda boa na administração não significa sinal na expedição.'
 		},
 		{
-			label: 'O que medimos antes de propor',
+			label: 'O que checar antes de contratar',
 			value: 'Cobertura por ambiente',
-			nota: 'Escritório, chão de fábrica, galpão e pátio medidos no local, com a produção rodando.'
+			nota: 'Escritório, chão de fábrica, galpão e pátio se comportam de formas diferentes com a produção rodando.'
 		},
 		{
 			label: 'Porte atendido',
@@ -77,7 +77,7 @@ export default {
 	],
 
 	resumo:
-		'Conectar uma indústria é conectar quatro ambientes com exigências diferentes no mesmo terreno: administrativo, chão de fábrica, galpão ou pátio e portaria. O projeto começa com visita à planta e medição de cobertura por ambiente, porque banda contratada não resolve sinal que não chega ao lugar onde a operação acontece.',
+		'Conectar uma indústria é conectar quatro ambientes com exigências diferentes no mesmo terreno: administrativo, chão de fábrica, galpão ou pátio e portaria. O projeto começa por checar a viabilidade no endereço industrial e a cobertura exigida por cada ambiente, porque banda contratada não resolve sinal que não chega ao lugar onde a operação acontece.',
 
 	secoes: [
 		{
@@ -188,7 +188,7 @@ export default {
 					]
 				],
 				caption:
-					'Comparação de arranjos técnicos, sem valores: o desenho viável depende do que chega ao endereço industrial e do resultado da medição por ambiente. A proposta é montada planta a planta.'
+					'Comparação de arranjos técnicos, sem valores: o desenho viável depende do que chega ao endereço industrial e da cobertura que cada ambiente exige. A proposta é montada planta a planta.'
 			}
 		},
 		{
@@ -219,34 +219,34 @@ export default {
 		},
 		{
 			id: 'visita-a-planta',
-			h2: 'Como conduzimos um projeto industrial',
+			h2: 'O que precisa estar checado antes de uma proposta industrial',
 			paragrafos: [
-				'Começamos pela visita, não pela proposta. O roteiro percorre os quatro ambientes com a produção em funcionamento, mede sinal onde a equipe efetivamente usa dispositivo móvel e registra o que a planta faz hoje quando a conexão cai — que é, quase sempre, a informação mais reveladora do dia.',
-				'Só depois disso a viabilidade é consultada e a proposta é escrita, ambiente por ambiente, dizendo o que cada parte resolve e o que fica de fora. A ativação é planejada para não exigir parada: o serviço novo entra em paralelo e o antigo só é desligado depois de validado com a operação rodando.'
+				'A conferência vem antes da proposta, e não o contrário. Ela precisa cobrir os quatro ambientes com a produção em funcionamento, o sinal onde a equipe efetivamente usa dispositivo móvel e o que a planta faz hoje quando a conexão cai — que é, quase sempre, a informação mais reveladora sobre a operação.',
+				'Um consultor checa a viabilidade no endereço industrial e a necessidade de cada ambiente antes de qualquer promessa; só então faz sentido comparar arranjos, dizendo o que cada parte resolve e o que fica de fora. A ativação, quando acontece, é planejada para não exigir parada — o serviço novo entra e é validado com a operação rodando antes de o antigo sair.'
 			]
 		}
 	],
 
 	passos: {
-		titulo: 'Da visita à planta ao projeto no ar',
+		titulo: 'O que um consultor checa numa planta industrial',
 		subtitulo:
-			'Quatro etapas. A primeira acontece dentro da planta, com a produção rodando — sem isso o resto é chute com papel timbrado.',
+			'Quatro conferências. A primeira é sobre o terreno, e sem ela o resto é chute com papel timbrado.',
 		itens: [
 			{
-				title: 'Visita e medição por ambiente',
-				text: 'Percorremos administrativo, chão de fábrica, galpão ou pátio e portaria, medindo cobertura onde a equipe trabalha e registrando o comportamento atual da rede em horário de operação — não em horário vazio.'
-			},
-			{
 				title: 'Viabilidade no endereço industrial',
-				text: 'Consulta do que chega ao terreno em mais de uma tecnologia, incluindo a alternativa pela rede móvel quando a rede fixa não alcança o local. Nada é prometido antes dessa confirmação.'
+				text: 'Um consultor checa a viabilidade do terreno em mais de uma tecnologia, incluindo a alternativa pela rede móvel quando a rede fixa não alcança o local. Nada é prometido antes dessa confirmação.'
 			},
 			{
-				title: 'Proposta por ambiente e por criticidade',
-				text: 'O projeto é apresentado separando o que protege o faturamento do que é conforto operacional, com redundância onde a parada custa caro. Frota e equipe externa entram no mesmo desenho.'
+				title: 'A necessidade de cada ambiente',
+				text: 'Administrativo, chão de fábrica, galpão ou pátio e portaria exigem coisas diferentes. A conferência vale para onde a equipe realmente trabalha e em horário de operação — não em horário vazio.'
 			},
 			{
-				title: 'Ativação sem parar a produção',
-				text: 'Instalação em paralelo, validação com a planta em funcionamento e desligamento do serviço antigo só depois. A portabilidade dos números da empresa é agendada para janela combinada.'
+				title: 'O que não pode parar, e o que isso exige',
+				text: 'Separar o que protege o faturamento do que é conforto operacional é o que define onde a redundância faz falta. Frota e equipe externa entram na mesma conversa, e não em um contrato à parte.'
+			},
+			{
+				title: 'O volume que a planta já tem',
+				text: 'Planta, linhas móveis da equipe externa e rastreamento somam no mesmo contrato. O desconto progressivo melhora conforme esse volume, a partir de dez linhas, em vez de tratar cada frente como um cliente diferente.'
 			}
 		]
 	},
@@ -262,7 +262,7 @@ export default {
 		},
 		{
 			q: '“Não podemos parar a produção para instalar nada.”',
-			a: 'E não precisa. Instalação e ativação são feitas em paralelo à estrutura atual, com validação antes do desligamento do serviço antigo. O que exige combinação prévia é o acesso físico a áreas restritas e o horário de trabalho da equipe técnica dentro da planta.'
+			a: 'E não precisa — esse é o critério a exigir de qualquer fornecedor: o acesso novo entra em paralelo à estrutura atual e é validado antes de o antigo ser desligado. O que exige combinação prévia é o acesso físico a áreas restritas e o horário de trabalho da equipe técnica dentro da planta.'
 		},
 		{
 			q: '“Nossa TI resolve isso internamente.”',
@@ -274,8 +274,9 @@ export default {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
 			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial e é representante autorizado TIM, com operação conduzida de Sorocaba — Rua Tereza Lopes, 677, Vila Hortência, CNPJ 23.474.830/0001-56. O perfil público no Google reúne 110 avaliações com nota 4,9, e a BYD está entre os clientes atendidos.',
-			'O critério próprio que organiza esta página é a medição de cobertura por ambiente antes da proposta. Ele nasceu de repetição: projeto industrial vendido pela banda contratada funciona na administração e falha na expedição, e a conta desse erro chega como atraso de carga, não como reclamação de internet.',
-			'A segunda escolha deliberada é tratar planta, frota e equipe externa como um projeto só. Não é preferência comercial: é o que permite responder quantas linhas a empresa tem, quem usa cada uma e quando o contrato vence — três perguntas que a maioria das indústrias com fornecedores espalhados não consegue responder de imediato.'
+			'O critério que organiza esta página é a cobertura conferida por ambiente antes de qualquer proposta. Ele não é preferência de escrita: projeto industrial vendido pela banda contratada funciona na administração e falha na expedição, e a conta desse erro chega como atraso de carga, não como reclamação de internet.',
+			'O segundo critério é tratar planta, frota e equipe externa como uma coisa só. Não é preferência comercial: é o que permite responder quantas linhas a empresa tem, quem usa cada uma e quando o contrato vence — três perguntas que a maioria das indústrias com fornecedores espalhados não consegue responder de imediato. É também o que faz o volume contar junto, e o desconto progressivo melhora conforme esse total, a partir de dez linhas.',
+			'O que fica prometido aqui é curto: um consultor checa a viabilidade no endereço industrial e a necessidade de cada ambiente, sem custo e antes de qualquer proposta. Nenhum prazo de instalação, nenhuma promessa de cobertura fechada por escrito antes dessa checagem.'
 		]
 	},
 
@@ -291,11 +292,11 @@ export default {
 		},
 		{
 			q: 'Dá para instalar sem parar a produção?',
-			a: 'Sim. A instalação acontece em paralelo à estrutura existente e o serviço antigo só é desligado depois da validação. O que precisa ser combinado antes é o acesso a áreas restritas e o horário da equipe técnica dentro da planta.'
+			a: 'Sim, e a ordem é a mesma em qualquer fornecedor sério: o acesso novo entra em paralelo à estrutura existente e o antigo só sai depois da validação. O que precisa ser combinado antes é o acesso a áreas restritas e o horário da equipe técnica dentro da planta.'
 		},
 		{
 			q: 'Vocês atendem planta em Votorantim, Itu, Boituva ou Iperó?',
-			a: 'Sim, presencialmente — são cidades do eixo atendido a partir de Sorocaba, com visita agendada. Não há unidade física nessas cidades; o atendimento é por deslocamento, e há uma página desta seção explicando como isso funciona.'
+			a: 'Sim: são cidades da área atendida a partir de Sorocaba, onde fica a unidade física. Nessas cidades não há escritório nem equipe fixa, e um consultor checa a viabilidade do endereço industrial do mesmo jeito. Há uma página desta seção explicando como isso funciona.'
 		},
 		{
 			q: 'Conseguem atender também a frota e a equipe externa?',
@@ -304,16 +305,16 @@ export default {
 	],
 
 	cta: {
-		titulo: 'Agende a visita técnica à sua planta',
+		titulo: 'Comece pela checagem de viabilidade da sua planta',
 		texto:
-			'Um consultor percorre os ambientes da planta com a produção rodando, mede cobertura onde a equipe trabalha e confirma a viabilidade no endereço antes de qualquer proposta. Sem custo e sem compromisso.'
+			'Um consultor checa a viabilidade no endereço industrial e a necessidade de cada ambiente — administrativo, chão de fábrica, galpão e portaria — antes de qualquer proposta. Sem custo e sem compromisso.'
 	},
 
 	service: {
 		name: 'Conectividade e telecom para indústrias em Sorocaba e região',
 		serviceType: 'Conectividade empresarial para indústria',
 		description:
-			'Projeto de conectividade para plantas industriais em Sorocaba e região: visita com medição de cobertura por ambiente, viabilidade no endereço industrial, redundância para ERP e emissão fiscal, cobertura em galpão e pátio, e integração de frota e equipe externa no mesmo contrato.',
+			'Projeto de conectividade para plantas industriais em Sorocaba e região: viabilidade checada no endereço industrial, redundância para ERP e emissão fiscal, cobertura em galpão e pátio, e integração de frota e equipe externa no mesmo contrato.',
 		areaServed: [
 			{ '@type': 'City', name: 'Sorocaba' },
 			{ '@type': 'City', name: 'Votorantim' },
