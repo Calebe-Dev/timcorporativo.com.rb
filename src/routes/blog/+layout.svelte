@@ -6,6 +6,6 @@
 	let { children, data } = $props();
 </script>
 
-<BlogShell artigos={data.artigosRecentes} total={data.totalArtigos}>
+<BlogShell artigos={data.artigosRecentes} total={data.totalArtigos} solucoes={data.solucoes}>
 	{@render children()}
 </BlogShell>

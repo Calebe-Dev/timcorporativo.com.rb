@@ -5,12 +5,12 @@
 	// renderiza as demais colunas — nenhuma página quebra por causa do CMS.
 	// `tituloArtigos` muda nas páginas de artigo ("Mais artigos do blog"), onde a
 	// lista vem em anel e não são necessariamente os mais recentes.
-	let { artigos = [], total = 0, tituloArtigos = 'Últimos artigos' } = $props();
+	let { artigos = [], total = 0, tituloArtigos = 'Últimos artigos', solucoes = [] } = $props();
 
 	// Âncoras da home: de dentro de um artigo precisam do caminho absoluto,
 	// senão "#planos" tentaria uma seção que não existe naquela página.
 	const secoes = [
-		{ href: '/#solucoes', label: 'Soluções TIM Empresa' },
+		{ href: '/solucoes/', label: 'Todas as soluções' },
 		{ href: '/#planos', label: 'Planos por porte de empresa' },
 		{ href: '/#vantagens', label: 'Vantagens' },
 		{ href: '/#conteudo', label: 'TIM Black, Fibra e UltraFibra' },
@@ -23,7 +23,7 @@
 	<div class="mx-auto max-w-6xl px-4">
 		<h2 id="mapa-do-site" class="text-lg font-bold text-slate-900">Mapa do site</h2>
 
-		<div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+		<div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
 			<nav aria-label="Páginas principais">
 				<h3 class="text-sm font-semibold text-tim-800">Navegação</h3>
 				<ul class="mt-3 space-y-2 text-sm">
@@ -37,6 +37,29 @@
 					{/each}
 				</ul>
 			</nav>
+
+			{#if solucoes.length}
+				<!-- As landing pages de conversão em TODA página do site. É o link
+				     interno mais consistente que a malha recebe, e o que faz o hub e
+				     as 20 páginas serem descobertos a partir de qualquer artigo. -->
+				<nav aria-label="Soluções">
+					<h3 class="text-sm font-semibold text-tim-800">
+						<a class="hover:text-tim-600 hover:underline" href="/solucoes/">Soluções</a>
+					</h3>
+					<ul class="mt-3 space-y-2 text-sm">
+						{#each solucoes as s}
+							<li>
+								<a
+									class="text-slate-600 hover:text-tim-600 hover:underline"
+									href="/solucoes/{s.slug}/"
+								>
+									{s.cardTitulo}
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</nav>
+			{/if}
 
 			<nav aria-label="Conteúdo" class="lg:col-span-2">
 				<h3 class="text-sm font-semibold text-tim-800">

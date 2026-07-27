@@ -454,6 +454,6 @@
 </main>
 
 <!-- A home já tem o formulário em #contato logo acima; aqui entra só o mapa. -->
-<SiteMap artigos={data.artigosRecentes} total={data.totalArtigos} />
+<SiteMap artigos={data.artigosRecentes} total={data.totalArtigos} solucoes={data.solucoes} />
 
 <Footer />

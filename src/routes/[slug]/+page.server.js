@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { todosArtigos, listarArtigos } from '$lib/server/artigos.js';
 import { site } from '$lib/site.js';
+import { ARTIGO_PARA_LP, ANCORAS, FALLBACK } from '$lib/solucoes/links-artigos.js';
 
 // ---------------------------------------------------------------------------
 // "Leia também": 4 artigos afins calculados no build por sobreposição de
@@ -296,6 +297,89 @@ function corrigirLinks(html, slugAtual, artigos) {
 }
 
 // ---------------------------------------------------------------------------
+// Link contextual do artigo para a landing page de solução correspondente.
+// Ver o mapa e o porquê em $lib/solucoes/links-artigos.js.
+// ---------------------------------------------------------------------------
+
+/** Escapa os metacaracteres de regex de uma frase âncora. */
+function escaparRegex(s) {
+	return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
+ * Injeta UM link para a LP na primeira ocorrência de uma das frases candidatas,
+ * dentro de um parágrafo comum.
+ *
+ * O percurso é feito token a token (tag ou texto) em vez de um replace direto no
+ * HTML porque um replace ingênuo casaria dentro de atributo, dentro de título ou
+ * dentro de um link que já existe — gerando <a> aninhado, que é HTML inválido e
+ * o navegador desmonta de formas imprevisíveis.
+ *
+ * Não achou lugar seguro? Não injeta nada. Um artigo sem o link é perda pequena;
+ * um artigo com markup quebrado é problema de verdade.
+ */
+function linkarSolucao(html, slugArtigo) {
+	const lp = ARTIGO_PARA_LP[slugArtigo];
+	if (!lp) return html;
+
+	const frases = ANCORAS[lp] ?? [];
+	let profundidadeLink = 0;
+	let emParagrafo = false;
+	let injetado = false;
+
+	const saida = html.replace(/(<[^>]+>)|([^<]+)/g, (token, tag, texto) => {
+		if (tag) {
+			const t = tag.toLowerCase();
+			if (t.startsWith('<a ') || t === '<a>') profundidadeLink++;
+			else if (t.startsWith('</a')) profundidadeLink = Math.max(0, profundidadeLink - 1);
+			else if (t.startsWith('<p') && !t.startsWith('<pre')) emParagrafo = true;
+			else if (t.startsWith('</p')) emParagrafo = false;
+			return token;
+		}
+
+		// Só texto corrido de parágrafo, fora de qualquer link já existente.
+		if (injetado || !emParagrafo || profundidadeLink > 0 || !texto.trim()) return token;
+
+		for (const frase of frases) {
+			// \b não funciona com acento em JS sem flag unicode adequada; as frases
+			// são específicas o bastante para o casamento simples não gerar falso
+			// positivo dentro de outra palavra.
+			const re = new RegExp(escaparRegex(frase), 'i');
+			const m = texto.match(re);
+			if (!m) continue;
+			injetado = true;
+			return texto.replace(
+				re,
+				`<a href="/solucoes/${lp}/">${m[0]}</a>`
+			);
+		}
+		return token;
+	});
+
+	if (injetado) return saida;
+
+	// Nenhuma frase candidata no texto. Em vez de forçar o link numa palavra
+	// genérica, acrescenta uma frase curta ao fim do PRIMEIRO parágrafo, com
+	// âncora que descreve o destino. Continua sendo link editorial no corpo, no
+	// alto da página — não bloco de rodapé.
+	const frase = FALLBACK[lp];
+	if (frase) {
+		let usado = false;
+		const comFrase = html.replace(/<\/p>/i, (fim) => {
+			if (usado) return fim;
+			usado = true;
+			return ` ${frase}</p>`;
+		});
+		if (usado) return comFrase;
+	}
+
+	// Nem parágrafo o artigo tem. Aí não há onde ancorar nada — e o aviso fica
+	// visível no log do build em vez de virar um link que ninguém percebeu faltar.
+	console.warn(`[solucoes] /${slugArtigo}/: sem <p> para ancorar link de "${lp}".`);
+	return saida;
+}
+
+// ---------------------------------------------------------------------------
 // Rota
 // ---------------------------------------------------------------------------
 
@@ -317,7 +401,12 @@ export async function load({ params }) {
 	return {
 		article: {
 			...artigo,
-			html_content: corrigirLinks(artigo.html_content ?? '', params.slug, artigos)
+			// Ordem importa: corrigirLinks primeiro (mexe em href existente),
+			// linkarSolucao depois (cria href novo, que não deve ser reprocessado).
+			html_content: linkarSolucao(
+				corrigirLinks(artigo.html_content ?? '', params.slug, artigos),
+				params.slug
+			)
 		},
 		seo: { html: gerarSeoHtml(artigo) },
 		relacionados: leiaTambem(await listarArtigos(), params.slug)

@@ -10,6 +10,7 @@
 	artigos={data.artigosRecentes}
 	total={data.totalArtigos}
 	tituloArtigos={data.tituloMapaArtigos ?? 'Últimos artigos'}
+	solucoes={data.solucoes}
 >
 	{@render children()}
 </BlogShell>

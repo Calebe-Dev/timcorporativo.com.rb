@@ -1,5 +1,6 @@
 <script>
-	import { site, contact, faq, solutions } from '$lib/site.js';
+	import { site, faq, solutions } from '$lib/site.js';
+	import { organizationNode, websiteNode, breadcrumbNode, faqNode, ORG_ID, SITE_ID } from '$lib/schema.js';
 
 	let {
 		// Separador "|" (Marca | Tópico): padrão que melhora CTR na SERP.
@@ -25,42 +26,13 @@
 		`${site.url}/#service-${name.toLowerCase().replace(/\s+/g, '-')}`;
 
 	// Grafo JSON-LD consolidado (uma única fonte, sem @id conflitantes).
+	// Organization e WebSite vêm de $lib/schema.js, compartilhados com as landing
+	// pages de /solucoes/ — mesma entidade, mesmo @id, uma definição só.
 	const jsonld = {
 		'@context': 'https://schema.org',
 		'@graph': [
 			{
-				// LocalBusiness além de Organization: temos endereço físico e
-				// telefone locais — habilita o entendimento de negócio local
-				// (Sorocaba/SP) sem perder o vínculo de organização nacional.
-				'@type': ['Organization', 'LocalBusiness'],
-				'@id': `${site.url}/#organization`,
-				name: site.name,
-				legalName: site.legalName,
-				url: `${site.url}/`,
-				logo: `${site.url}${site.logo}`,
-				image: `${site.url}${site.logo}`,
-				description: `Representante autorizado TIM para empresas, operado pelo ${site.legalName}. Venda consultiva de planos TIM Empresa: TIM Black Empresa, TIM Fibra e UltraFibra.`,
-				telephone: '+55-15-3500-8940',
-				email: contact.emails[0],
-				// Sem preço tabelado: a venda é consultiva, por proposta.
-				priceRange: 'Sob consulta',
-				sameAs: [contact.facebook, contact.instagram, contact.linkedin],
-				areaServed: { '@type': 'Country', name: 'Brasil' },
-				address: {
-					'@type': 'PostalAddress',
-					streetAddress: 'Rua Tereza Lopes, 677 - Vila Hortência',
-					addressLocality: contact.addressLocality,
-					addressRegion: contact.addressRegion,
-					addressCountry: 'BR'
-				},
-				identifier: { '@type': 'PropertyValue', propertyID: 'CNPJ', value: contact.cnpj },
-				contactPoint: {
-					'@type': 'ContactPoint',
-					telephone: '+55-15-99651-0375',
-					contactType: 'sales',
-					areaServed: 'BR',
-					availableLanguage: ['pt-BR']
-				},
+				...organizationNode(),
 				...(services
 					? {
 							hasOfferCatalog: {
@@ -74,14 +46,7 @@
 						}
 					: {})
 			},
-			{
-				'@type': 'WebSite',
-				'@id': `${site.url}/#website`,
-				url: `${site.url}/`,
-				name: site.name,
-				inLanguage: 'pt-BR',
-				publisher: { '@id': `${site.url}/#organization` }
-			},
+			websiteNode(),
 			{
 				'@type': 'WebPage',
 				'@id': canonical,
@@ -89,33 +54,22 @@
 				name: title,
 				description,
 				inLanguage: 'pt-BR',
-				isPartOf: { '@id': `${site.url}/#website` },
-				about: { '@id': `${site.url}/#organization` },
-				author: { '@id': `${site.url}/#organization` },
+				isPartOf: { '@id': SITE_ID },
+				about: { '@id': ORG_ID },
+				author: { '@id': ORG_ID },
 				primaryImageOfPage: { '@type': 'ImageObject', url: imageAbs },
 				// Data do build (SSG): o site inteiro é regerado a cada deploy.
 				dateModified: new Date().toISOString().slice(0, 10)
 			},
 			// Breadcrumb apenas fora da home — na raiz seria um item só, ruído.
-			...(path !== '/'
-				? [
-						{
-							'@type': 'BreadcrumbList',
-							'@id': `${canonical}#breadcrumb`,
-							itemListElement: [
-								{ '@type': 'ListItem', position: 1, name: 'Início', item: `${site.url}/` },
-								{ '@type': 'ListItem', position: 2, name: title, item: canonical }
-							]
-						}
-					]
-				: []),
+			...(path !== '/' ? [breadcrumbNode(canonical, [{ name: title, item: canonical }])] : []),
 			...(services
 				? solutions.map((s) => ({
 						'@type': 'Service',
 						'@id': serviceId(s.name),
 						name: s.name,
 						serviceType: 'Telecomunicações empresariais',
-						provider: { '@id': `${site.url}/#organization` },
+						provider: { '@id': ORG_ID },
 						areaServed: { '@type': 'Country', name: 'Brasil' },
 						description: s.text
 					}))
@@ -123,19 +77,7 @@
 			// FAQPage só na home: é onde o FAQ aparece de fato. Emitir a marcação
 			// em páginas sem o conteúdo visível viola a diretriz de dados
 			// estruturados do Google e arrisca ação manual.
-			...(path === '/'
-				? [
-						{
-							'@type': 'FAQPage',
-							'@id': `${canonical}#faq`,
-							mainEntity: faq.map((f) => ({
-								'@type': 'Question',
-								name: f.q,
-								acceptedAnswer: { '@type': 'Answer', text: f.a }
-							}))
-						}
-					]
-				: [])
+			...(path === '/' ? [faqNode(canonical, faq)] : [])
 		]
 	};
 </script>

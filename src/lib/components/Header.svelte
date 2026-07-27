@@ -10,7 +10,7 @@
 		<!-- Logotipo sozinho: o SVG já contém a palavra TIM — repetir "TIM
 		     Corporativo" ao lado duplicava a marca e quebrava em duas linhas no
 		     mobile. "Representante autorizado" segue visível no hero e rodapé. -->
-		<a href="#topo" class="flex shrink-0 items-center" onclick={close}>
+		<a href="/#topo" class="flex shrink-0 items-center" onclick={close}>
 			<img
 				src={site.logoWide}
 				alt="TIM Corporativo — Representante autorizado"

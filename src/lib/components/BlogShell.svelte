@@ -8,7 +8,8 @@
 		subtitulo = 'Blog empresarial',
 		artigos = [],
 		total = 0,
-		tituloArtigos = 'Últimos artigos'
+		tituloArtigos = 'Últimos artigos',
+		solucoes = []
 	} = $props();
 </script>
 
@@ -50,7 +51,7 @@
 	<!-- Formulário e mapa do site: presentes em toda página editorial, na mesma
 	     ordem da home — conversão primeiro, mapa depois, rodapé por último. -->
 	<ContactSection id="fale-conosco" />
-	<SiteMap {artigos} {total} {tituloArtigos} />
+	<SiteMap {artigos} {total} {tituloArtigos} {solucoes} />
 
 	<!-- Rodapé enxuto. -->
 	<footer class="border-t border-slate-200 bg-slate-50">

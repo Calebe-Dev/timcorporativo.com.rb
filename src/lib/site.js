@@ -60,15 +60,23 @@ export function whatsappLink(text = contact.whatsappText) {
 	return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}`;
 }
 
+// Hrefs absolutos (e não "#planos") porque o Header agora também serve as
+// landing pages de /solucoes/: âncora relativa apontaria para uma seção que não
+// existe naquela página. Na home o comportamento é idêntico ao de antes — o
+// navegador resolve "/#planos" estando em "/" como rolagem na mesma página.
+//
+// "Soluções" aponta para o HUB /solucoes e não mais para a seção #solucoes da
+// home: é o link de navegação global do site inteiro, e portanto o sinal
+// interno mais forte que podemos dar ao hub da malha de landing pages.
 export const nav = [
-	{ label: 'Início', href: '#topo' },
-	{ label: 'Soluções', href: '#solucoes' },
-	{ label: 'Planos', href: '#planos' },
-	{ label: 'Vantagens', href: '#vantagens' },
-	{ label: 'Contratar', href: '#como-contratar' },
-	{ label: 'Dúvidas', href: '#faq' },
+	{ label: 'Início', href: '/#topo' },
+	{ label: 'Soluções', href: '/solucoes' },
+	{ label: 'Planos', href: '/#planos' },
+	{ label: 'Vantagens', href: '/#vantagens' },
+	{ label: 'Contratar', href: '/#como-contratar' },
+	{ label: 'Dúvidas', href: '/#faq' },
 	{ label: 'Blog', href: '/blog' },
-	{ label: 'Contato', href: '#contato' }
+	{ label: 'Contato', href: '/#contato' }
 ];
 
 export const hero = {
