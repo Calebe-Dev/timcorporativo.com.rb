@@ -42,8 +42,31 @@ npm run preview   # serve o build/ localmente para conferência
 
 ## Deploy
 
-O conteúdo de `build/` é totalmente estático — pode ser publicado em qualquer host de arquivos
-(Cloudflare Pages, Netlify, GitHub Pages, S3, etc.). Para adicionar um novo documento, basta criar
-um `.md` dentro de `docs/` e rodar `npm run build`.
+**Não há CI.** O workflow do GitHub Actions foi removido em 27/07/2026: ele falhava em 100% das
+execuções desde 24/07 porque o secret `CLOUDFLARE_API_TOKEN` está inválido, e o projeto
+`timcorporativo` no Cloudflare Pages não tem integração Git (`Git Provider: No` no painel). Ou seja,
+o Actions nunca publicou nada — só gerava e-mail de falha. Todo deploy sempre foi upload direto.
 
-> A documentação é interna: as páginas saem com `noindex, nofollow`.
+Publicar em produção:
+
+```bash
+bash scripts/publicar.sh
+```
+
+O script encadeia cinco travas e aborta na primeira que falhar, porque publicar 23 landing pages com
+preço na copy ou link interno quebrado custa muito mais caro do que parar e corrigir:
+
+1. `scripts/validar-lps.mjs` — title/description dentro do limite, nenhum H1 ou keyword primária
+   duplicado entre páginas (canibalização), nenhum valor monetário, nenhum link interno morto
+2. `npm run build`
+3. `scripts/verificar-precos-build.mjs` — varre o HTML **gerado**, separando a copy das páginas do
+   conteúdo herdado do CMS (título de artigo no bloco de relacionados, JSON-LD, payload de hidratação)
+4. Integridade do HTML: H1 único, canonical autorreferente, JSON-LD completo, ausência de `HowTo`
+5. `wrangler pages deploy`
+
+Requer `npx wrangler whoami` autenticado. Para o build puxar artigos novos do OC Hub em vez de usar
+só o snapshot de `content/artigos/`, exporte `OCHUB_DIRECTUS_URL`, `OCHUB_API_TOKEN` e
+`OCHUB_SITE_UUID` antes de rodar.
+
+Se um dia o CI voltar, o token precisa de permissão de **Cloudflare Pages — Edit** na conta
+`73251602a4aa9ee45d274fbdfc7eac2d`.
