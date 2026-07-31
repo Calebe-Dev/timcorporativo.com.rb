@@ -2,12 +2,22 @@
 	import { onMount } from 'svelte';
 	import { contact, whatsappLink, turnstileSiteKey } from '$lib/site.js';
 
+	// `oculta` chega do layout raiz quando o chat do Grupo OC sobe: os dois são o
+	// mesmo convite ("fale com um consultor") e dois botões flutuantes ao mesmo
+	// tempo viram ruído. Ver o comentário em +layout.svelte.
+	let { oculta = false } = $props();
+
 	// Painel de contato rápido: 3 campos (mínimo que /api/lead aceita — nome,
 	// celular e e-mail são obrigatórios no servidor, ver worker/validate.js).
 	// O clique no botão abre o painel em vez de ir direto ao wa.me; quem preferir
 	// pular o formulário tem o atalho "ir direto" dentro do painel. Sem JS, o
 	// botão continua sendo um <a> normal para o WhatsApp.
 	let aberto = $state(false);
+
+	// O bot pode subir enquanto alguém está preenchendo o painel — arrancar o
+	// formulário debaixo de quem digita seria hostil. Some só quando estiver
+	// fechado; se estiver aberto, some assim que o visitante fechar.
+	const some = $derived(oculta && !aberto);
 	let nome = $state('');
 	let celular = $state('');
 	let email = $state('');
@@ -161,7 +171,7 @@
 {#if aberto}
 	<!-- Painel de contato rápido, ancorado acima do botão. -->
 	<div
-		class="painel fixed right-4 z-50 w-[min(21rem,calc(100vw-2rem))] rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl"
+		class="painel fixed left-4 z-50 w-[min(21rem,calc(100vw-2rem))] rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl"
 		role="dialog"
 		aria-label="Fale com um consultor no WhatsApp"
 	>
@@ -271,6 +281,13 @@
 	Detalhes que não são estéticos:
 	- continua sendo <a> (fallback sem JS vai direto ao wa.me); com JS o clique
 	  abre o painel de contato rápido acima.
+	- fica à ESQUERDA: o FAB do chat do Grupo OC é fixo em bottom/right 24px e não
+	  aceita reposicionamento pelo init(), então os dois se sobreporiam.
+	- some do DOM, em vez de esmaecer, quando o bot sobe. É `position: fixed`, o
+	  que significa que remover não desloca nada — CLS zero — e some junto da
+	  árvore de acessibilidade, sem link fantasma clicável por teclado. Esmaecer
+	  por classe brigaria com a animação `entrar`, que tem fill-mode `both` e
+	  vence declarações normais na cascata.
 	- `aria-label` explícito: o conteúdo é só um ícone, sem ele o leitor de tela
 	  anuncia apenas "link".
 	- `focus-visible` com anel: é um alvo alcançável por teclado e precisa de
@@ -279,11 +296,12 @@
 	  gestos do iPhone.
 	- a animação de entrada respeita `prefers-reduced-motion`.
 -->
+{#if !some}
 <a
 	href={whatsappLink()}
 	target="_blank"
 	rel="noopener"
-	class="bolha fixed right-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-105 hover:bg-[#1ebe5b] active:scale-90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:h-14 sm:w-14"
+	class="bolha fixed left-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-105 hover:bg-[#1ebe5b] active:scale-90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:h-14 sm:w-14"
 	aria-label="Falar com um consultor no WhatsApp — {contact.whatsappLabel}"
 	aria-expanded={aberto}
 	aria-haspopup="dialog"
@@ -305,6 +323,7 @@
 		/>
 	</svg>
 </a>
+{/if}
 
 <style>
 	.bolha {

@@ -32,7 +32,12 @@
   # 'unsafe-inline' em script-src é inevitável hoje: o snippet do gtag e os
   # scripts de hidratação do SvelteKit são inline. Remover exige nonce, que a
   # Pages não injeta em site estático.
-  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com https://challenges.cloudflare.com https://ochub.grupooc.com.br blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.google-analytics.com https://ochub-api.grupooc.com.br https://challenges.cloudflare.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://cloudflareinsights.com https://ochub-api.grupooc.com.br https://challenges.cloudflare.com https://*.challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  #
+  # bot.grupooc.com.br aparece em TRÊS diretivas porque o chat usa as três: o
+  # widget.js (script-src), o widget.css (style-src) e as chamadas de config,
+  # sessão e mensagens (connect-src). Faltar uma só derruba o bot pela metade —
+  # o CSS sem o script deixa a página sem chat e sem erro visível.
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com https://challenges.cloudflare.com https://ochub.grupooc.com.br https://bot.grupooc.com.br blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://bot.grupooc.com.br; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.google-analytics.com https://ochub-api.grupooc.com.br https://challenges.cloudflare.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://cloudflareinsights.com https://ochub-api.grupooc.com.br https://bot.grupooc.com.br https://challenges.cloudflare.com https://*.challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
 
 # Assets do SvelteKit: o nome carrega hash do conteúdo, então mudança de arquivo
 # = mudança de URL. Podem ser cacheados para sempre com segurança.
