@@ -8,6 +8,29 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#004fbb" />
 
+		<!-- Preload das duas TIM Sans (35 KB cada).
+		     Sem isto o navegador só descobre a fonte DEPOIS de parsear o CSS inline,
+		     e ela chegava por volta de 1,5s numa conexão 4G moderada — logo depois
+		     do primeiro paint, o que produzia o reflow de texto que dominava o CLS
+		     (0,221 na home, 0,199 nos artigos, contra o limite de 0,1).
+		     `crossorigin` é obrigatório mesmo em fonte de mesma origem: sem ele o
+		     preload e o download do @font-face viram duas requisições distintas e
+		     o preload não serve para nada. -->
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			crossorigin
+			href="%sveltekit.assets%/wp-content/uploads/2025/10/c875cb65af48db4e990ed39d981b9ef1.woff2"
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			crossorigin
+			href="%sveltekit.assets%/wp-content/uploads/2025/10/57b88f8a459956fcac90a4e1a8e0f97b.woff2"
+		/>
+
 		<!-- Verificação do Google Search Console — mesma tag do site WordPress
 		     anterior (snippet 2670). Mantê-la preserva a propriedade já verificada. -->
 		<meta name="google-site-verification" content="3PZLGrA470_oq1V9tNyjRtmPWBhlPacImk6vsutSIVI" />

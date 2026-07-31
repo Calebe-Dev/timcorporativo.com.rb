@@ -19,10 +19,59 @@
 	src: url('/wp-content/uploads/2025/10/57b88f8a459956fcac90a4e1a8e0f97b.woff2') format('woff2');
 }
 
+/* Fallback com métricas ajustadas para casar com a TIM Sans.
+   -------------------------------------------------------------------------
+   O `font-display: swap` acima pinta o texto na fonte do sistema e troca
+   depois. Se as duas ocuparem espaço diferente, a troca reflui a página
+   inteira — era o que dominava o CLS: 0,221 na home e 0,199 nos artigos,
+   contra o limite de 0,1 do Core Web Vitals. O preload em app.html adianta a
+   chegada da fonte, mas quem ELIMINA o deslocamento é este bloco, porque não
+   depende de quando ela chega.
+
+   Os números foram medidos, não estimados: canvas a 1000px comparando a
+   largura de uma amostra em português (com acentos e dígitos) e o
+   fontBoundingBox da TIM Sans contra o do fallback. A TIM Sans tem ascent
+   0,96em e descent 0,27em nos dois pesos, e largura média quase idêntica à da
+   Arial — daí size-adjust perto de 100%.
+
+   Cada peso tem seu próprio ajuste porque o bold da TIM Sans é
+   proporcionalmente mais estreito que o da Arial (97,17% contra 100,46%).
+
+   O local() vem antes de qualquer outra coisa no stack: Arial existe em
+   Windows, macOS e iOS, e no Android o fontconfig a resolve para a Roboto.
+   Sem correspondência, o navegador simplesmente segue para o próximo da
+   lista — o pior caso é voltar ao comportamento de antes, nunca pior. */
+@font-face {
+	font-family: 'TIM Sans Fallback';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+	size-adjust: 100.46%;
+	ascent-override: 95.56%;
+	descent-override: 26.88%;
+	line-gap-override: 0%;
+}
+@font-face {
+	font-family: 'TIM Sans Fallback';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Arial Bold'), local('Arial'), local('Helvetica'), local('Liberation Sans');
+	size-adjust: 97.17%;
+	ascent-override: 98.8%;
+	descent-override: 27.79%;
+	line-gap-override: 0%;
+}
+
 /* Tokens de marca TIM (azul institucional). */
 @theme {
+	/* O fallback ajustado vem IMEDIATAMENTE depois da TIM Sans, antes de
+	   ui-sans-serif/system-ui. Era justamente esse o problema: na janela de
+	   swap o navegador usava a system-ui (Roboto no Android, SF no iOS), cuja
+	   largura média medimos 11% diferente da TIM Sans. O resto da lista fica
+	   como rede de segurança para quem não tiver nenhuma Arial. */
 	--font-sans:
-		'TIM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+		'TIM Sans', 'TIM Sans Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+		Roboto, Arial, sans-serif;
 
 	--color-tim-50: #e8f1fd;
 	--color-tim-100: #cfe2fb;
