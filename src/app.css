@@ -41,21 +41,58 @@
    Windows, macOS e iOS, e no Android o fontconfig a resolve para a Roboto.
    Sem correspondência, o navegador simplesmente segue para o próximo da
    lista — o pior caso é voltar ao comportamento de antes, nunca pior. */
+/* DUAS famílias, não uma: o ajuste só vale para a fonte que ele de fato
+   substitui, e o sistema operacional decide qual existe.
+   - Roboto é a do Android, e vem PRIMEIRO. Se a Arial viesse antes, o Android
+     casaria `local('Arial')` com a própria Roboto (o sistema tem esse apelido)
+     e aplicaria o ajuste errado — 5,5% de erro no bold.
+   - Arial cobre Windows, macOS e iOS. No Linux quem responde é a Liberation
+     Sans, que é metricamente idêntica à Arial por projeto.
+   Se nenhuma casar, a família inteira não fornece glifo e o navegador segue
+   para ui-sans-serif — o pior caso é o comportamento de antes, nunca pior.
+
+   O src do peso 700 NÃO lista fonte Regular. Esse foi um defeito real da
+   primeira versão: `local('Arial Bold')` não resolve em Linux, caía no
+   `local('Arial')` (Regular), e como a face está DECLARADA como 700 o navegador
+   não sintetiza o negrito. Resultado: texto fino ocupando 111,34px onde a TIM
+   Sans ocupa 119,47px, e o cabeçalho reflowia na troca. Sem Regular na lista,
+   ou casa um bold de verdade ou a família passa a vez. */
 @font-face {
-	font-family: 'TIM Sans Fallback';
+	font-family: 'TIM Sans Fallback Roboto';
 	font-style: normal;
 	font-weight: 400;
-	src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+	src: local('Roboto'), local('Roboto Regular');
+	size-adjust: 100.81%;
+	ascent-override: 95.23%;
+	descent-override: 26.78%;
+	line-gap-override: 0%;
+}
+@font-face {
+	font-family: 'TIM Sans Fallback Roboto';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Roboto Bold'), local('Roboto-Bold');
+	size-adjust: 102.69%;
+	ascent-override: 93.48%;
+	descent-override: 26.29%;
+	line-gap-override: 0%;
+}
+@font-face {
+	font-family: 'TIM Sans Fallback Arial';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Arial'), local('ArialMT'), local('Helvetica'), local('Liberation Sans');
 	size-adjust: 100.46%;
 	ascent-override: 95.56%;
 	descent-override: 26.88%;
 	line-gap-override: 0%;
 }
 @font-face {
-	font-family: 'TIM Sans Fallback';
+	font-family: 'TIM Sans Fallback Arial';
 	font-style: normal;
 	font-weight: 700;
-	src: local('Arial Bold'), local('Arial'), local('Helvetica'), local('Liberation Sans');
+	src: local('Arial Bold'), local('Arial-BoldMT'), local('Helvetica Bold'),
+		local('Liberation Sans Bold');
 	size-adjust: 97.17%;
 	ascent-override: 98.8%;
 	descent-override: 27.79%;
@@ -70,8 +107,8 @@
 	   largura média medimos 11% diferente da TIM Sans. O resto da lista fica
 	   como rede de segurança para quem não tiver nenhuma Arial. */
 	--font-sans:
-		'TIM Sans', 'TIM Sans Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
-		Roboto, Arial, sans-serif;
+		'TIM Sans', 'TIM Sans Fallback Roboto', 'TIM Sans Fallback Arial', ui-sans-serif, system-ui,
+		-apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 
 	--color-tim-50: #e8f1fd;
 	--color-tim-100: #cfe2fb;
