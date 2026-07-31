@@ -17,6 +17,21 @@
 			day: 'numeric'
 		});
 	}
+
+	// <time> sem `datetime` obriga o TEXTO a ser uma data válida pela spec — e
+	// "26 de maio de 2026" não é. Sem este atributo o Nu acusava um erro por
+	// artigo (189 na listagem inteira) e nenhuma máquina conseguia ler a data.
+	//
+	// Os componentes saem do horário LOCAL, não de toISOString(): o rótulo
+	// visível também é local, e converter para UTC mudaria o dia em metade dos
+	// fusos — a data legível e a legível por máquina passariam a discordar.
+	function isoDate(iso) {
+		const d = new Date(iso);
+		if (Number.isNaN(d.getTime())) return '';
+		const mes = String(d.getMonth() + 1).padStart(2, '0');
+		const dia = String(d.getDate()).padStart(2, '0');
+		return `${d.getFullYear()}-${mes}-${dia}`;
+	}
 </script>
 
 <!-- Head completo (canonical, OG com imagem, Twitter Card, JSON-LD com
@@ -42,7 +57,9 @@
 					class="flex h-full flex-col rounded-xl border border-slate-200 p-5 transition hover:border-tim-300 hover:shadow-md"
 				>
 					{#if post.date}
-						<time class="text-xs font-medium text-tim-600">{formatDate(post.date)}</time>
+						<time datetime={isoDate(post.date)} class="text-xs font-medium text-tim-600">
+							{formatDate(post.date)}
+						</time>
 					{/if}
 					<h2 class="mt-1 text-lg font-semibold text-slate-900">{post.title}</h2>
 					{#if post.meta_description}

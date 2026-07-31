@@ -168,161 +168,180 @@
 
 <svelte:window onkeydown={aoTeclar} />
 
-{#if aberto}
-	<!-- Painel de contato rápido, ancorado acima do botão. -->
-	<div
-		class="painel fixed left-4 z-50 w-[min(21rem,calc(100vw-2rem))] rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl"
-		role="dialog"
-		aria-label="Fale com um consultor no WhatsApp"
-	>
-		<div class="flex items-start justify-between gap-2">
-			<p class="text-sm font-semibold text-slate-900">
-				Fale com um consultor
-				<span class="block text-xs font-normal text-slate-500">
-					Deixe seus dados e siga direto para o WhatsApp.
-				</span>
-			</p>
-			<button
-				type="button"
-				class="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
-				aria-label="Fechar"
-				onclick={fechar}
-			>
-				<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path stroke-linecap="round" d="M6 6l12 12M6 18L18 6" />
-				</svg>
-			</button>
-		</div>
-
-		<form class="mt-3 space-y-2.5" onsubmit={enviar}>
-			<input
-				class={field}
-				bind:this={campoNome}
-				bind:value={nome}
-				placeholder="Nome*"
-				aria-label="Nome"
-				required
-				autocomplete="name"
-			/>
-			<input
-				class={field}
-				bind:value={celular}
-				type="tel"
-				placeholder="Celular / WhatsApp*"
-				aria-label="Celular ou WhatsApp"
-				required
-				autocomplete="tel"
-			/>
-			<input
-				class={field}
-				bind:value={email}
-				type="email"
-				placeholder="E-mail*"
-				aria-label="E-mail"
-				required
-				autocomplete="email"
-			/>
-
-			<!-- Honeypot: fora da tela e da navegação por teclado/leitor de tela. -->
-			<div class="absolute left-[-9999px]" aria-hidden="true">
-				<label>
-					Não preencha este campo
-					<input bind:value={website} name="website" tabindex="-1" autocomplete="off" />
-				</label>
-			</div>
-
-			{#if turnstileSiteKey}
-				<div bind:this={caixaTurnstile}></div>
-			{/if}
-
-			<button
-				type="submit"
-				disabled={enviando}
-				class="w-full rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#1ebe5b] disabled:opacity-70"
-			>
-				{enviando ? 'Enviando…' : 'Continuar no WhatsApp'}
-			</button>
-
-			{#if status === 'ok'}
-				<p class="text-xs font-medium text-green-700" role="status">
-					Recebemos seus dados! Se o WhatsApp não abriu, chame em
-					<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
-				</p>
-			{:else if status === 'zap'}
-				<p class="text-xs font-medium text-slate-600" role="status">
-					Continue pelo WhatsApp que abrimos para você. Se a janela não abriu, chame em
-					<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
-				</p>
-			{:else if status === 'erro'}
-				<p class="text-xs font-medium text-red-700" role="alert">
-					Não conseguimos enviar. Fale direto pelo
-					<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">WhatsApp</a>.
-				</p>
-			{/if}
-
-			<p class="text-center text-xs text-slate-500">
-				<a
-					class="underline hover:text-tim-600"
-					href={whatsappLink()}
-					target="_blank"
-					rel="noopener"
-					onclick={fechar}
-				>
-					Prefiro ir direto ao WhatsApp
-				</a>
-			</p>
-		</form>
-	</div>
-{/if}
-
 <!--
-	Botão flutuante de WhatsApp, presente em todas as páginas.
+	Os dois canais flutuantes ficam num landmark próprio. Soltos no <body> eles
+	não pertencem a região nenhuma e somem da navegação por landmarks do leitor
+	de tela — que é como boa parte dos usuários varre a página.
 
-	Detalhes que não são estéticos:
-	- continua sendo <a> (fallback sem JS vai direto ao wa.me); com JS o clique
-	  abre o painel de contato rápido acima.
-	- fica à ESQUERDA: o FAB do chat do Grupo OC é fixo em bottom/right 24px e não
-	  aceita reposicionamento pelo init(), então os dois se sobreporiam.
-	- some do DOM, em vez de esmaecer, quando o bot sobe. É `position: fixed`, o
-	  que significa que remover não desloca nada — CLS zero — e some junto da
-	  árvore de acessibilidade, sem link fantasma clicável por teclado. Esmaecer
-	  por classe brigaria com a animação `entrar`, que tem fill-mode `both` e
-	  vence declarações normais na cascata.
-	- `aria-label` explícito: o conteúdo é só um ícone, sem ele o leitor de tela
-	  anuncia apenas "link".
-	- `focus-visible` com anel: é um alvo alcançável por teclado e precisa de
-	  indicação de foco visível.
-	- `bottom` usa `env(safe-area-inset-bottom)` para não ficar sob a barra de
-	  gestos do iPhone.
-	- a animação de entrada respeita `prefers-reduced-motion`.
+	O <aside> não tem transform, filter nem contain, então não vira bloco de
+	contenção: o `position: fixed` dos filhos continua ancorado na viewport.
+
+	A condição é `!some` (e não `aberto`) porque o painel só abre a partir do
+	botão — quando ele sai de cena, não sobra landmark vazio.
 -->
 {#if !some}
-<a
-	href={whatsappLink()}
-	target="_blank"
-	rel="noopener"
-	class="bolha fixed left-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-105 hover:bg-[#1ebe5b] active:scale-90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:h-14 sm:w-14"
-	aria-label="Falar com um consultor no WhatsApp — {contact.whatsappLabel}"
-	aria-expanded={aberto}
-	aria-haspopup="dialog"
-	onclick={alternar}
->
-	<!-- Anel de pulso: filho com z-index negativo fica atrás do fundo do próprio
-	     link (o `fixed` + z-50 cria o contexto de empilhamento). Não intercepta
-	     toques (pointer-events) nem é anunciado (aria-hidden). -->
-	<span class="anel absolute inset-0 rounded-full bg-[#25D366]" aria-hidden="true"></span>
-	<svg
-		class="h-8 w-8 sm:h-7 sm:w-7"
-		viewBox="0 0 24 24"
-		fill="currentColor"
-		aria-hidden="true"
-		focusable="false"
-	>
-		<path
-			d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.24 8.24 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.48-.01a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"
-		/>
-	</svg>
-</a>
+	<aside aria-label="Atendimento rápido">
+		{#if aberto}
+			<!-- Painel de contato rápido, ancorado acima do botão. -->
+			<div
+				class="painel fixed left-4 z-50 w-[min(21rem,calc(100vw-2rem))] rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl"
+				role="dialog"
+				aria-label="Fale com um consultor no WhatsApp"
+			>
+				<div class="flex items-start justify-between gap-2">
+					<p class="text-sm font-semibold text-slate-900">
+						Fale com um consultor
+						<span class="block text-xs font-normal text-slate-500">
+							Deixe seus dados e siga direto para o WhatsApp.
+						</span>
+					</p>
+					<button
+						type="button"
+						class="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+						aria-label="Fechar"
+						onclick={fechar}
+					>
+						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" d="M6 6l12 12M6 18L18 6" />
+						</svg>
+					</button>
+				</div>
+
+				<form class="mt-3 space-y-2.5" onsubmit={enviar}>
+					<input
+						class={field}
+						bind:this={campoNome}
+						bind:value={nome}
+						placeholder="Nome*"
+						aria-label="Nome"
+						required
+						autocomplete="name"
+					/>
+					<input
+						class={field}
+						bind:value={celular}
+						type="tel"
+						placeholder="Celular / WhatsApp*"
+						aria-label="Celular ou WhatsApp"
+						required
+						autocomplete="tel"
+					/>
+					<input
+						class={field}
+						bind:value={email}
+						type="email"
+						placeholder="E-mail*"
+						aria-label="E-mail"
+						required
+						autocomplete="email"
+					/>
+
+					<!-- Honeypot: fora da tela e da navegação por teclado/leitor de tela. -->
+					<div class="absolute left-[-9999px]" aria-hidden="true">
+						<label>
+							Não preencha este campo
+							<input bind:value={website} name="website" tabindex="-1" autocomplete="off" />
+						</label>
+					</div>
+
+					{#if turnstileSiteKey}
+						<div bind:this={caixaTurnstile}></div>
+					{/if}
+
+					<!-- Texto escuro, não branco: branco sobre o verde da marca (#25D366)
+					     dá 1,98:1 e reprova o mínimo de 4,5:1 do WCAG AA para texto
+					     normal. Escurecer o fundo resolveria o contraste, mas perderia a
+					     cor do WhatsApp — que é justamente o que sinaliza para onde o
+					     botão leva. Com slate-900 o verde fica intacto e o contraste vai
+					     a 9,0:1 (7,3:1 no hover, #1ebe5b). -->
+					<button
+						type="submit"
+						disabled={enviando}
+						class="w-full rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-[#1ebe5b] disabled:opacity-70"
+					>
+						{enviando ? 'Enviando…' : 'Continuar no WhatsApp'}
+					</button>
+
+					{#if status === 'ok'}
+						<p class="text-xs font-medium text-green-700" role="status">
+							Recebemos seus dados! Se o WhatsApp não abriu, chame em
+							<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
+						</p>
+					{:else if status === 'zap'}
+						<p class="text-xs font-medium text-slate-600" role="status">
+							Continue pelo WhatsApp que abrimos para você. Se a janela não abriu, chame em
+							<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
+						</p>
+					{:else if status === 'erro'}
+						<p class="text-xs font-medium text-red-700" role="alert">
+							Não conseguimos enviar. Fale direto pelo
+							<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">WhatsApp</a>.
+						</p>
+					{/if}
+
+					<p class="text-center text-xs text-slate-500">
+						<a
+							class="underline hover:text-tim-600"
+							href={whatsappLink()}
+							target="_blank"
+							rel="noopener"
+							onclick={fechar}
+						>
+							Prefiro ir direto ao WhatsApp
+						</a>
+					</p>
+				</form>
+			</div>
+		{/if}
+
+		<!--
+			Botão flutuante de WhatsApp, presente em todas as páginas.
+
+			Detalhes que não são estéticos:
+			- continua sendo <a> (fallback sem JS vai direto ao wa.me); com JS o clique
+			  abre o painel de contato rápido acima.
+			- fica à ESQUERDA: o FAB do chat do Grupo OC é fixo em bottom/right 24px e não
+			  aceita reposicionamento pelo init(), então os dois se sobreporiam.
+			- some do DOM, em vez de esmaecer, quando o bot sobe. É `position: fixed`, o
+			  que significa que remover não desloca nada — CLS zero — e some junto da
+			  árvore de acessibilidade, sem link fantasma clicável por teclado. Esmaecer
+			  por classe brigaria com a animação `entrar`, que tem fill-mode `both` e
+			  vence declarações normais na cascata.
+			- `aria-label` explícito: o conteúdo é só um ícone, sem ele o leitor de tela
+			  anuncia apenas "link".
+			- `focus-visible` com anel: é um alvo alcançável por teclado e precisa de
+			  indicação de foco visível.
+			- `bottom` usa `env(safe-area-inset-bottom)` para não ficar sob a barra de
+			  gestos do iPhone.
+			- a animação de entrada respeita `prefers-reduced-motion`.
+		-->
+		<a
+			href={whatsappLink()}
+			target="_blank"
+			rel="noopener"
+			class="bolha fixed left-4 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-105 hover:bg-[#1ebe5b] active:scale-90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/40 sm:h-14 sm:w-14"
+			aria-label="Falar com um consultor no WhatsApp — {contact.whatsappLabel}"
+			aria-expanded={aberto}
+			aria-haspopup="dialog"
+			onclick={alternar}
+		>
+			<!-- Anel de pulso: filho com z-index negativo fica atrás do fundo do próprio
+			     link (o `fixed` + z-50 cria o contexto de empilhamento). Não intercepta
+			     toques (pointer-events) nem é anunciado (aria-hidden). -->
+			<span class="anel absolute inset-0 rounded-full bg-[#25D366]" aria-hidden="true"></span>
+			<svg
+				class="h-8 w-8 sm:h-7 sm:w-7"
+				viewBox="0 0 24 24"
+				fill="currentColor"
+				aria-hidden="true"
+				focusable="false"
+			>
+				<path
+					d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.24 8.24 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.48-.01a.92.92 0 0 0-.66.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"
+				/>
+			</svg>
+		</a>
+	</aside>
 {/if}
 
 <style>

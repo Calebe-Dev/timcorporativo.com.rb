@@ -405,7 +405,10 @@
 			<div class="mt-10 grid gap-6 md:grid-cols-3">
 				{#each depoimentos as d}
 					<figure class="flex flex-col rounded-2xl border border-slate-200 bg-slate-50 p-6">
-						<span class="flex" aria-label="5 de 5 estrelas">
+						<!-- role="img" é obrigatório: aria-label em <span> sem role é proibido pela
+					     spec e o leitor de tela descarta o atributo. Como as estrelas estão
+					     aria-hidden, sem isso a nota não é anunciada de forma nenhuma. -->
+					<span class="flex" role="img" aria-label="5 de 5 estrelas">
 							{#each Array(5) as _}
 								<svg
 									class="h-4 w-4 text-amber-400"

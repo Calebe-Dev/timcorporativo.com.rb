@@ -32,7 +32,9 @@
 	<meta name="twitter:image:alt" content={site.ogImageAlt} />
 </svelte:head>
 
-<nav class="mb-6 text-sm">
+<!-- Rotulado porque o cabeçalho do BlogShell também é um <nav>: dois landmarks
+     de mesma role sem nome ficam indistinguíveis na lista do leitor de tela. -->
+<nav aria-label="Voltar ao blog" class="mb-6 text-sm">
 	<a href="/blog" class="font-medium text-tim-600 hover:text-tim-700">← Todos os artigos</a>
 </nav>
 

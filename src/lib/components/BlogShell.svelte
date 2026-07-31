@@ -29,7 +29,7 @@
 					<span class="block text-[11px] font-medium text-tim-500">{subtitulo}</span>
 				</span>
 			</a>
-			<nav class="flex items-center gap-4 text-sm font-medium">
+			<nav aria-label="Navegação principal" class="flex items-center gap-4 text-sm font-medium">
 				<a href="/" class="hidden text-slate-700 hover:text-tim-600 sm:inline">Site</a>
 				<a href="/blog" class="text-slate-700 hover:text-tim-600">Blog</a>
 				<a
@@ -44,14 +44,20 @@
 		</div>
 	</header>
 
-	<main class="mx-auto max-w-4xl px-4 py-10">
-		{@render children()}
-	</main>
+	<!-- O <main> abraça também o formulário e o mapa: fora dele esse conteúdo
+	     fica sem landmark nenhum e some da navegação por regiões do leitor de
+	     tela. A largura máxima desceu para o div interno porque as duas seções
+	     seguintes têm fundo próprio de borda a borda. -->
+	<main>
+		<div class="mx-auto max-w-4xl px-4 py-10">
+			{@render children()}
+		</div>
 
-	<!-- Formulário e mapa do site: presentes em toda página editorial, na mesma
-	     ordem da home — conversão primeiro, mapa depois, rodapé por último. -->
-	<ContactSection id="fale-conosco" />
-	<SiteMap {artigos} {total} {tituloArtigos} {solucoes} />
+		<!-- Formulário e mapa do site: presentes em toda página editorial, na mesma
+		     ordem da home — conversão primeiro, mapa depois, rodapé por último. -->
+		<ContactSection id="fale-conosco" />
+		<SiteMap {artigos} {total} {tituloArtigos} {solucoes} />
+	</main>
 
 	<!-- Rodapé enxuto. -->
 	<footer class="border-t border-slate-200 bg-slate-50">
