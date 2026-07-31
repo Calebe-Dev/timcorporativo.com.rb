@@ -34,9 +34,10 @@
 	// 2. `#oc-bolha` é um `<div role="button" tabindex="0">` com um `<button>`
 	//    "Dispensar convite" dentro. Controle interativo aninhado: o leitor de
 	//    tela achata o conteúdo do botão externo e o de dentro fica inalcançável.
-	//    Tiramos role/tabindex do wrapper — o clique de mouse não depende deles,
-	//    e para teclado o `#oc-fab` ("Abrir atendimento por chat") já é um botão
-	//    de verdade que faz a mesma coisa.
+	//    Trocamos a role por `complementary` e tiramos o tabindex — o clique de
+	//    mouse não depende de nenhum dos dois, e para teclado o `#oc-fab`
+	//    ("Abrir atendimento por chat") já é um botão de verdade com a mesma
+	//    função.
 	//
 	// Isto é remendo, não solução: o certo é corrigir no widget.js do bot. Se
 	// isso acontecer, o código aqui simplesmente não acha o que corrigir e vira
@@ -59,12 +60,22 @@
 		const bolha = document.getElementById('oc-bolha');
 		if (bolha) {
 			const desaninhar = () => {
-				bolha.removeAttribute('role');
+				// `complementary` no lugar de `button`, e não role nenhuma: sem uma
+				// role o texto do convite ("Atendimento TIM Empresas / Posso te ajudar
+				// a escolher o plano?") deixa de pertencer a qualquer região e some da
+				// navegação por landmarks — foi o que o axe acusou em produção depois
+				// da primeira versão desta correção. Um convite proativo ao lado do
+				// conteúdo é exatamente o que `complementary` descreve, e o rótulo
+				// impede que ele entre na lista do leitor de tela como região anônima.
+				if (bolha.getAttribute('role') !== 'complementary') {
+					bolha.setAttribute('role', 'complementary');
+				}
+				bolha.setAttribute('aria-label', 'Convite para atendimento por chat');
 				bolha.removeAttribute('tabindex');
 			};
 			desaninhar();
 			// O convite aparece depois, por classe. Se o widget reescrever os
-			// atributos ao exibi-lo, tiramos de novo.
+			// atributos ao exibi-lo, corrigimos de novo.
 			const obs = new MutationObserver(desaninhar);
 			obs.observe(bolha, { attributes: true, attributeFilter: ['role', 'tabindex'] });
 			observadores.push(obs);
