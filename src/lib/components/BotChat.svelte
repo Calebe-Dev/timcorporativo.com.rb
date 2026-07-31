@@ -15,6 +15,62 @@
 	// WhatsApp continua sendo o canal flutuante da página.
 	let { onmontar } = $props();
 
+	// ---------------------------------------------------------------------------
+	// Correção de acessibilidade no DOM que o widget injeta.
+	//
+	// O axe acusa dois defeitos SÉRIOS em toda página em produção. Nenhum aparece
+	// no Lighthouse: a injeção acontece 4s depois do `load`, muito depois de ele
+	// terminar a coleta. Só uma auditoria que espera o widget montar enxerga.
+	//
+	// 1. `#oc-chat-window` fechada fica `aria-hidden="true"`, mas com
+	//    `display: flex` e `visibility: visible` — o que a esconde é só
+	//    `opacity: 0`. Ela continua na ordem de tabulação: quem navega por
+	//    teclado entra numa janela invisível, o foco desaparece da tela e a
+	//    pessoa digita num campo que ninguém vê. `inert` é exatamente o que
+	//    falta — tira da tabulação E da árvore de acessibilidade. Espelhamos o
+	//    `aria-hidden` em vez de fixar, porque o widget o alterna de forma
+	//    confiável ao abrir (verificado: fechada `true`, aberta `false`).
+	//
+	// 2. `#oc-bolha` é um `<div role="button" tabindex="0">` com um `<button>`
+	//    "Dispensar convite" dentro. Controle interativo aninhado: o leitor de
+	//    tela achata o conteúdo do botão externo e o de dentro fica inalcançável.
+	//    Tiramos role/tabindex do wrapper — o clique de mouse não depende deles,
+	//    e para teclado o `#oc-fab` ("Abrir atendimento por chat") já é um botão
+	//    de verdade que faz a mesma coisa.
+	//
+	// Isto é remendo, não solução: o certo é corrigir no widget.js do bot. Se
+	// isso acontecer, o código aqui simplesmente não acha o que corrigir e vira
+	// inofensivo.
+	// ---------------------------------------------------------------------------
+	/** @type {MutationObserver[]} */
+	let observadores = [];
+
+	function sanearWidget() {
+		const janela = document.getElementById('oc-chat-window');
+		if (janela) {
+			const espelhar = () =>
+				janela.toggleAttribute('inert', janela.getAttribute('aria-hidden') === 'true');
+			espelhar();
+			const obs = new MutationObserver(espelhar);
+			obs.observe(janela, { attributes: true, attributeFilter: ['aria-hidden'] });
+			observadores.push(obs);
+		}
+
+		const bolha = document.getElementById('oc-bolha');
+		if (bolha) {
+			const desaninhar = () => {
+				bolha.removeAttribute('role');
+				bolha.removeAttribute('tabindex');
+			};
+			desaninhar();
+			// O convite aparece depois, por classe. Se o widget reescrever os
+			// atributos ao exibi-lo, tiramos de novo.
+			const obs = new MutationObserver(desaninhar);
+			obs.observe(bolha, { attributes: true, attributeFilter: ['role', 'tabindex'] });
+			observadores.push(obs);
+		}
+	}
+
 	onMount(() => {
 		let timer;
 		let abortado = false;
@@ -46,7 +102,10 @@
 				// e retorna sem renderizar nada. Confiar na promise faria a bolha do
 				// WhatsApp sumir junto com um bot que não existe, e a página ficaria
 				// sem nenhum canal de contato flutuante.
-				if (!abortado) onmontar?.(!!document.getElementById('oc-widget-container'));
+				if (abortado) return;
+				const subiu = !!document.getElementById('oc-widget-container');
+				if (subiu) sanearWidget();
+				onmontar?.(subiu);
 			};
 
 			document.head.append(css, js);
@@ -62,6 +121,8 @@
 			// listener é { once: true } e agendaria a injeção de um componente morto.
 			abortado = true;
 			clearTimeout(timer);
+			for (const o of observadores) o.disconnect();
+			observadores = [];
 			window.OCBotWidget?.destroy?.();
 			onmontar?.(false);
 		};
