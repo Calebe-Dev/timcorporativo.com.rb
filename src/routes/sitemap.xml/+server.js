@@ -1,6 +1,7 @@
 import { todosArtigos } from '$lib/server/artigos.js';
 import { solucoesLp } from '$lib/solucoes/index.js';
 import { site } from '$lib/site.js';
+import { POR_PAGINA } from '$lib/blog/paginacao.js';
 
 // Gerado no build (SSG). O crawler do SvelteKit inclui rotas sem parâmetros
 // automaticamente, então /sitemap.xml é pré-renderizado mesmo sem link.
@@ -33,6 +34,14 @@ export async function GET() {
 		{ loc: `${site.url}/solucoes/`, priority: '0.9' },
 		...solucoesLp.map((lp) => ({ loc: `${site.url}/solucoes/${lp.slug}/`, priority: '0.8' })),
 		{ loc: `${site.url}/blog`, priority: '0.8' },
+		// Páginas 2..N da listagem. Prioridade baixa porque são navegação, não
+		// destino de busca — mas precisam estar aqui: sem elas o rastreio dos
+		// artigos mais antigos depende só da cadeia de links "Próxima", que o
+		// Google percorre com muito menos frequência.
+		...Array.from(
+			{ length: Math.max(0, Math.ceil(posts.length / POR_PAGINA) - 1) },
+			(_, i) => ({ loc: `${site.url}/blog/pagina/${i + 2}`, priority: '0.4' })
+		),
 		{ loc: `${site.url}/politica-de-privacidade`, priority: '0.3' },
 		...posts.map((a) => ({
 			// Barra final: é a URL que o WordPress servia, que o Google indexou e

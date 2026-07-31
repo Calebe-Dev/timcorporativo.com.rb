@@ -1,4 +1,5 @@
 import { todosArtigos } from '$lib/server/artigos.js';
+import { fatiar } from '$lib/blog/paginacao.js';
 
 // Listagem do blog — roda apenas no build (SSG). A fonte é a mesclagem
 // snapshot local + CMS (ver $lib/server/artigos.js), já deduplicada por slug
@@ -17,5 +18,7 @@ export async function load() {
 		date: published_at ?? created_at
 	}));
 
-	return { items };
+	// Só a primeira fatia; as demais vivem em /blog/pagina/[n]. Ver o comentário
+	// em $lib/blog/paginacao.js: os 189 cartões numa página só estouravam o LCP.
+	return fatiar(items, 1);
 }
