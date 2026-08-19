@@ -12,5 +12,9 @@
 import { tratarLead } from '../../worker/lead.js';
 
 export async function onRequest(context) {
-	return tratarLead(context.request, context.env);
+	// Passa o `context` inteiro, e não só request/env: é o `context.waitUntil`
+	// dele que mantém a gravação no CRM viva depois de a resposta ir embora —
+	// sem isso o visitante indo para o WhatsApp cancela a requisição no meio.
+	// Ver worker/lead.js.
+	return tratarLead(context.request, context.env, context);
 }

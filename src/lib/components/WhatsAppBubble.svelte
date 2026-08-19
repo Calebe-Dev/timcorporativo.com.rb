@@ -123,37 +123,53 @@
 		].join('\n');
 	}
 
+	/**
+	 * `keepalive` faz o browser concluir o POST mesmo se a página for descarregada
+	 * logo depois — o lead não depende de o visitante continuar aqui.
+	 */
+	async function registrarLead() {
+		const res = await fetch('/api/lead', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				nome,
+				email,
+				celular,
+				mensagem: 'Contato rápido pelo botão flutuante do WhatsApp',
+				website,
+				pagina,
+				'cf-turnstile-response': turnstileToken,
+				...utm
+			}),
+			keepalive: true
+		});
+		if (!res.ok) throw new Error(`api ${res.status}`);
+	}
+
 	async function enviar(e) {
 		e.preventDefault();
 		if (enviando) return;
 		enviando = true;
 		status = '';
 
-		// WhatsApp abre PRIMEIRO, de forma síncrona — depois de um await o browser
-		// deixa de tratar como gesto do usuário e bloqueia o popup (ver ContactForm).
+		// Mesma ordem do ContactForm: com o token em mãos, o POST sai antes de
+		// abrir o WhatsApp — no celular a aba congela na entrega para o app e a
+		// requisição que ainda não saiu pode não sair.
+		let envio = turnstileToken ? registrarLead() : null;
+
+		// WhatsApp abre de forma síncrona — depois de um await o browser deixa de
+		// tratar como gesto do usuário e bloqueia o popup (ver ContactForm).
 		const janela = window.open(whatsappLink(resumo()), '_blank', 'noopener');
 
-		if (tokenPronto && !turnstileToken) {
-			await Promise.race([tokenPronto, new Promise((r) => setTimeout(r, ESPERA_TOKEN_MS))]);
+		if (!envio) {
+			if (tokenPronto) {
+				await Promise.race([tokenPronto, new Promise((r) => setTimeout(r, ESPERA_TOKEN_MS))]);
+			}
+			envio = registrarLead();
 		}
 
 		try {
-			const res = await fetch('/api/lead', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					nome,
-					email,
-					celular,
-					mensagem: 'Contato rápido pelo botão flutuante do WhatsApp',
-					website,
-					pagina,
-					'cf-turnstile-response': turnstileToken,
-					...utm
-				}),
-				keepalive: true
-			});
-			if (!res.ok) throw new Error(`api ${res.status}`);
+			await envio;
 			status = 'ok';
 		} catch {
 			status = janela ? 'zap' : 'erro';

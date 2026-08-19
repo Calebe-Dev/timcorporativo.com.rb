@@ -170,23 +170,32 @@
 		enviando = true;
 		status = '';
 
-		// O WhatsApp abre PRIMEIRO e de forma síncrona: depois de um `await` o
-		// browser já não considera isto um gesto do usuário e bloqueia o popup.
+		// Com o token já em mãos, o POST sai ANTES de abrir o WhatsApp: `fetch`
+		// não consome o gesto do usuário (só um `await` consome), e no celular a
+		// aba congela ao entregar o visitante para o app — se a requisição ainda
+		// não tiver saído nesse momento, ela pode não sair nunca.
+		let envio = turnstileToken ? registrarLead() : null;
+
+		// O WhatsApp abre de forma síncrona: depois de um `await` o browser já
+		// não considera isto um gesto do usuário e bloqueia o popup.
 		// A captura do lead segue em paralelo, sem travar o atendimento.
 		const janela = window.open(whatsappLink(resumo()), '_blank', 'noopener');
 
-		// Com a secret gravada, o servidor rejeita lead sem token (403 `captcha`).
-		// Como agora o widget só começa a carregar no primeiro foco, damos a ele
-		// uma janela para concluir. Seguro fazer depois do window.open acima.
-		if (tokenPronto && !turnstileToken) {
-			await Promise.race([
-				tokenPronto,
-				new Promise((r) => setTimeout(r, ESPERA_TOKEN_MS))
-			]);
+		// Token ainda não chegou: com a secret gravada, o servidor rejeita lead
+		// sem ele (403 `captcha`). Como o widget só começa a carregar no primeiro
+		// foco, damos uma janela para concluir. Seguro fazer depois do window.open.
+		if (!envio) {
+			if (tokenPronto) {
+				await Promise.race([
+					tokenPronto,
+					new Promise((r) => setTimeout(r, ESPERA_TOKEN_MS))
+				]);
+			}
+			envio = registrarLead();
 		}
 
 		try {
-			await registrarLead();
+			await envio;
 			status = 'ok';
 		} catch {
 			// Não registramos nada — então não dizemos que registramos. Se o

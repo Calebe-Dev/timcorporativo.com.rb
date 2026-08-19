@@ -1,7 +1,7 @@
 # Envio de leads — arquitetura e operação
 
 **Endpoint:** `POST /api/lead` · **Destinos:** OC Hub CRM (Directus) + e-mail interno (Grupo OC Mail Service)
-**Última atualização:** 2026-07-24
+**Última atualização:** 2026-08-19
 
 ---
 
@@ -25,13 +25,16 @@ abrindo exatamente como antes — o funil não mudou, só deixou de vazar.
 Visitante → POST /api/lead (JSON)
   Pages Function (roda SÓ em /api/* — páginas seguem asset-first, SEO/perf intocados):
   1. Origin do próprio site?          não → 403   (evita virar relay de spam)
-  2. Honeypot preenchido?             sim → 200 falso (não avisa o bot)
-  3. Turnstile                        inválido → 403 · serviço fora do ar → passa marcado
-  4. Validação server-side            falhou → 400
-  5. EM PARALELO, independentes:
+  2. Turnstile                        inválido → 403 · serviço fora do ar → passa marcado
+  3. Validação server-side            falhou → 400
+  4. Honeypot preenchido?             com Turnstile OK  → só e-mail, marcado [suspeito]
+                                      sem Turnstile     → 200 falso (não avisa o bot)
+  5. EM PARALELO, independentes, registrados em waitUntil:
        ├── CRM: POST /items/oc_crm_lead   (fonte durável)
        └── E-mail: Mail Service → comercial  (aviso; e-mail do lead no corpo)
   6. pelo menos 1 destino OK → 200 · os DOIS falharam → 502 (+ lead no log)
+  7. CRM falhou? → até 2 retentativas em segundo plano → se ainda falhar,
+     e-mail [CRM FALHOU] com os dados para cadastro manual
 ```
 
 **Por que dois destinos independentes:** um CRM lento ou o Mail Service fora do ar não podem
@@ -41,6 +44,35 @@ precisar sequenciar as duas chamadas.
 
 **Se os dois falharem:** o visitante recebe erro, o conteúdo do lead vai para o log
 (`wrangler pages deployment tail`) e o formulário cai no WhatsApp, que não depende de nós.
+
+### 2.1 Por que `waitUntil`, retentativas e e-mail de alerta
+
+Investigação de **19/08/2026**, motivada por leads que chegavam por e-mail e não apareciam
+no CRM. O que a medição contra a produção mostrou:
+
+| Medida | Valor |
+| --- | --- |
+| Directus com conexão já aberta (12 requisições seguidas) | **0,256 s, estável** |
+| Directus abrindo conexão nova (78 amostras) | p50 **0,71 s** · p90 **2,10 s** · p95 **4,19 s** · pior caso **9,45 s** |
+| Mail Service (`/health`) | 0,16 s a 0,83 s |
+| Timeout do CRM antes desta mudança | **10 s, sem retentativa** |
+
+O banco não é o gargalo: a demora está em **abrir a conexão**, e a cauda chegava perto do
+timeout de 10 s. Some a isso duas coisas do código: o formulário abre o WhatsApp **antes**
+de concluir o POST (no celular a aba congela e a conexão do visitante morre), e o fan-out
+**não estava em `waitUntil`** — então o runtime cancelava o request e levava as
+subrequisições pendentes com ele.
+
+**Por que só o CRM sumia, nunca o e-mail:** o efeito do e-mail acontece no servidor deles —
+o Mail Service já disparou o SMTP quando paramos de esperar a resposta. A gravação no CRM
+precisa **chegar**. Qualquer interrupção produz exatamente "e-mail chegou, CRM não", sempre
+nessa direção.
+
+**O que NÃO é o problema** (testado contra a produção no mesmo dia — não gaste tempo
+procurando de novo): a collection aceita payload vazio, `observacoes` com 5.001 chars
+(é coluna `text`), `cpf_cnpj` fora de padrão e lead duplicado. Não há campo obrigatório,
+limite de coluna nem índice único. `CREATE` anônimo estava aberto e funcionando. Os 6
+secrets existem em produção. Se a gravação falha, a causa é transporte, não conteúdo.
 
 ### Arquivos
 
@@ -53,7 +85,8 @@ precisar sequenciar as duas chamadas.
 | `worker/email.js` | Aviso interno via Grupo OC Mail Service (template `lead-notification`) |
 | `worker/turnstile.js` | Verificação anti-spam |
 | `static/_routes.json` | Garante que **só** `/api/*` invoca a Function |
-| `src/lib/components/ContactForm.svelte` | Formulário: captura + WhatsApp |
+| `src/lib/components/ContactForm.svelte` | Formulário completo: captura + WhatsApp |
+| `src/lib/components/WhatsAppBubble.svelte` | Painel de contato rápido (3 campos), mesmo endpoint |
 
 > `worker/` fica **fora** de `functions/` de propósito: tudo dentro de `functions/`
 > vira rota. E `functions/` fica na **raiz** do repositório (não em `build/`) — é lá
@@ -68,16 +101,24 @@ precisar sequenciar as duas chamadas.
 | nome | `nome` |
 | e-mail | `email` |
 | celular (só dígitos) | `telefone` |
-| CNPJ (só dígitos) | `cpf_cnpj` |
+| CNPJ (só dígitos, **só se tiver 11 ou 14**) | `cpf_cnpj` |
 | mensagem | `mensagem` |
 | — | `origem` = "Site TIM Corporativo" (var `LEAD_ORIGEM`) |
 | — | `site_origem_id` = `OCHUB_SITE_UUID` |
 | — | `status` = `novo` |
-| nº de linhas, operadora atual, página, UTMs, ID do lead | `observacoes` |
+| ID do lead, página, UTMs, nº de linhas, operadora atual, CNPJ fora de padrão | `observacoes` |
 
 **Nº de linhas** e **operadora atual** não têm coluna própria em `oc_crm_lead` — vão em
 `observacoes`. Se virarem critério de qualificação/filtro no CRM, o certo é criar as
 colunas no Directus e promover os dois campos (mudança no CMS, não só aqui).
+
+**O campo CNPJ do formulário não valida tamanho**, e chegam coisas como `17`, `2222222` ou
+um CPF de 11 dígitos. Só o que tem 11 ou 14 dígitos vai para `cpf_cnpj`; o resto é anotado
+em `observacoes`, para não poluir a coluna que o comercial usa para achar a empresa.
+
+**A ordem de `observacoes` é por valor decrescente e o `ID do lead` vem primeiro** — é a
+chave que liga o registro ao e-mail interno, e num corte é a última linha que se pode
+perder. `Recebido em` saiu de lá: o Directus já grava `date_created`.
 
 ---
 
@@ -142,8 +183,15 @@ O código não quebra com secret faltando — cada destino falha isolado e o out
 | `MAIL_API_KEY` | sem e-mail; **lead ainda vai para o CRM** |
 | `LEAD_TO` | e-mail ainda chega aos destinatários fixos do serviço; só não há cópia |
 | `OCHUB_DIRECTUS_URL` / `OCHUB_SITE_UUID` | sem CRM; **lead ainda vai por e-mail** |
-| `TURNSTILE_SECRET_KEY` | verificação **pulada**; só honeypot + validação |
+| `TURNSTILE_SECRET_KEY` | verificação **pulada**; só honeypot + validação. E lead que cair no honeypot volta a ser descartado em silêncio, porque sem veredito do Turnstile não há como separar autofill de bot |
 | tudo | 502 ao visitante, lead no log, WhatsApp segue funcionando |
+
+### O ambiente `preview` não tem nenhum secret
+
+Verificado em 19/08/2026 (`wrangler pages secret list --project-name=timcorporativo
+--env preview`): a lista volta vazia. Consequência: **lead enviado num deployment de preview
+não vai para lugar nenhum** — sem CRM, sem e-mail, 502 ao visitante — e o Turnstile é pulado.
+Ou os secrets são replicados em Preview, ou preview não serve para testar captura de lead.
 
 ---
 
@@ -190,9 +238,15 @@ O código não quebra com secret faltando — cada destino falha isolado e o out
 npx wrangler pages deployment tail --project-name=timcorporativo
 ```
 
-Linhas relevantes: `[lead] falha no CRM:`, `[lead] falha no e-mail:` e
-`[lead] PERDIDO — nenhum destino aceitou:` (esta última traz o lead inteiro em JSON,
-para recuperação manual).
+Linhas relevantes: `[lead] falha no CRM:`, `[lead] retentativa no CRM falhou:`,
+`[lead] CRM gravou na retentativa`, `[lead] CRM não gravou este lead`,
+`[lead] falha no e-mail:` e `[lead] PERDIDO — nenhum destino aceitou:` (esta última traz o
+lead inteiro em JSON, para recuperação manual).
+
+**Mas o log não é mais o canal principal.** Ele só existe enquanto alguém está com o `tail`
+aberto — foi por isso que a falha do CRM passou meses invisível. Hoje, lead que o CRM
+recusou até o fim gera um e-mail **`[CRM FALHOU]`** com os dados para cadastro manual. Se
+esse assunto não aparece na caixa do comercial, o CRM está recebendo tudo.
 
 **Testar local:**
 

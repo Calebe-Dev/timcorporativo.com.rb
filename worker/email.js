@@ -45,24 +45,9 @@ function cnpjLegivel(d) {
 	return m ? `${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}` : d;
 }
 
-/**
- * O template só tem um campo livre (`message`), então tudo que não cabe em
- * name/email/phone/company entra aqui — senão o comercial recebe um e-mail sem
- * nº de linhas, operadora nem origem da campanha, que é o que qualifica o lead.
- */
-function montarMensagem(lead, verificado) {
-	const blocos = [];
-
-	if (!verificado) {
-		blocos.push(
-			'[ATENCAO] O anti-spam estava indisponivel no momento do envio — ' +
-				'este lead NAO foi verificado. Confira antes de tratar.'
-		);
-	}
-
-	if (lead.mensagem) blocos.push(lead.mensagem);
-
-	const detalhes = [
+/** Linhas "Rótulo: valor" do lead, sem as vazias. Usado nos dois e-mails. */
+function detalhes(lead) {
+	return [
 		['CNPJ', cnpjLegivel(lead.cnpj)],
 		['No de linhas', lead.linhas],
 		['Operadora atual', lead.operadora],
@@ -73,8 +58,36 @@ function montarMensagem(lead, verificado) {
 	]
 		.filter(([, v]) => v)
 		.map(([k, v]) => `${k}: ${v}`);
+}
 
-	if (detalhes.length) blocos.push(detalhes.join('\n'));
+/**
+ * O template só tem um campo livre (`message`), então tudo que não cabe em
+ * name/email/phone/company entra aqui — senão o comercial recebe um e-mail sem
+ * nº de linhas, operadora nem origem da campanha, que é o que qualifica o lead.
+ */
+function montarMensagem(lead, verificado, suspeito) {
+	const blocos = [];
+
+	if (!verificado) {
+		blocos.push(
+			'[ATENCAO] O anti-spam estava indisponivel no momento do envio — ' +
+				'este lead NAO foi verificado. Confira antes de tratar.'
+		);
+	}
+
+	if (suspeito) {
+		blocos.push(
+			'[SUSPEITO] O campo-armadilha do formulario veio preenchido. Costuma ser ' +
+				'bot, mas gerenciador de senha e autofill do browser tambem preenchem ' +
+				'campo escondido — por isso o lead chegou a voce em vez de ser descartado. ' +
+				'Ele NAO foi gravado no CRM: se for gente, cadastre a mao.'
+		);
+	}
+
+	if (lead.mensagem) blocos.push(lead.mensagem);
+
+	const linhas = detalhes(lead);
+	if (linhas.length) blocos.push(linhas.join('\n'));
 
 	// O serviço não suporta Reply-To, então o e-mail do lead precisa estar
 	// visível no corpo para responder sem ter que procurar.
@@ -105,26 +118,17 @@ function explicar(status, corpo) {
 }
 
 /**
- * Envia o aviso interno. Lança em caso de falha — quem chama decide (o lead já
- * foi/será gravado no CRM independentemente disso).
- *
- * @param {object} env vars/secrets da Pages Function
- * @param {object} lead saída de `validar()`
- * @param {{ verificado: boolean }} contexto
+ * POST no Mail Service. Os dois e-mails deste arquivo passam por aqui, então
+ * chave, timeout, `cc` e tradução de erro moram num lugar só.
  */
-export async function enviarAvisoInterno(env, lead, { verificado }) {
+async function enviar(env, assunto, lead, mensagem) {
 	if (!env.MAIL_API_KEY) throw new Error('MAIL_API_KEY não configurada');
 
 	const url = (env.MAIL_SERVICE_URL || URL_PADRAO).trim();
 
-	const assunto = `${verificado ? '' : '[verificar] '}Novo lead TIM Corporativo: ${lead.nome}`.slice(
-		0,
-		MAX_ASSUNTO
-	);
-
 	const corpo = {
 		to: DESTINO_IGNORADO,
-		subject: assunto,
+		subject: assunto.slice(0, MAX_ASSUNTO),
 		template: TEMPLATE,
 		data: {
 			name: lead.nome,
@@ -132,7 +136,7 @@ export async function enviarAvisoInterno(env, lead, { verificado }) {
 			phone: telefoneLegivel(lead.celular),
 			// Não coletamos razão social; o CNPJ é o identificador que temos.
 			company: cnpjLegivel(lead.cnpj),
-			message: montarMensagem(lead, verificado),
+			message: mensagem,
 			source: env.LEAD_ORIGEM || 'timcorporativo.com.br',
 			timestamp: lead.recebidoEm
 		}
@@ -156,4 +160,49 @@ export async function enviarAvisoInterno(env, lead, { verificado }) {
 		const texto = await res.text().catch(() => '');
 		throw new Error(explicar(res.status, texto));
 	}
+}
+
+/**
+ * Envia o aviso interno. Lança em caso de falha — quem chama decide (o lead já
+ * foi/será gravado no CRM independentemente disso).
+ *
+ * @param {object} env vars/secrets da Pages Function
+ * @param {object} lead saída de `validar()`
+ * @param {{ verificado: boolean, suspeito?: boolean }} contexto
+ */
+export async function enviarAvisoInterno(env, lead, { verificado, suspeito = false }) {
+	// Marcas no assunto para o comercial triar sem abrir: quem não passou pelo
+	// anti-spam e quem caiu no honeypot chegam identificados.
+	const marcas = [!verificado && '[verificar]', suspeito && '[suspeito]'].filter(Boolean).join(' ');
+	const assunto = `${marcas ? marcas + ' ' : ''}Novo lead TIM Corporativo: ${lead.nome}`;
+
+	return enviar(env, assunto, lead, montarMensagem(lead, verificado, suspeito));
+}
+
+/**
+ * Segundo e-mail, disparado só quando o CRM recusou o lead e as retentativas
+ * também falharam (ver worker/lead.js).
+ *
+ * Existe porque a falha do CRM era invisível: o visitante lia "Recebemos seus
+ * dados", o comercial recebia o aviso normal, e o lead simplesmente não estava
+ * no CRM. A única pista ficava num `console.error` que só aparece em
+ * `wrangler pages deployment tail` ao vivo, sem retenção. Este e-mail troca isso
+ * por um aviso que chega a quem pode agir, com os dados para cadastrar à mão.
+ *
+ * @param {object} env
+ * @param {object} lead
+ * @param {unknown} motivo erro da última tentativa
+ */
+export async function avisarFalhaNoCms(env, lead, motivo) {
+	const blocos = [
+		'[CRM FALHOU] O aviso de lead anterior a este NAO foi gravado no CRM: o OC ' +
+			'Hub recusou ou nao respondeu, inclusive nas retentativas. Cadastre a mao ' +
+			'com os dados abaixo — este e o unico registro que sobrou.',
+		`Motivo tecnico: ${String(motivo).slice(0, 300)}`,
+		detalhes(lead).join('\n'),
+		lead.mensagem && `Mensagem: ${lead.mensagem}`,
+		`Responder para: ${lead.email}`
+	].filter(Boolean);
+
+	return enviar(env, `[CRM FALHOU] Novo lead TIM Corporativo: ${lead.nome}`, lead, blocos.join('\n\n'));
 }

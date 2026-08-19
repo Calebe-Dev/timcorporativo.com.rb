@@ -66,15 +66,17 @@ export async function lerCorpo(request) {
 }
 
 /**
- * Valida e normaliza. Retorna `{ ok, lead }` ou `{ ok: false, erro }`.
- * `honeypot: true` sinaliza bot — o chamador responde sucesso falso.
+ * Valida e normaliza. Retorna `{ ok, lead, suspeito }` ou `{ ok: false, erro }`.
+ *
+ * `suspeito: true` = honeypot preenchido. NÃO descartamos aqui: gerenciador de
+ * senha e autofill do browser também preenchem campo escondido, e descartar em
+ * silêncio custava lead legítimo. Quem decide o que fazer é worker/lead.js, que
+ * tem em mãos o veredito do Turnstile.
  */
 export function validar(dados) {
-	// Honeypot: campo invisível no formulário. Humano nunca preenche.
+	// Honeypot: campo invisível no formulário. Humano não preenche de propósito.
 	const armadilha = dados.website;
-	if (typeof armadilha === 'string' && armadilha.trim() !== '') {
-		return { ok: false, honeypot: true };
-	}
+	const suspeito = typeof armadilha === 'string' && armadilha.trim() !== '';
 
 	const get = (k, limite) => {
 		const v = dados[k];
@@ -94,6 +96,7 @@ export function validar(dados) {
 
 	return {
 		ok: true,
+		suspeito,
 		lead: {
 			nome: get('nome', MAX.nome),
 			email,
