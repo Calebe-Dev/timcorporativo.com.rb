@@ -86,7 +86,11 @@
 	<title>{title}</title>
 	<meta name="description" content={description} />
 	<meta name="keywords" content={keywords} />
+	<!-- GRUPO-OC-OCULTO 2026-09-09 (reverter: restaurar o trecho abaixo)
 	<meta name="author" content="{site.name} — {site.legalName}" />
+	-->
+	<!-- GRUPO-OC-SUBSTITUTO -->
+	<meta name="author" content={site.name} />
 	<meta name="publisher" content={site.legalName} />
 	<meta name="robots" content="index, follow, max-image-preview:large" />
 	<link rel="canonical" href={canonical} />

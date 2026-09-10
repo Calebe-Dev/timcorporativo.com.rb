@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
-import { listarArtigos } from '$lib/server/artigos.js';
+// GRUPO-OC-OCULTO 2026-09-09 — original: import { listarArtigos } from '$lib/server/artigos.js';
+import { listarArtigos, SLUGS_OCULTOS_GRUPO_OC } from '$lib/server/artigos.js';
 import { solucoesLp, lpPorSlug, cartao } from '$lib/solucoes/index.js';
 
 export const prerender = true;
@@ -22,7 +23,17 @@ export async function load({ params }) {
 	// Link interno morto é erro de build, não aviso. Uma LP que aponta para um
 	// artigo inexistente publica 404 na malha inteira, e o custo de descobrir isso
 	// em produção é alto demais para um checar-depois.
-	const artigosRelacionados = (lp.artigos ?? []).map((slug) => {
+	// GRUPO-OC-OCULTO 2026-09-09 — original: const artigosRelacionados = (lp.artigos ?? []).map((slug) => {
+	// Artigo oculto (Grupo OC → 301 para a home) não é link morto de verdade,
+	// mas também não pode ser linkado: sai da lista com aviso em vez de derrubar
+	// o build. As fichas em $lib/solucoes/paginas/ ficam como estão.
+	const artigosRelacionados = (lp.artigos ?? [])
+		.filter((slug) => {
+			if (!SLUGS_OCULTOS_GRUPO_OC.includes(slug)) return true;
+			console.warn(`[solucoes] LP "${lp.slug}": artigo "${slug}" oculto (Grupo OC) — fora dos relacionados`);
+			return false;
+		})
+		.map((slug) => {
 		const a = porSlug.get(slug);
 		if (!a) {
 			throw new Error(

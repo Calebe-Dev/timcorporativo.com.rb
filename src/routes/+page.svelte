@@ -34,23 +34,25 @@
 		url: 'https://share.google/cjTKDhFjkYiTJCAx8'
 	};
 	const depoimentos = [
-		{
-			nome: 'Renato Caetano',
-			contexto: '32 anos na área de tecnologia',
-			texto: 'Atuo há 32 anos na área de tecnologia. […] O Grupo OC foi um achado!'
-		},
+		// GRUPO-OC-OCULTO 2026-09-09 — original (item inteiro — avaliação de terceiro que cita o Grupo OC; reverter: descomentar):
+		// {
+		// 	nome: 'Renato Caetano',
+		// 	contexto: '32 anos na área de tecnologia',
+		// 	texto: 'Atuo há 32 anos na área de tecnologia. […] O Grupo OC foi um achado!'
+		// },
 		{
 			nome: 'Alfredo Junior',
 			contexto: 'Avaliação no Google',
 			texto:
 				'Empresa top! Entenderam perfeitamente a nossa necessidade e desenrolaram tudo com muito eficiência e rapidez. Acompanhamento integral do processo. Só tenho a agradecer.'
 		},
-		{
-			nome: 'Alexandre Mendonça',
-			contexto: 'Avaliação no Google',
-			texto:
-				'Melhor experiência com internet empresarial! O Grupo OC me surpreendeu pela qualidade e profissionalismo no atendimento […]'
-		}
+		// GRUPO-OC-OCULTO 2026-09-09 — original (item inteiro — avaliação de terceiro que cita o Grupo OC; reverter: descomentar):
+		// {
+		// 	nome: 'Alexandre Mendonça',
+		// 	contexto: 'Avaliação no Google',
+		// 	texto:
+		// 		'Melhor experiência com internet empresarial! O Grupo OC me surpreendeu pela qualidade e profissionalismo no atendimento […]'
+		// }
 	];
 </script>
 
@@ -377,9 +379,16 @@
 			<h2 class="text-balance text-center text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
 				Quem contrata, recomenda
 			</h2>
+			<!-- GRUPO-OC-OCULTO 2026-09-09 (reverter: restaurar o trecho abaixo)
 			<p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
 				Empresas de todos os portes — incluindo marcas como a <strong>BYD</strong> — confiam no
 				Grupo OC para cuidar da telecom do CNPJ.
+			</p>
+			-->
+			<!-- GRUPO-OC-SUBSTITUTO -->
+			<p class="mx-auto mt-3 max-w-2xl text-center text-slate-600">
+				Empresas de todos os portes — incluindo marcas como a <strong>BYD</strong> — confiam na
+				nossa consultoria para cuidar da telecom do CNPJ.
 			</p>
 
 			<!-- Selo da nota: link para o perfil real no Google, onde as 110

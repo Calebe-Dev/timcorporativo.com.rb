@@ -16,6 +16,9 @@ export const SITE_ID = `${site.url}/#website`;
  * habilitam o entendimento de negócio local sem perder o vínculo nacional.
  */
 export function organizationNode() {
+	// GRUPO-OC-OCULTO 2026-09-09 — perfis sociais ocultos em site.js: entra só o que
+	// existir e, sem nenhum, a chave sameAs some (array com null invalidaria o nó).
+	const sameAs = [contact.facebook, contact.instagram, contact.linkedin].filter(Boolean);
 	return {
 		'@type': ['Organization', 'LocalBusiness'],
 		'@id': ORG_ID,
@@ -29,7 +32,8 @@ export function organizationNode() {
 		email: contact.emails[0],
 		// Sem preço tabelado: a venda é consultiva, por proposta.
 		priceRange: 'Sob consulta',
-		sameAs: [contact.facebook, contact.instagram, contact.linkedin],
+		// GRUPO-OC-OCULTO 2026-09-09 — original: sameAs: [contact.facebook, contact.instagram, contact.linkedin],
+		...(sameAs.length ? { sameAs } : {}),
 		areaServed: { '@type': 'Country', name: 'Brasil' },
 		address: {
 			'@type': 'PostalAddress',

@@ -22,6 +22,7 @@
 			</p>
 			<!-- Perfis oficiais do Grupo OC — mesmos URLs do sameAs no JSON-LD, para
 			     o grafo de entidades do Google bater com o que está visível. -->
+			<!-- GRUPO-OC-OCULTO 2026-09-09 (reverter: restaurar o trecho abaixo)
 			<ul class="mt-4 flex gap-3">
 				<li>
 					<a
@@ -69,6 +70,7 @@
 					</a>
 				</li>
 			</ul>
+			-->
 		</div>
 
 		<div>
@@ -82,6 +84,7 @@
 						Política de Privacidade
 					</a>
 				</li>
+				<!-- GRUPO-OC-OCULTO 2026-09-09 (reverter: restaurar o trecho abaixo)
 				<li>
 					<a
 						href="https://grupooc.com.br"
@@ -92,6 +95,7 @@
 						Sobre o Grupo OC
 					</a>
 				</li>
+				-->
 			</ul>
 		</div>
 

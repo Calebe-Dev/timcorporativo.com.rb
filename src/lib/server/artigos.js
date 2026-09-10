@@ -9,6 +9,22 @@
 
 import { ochubConfig } from './ochub.js';
 
+// GRUPO-OC-REDIRECT 2026-09-09 — conteúdo sobre o Grupo OC → home (reverter: apagar este bloco)
+// Artigos com "Grupo OC" no título/slug. Saem da geração (não viram /<slug>/,
+// não entram no sitemap, no /blog, no mapa do site nem no "Leia também") para
+// que a regra 301 → / em static/_redirects não colida com página viva. Os JSON
+// em content/artigos/ ficam intactos. Reverter = apagar este bloco, o filtro em
+// todosArtigos(), o desvio em routes/solucoes/[slug]/+page.server.js e as 6
+// regras do _redirects.
+export const SLUGS_OCULTOS_GRUPO_OC = [
+	'tim-black-empresa-descontos-progressivos-grupo-oc',
+	'consultoria-tim-black-empresa-solucoes-corporativas-com-grupo-oc',
+	'telefone-tim-empresas-consultoria',
+	'tim-empresa-mei-microempresas-planos-sorocaba',
+	'tim-empresas-planos-corporativos-descontos-progressivos-guia',
+	'tim-empresas-telefone-atendimento-2026',
+];
+
 // Vite embute os JSONs no bundle do servidor (só existe durante o prerender).
 const snapshot = import.meta.glob('/content/artigos/*.json', { eager: true, import: 'default' });
 
@@ -45,9 +61,18 @@ export function todosArtigos() {
 				);
 			}
 
-			return [...porSlug.values()].sort((x, y) =>
-				dataPublicacao(y).localeCompare(dataPublicacao(x))
+			// GRUPO-OC-OCULTO 2026-09-09 — original:
+			// return [...porSlug.values()].sort((x, y) =>
+			// 	dataPublicacao(y).localeCompare(dataPublicacao(x))
+			// );
+			// Ponto único de origem: listarArtigos() deriva daqui e herda o filtro.
+			const visiveis = [...porSlug.values()].filter(
+				(a) => !SLUGS_OCULTOS_GRUPO_OC.includes(a.slug)
 			);
+			if (visiveis.length !== porSlug.size) {
+				console.log(`[artigos] ${porSlug.size - visiveis.length} ocultos (Grupo OC → 301 para a home)`);
+			}
+			return visiveis.sort((x, y) => dataPublicacao(y).localeCompare(dataPublicacao(x)));
 		})();
 	}
 	return promessa;
@@ -56,6 +81,7 @@ export function todosArtigos() {
 /**
  * Visão leve para mapa do site, "Leia também" e listagens: sem html_content.
  * `keywords` vira string (o CMS entrega array) para a tokenização de afinidade.
+ * Herda o filtro SLUGS_OCULTOS_GRUPO_OC de todosArtigos() — não filtra de novo.
  */
 export async function listarArtigos() {
 	return (await todosArtigos()).map((a) => ({

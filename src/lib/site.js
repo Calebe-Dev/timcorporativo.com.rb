@@ -3,7 +3,8 @@
 
 export const site = {
 	name: 'TIM Corporativo',
-	legalName: 'Grupo OC',
+	// GRUPO-OC-OCULTO 2026-09-09 — original: legalName: 'Grupo OC',
+	legalName: 'TIM Corporativo',
 	tagline: 'Representante autorizado TIM para empresas',
 	url: 'https://timcorporativo.com.br',
 	// ~150 caracteres: cabe inteira na SERP e cobre a intenção de compra
@@ -41,9 +42,11 @@ export const contact = {
 	addressLocality: 'Sorocaba',
 	addressRegion: 'SP',
 	cnpj: '23.474.830/0001-56',
-	facebook: 'https://www.facebook.com/grupoocwearepeople',
-	instagram: 'https://www.instagram.com/grupooc/',
-	linkedin: 'https://www.linkedin.com/company/grupo-oc-we-are-people/',
+	// Perfis sociais do Grupo OC: ocultos. Quem lê (schema.js sameAs, Footer)
+	// tolera a ausência das chaves.
+	// GRUPO-OC-OCULTO 2026-09-09 — original: facebook: 'https://www.facebook.com/grupoocwearepeople',
+	// GRUPO-OC-OCULTO 2026-09-09 — original: instagram: 'https://www.instagram.com/grupooc/',
+	// GRUPO-OC-OCULTO 2026-09-09 — original: linkedin: 'https://www.linkedin.com/company/grupo-oc-we-are-people/',
 	yearsExperience: 15
 };
 
@@ -225,7 +228,8 @@ export const authority = {
 	},
 	experiencia: {
 		title: 'Mais de 15 anos em telecom empresarial',
-		text: 'O Grupo OC atua há mais de 15 anos em gestão de telecomunicações, auditoria e consultoria em telefonia empresarial. Ajudamos empresas a reduzir custos, otimizar recursos e escolher entre TIM Empresa, TIM Black Empresa, TIM Fibra Empresa e TIM UltraFibra com mais segurança.'
+		// GRUPO-OC-OCULTO 2026-09-09 — original: text: 'O Grupo OC atua há mais de 15 anos em gestão de telecomunicações, auditoria e consultoria em telefonia empresarial. Ajudamos empresas a reduzir custos, otimizar recursos e escolher entre TIM Empresa, TIM Black Empresa, TIM Fibra Empresa e TIM UltraFibra com mais segurança.'
+		text: 'Nossa equipe atua há mais de 15 anos em gestão de telecomunicações, auditoria e consultoria em telefonia empresarial. Ajudamos empresas a reduzir custos, otimizar recursos e escolher entre TIM Empresa, TIM Black Empresa, TIM Fibra Empresa e TIM UltraFibra com mais segurança.'
 	},
 	fechamento: {
 		title: 'TIM Fibra Empresa e TIM UltraFibra',
