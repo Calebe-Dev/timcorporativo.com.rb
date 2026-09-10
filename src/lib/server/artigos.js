@@ -17,13 +17,14 @@ import { stripBrandDeep } from '$lib/brand.js';
 // em content/artigos/ ficam intactos. Reverter = apagar este bloco, o filtro em
 // todosArtigos(), o desvio em routes/solucoes/[slug]/+page.server.js e as 6
 // regras do _redirects.
+// RESTAURO-2026-09-10 — quatro dos seis voltaram: tinham tráfego e o endereço não carrega a
+// marca. Título, meta e texto-âncora foram reescritos no snapshot, e a tabela
+// de brand.js limpa o corpo na leitura. Ficam ocultos só os dois cujo próprio
+// slug traz "grupo-oc": restaurá-los devolveria a marca à URL. Esses dois
+// passaram a redirecionar para o artigo equivalente, não mais para a home.
 export const SLUGS_OCULTOS_GRUPO_OC = [
 	'tim-black-empresa-descontos-progressivos-grupo-oc',
 	'consultoria-tim-black-empresa-solucoes-corporativas-com-grupo-oc',
-	'telefone-tim-empresas-consultoria',
-	'tim-empresa-mei-microempresas-planos-sorocaba',
-	'tim-empresas-planos-corporativos-descontos-progressivos-guia',
-	'tim-empresas-telefone-atendimento-2026',
 ];
 
 // Vite embute os JSONs no bundle do servidor (só existe durante o prerender).

@@ -113,13 +113,10 @@
 /rascunho-automaticgoto-connect-vs-teams-zoom-comparativo-pabx-2026/	/goto-connect-vs-teams-zoom-comparativo-pabx-2026/	301
 
 # --- conteudo sobre o Grupo OC -> home (09/09/2026) ---------------------------
-# GRUPO-OC-REDIRECT 2026-09-09 — conteúdo sobre o Grupo OC → home (reverter: apagar este bloco)
-# Os 6 artigos tem "Grupo OC" no title/slug. Saem da geracao pelo filtro
-# SLUGS_OCULTOS_GRUPO_OC em src/lib/server/artigos.js (os JSON em
-# content/artigos/ ficam), entao nenhuma regra aqui colide com pagina viva.
-/tim-black-empresa-descontos-progressivos-grupo-oc/	/	301
-/consultoria-tim-black-empresa-solucoes-corporativas-com-grupo-oc/	/	301
-/telefone-tim-empresas-consultoria/	/	301
-/tim-empresa-mei-microempresas-planos-sorocaba/	/	301
-/tim-empresas-planos-corporativos-descontos-progressivos-guia/	/	301
-/tim-empresas-telefone-atendimento-2026/	/	301
+# RESTAURO-2026-09-10 — dos 6 artigos retirados em 09/09, quatro voltaram: tinham trafego e o
+# endereco nao carrega a marca (titulo, meta e ancoras foram reescritos no
+# snapshot). Sobram os dois cujo slug traz "grupo-oc": restaura-los devolveria
+# a marca a URL. Em vez de mandar para a home, que o Google trata como pagina
+# inexistente, cada um aponta para o artigo equivalente no mesmo assunto.
+/tim-black-empresa-descontos-progressivos-grupo-oc/	/tim-empresas-planos-corporativos-descontos-progressivos-guia/	301
+/consultoria-tim-black-empresa-solucoes-corporativas-com-grupo-oc/	/cotacao-tim-black-empresa-guia-roi/	301

@@ -10,6 +10,10 @@ export const SITE_NAME = 'TIM Corporativo';
 
 const RULES = [
 	[/href="https?:\/\/(?:www\.)?grupooc\.com\.br[^"]*"/gi, 'href="/"'],
+	// RESTAURO-2026-09-10 — o href já era reescrito, mas o texto visível do link continuava
+	// mostrando o domínio antigo. Agora o rótulo também é trocado.
+	[/(<a[^>]*>)(<strong>)?grupooc\.com\.br(<\/strong>)?(<\/a>)/gi, '$1$2nosso canal de atendimento$3$4'],
+	[/\bgrupooc\.com\.br\b/gi, 'timcorporativo.com.br'],
 	[/https?:\/\/(?:www\.)?grupooc\.com\.br(?:\/[\w\-/]*)?/gi, 'https://timcorporativo.com.br/'],
 
 	[/\s*[|—–-]\s*Grupo OC\b(?!\s*[—–-])/g, ''],
