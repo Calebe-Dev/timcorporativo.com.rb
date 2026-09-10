@@ -23,7 +23,7 @@
 <!-- Bolha do WhatsApp: no layout raiz para existir em toda página sem repetição. -->
 <WhatsAppBubble oculta={botAtivo} />
 
-<!-- Chat do Grupo OC. Injetado 4s depois do `load` para ficar fora da janela de
+<!-- Chat da nossa consultoria. Injetado 4s depois do `load` para ficar fora da janela de
      medição das Core Web Vitals. -->
 <BotChat onmontar={(subiu) => (botAtivo = subiu)} />
 

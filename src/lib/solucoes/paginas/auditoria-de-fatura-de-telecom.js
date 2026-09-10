@@ -14,11 +14,11 @@
 // do que a conciliação encontrar".
 //
 // ⚠ R5 — elemento não-gerável por IA: as sete distorções e as três bases de
-// conciliação são conhecimento de campo do Grupo OC, cuja atividade de origem é
+// conciliação são conhecimento de campo da nossa consultoria, cuja atividade de origem é
 // auditoria e consultoria em telefonia empresarial, anterior ao credenciamento
 // como canal TIM.
 //
-// A página NÃO afirma procedimento interno do Grupo OC nem promete entrega
+// A página NÃO afirma procedimento interno da nossa consultoria nem promete entrega
 // gratuita. O que é prometido são as duas coisas confirmadas: um consultor
 // checa a viabilidade (na fatura, na operação, na necessidade) e a condição por
 // volume progride a partir de dez linhas. O método de conciliação descrito é
@@ -74,7 +74,7 @@ export default {
 		{
 			label: 'Atividade de origem',
 			value: 'Auditoria de telecom',
-			nota: 'Grupo OC: gestão, auditoria e consultoria em telefonia empresarial há +15 anos.'
+			nota: 'TIM Corporativo: gestão, auditoria e consultoria em telefonia empresarial há +15 anos.'
 		}
 	],
 
@@ -315,7 +315,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão de telecomunicações, auditoria e consultoria em telefonia empresarial. Essa é a atividade de origem da empresa — anterior à condição de representante autorizado TIM, e é ela que sustenta o que está escrito nesta página. O perfil no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão de telecomunicações, auditoria e consultoria em telefonia empresarial. Essa é a atividade de origem da empresa — anterior à condição de representante autorizado TIM, e é ela que sustenta o que está escrito nesta página. O perfil no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A lista das sete distorções não veio de catálogo de fornecedor nem de artigo genérico sobre redução de custos: veio de repetição. São as categorias que reaparecem, empresa após empresa, quando alguém finalmente coloca contrato, fatura e inventário lado a lado. Publicá-las abertamente é uma escolha — qualquer empresa pode conferir as sete internamente, sem nos contratar, e essa é a intenção.',
 			'A regra que orienta o método é a conciliação das três bases. Enquanto contratado, cobrado e usado forem verificados separadamente, cada um parece correto. A distorção só existe no espaço entre eles, e é por isso que auditoria não é sinônimo de ler a fatura com mais atenção.',
 			'Sobre o que não fazemos: não prometemos percentual de economia antes de ver a fatura, não emitimos parecer jurídico sobre cláusulas e não recomendamos conduta processual. Auditamos do ponto de vista comercial e operacional; o que passa disso vai para o advogado da empresa. E sobre condição comercial, o que dá para adiantar é público: os descontos progressivos por volume começam a partir de dez linhas, e a faixa aplicável a cada contrato só existe dentro de uma proposta.'

@@ -18,14 +18,14 @@
 // distribuir por perfil → negociar volume) e o critério de que negociação sem
 // levantamento incide sobre um número que ninguém conferiu. É o critério que
 // separa esta página de um anúncio de desconto — e é critério de mercado, não
-// procedimento declarado do Grupo OC.
+// procedimento declarado da nossa consultoria.
 //
 // Separação do lote (senão as três viram doorway):
 //   melhores-precos-... → COMO COMPARAR propostas (método)
 //   esta                → COMO SE FORMA a condição por volume (mecânica)
 //   seu-negocio-...     → O QUE MUDA na operação depois de consolidar (resultado)
 //
-// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// A página NÃO afirma procedimento interno da nossa consultoria. O que é prometido são
 // as duas coisas confirmadas: um consultor checa a viabilidade (no parque, na
 // operação, na necessidade) e os descontos progressivos por volume começam a
 // partir de dez linhas — mecânica sim, percentual nunca.
@@ -85,7 +85,7 @@ export default {
 		{
 			label: 'Quem responde por esta página',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC · CNPJ 23.474.830/0001-56 · Sorocaba/SP · 4,9 no Google com 110 avaliações'
+			nota: 'TIM Corporativo · CNPJ 23.474.830/0001-56 · Sorocaba/SP · 4,9 no Google com 110 avaliações'
 		}
 	],
 
@@ -303,7 +303,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A ordem de três tempos — dimensionar, distribuir, negociar — é a regra de decisão que orienta esta página, e ela nasceu de ver a sequência invertida dar errado muitas vezes. Empresa que negocia primeiro fecha condição sobre um parque que ninguém conferiu, e passa o contrato inteiro pagando desconto sobre linhas que não deveria ter contratado. Por isso a página insiste no levantamento antes da condição: um consultor checa o parque e a necessidade real da operação, e só então a faixa aplicável entra na proposta — mesmo quando isso atrasa a resposta e mesmo quando o cliente prefere o número imediato.',
 			'Publicar a seção sobre desconto em plano errado enfraquece o argumento comercial mais fácil deste mercado, e é deliberado: a alternativa é vender uma condição que parece boa e produz uma conta que não fecha — e conta que não fecha volta como reclamação na renovação seguinte. Não publicamos percentual de desconto aqui nem em nenhuma outra página do site, porque a faixa depende do conjunto do contrato e só faz sentido dentro de uma proposta.'
 		]

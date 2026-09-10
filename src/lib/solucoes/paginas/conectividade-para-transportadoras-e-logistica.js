@@ -6,7 +6,7 @@
 // linhas faturadas contra veículos em operação —, porque é a única conferência
 // que o gestor de frota consegue exigir sozinho e que ninguém faz por ele.
 //
-// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// A página NÃO afirma procedimento interno da nossa consultoria. O que é prometido são
 // as duas coisas confirmadas: um consultor checa a viabilidade (no endereço do
 // CD, na cobertura das rotas, na operação) e a condição por volume progride a
 // partir de dez linhas. O critério técnico — três pontos de conexão, cobertura
@@ -59,7 +59,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC, representante autorizado TIM · 4,9 no Google'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google'
 		}
 	],
 
@@ -273,7 +273,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'O critério que orienta esta página vale explicitar: em frota, nada começa pelo plano. Antes de qualquer proposta, um consultor checa a viabilidade no endereço do CD e levanta a situação atual da operação — quantas linhas estão ativas e o que a frota de fato usa. Não é uma análise de catálogo: é uma conferência do que já existe, e costuma ser ela que revela a maior parte do gasto que ninguém consegue explicar.',
 			'A segunda regra é sobre cobertura: mapa se lê por itinerário, nunca por média de estado. Uma transportadora não opera dentro de um município, opera entre eles, e o trecho que decide o projeto é sempre o mais vazio da rota. Sobre condição comercial, o que é público vale para todo mundo: os descontos progressivos por volume começam a partir de dez linhas.'
 		]

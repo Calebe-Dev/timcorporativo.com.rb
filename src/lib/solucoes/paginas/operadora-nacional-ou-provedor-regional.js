@@ -67,7 +67,7 @@ export default {
 		{
 			label: 'Declaração de interesse',
 			value: 'Somos canal TIM',
-			nota: 'Grupo OC, representante autorizado TIM · CNPJ 23.474.830/0001-56 · 4,9 no Google com 110 avaliações'
+			nota: 'TIM Corporativo, representante autorizado TIM · CNPJ 23.474.830/0001-56 · 4,9 no Google com 110 avaliações'
 		}
 	],
 
@@ -215,7 +215,7 @@ export default {
 			id: 'como-avaliamos',
 			h2: 'O que decide essa avaliação — e o nosso conflito de interesse',
 			paragrafos: [
-				'O Grupo OC é representante autorizado TIM. Isso significa que temos interesse comercial em um dos lados desta comparação, e escrever um comparativo sem declarar isso seria uma peça de venda disfarçada. Está declarado, então, no cartão do topo da página e aqui.',
+				'Nossa consultoria é representante autorizado TIM. Isso significa que temos interesse comercial em um dos lados desta comparação, e escrever um comparativo sem declarar isso seria uma peça de venda disfarçada. Está declarado, então, no cartão do topo da página e aqui.',
 				'O que dá para fazer com essa limitação é deixar os seis critérios públicos, para você aplicá-los ao seu caso mesmo que a conclusão não nos favoreça. Empresa com endereço único, prazo curto e um provedor local de histórico consistente tem, nos critérios, motivo para ficar onde está. E manter o fornecedor atual usando o segundo acesso apenas como caminho alternativo é um desenho legítimo, não um consolo.',
 				'A régua de decisão é própria e cabe em uma frase, sem depender de consultor para ser aplicada: conte quantos endereços e quantas horas de parada a operação suporta. Um endereço e tolerância de algumas horas empurram a decisão para o fornecedor mais próximo e mais rápido. Vários endereços ou tolerância perto de zero empurram para a padronização e para a redundância — e, nesse caso, o arranjo híbrido costuma ser a resposta, não a escolha entre um e outro.'
 			]
@@ -268,7 +268,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — perfis que convivem, no dia a dia, com os dois modelos de fornecimento comparados nesta página.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — perfis que convivem, no dia a dia, com os dois modelos de fornecimento comparados nesta página.',
 			'Somos representante autorizado TIM e está escrito na própria página comparativa, não em uma nota de rodapé. O que oferecemos é a régua dos critérios e um consultor que checa a viabilidade e a sua operação antes de qualquer recomendação; o resultado depende do seu caso, e há situações em que o critério aponta para manter o fornecedor atual, inclusive um provedor regional, com o segundo acesso entrando apenas como caminho alternativo.',
 			'A regra de decisão é própria e dispensa consultor para ser aplicada: conte endereços e horas de parada toleradas. Um endereço com alguma tolerância favorece o fornecedor mais próximo; vários endereços ou tolerância próxima de zero favorecem padronização e redundância. Se a sua resposta ficar no meio do caminho, o desenho correto quase sempre é o híbrido.'
 		]

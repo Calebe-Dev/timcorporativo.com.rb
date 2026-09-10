@@ -82,7 +82,7 @@ export default {
 	],
 
 	resumo:
-		'O Grupo OC tem uma unidade, em Sorocaba, e as cidades do entorno são área atendida — Votorantim, Itu, Boituva, Iperó e municípios vizinhos. Não há filial nessas cidades, e não faz falta: um consultor checa a viabilidade do endereço e a necessidade da operação do mesmo jeito, antes de qualquer proposta.',
+		'Nossa consultoria tem uma unidade, em Sorocaba, e as cidades do entorno são área atendida — Votorantim, Itu, Boituva, Iperó e municípios vizinhos. Não há filial nessas cidades, e não faz falta: um consultor checa a viabilidade do endereço e a necessidade da operação do mesmo jeito, antes de qualquer proposta.',
 
 	secoes: [
 		{
@@ -275,7 +275,7 @@ export default {
 	eeat: {
 		titulo: 'Por que confiar no que está escrito aqui',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial, é representante autorizado TIM e opera de Sorocaba, na Rua Tereza Lopes, 677, Vila Hortência, sob o CNPJ 23.474.830/0001-56. O perfil público no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações de grande porte, com a BYD entre os clientes.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial, é representante autorizado TIM e opera de Sorocaba, na Rua Tereza Lopes, 677, Vila Hortência, sob o CNPJ 23.474.830/0001-56. O perfil público no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações de grande porte, com a BYD entre os clientes.',
 			'A informação mais útil desta página, porém, é a que a maioria dos concorrentes omite: existe uma unidade só. Publicar isso custa alguma coisa em aparência e vale muito em previsibilidade — a empresa sabe de antemão o que vai receber, e ninguém descobre no meio de um problema que a “unidade local” não existia.',
 			'O critério que separa o que se resolve à distância do que depende do local também está publicado: quase tudo — fatura, opções, documentação, acompanhamento — independe de distância; o que não independe é o endereço exato e o ponto onde o sinal falha. Estar no local não é demonstração de dedicação, é informação; quando ela pode ser levantada de outro jeito, insistir nela só atrasa quem está esperando resposta. O que fica prometido aqui é o que dá para cumprir de qualquer cidade: um consultor checa a viabilidade e a necessidade, e o desconto progressivo melhora conforme o volume, a partir de dez linhas.'
 		]

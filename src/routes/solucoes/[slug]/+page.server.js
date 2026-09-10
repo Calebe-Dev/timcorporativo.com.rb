@@ -24,13 +24,13 @@ export async function load({ params }) {
 	// artigo inexistente publica 404 na malha inteira, e o custo de descobrir isso
 	// em produção é alto demais para um checar-depois.
 	// GRUPO-OC-OCULTO 2026-09-09 — original: const artigosRelacionados = (lp.artigos ?? []).map((slug) => {
-	// Artigo oculto (Grupo OC → 301 para a home) não é link morto de verdade,
+	// Artigo oculto (TIM Corporativo → 301 para a home) não é link morto de verdade,
 	// mas também não pode ser linkado: sai da lista com aviso em vez de derrubar
 	// o build. As fichas em $lib/solucoes/paginas/ ficam como estão.
 	const artigosRelacionados = (lp.artigos ?? [])
 		.filter((slug) => {
 			if (!SLUGS_OCULTOS_GRUPO_OC.includes(slug)) return true;
-			console.warn(`[solucoes] LP "${lp.slug}": artigo "${slug}" oculto (Grupo OC) — fora dos relacionados`);
+			console.warn(`[solucoes] LP "${lp.slug}": artigo "${slug}" oculto (TIM Corporativo) — fora dos relacionados`);
 			return false;
 		})
 		.map((slug) => {

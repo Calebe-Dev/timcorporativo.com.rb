@@ -266,7 +266,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão de telecomunicações, auditoria e consultoria em telefonia empresarial, e é representante autorizado TIM para empresas. O perfil no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão de telecomunicações, auditoria e consultoria em telefonia empresarial, e é representante autorizado TIM para empresas. O perfil no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'O critério que organiza esta página é de ordem: o contrato vigente vem antes da oferta nova. Parece óbvio e quase nunca é o que acontece — a conversa padrão de renovação começa pela proposta e trata o contrato atual como detalhe histórico. Invertida a ordem, muda o que se descobre: linhas sem dono, agregados esquecidos e condição de volume defasada só aparecem quando alguém olha para trás antes de olhar para frente.',
 			'O que esta página promete é curto e verificável, e cabe em duas frases. Um consultor checa a necessidade da empresa — linhas, consumo, endereços e o que o contrato vigente prevê — inclusive para quem já é cliente TIM por outro canal. E o desconto progressivo por volume melhora conforme o total de linhas do contrato, a partir de dez. Nada além disso é prometido aqui, e é de propósito.',
 			'Um limite explícito: descrevemos o que costuma estar previsto em contratos empresariais e o que vale conferir no seu. Não é orientação jurídica, não avaliamos validade de cláusula e não substituímos a leitura do contrato pelo jurídico da empresa.'

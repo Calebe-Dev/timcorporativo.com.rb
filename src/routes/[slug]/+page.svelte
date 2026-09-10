@@ -16,8 +16,8 @@
 	<!-- Bloco de SEO gerado pelo SDK: title, meta description, keywords, OG e JSON-LD (Article). -->
 	{@html seo.html}
 	<meta name="robots" content="index, follow, max-image-preview:large" />
-	<meta name="author" content="{site.name} — Grupo OC" />
-	<meta name="publisher" content="Grupo OC" />
+	<meta name="author" content="{site.name}" />
+	<meta name="publisher" content="TIM Corporativo" />
 	<meta property="og:site_name" content="TIM Corporativo" />
 	<meta property="og:locale" content="pt_BR" />
 	<!-- O SDK não emite imagem nem Twitter Card — sem isso o artigo compartilhado
@@ -41,7 +41,7 @@
 {#if dateLabel}
 	<!-- Byline visível casada com o author do JSON-LD (sinal E-E-A-T). -->
 	<p class="mb-4 text-sm font-medium text-slate-500">
-		Por <span class="text-slate-700">{site.name} — Grupo OC</span> · Publicado em
+		Por <span class="text-slate-700">{site.name}</span> · Publicado em
 		<time datetime={date}>{dateLabel}</time>
 	</p>
 {/if}

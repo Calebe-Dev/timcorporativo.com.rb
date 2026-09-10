@@ -20,7 +20,7 @@
 				Representante autorizado TIM para empresas, operado pelo {site.legalName} há
 				mais de {contact.yearsExperience} anos.
 			</p>
-			<!-- Perfis oficiais do Grupo OC — mesmos URLs do sameAs no JSON-LD, para
+			<!-- Perfis oficiais — mesmos URLs do sameAs no JSON-LD, para
 			     o grafo de entidades do Google bater com o que está visível. -->
 			<!-- GRUPO-OC-OCULTO 2026-09-09 (reverter: restaurar o trecho abaixo)
 			<ul class="mt-4 flex gap-3">

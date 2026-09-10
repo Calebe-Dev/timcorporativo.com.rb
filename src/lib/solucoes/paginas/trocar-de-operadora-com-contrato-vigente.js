@@ -67,7 +67,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC, representante autorizado TIM · 4,9 no Google'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google'
 		}
 	],
 
@@ -299,7 +299,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'O critério que orienta esta página inverte a ordem padrão do mercado: o contrato vigente vem antes da proposta. A ordem usual — proposta primeiro, contrato depois — produz migrações que só revelam o custo real quando já não há como voltar atrás. Conferir antes custa uma reunião e evita esse tipo de surpresa.',
 			'Também faz parte do critério dizer quando o melhor caminho é ficar. Terminar em "renegocie onde você está" é um desfecho legítimo, e acontece com frequência suficiente para estar escrito aqui. O que fica prometido é curto: um consultor checa a viabilidade dos caminhos possíveis para a sua empresa, sem custo, e o desconto progressivo melhora conforme o volume de linhas do contrato, a partir de dez.',
 			'Por fim, o limite: esta página trata de contrato do ponto de vista comercial e operacional de telecom. Não há parecer jurídico, avaliação de validade de cláusula nem recomendação de conduta processual. Quando a discussão entra nesse terreno, o lugar dela é com o advogado da empresa.'

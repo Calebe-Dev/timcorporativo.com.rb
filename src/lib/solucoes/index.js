@@ -62,7 +62,7 @@ export const CLUSTERS = {
 	local: {
 		titulo: 'Sorocaba e região',
 		descricao:
-			'Atendimento presencial no eixo Sorocaba–Votorantim–Itu–Boituva–Iperó, onde o Grupo OC tem endereço, equipe e histórico.'
+			'Atendimento presencial no eixo Sorocaba–Votorantim–Itu–Boituva–Iperó, onde nossa consultoria tem endereço, equipe e histórico.'
 	}
 };
 

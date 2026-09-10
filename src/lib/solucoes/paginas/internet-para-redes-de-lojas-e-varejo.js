@@ -8,7 +8,7 @@
 //
 // Piloto antes do rollout, data do último teste de comutação e ponto único de
 // atendimento aparecem como CRITÉRIO de contratação — exigível de qualquer
-// fornecedor —, nunca como procedimento interno do Grupo OC. O que a página
+// fornecedor —, nunca como procedimento interno da nossa consultoria. O que a página
 // promete é o que é verdade: um consultor checa a viabilidade de cada endereço.
 
 export default {
@@ -58,7 +58,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC, representante autorizado TIM · 4,9 no Google'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google'
 		}
 	],
 
@@ -250,7 +250,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A regra de decisão desta página é própria e explícita: redundância só existe se tiver data do último teste. Failover contratado e nunca acionado é uma linha no contrato, não uma proteção — e essa é a primeira pergunta a fazer a quem já atende as suas lojas hoje, nós inclusive.',
 			'A segunda regra é de implantação: nenhuma rede deveria ser replicada antes de uma unidade virar padrão validado. O piloto existe para que o erro apareça numa loja só, e não em vinte ao mesmo tempo, na mesma semana.',
 			'O que prometemos, e é o que dá para prometer, é objetivo: um consultor checa a viabilidade endereço por endereço antes de qualquer proposta, e a condição comercial melhora conforme o volume, com desconto progressivo a partir de dez linhas.'

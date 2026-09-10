@@ -93,7 +93,7 @@
 			</h1>
 			<p class="mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
 				{data.total} guias de decisão sobre conectividade, mobilidade e voz corporativa — o critério técnico
-				de cada escolha, sem jargão comercial. Escrito pelo time do Grupo OC, representante autorizado
+				de cada escolha, sem jargão comercial. Escrito pelo time da nossa consultoria, representante autorizado
 				TIM há mais de 15 anos.
 			</p>
 			<div class="mt-9 flex flex-col gap-3 sm:flex-row">

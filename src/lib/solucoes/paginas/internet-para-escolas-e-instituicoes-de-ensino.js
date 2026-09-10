@@ -8,7 +8,7 @@
 //
 // O critério de dimensionar por dispositivo simultâneo no pico e a janela de
 // recesso são CRITÉRIOS do setor e continuam na página — o que não aparece é
-// procedimento interno do Grupo OC. O que a página promete é o que é verdade: um
+// procedimento interno da nossa consultoria. O que a página promete é o que é verdade: um
 // consultor checa a viabilidade no endereço e o uso real de cada área.
 
 export default {
@@ -58,7 +58,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC, representante autorizado TIM · 4,9 no Google'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google'
 		}
 	],
 
@@ -262,7 +262,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'O critério que orienta esta página é próprio: escola se dimensiona por aparelho conectado simultaneamente no pico — nunca por metragem, número de matrículas ou velocidade contratada. É por isso que nenhuma proposta sai antes de um consultor checar a viabilidade no endereço e o uso real de cada área da escola.',
 			'A segunda regra é de calendário: projeto escolar se planeja de trás para frente, a partir do recesso. Instalação em semana de aula é a origem da maior parte das reclamações que ouvimos sobre trocas anteriores de fornecedor.'
 		]

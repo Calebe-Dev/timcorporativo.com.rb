@@ -4,7 +4,7 @@
 // não acorda querendo economizar em telecom; acorda com paciente na recepção e
 // agendamento fora do ar. A página inteira fala dessa dor.
 //
-// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// A página NÃO afirma procedimento interno da nossa consultoria. O que é prometido são
 // as duas coisas confirmadas: um consultor checa a viabilidade (no endereço, na
 // operação, na necessidade) e a condição por volume progride a partir de dez
 // linhas. Os critérios técnicos — relação upload/download, comportamento do
@@ -58,7 +58,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC, representante autorizado TIM · 4,9 no Google'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google'
 		}
 	],
 
@@ -241,7 +241,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A regra de decisão que orienta esta página é própria e vale a pena explicitar: quando o sistema principal da clínica está em nuvem, o SLA contratado importa mais que a velocidade contratada. É por isso que a primeira pergunta precisa ser sobre o upload e sobre o prazo de reparo, e não sobre o número que aparece grande na proposta da concorrência — e é isso que um consultor checa, junto com a viabilidade no endereço, antes de qualquer recomendação.',
 			'Não vendemos conformidade com a LGPD, e desconfie de quem vender: conformidade depende de processo interno, contrato e responsável designado. O que fazemos é entregar a infraestrutura que permite à clínica adotar as medidas técnicas que a lei espera.'
 		]

@@ -13,7 +13,7 @@
 // de migração, que é atemporal. Texto que envelhece em três meses não sustenta
 // uma LP, e insinuação sobre concorrente destrói a credibilidade da comparação.
 //
-// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// A página NÃO afirma procedimento interno da nossa consultoria. O que é prometido são
 // as duas coisas confirmadas: um consultor checa a viabilidade (no endereço, na
 // operação, na necessidade) e a condição por volume progride a partir de dez
 // linhas. Critério técnico do setor — ordem da portabilidade, ativação em
@@ -70,7 +70,7 @@ export default {
 		{
 			label: 'Quem conduz',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC · representante autorizado TIM · CNPJ 23.474.830/0001-56 · 4,9 no Google com 110 avaliações'
+			nota: 'TIM Corporativo · representante autorizado TIM · CNPJ 23.474.830/0001-56 · 4,9 no Google com 110 avaliações'
 		}
 	],
 
@@ -279,7 +279,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'O critério que orienta esta página não é nosso: é o que o setor aprendeu na prática. Nada deve ser desligado antes de o substituto estar validado, e a portabilidade dos números fixos precisa entrar primeiro na fila de trabalho. As duas regras existem porque os dois erros que mais custam numa migração são o corte antecipado e o número deixado para o fim.',
 			'Somos canal TIM e temos interesse comercial na sua decisão, o que torna importante dizer o seguinte: em parte dos casos o levantamento mostra que o arranjo atual está adequado e o certo é não mexer. Quando é assim, é isso que o consultor diz. Sobre condição comercial, o que é público vale para todo mundo: os descontos progressivos por volume começam a partir de dez linhas, e a faixa aplicável ao caso só existe dentro de uma proposta.'
 		]

@@ -43,7 +43,7 @@ export default {
 
 	hero: {
 		eyebrow: 'Sorocaba',
-		sub: 'O Grupo OC atende empresas de Sorocaba a partir de um endereço na cidade: um consultor checa a viabilidade no seu endereço e a necessidade da operação antes de qualquer proposta. O contrato é com a TIM; a conversa é com alguém que você conhece pelo nome, na sua cidade.',
+		sub: 'Nossa consultoria atende empresas de Sorocaba a partir de um endereço na cidade: um consultor checa a viabilidade no seu endereço e a necessidade da operação antes de qualquer proposta. O contrato é com a TIM; a conversa é com alguém que você conhece pelo nome, na sua cidade.',
 		bullets: [
 			'Escritório na Vila Hortência, com atendimento presencial',
 			'Um consultor checa a viabilidade e a necessidade da operação',
@@ -65,7 +65,7 @@ export default {
 		{
 			label: 'Reputação pública',
 			value: '4,9 no Google',
-			nota: '110 avaliações no perfil do Grupo OC, verificáveis sem depender da nossa palavra.'
+			nota: '110 avaliações no perfil da nossa consultoria, verificáveis sem depender da nossa palavra.'
 		},
 		{
 			label: 'Operação',
@@ -75,7 +75,7 @@ export default {
 	],
 
 	resumo:
-		'O Grupo OC é representante autorizado TIM e atende empresas de Sorocaba a partir de um endereço fixo na cidade: Rua Tereza Lopes, 677, Vila Hortência. O atendimento acontece na sua empresa, no nosso escritório ou de forma remota — e, nos três formatos, um consultor checa a viabilidade do endereço e a necessidade da operação antes de qualquer proposta.',
+		'Nossa consultoria é representante autorizado TIM e atende empresas de Sorocaba a partir de um endereço fixo na cidade: Rua Tereza Lopes, 677, Vila Hortência. O atendimento acontece na sua empresa, no nosso escritório ou de forma remota — e, nos três formatos, um consultor checa a viabilidade do endereço e a necessidade da operação antes de qualquer proposta.',
 
 	secoes: [
 		{
@@ -241,7 +241,7 @@ export default {
 	eeat: {
 		titulo: 'Quem assina este atendimento',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. A operação é conduzida de Sorocaba, no endereço da Rua Tereza Lopes, 677, Vila Hortência, sob o CNPJ 23.474.830/0001-56. O perfil público no Google reúne 110 avaliações com nota 4,9.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. A operação é conduzida de Sorocaba, no endereço da Rua Tereza Lopes, 677, Vila Hortência, sob o CNPJ 23.474.830/0001-56. O perfil público no Google reúne 110 avaliações com nota 4,9.',
 			'A carteira vai de MEI a operações de grande porte, com a BYD entre os clientes atendidos. Essa amplitude importa por um motivo bem específico: o mesmo time que dimensiona um contrato de dezenas de linhas atende quem tem três, e isso muda o padrão de resposta que a empresa pequena recebe.',
 			'Um critério que vale explicitar: proposta séria não sai sem a fatura atual na mesa. Proposta montada só com o que o cliente lembra de cabeça costuma ficar bonita e errada, e o erro só aparece na primeira fatura — quando já é problema de todo mundo. E o que fica prometido nesta página é o que dá para cobrar: um consultor checa a viabilidade do endereço e a necessidade da operação, e o desconto progressivo melhora conforme o volume, a partir de dez linhas.'
 		]

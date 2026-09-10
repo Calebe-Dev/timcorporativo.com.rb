@@ -5,7 +5,7 @@
 // site responde isso de frente hoje. Quem chega aqui não quer ser convencido:
 // quer reduzir o risco percebido de falar com um intermediário. Por isso a
 // página diz com todas as letras quando contratar direto é melhor e publica o
-// checklist com o qual o próprio Grupo OC deve ser avaliado. É esse movimento
+// checklist com o qual o próprio TIM Corporativo deve ser avaliado. É esse movimento
 // que torna a página citável — e o CTA é o de menor atrito possível (uma
 // segunda leitura da fatura), não um pedido de proposta.
 //
@@ -65,7 +65,7 @@ export default {
 		{
 			label: 'Quem responde por esta página',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC · CNPJ 23.474.830/0001-56 · Sorocaba/SP · 4,9 no Google com 110 avaliações'
+			nota: 'TIM Corporativo · CNPJ 23.474.830/0001-56 · Sorocaba/SP · 4,9 no Google com 110 avaliações'
 		}
 	],
 
@@ -94,7 +94,7 @@ export default {
 					h3: 'Como verificar se o canal é credenciado de verdade',
 					paragrafos: [
 						'Peça o CNPJ e a comprovação de credenciamento junto à operadora, confira se existe endereço físico verificável, tempo de mercado e avaliações públicas que você consiga ler antes de decidir. É uma checagem de poucos minutos e elimina a maior parte do risco da decisão.',
-						'O Grupo OC atende por essa mesma régua e a publica aqui de propósito: CNPJ 23.474.830/0001-56, sede em Sorocaba/SP, mais de 15 anos em gestão e auditoria de telecom empresarial, 110 avaliações públicas no Google com nota 4,9 e uma carteira que vai de MEI a operações do porte da BYD.'
+						'Nossa consultoria atende por essa mesma régua e a publica aqui de propósito: CNPJ 23.474.830/0001-56, sede em Sorocaba/SP, mais de 15 anos em gestão e auditoria de telecom empresarial, 110 avaliações públicas no Google com nota 4,9 e uma carteira que vai de MEI a operações do porte da BYD.'
 					]
 				},
 				{
@@ -287,7 +287,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A regra de decisão que orienta esta página é própria e vale explicitar: canal só se justifica quando há mais de uma variável em jogo. Se o caso tem uma variável só — uma linha, um produto, um endereço, nenhuma portabilidade —, o caminho direto costuma ser mais rápido e ninguém precisa de intermediário. A partir de duas variáveis, o resultado passa a ser definido pelo diagnóstico, e é aí que um canal consultivo muda o desfecho.',
 			'Temos interesse comercial na sua decisão e não faria sentido esconder isso. É exatamente por esse motivo que a página traz a seção sobre quando contratar direto é melhor, declara a limitação de trabalharmos com um portfólio único e publica o checklist de qualificação que se aplica a nós na mesma medida em que se aplica a qualquer concorrente.'
 		]

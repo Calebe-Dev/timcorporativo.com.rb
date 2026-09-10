@@ -17,7 +17,7 @@
 // nunca como roteiro de visita ou medição executada pelo time.
 //
 // ⚠ REVISAR ANTES DE PUBLICAR (1): a BYD está entre os clientes atendidos pelo
-// Grupo OC — confirme com a diretoria o que pode ser dito publicamente sobre o
+// confirme com a diretoria o que pode ser dito publicamente sobre o
 // escopo desse atendimento. O texto abaixo cita apenas a relação, sem descrever
 // projeto, e é assim que deve permanecer se não houver autorização formal.
 //
@@ -72,7 +72,7 @@ export default {
 		{
 			label: 'Porte atendido',
 			value: 'De pequena planta a grande conta',
-			nota: 'Grupo OC · +15 anos em telecom B2B · BYD entre os clientes · 4,9 no Google'
+			nota: 'TIM Corporativo · +15 anos em telecom B2B · BYD entre os clientes · 4,9 no Google'
 		}
 	],
 
@@ -273,7 +273,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial e é representante autorizado TIM, com operação conduzida de Sorocaba — Rua Tereza Lopes, 677, Vila Hortência, CNPJ 23.474.830/0001-56. O perfil público no Google reúne 110 avaliações com nota 4,9, e a BYD está entre os clientes atendidos.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial e é representante autorizado TIM, com operação conduzida de Sorocaba — Rua Tereza Lopes, 677, Vila Hortência, CNPJ 23.474.830/0001-56. O perfil público no Google reúne 110 avaliações com nota 4,9, e a BYD está entre os clientes atendidos.',
 			'O critério que organiza esta página é a cobertura conferida por ambiente antes de qualquer proposta. Ele não é preferência de escrita: projeto industrial vendido pela banda contratada funciona na administração e falha na expedição, e a conta desse erro chega como atraso de carga, não como reclamação de internet.',
 			'O segundo critério é tratar planta, frota e equipe externa como uma coisa só. Não é preferência comercial: é o que permite responder quantas linhas a empresa tem, quem usa cada uma e quando o contrato vence — três perguntas que a maioria das indústrias com fornecedores espalhados não consegue responder de imediato. É também o que faz o volume contar junto, e o desconto progressivo melhora conforme esse total, a partir de dez linhas.',
 			'O que fica prometido aqui é curto: um consultor checa a viabilidade no endereço industrial e a necessidade de cada ambiente, sem custo e antes de qualquer proposta. Nenhum prazo de instalação, nenhuma promessa de cobertura fechada por escrito antes dessa checagem.'

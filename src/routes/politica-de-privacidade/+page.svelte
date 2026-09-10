@@ -12,7 +12,7 @@
 
 	const titulo = 'Política de Privacidade | TIM Corporativo';
 	const descricao =
-		'Como o Grupo OC coleta, usa, compartilha e protege os dados enviados pelo site TIM Corporativo, e como exercer seus direitos previstos na LGPD.';
+		'Como nossa consultoria coleta, usa, compartilha e protege os dados enviados pelo site TIM Corporativo, e como exercer seus direitos previstos na LGPD.';
 
 	const h2 = 'mt-10 mb-3 text-xl font-bold text-slate-900';
 	const h3 = 'mt-6 mb-2 text-base font-semibold text-slate-900';

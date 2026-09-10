@@ -140,7 +140,7 @@ export const ANCORAS = {
 		'múltiplas filiais',
 		'filiais'
 	],
-	'tim-empresas-em-sorocaba': ['Sorocaba', 'atendimento presencial', 'Grupo OC'],
+	'tim-empresas-em-sorocaba': ['Sorocaba', 'atendimento presencial', 'TIM Corporativo'],
 	'internet-empresarial-em-sorocaba': [
 		'Sorocaba',
 		'prazo de instalação',

@@ -11,7 +11,7 @@
 // páginas). Antes de mexer no h1, no resumo ou nos ids de seção, confira as
 // âncoras que chegam aqui — id de seção é destino de link interno.
 //
-// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// A página NÃO afirma procedimento interno da nossa consultoria. O que é prometido são
 // as duas coisas confirmadas: um consultor checa a viabilidade (no endereço, na
 // operação, na necessidade) e a condição por volume progride a partir de dez
 // linhas. O critério técnico — "backup, não principal", endereço normalizado
@@ -65,7 +65,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC, representante autorizado TIM · 4,9 no Google'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google'
 		}
 	],
 
@@ -303,7 +303,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A regra de decisão que orienta esta página é própria e vale explicitar: a pergunta que define o arranjo não é “de quanta banda você precisa”, e sim “quantas horas paradas a sua operação aguenta”. Se a resposta for “nenhuma”, a conexão móvel entra como redundância e não como link principal — mesmo quando o teste de sinal vem excelente.',
 			'A segunda regra é comercialmente incômoda: quando existe previsão de expansão de fibra com data para o endereço e a operação consegue esperar, recomendamos esperar. Vender um contrato longo para cobrir um intervalo curto gera um cliente preso a uma solução que ele não quer mais — e esse tipo de venda não se repete.'
 		]

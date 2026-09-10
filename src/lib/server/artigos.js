@@ -8,6 +8,7 @@
 // do ar, o build segue só com o snapshot.
 
 import { ochubConfig } from './ochub.js';
+import { stripBrandDeep } from '$lib/brand.js';
 
 // GRUPO-OC-REDIRECT 2026-09-09 — conteúdo sobre o Grupo OC → home (reverter: apagar este bloco)
 // Artigos com "Grupo OC" no título/slug. Saem da geração (não viram /<slug>/,
@@ -66,11 +67,13 @@ export function todosArtigos() {
 			// 	dataPublicacao(y).localeCompare(dataPublicacao(x))
 			// );
 			// Ponto único de origem: listarArtigos() deriva daqui e herda o filtro.
-			const visiveis = [...porSlug.values()].filter(
-				(a) => !SLUGS_OCULTOS_GRUPO_OC.includes(a.slug)
+			// A marca antiga sai aqui, no ponto único de origem: vale para o
+			// snapshot local e para o que vier do OC Hub.
+			const visiveis = stripBrandDeep(
+				[...porSlug.values()].filter((a) => !SLUGS_OCULTOS_GRUPO_OC.includes(a.slug))
 			);
 			if (visiveis.length !== porSlug.size) {
-				console.log(`[artigos] ${porSlug.size - visiveis.length} ocultos (Grupo OC → 301 para a home)`);
+				console.log(`[artigos] ${porSlug.size - visiveis.length} ocultos (marca antiga → 301 para a home)`);
 			}
 			return visiveis.sort((x, y) => dataPublicacao(y).localeCompare(dataPublicacao(x)));
 		})();

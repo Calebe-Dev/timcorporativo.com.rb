@@ -1,4 +1,4 @@
-// Dados centrais do site — representante autorizado TIM (Grupo OC).
+// Dados centrais do site — representante autorizado TIM (TIM Corporativo).
 // Conteúdo baseado no site original timcorporativo.com.br.
 
 export const site = {
@@ -42,7 +42,7 @@ export const contact = {
 	addressLocality: 'Sorocaba',
 	addressRegion: 'SP',
 	cnpj: '23.474.830/0001-56',
-	// Perfis sociais do Grupo OC: ocultos. Quem lê (schema.js sameAs, Footer)
+	// Perfis sociais da nossa consultoria: ocultos. Quem lê (schema.js sameAs, Footer)
 	// tolera a ausência das chaves.
 	// GRUPO-OC-OCULTO 2026-09-09 — original: facebook: 'https://www.facebook.com/grupoocwearepeople',
 	// GRUPO-OC-OCULTO 2026-09-09 — original: instagram: 'https://www.instagram.com/grupooc/',

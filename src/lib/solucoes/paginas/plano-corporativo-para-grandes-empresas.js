@@ -23,7 +23,7 @@
 //
 // A conciliação inventário × base do RH aparece como CRITÉRIO de gestão de
 // parque grande — o que qualquer operação deveria fazer, exigível de qualquer
-// fornecedor —, nunca como procedimento interno do Grupo OC. O que a página
+// fornecedor —, nunca como procedimento interno da nossa consultoria. O que a página
 // promete é o que é verdade: um consultor checa a viabilidade e a operação antes
 // de qualquer proposta, e o desconto é progressivo a partir de dez linhas.
 
@@ -74,7 +74,7 @@ export default {
 		{
 			label: 'Quem conduz',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC · representante autorizado TIM · CNPJ 23.474.830/0001-56 · carteira de MEI a operações do porte da BYD'
+			nota: 'TIM Corporativo · representante autorizado TIM · CNPJ 23.474.830/0001-56 · carteira de MEI a operações do porte da BYD'
 		}
 	],
 
@@ -291,7 +291,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — o que significa parques grandes de verdade, com várias unidades e rotatividade real.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — o que significa parques grandes de verdade, com várias unidades e rotatividade real.',
 			'O que abre todo projeto de parque grande não é a proposta comercial, e o resultado é verificável já no primeiro ciclo de fatura: conciliar a base de linhas da operadora com a folha ativa do RH e com o inventário de aparelhos do TI. As três listas nunca batem sozinhas, e a diferença entre elas é dinheiro saindo todo mês por linhas sem dono.',
 			'A regra de governança é igualmente simples de cobrar, de nós ou de qualquer fornecedor: nenhuma linha entra no parque sem responsável nomeado e centro de custo preenchido. É o único campo que transforma a desativação num procedimento de minutos, em vez de uma investigação número por número — e é a diferença entre um parque que se mantém organizado e um que volta ao caos em seis meses.',
 			'Sobre a nossa parte, prometemos duas coisas objetivas: um consultor checa a viabilidade e o desenho da operação antes de qualquer proposta, e a condição comercial melhora conforme o volume, com desconto progressivo a partir de dez linhas.'

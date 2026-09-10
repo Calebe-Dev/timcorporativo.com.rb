@@ -12,7 +12,7 @@
 // domínio do mesmo grupo. Não transformar esta página em comparativo de
 // operadoras — seria disputar a própria SERP.
 //
-// A página NÃO afirma procedimento interno do Grupo OC. O que é prometido são
+// A página NÃO afirma procedimento interno da nossa consultoria. O que é prometido são
 // as duas coisas confirmadas: um consultor checa a viabilidade (na cobertura da
 // rota, no parque, na necessidade) e a condição por volume progride a partir de
 // dez linhas. O critério técnico — inventário de parque, validação antes de
@@ -70,7 +70,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC, representante autorizado TIM · 4,9 no Google'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google'
 		}
 	],
 
@@ -286,7 +286,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD. A leitura de fatura corporativa é parte do trabalho diário, e é dela que vem o método descrito aqui.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD. A leitura de fatura corporativa é parte do trabalho diário, e é dela que vem o método descrito aqui.',
 			'O critério que orienta esta página: em M2M, a unidade de gestão é o parque e não a linha. Na prática, isso significa que proposta séria nenhuma sai antes de alguém comparar os chips da fatura com os equipamentos que a operação reconhece em campo — e é essa checagem, junto com a viabilidade de cobertura nas rotas, que um consultor faz antes de apresentar qualquer plano. Sobre condição comercial, o que é público vale para todo mundo: os descontos progressivos por volume começam a partir de dez linhas.',
 			'Também vale dizer o que não fazemos: não substituímos o fornecedor do rastreador, do sistema de telemetria ou da plataforma de gestão de frota. Cuidamos da camada de conectividade e da gestão do parque de chips, que é onde o desperdício se acumula sem aparecer.'
 		]

@@ -24,7 +24,7 @@
 	// Vem do +layout.server.js da raiz — alimenta o mapa do site.
 	let { data } = $props();
 
-	// Avaliações REAIS do perfil do Grupo OC no Google (transcritas em jul/2026).
+	// Avaliações REAIS do perfil da nossa consultoria no Google (transcritas em jul/2026).
 	// Trechos verbatim — não editar nem inventar; […] marca corte do original.
 	// Sem JSON-LD de Review/AggregateRating: marcação de avaliação da própria
 	// empresa no próprio site é "self-serving" e o Google a ignora/penaliza.
@@ -38,7 +38,7 @@
 		// {
 		// 	nome: 'Renato Caetano',
 		// 	contexto: '32 anos na área de tecnologia',
-		// 	texto: 'Atuo há 32 anos na área de tecnologia. […] O Grupo OC foi um achado!'
+		// 	texto: 'Atuo há 32 anos na área de tecnologia. […] Nossa consultoria foi um achado!'
 		// },
 		{
 			nome: 'Alfredo Junior',
@@ -51,7 +51,7 @@
 		// 	nome: 'Alexandre Mendonça',
 		// 	contexto: 'Avaliação no Google',
 		// 	texto:
-		// 		'Melhor experiência com internet empresarial! O Grupo OC me surpreendeu pela qualidade e profissionalismo no atendimento […]'
+		// 		'Melhor experiência com internet empresarial! Nossa consultoria me surpreendeu pela qualidade e profissionalismo no atendimento […]'
 		// }
 	];
 </script>

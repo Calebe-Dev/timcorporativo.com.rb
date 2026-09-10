@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { contact, whatsappLink, turnstileSiteKey } from '$lib/site.js';
 
-	// `oculta` chega do layout raiz quando o chat do Grupo OC sobe: os dois são o
+	// `oculta` chega do layout raiz quando o chat da nossa consultoria sobe: os dois são o
 	// mesmo convite ("fale com um consultor") e dois botões flutuantes ao mesmo
 	// tempo viram ruído. Ver o comentário em +layout.svelte.
 	let { oculta = false } = $props();
@@ -316,7 +316,7 @@
 			Detalhes que não são estéticos:
 			- continua sendo <a> (fallback sem JS vai direto ao wa.me); com JS o clique
 			  abre o painel de contato rápido acima.
-			- fica à ESQUERDA: o FAB do chat do Grupo OC é fixo em bottom/right 24px e não
+			- fica à ESQUERDA: o FAB do chat da nossa consultoria é fixo em bottom/right 24px e não
 			  aceita reposicionamento pelo init(), então os dois se sobreporiam.
 			- some do DOM, em vez de esmaecer, quando o bot sobe. É `position: fixed`, o
 			  que significa que remover não desloca nada — CLS zero — e some junto da

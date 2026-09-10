@@ -8,7 +8,7 @@
 //
 // A página não afirma procedimento interno: promete o que é verdade — um
 // consultor checa a viabilidade no endereço e nas áreas de uso — e apresenta o
-// resto como critério do setor, não como entregável do Grupo OC.
+// resto como critério do setor, não como entregável da nossa consultoria.
 //
 // ⚠ REVISAR ANTES DE PUBLICAR: a menção ao Marco Civil da Internet é contextual
 // e o texto diz isso explicitamente: a validação jurídica do termo de uso e do
@@ -61,7 +61,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC, representante autorizado TIM · 4,9 no Google'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google'
 		}
 	],
 
@@ -263,7 +263,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A regra de desenho desta página é própria e explícita: rede de hóspede e rede operacional nunca compartilham o mesmo ambiente, mesmo quando compartilham o mesmo link. É a primeira coisa a verificar em qualquer estabelecimento que já tem rede instalada, e é onde costuma estar o maior número de problemas herdados.',
 			'A segunda é o que prometemos, e só isso: nenhuma proposta sai antes de um consultor checar a viabilidade no endereço e as áreas que precisam de cobertura — andar, quarto, salão e externas. Cobertura fechada por telefone, sem ninguém olhar o local, é a origem da maior parte das reclamações que ouvimos em hotelaria.'
 		]

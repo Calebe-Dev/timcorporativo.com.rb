@@ -11,7 +11,7 @@
 // medido. Se em 90 dias não houver impressão no GSC, mantém-se como página de
 // posicionamento e não de aquisição — não é motivo para inflar o texto.
 //
-// A seção "Onde entra o Grupo OC" declara LIMITE, não procedimento: o que a
+// A seção "Onde entra nossa consultoria" declara LIMITE, não procedimento: o que a
 // página promete é um consultor checando viabilidade e necessidade, e o que ela
 // nega é engenharia de radiofrequência, implantação de rádio e operação da rede
 // — prometer engenharia que não se faz é o erro mais caro possível aqui.
@@ -68,7 +68,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'Grupo OC, representante autorizado TIM · 4,9 no Google · carteira que inclui a BYD'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google · carteira que inclui a BYD'
 		}
 	],
 
@@ -220,7 +220,7 @@ export default {
 		},
 		{
 			id: 'nosso-papel',
-			h2: 'Onde entra o Grupo OC neste tipo de projeto',
+			h2: 'Onde entra nossa consultoria neste tipo de projeto',
 			paragrafos: [
 				'Vale ser explícito sobre escopo, porque este é o tipo de projeto em que promessa vaga custa caro. Atuamos como canal consultivo: um consultor checa a viabilidade e a necessidade com a sua operação e com a sua TI, e é essa conversa que leva o caso à engenharia da operadora com o problema já bem descrito.',
 				'O que não fazemos é o projeto de radiofrequência, a implantação da infraestrutura de rádio e a operação da rede depois de pronta. Isso é engenharia especializada, executada pela operadora e por seus parceiros de implantação. O que vale levar para essa mesa é o problema bem descrito, o inventário levantado e um critério de sucesso definido — costuma ser a diferença entre um projeto que anda e um que fica em avaliação por um ano.',
@@ -291,7 +291,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'O Grupo OC atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira inclui operações industriais do porte da BYD — o que dá acesso ao tipo de conversa técnica que este projeto exige.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira inclui operações industriais do porte da BYD — o que dá acesso ao tipo de conversa técnica que este projeto exige.',
 			'A regra de decisão desta página é própria e vale explicitar: o critério que separa quem precisa de rede privativa de quem não precisa é a existência de ativo crítico em movimento dentro da planta. Sem ativo móvel relevante, um projeto de rede sem fio convencional bem executado quase sempre resolve — e é isso que recomendamos, mesmo sendo o caminho comercialmente menor.',
 			'A segunda coisa que preferimos deixar clara é o limite do nosso escopo. Um consultor checa a viabilidade e a necessidade antes de qualquer proposta e leva o caso à engenharia da operadora; não executamos projeto de radiofrequência nem operamos a rede depois de implantada. Canal que promete engenharia que não faz cria expectativa que a implantação não sustenta.'
 		]
