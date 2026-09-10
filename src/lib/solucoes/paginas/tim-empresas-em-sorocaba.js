@@ -13,11 +13,16 @@
 //
 // ⚠ O QUE ESTA PÁGINA PODE PROMETER: só duas coisas — (1) um consultor checa a
 // viabilidade no endereço e a necessidade da operação e (2) o desconto
-// progressivo melhora conforme o volume, a partir de dez linhas. O atendimento
-// presencial só pode ser afirmado em SOROCABA, onde existe endereço real (Rua
-// Tereza Lopes, 677, Vila Hortência). Para as cidades do entorno o enquadramento
-// é ÁREA ATENDIDA, sem promessa de presença. Nenhuma rotina interna do time
-// (leitura de fatura, acompanhamento de ativação, pós-venda) é afirmada aqui.
+// progressivo melhora conforme o volume, a partir de dez linhas.
+// NAP-JUMIRIM 2026-09-10 — anterior: "O atendimento presencial só pode ser
+// afirmado em SOROCABA, onde existe endereço real (Rua Tereza Lopes, 677, Vila
+// Hortência)." A única unidade física exposta passou a ser a de JUMIRIM/SP (a
+// que tem perfil no Google); Sorocaba continua na operação como CENTRAL ONLINE
+// e como área atendida, sem endereço de rua publicado. Em Sorocaba o presencial
+// só pode ser afirmado como VISITA NA EMPRESA DO CLIENTE. Para as cidades do
+// entorno o enquadramento segue ÁREA ATENDIDA, sem promessa de presença.
+// Nenhuma rotina interna do time (leitura de fatura, acompanhamento de
+// ativação, pós-venda) é afirmada aqui.
 //
 // ⚠ REVISAR (2): canibalização interna. O artigo
 // "tim-empresa-mei-microempresas-planos-sorocaba" já combina TIM + Sorocaba com
@@ -38,14 +43,17 @@ export default {
 	h1: 'Atendimento TIM Empresas em Sorocaba, com endereço e consultor de verdade',
 
 	cardTitulo: 'TIM Empresas em Sorocaba',
+	// NAP-JUMIRIM 2026-09-10 — anterior: 'Endereço fixo na Vila Hortência, consultor com nome e visita na sua empresa. O que muda entre contratar por um canal local e por uma central nacional.',
 	cardTexto:
-		'Endereço fixo na Vila Hortência, consultor com nome e visita na sua empresa. O que muda entre contratar por um canal local e por uma central nacional.',
+		'Consultor com nome, visita na sua empresa e unidade física em Jumirim/SP. O que muda entre contratar por um canal da região e por uma central nacional.',
 
 	hero: {
 		eyebrow: 'Sorocaba',
-		sub: 'Nossa consultoria atende empresas de Sorocaba a partir de um endereço na cidade: um consultor checa a viabilidade no seu endereço e a necessidade da operação antes de qualquer proposta. O contrato é com a TIM; a conversa é com alguém que você conhece pelo nome, na sua cidade.',
+		// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria atende empresas de Sorocaba a partir de um endereço na cidade: um consultor checa a viabilidade no seu endereço e a necessidade da operação antes de qualquer proposta. O contrato é com a TIM; a conversa é com alguém que você conhece pelo nome, na sua cidade.',
+		sub: 'Nossa consultoria atende empresas de Sorocaba com central online na cidade e unidade física em Jumirim/SP: um consultor checa a viabilidade no seu endereço e a necessidade da operação antes de qualquer proposta. O contrato é com a TIM; a conversa é com alguém que você conhece pelo nome, aqui na região.',
 		bullets: [
-			'Escritório na Vila Hortência, com atendimento presencial',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Escritório na Vila Hortência, com atendimento presencial',
+			'Visita presencial na sua empresa, em Sorocaba',
 			'Um consultor checa a viabilidade e a necessidade da operação',
 			'Portabilidade sem trocar os números já divulgados',
 			'Desconto progressivo conforme o volume, a partir de dez linhas'
@@ -57,10 +65,16 @@ export default {
 	},
 
 	keyFacts: [
+		// NAP-JUMIRIM 2026-09-10 — anterior:
+		// {
+		// 	label: 'Onde ficamos',
+		// 	value: 'Vila Hortência, Sorocaba',
+		// 	nota: 'Rua Tereza Lopes, 677 — atendimento no escritório, na sua empresa ou remoto.'
+		// },
 		{
 			label: 'Onde ficamos',
-			value: 'Vila Hortência, Sorocaba',
-			nota: 'Rua Tereza Lopes, 677 — atendimento no escritório, na sua empresa ou remoto.'
+			value: 'Jumirim/SP · central online em Sorocaba',
+			nota: 'R. Manoel Novaes, 922 — atendimento remoto, na sua empresa ou na unidade de Jumirim/SP.'
 		},
 		{
 			label: 'Reputação pública',
@@ -74,16 +88,20 @@ export default {
 		}
 	],
 
+	// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria é representante autorizado TIM e atende empresas de Sorocaba a partir de um endereço fixo na cidade: Rua Tereza Lopes, 677, Vila Hortência. O atendimento acontece na sua empresa, no nosso escritório ou de forma remota — e, nos três formatos, um consultor checa a viabilidade do endereço e a necessidade da operação antes de qualquer proposta.',
 	resumo:
-		'Nossa consultoria é representante autorizado TIM e atende empresas de Sorocaba a partir de um endereço fixo na cidade: Rua Tereza Lopes, 677, Vila Hortência. O atendimento acontece na sua empresa, no nosso escritório ou de forma remota — e, nos três formatos, um consultor checa a viabilidade do endereço e a necessidade da operação antes de qualquer proposta.',
+		'Nossa consultoria é representante autorizado TIM e atende empresas de Sorocaba com central online na cidade e unidade física em Jumirim/SP: R. Manoel Novaes, 922, Centro. O atendimento acontece na sua empresa, na unidade de Jumirim ou de forma remota — e, nos três formatos, um consultor checa a viabilidade do endereço e a necessidade da operação antes de qualquer proposta.',
 
 	secoes: [
 		{
 			id: 'onde-estamos',
 			h2: 'Onde estamos e como o atendimento funciona',
+			// NAP-JUMIRIM 2026-09-10 — anterior:
+			// 'O endereço é Rua Tereza Lopes, 677, Vila Hortência, em Sorocaba. Dele saem três formatos de atendimento: o consultor vai até a sua empresa, você vem até o escritório, ou tudo acontece por telefone e WhatsApp. Em todos eles, um consultor checa a viabilidade do endereço e a necessidade da operação — o que muda é quanto do seu tempo isso consome e o quanto dá para enxergar sem estar no lugar.',
+			// 'Ter endereço fixo na cidade não é detalhe de vitrine. Numa contratação de telecom, boa parte do que atrasa o projeto só aparece quando alguém olha: o ponto de entrada do prédio, o rack sem espaço, o cabo que termina num armário trancado, o contrato antigo que ninguém localiza. Diagnóstico feito só por formulário depende de você descrever justamente aquilo que ainda não sabe que precisa ser descrito.'
 			paragrafos: [
-				'O endereço é Rua Tereza Lopes, 677, Vila Hortência, em Sorocaba. Dele saem três formatos de atendimento: o consultor vai até a sua empresa, você vem até o escritório, ou tudo acontece por telefone e WhatsApp. Em todos eles, um consultor checa a viabilidade do endereço e a necessidade da operação — o que muda é quanto do seu tempo isso consome e o quanto dá para enxergar sem estar no lugar.',
-				'Ter endereço fixo na cidade não é detalhe de vitrine. Numa contratação de telecom, boa parte do que atrasa o projeto só aparece quando alguém olha: o ponto de entrada do prédio, o rack sem espaço, o cabo que termina num armário trancado, o contrato antigo que ninguém localiza. Diagnóstico feito só por formulário depende de você descrever justamente aquilo que ainda não sabe que precisa ser descrito.'
+				'A operação tem central online em Sorocaba e unidade física em Jumirim/SP, na R. Manoel Novaes, 922, Centro. Daí saem três formatos de atendimento: o consultor vai até a sua empresa, você vem até a unidade de Jumirim, ou tudo acontece por telefone e WhatsApp. Em todos eles, um consultor checa a viabilidade do endereço e a necessidade da operação — o que muda é quanto do seu tempo isso consome e o quanto dá para enxergar sem estar no lugar.',
+				'Ter alguém que atende de perto não é detalhe de vitrine. Numa contratação de telecom, boa parte do que atrasa o projeto só aparece quando alguém olha: o ponto de entrada do prédio, o rack sem espaço, o cabo que termina num armário trancado, o contrato antigo que ninguém localiza. Diagnóstico feito só por formulário depende de você descrever justamente aquilo que ainda não sabe que precisa ser descrito.'
 			],
 			tabela: {
 				head: ['Formato', 'Quando faz sentido', 'O que acontece na prática'],
@@ -93,10 +111,16 @@ export default {
 						'Mais de um endereço, estrutura instalada para avaliar ou contrato vigente para revisar',
 						'Um consultor checa a viabilidade no endereço, o ponto de entrada e a cobertura nas áreas onde a equipe trabalha'
 					],
+					// NAP-JUMIRIM 2026-09-10 — anterior:
+					// [
+					// 	'Reunião no nosso escritório',
+					// 	'Você prefere resolver fora da rotina da empresa ou trazer sócio e contador junto',
+					// 	'Conversa na Vila Hortência, com o comparativo aberto na tela e a fatura à mão para conferir item por item'
+					// ],
 					[
-						'Reunião no nosso escritório',
+						'Reunião na unidade de Jumirim/SP',
 						'Você prefere resolver fora da rotina da empresa ou trazer sócio e contador junto',
-						'Conversa na Vila Hortência, com o comparativo aberto na tela e a fatura à mão para conferir item por item'
+						'Conversa na unidade, com o comparativo aberto na tela e a fatura à mão para conferir item por item'
 					],
 					[
 						'Remoto, por telefone e WhatsApp',
@@ -164,9 +188,11 @@ export default {
 			],
 			lista: [
 				'CNPJ 55.495.228/0001-91, consultável na Receita Federal',
-				'Endereço físico em Sorocaba: Rua Tereza Lopes, 677, Vila Hortência',
+				// NAP-JUMIRIM 2026-09-10 — anterior: 'Endereço físico em Sorocaba: Rua Tereza Lopes, 677, Vila Hortência',
+				'Endereço físico da unidade: R. Manoel Novaes, 922, Centro, Jumirim/SP',
 				'Perfil público no Google com nota 4,9 e 110 avaliações de clientes',
-				'Mais de 15 anos de operação em telecom empresarial, conduzida a partir de Sorocaba',
+				// NAP-JUMIRIM 2026-09-10 — anterior: 'Mais de 15 anos de operação em telecom empresarial, conduzida a partir de Sorocaba',
+				'Mais de 15 anos de operação em telecom empresarial, com central online em Sorocaba',
 				'Carteira que vai de MEI a operações de grande porte, com a BYD entre os clientes',
 				'Condição de representante autorizado TIM, confirmável junto à própria operadora'
 			]
@@ -198,7 +224,8 @@ export default {
 	passos: {
 		titulo: 'O que um consultor checa numa contratação em Sorocaba',
 		subtitulo:
-			'Quatro conferências. A diferença local está na segunda: em Sorocaba a checagem do endereço pode ser presencial.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Quatro conferências. A diferença local está na segunda: em Sorocaba a checagem do endereço pode ser presencial.',
+			'Quatro conferências. A diferença local está na segunda: em Sorocaba a checagem do endereço pode ser feita na sua empresa, presencialmente.',
 		itens: [
 			{
 				title: 'Como a empresa usa telefonia e internet hoje',
@@ -226,7 +253,8 @@ export default {
 		},
 		{
 			q: '“Minha empresa não é de Sorocaba, é de Votorantim.”',
-			a: 'Votorantim, Itu, Boituva e Iperó estão na área atendida a partir daqui, onde fica a única unidade física. Nessas cidades não há escritório nem equipe fixa, e um consultor checa a viabilidade do endereço do mesmo jeito. Há uma página específica sobre o atendimento fora da cidade, explicando o que é resolvido à distância e o que depende de informação do local.'
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Votorantim, Itu, Boituva e Iperó estão na área atendida a partir daqui, onde fica a única unidade física. Nessas cidades não há escritório nem equipe fixa, e um consultor checa a viabilidade do endereço do mesmo jeito. Há uma página específica sobre o atendimento fora da cidade, explicando o que é resolvido à distância e o que depende de informação do local.'
+			a: 'Votorantim, Itu, Boituva e Iperó estão na mesma área atendida, junto de Sorocaba. A única unidade física da operação fica em Jumirim/SP; nas demais cidades não há escritório nem equipe fixa, e um consultor checa a viabilidade do endereço do mesmo jeito. Há uma página específica sobre o atendimento fora da cidade, explicando o que é resolvido à distância e o que depende de informação do local.'
 		},
 		{
 			q: '“Sou MEI, vocês atendem empresa pequena?”',
@@ -241,7 +269,8 @@ export default {
 	eeat: {
 		titulo: 'Quem assina este atendimento',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. A operação é conduzida de Sorocaba, no endereço da Rua Tereza Lopes, 677, Vila Hortência, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91. O perfil público no Google reúne 110 avaliações com nota 4,9.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. A operação é conduzida de Sorocaba, no endereço da Rua Tereza Lopes, 677, Vila Hortência, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91. O perfil público no Google reúne 110 avaliações com nota 4,9.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. A operação tem central online em Sorocaba e unidade física em Jumirim/SP, na R. Manoel Novaes, 922, Centro, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91. O perfil público no Google reúne 110 avaliações com nota 4,9.',
 			'A carteira vai de MEI a operações de grande porte, com a BYD entre os clientes atendidos. Essa amplitude importa por um motivo bem específico: o mesmo time que dimensiona um contrato de dezenas de linhas atende quem tem três, e isso muda o padrão de resposta que a empresa pequena recebe.',
 			'Um critério que vale explicitar: proposta séria não sai sem a fatura atual na mesa. Proposta montada só com o que o cliente lembra de cabeça costuma ficar bonita e errada, e o erro só aparece na primeira fatura — quando já é problema de todo mundo. E o que fica prometido nesta página é o que dá para cobrar: um consultor checa a viabilidade do endereço e a necessidade da operação, e o desconto progressivo melhora conforme o volume, a partir de dez linhas.'
 		]
@@ -251,7 +280,8 @@ export default {
 	faq: [
 		{
 			q: 'Vocês atendem presencialmente em Sorocaba?',
-			a: 'Sim. O escritório fica na Rua Tereza Lopes, 677, Vila Hortência, e a conversa também pode acontecer na sua empresa, conforme a agenda. Quem prefere resolver à distância fala com um consultor por telefone e WhatsApp, com a mesma checagem de viabilidade.'
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Sim. O escritório fica na Rua Tereza Lopes, 677, Vila Hortência, e a conversa também pode acontecer na sua empresa, conforme a agenda. Quem prefere resolver à distância fala com um consultor por telefone e WhatsApp, com a mesma checagem de viabilidade.'
+			a: 'Sim, na sua empresa, conforme a agenda. A unidade física fica em Jumirim/SP, na R. Manoel Novaes, 922, e recebe quem prefere ir até lá; em Sorocaba a operação é central online. Quem prefere resolver à distância fala com um consultor por telefone e WhatsApp, com a mesma checagem de viabilidade.'
 		},
 		{
 			q: 'Contratar por um representante local muda o contrato com a TIM?',
@@ -259,7 +289,8 @@ export default {
 		},
 		{
 			q: 'Atendem empresas de fora de Sorocaba?',
-			a: 'Sim. As cidades do eixo fazem parte da área atendida a partir daqui, sem unidade física nelas, e o restante do país é atendido remotamente. Em qualquer um dos casos um consultor checa a viabilidade do endereço: o que varia é o formato, não a conferência.'
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Sim. As cidades do eixo fazem parte da área atendida a partir daqui, sem unidade física nelas, e o restante do país é atendido remotamente. Em qualquer um dos casos um consultor checa a viabilidade do endereço: o que varia é o formato, não a conferência.'
+			a: 'Sim. As cidades do eixo fazem parte da mesma área atendida, sem unidade física nelas — a única fica em Jumirim/SP —, e o restante do país é atendido remotamente. Em qualquer um dos casos um consultor checa a viabilidade do endereço: o que varia é o formato, não a conferência.'
 		},
 		{
 			q: 'Sou MEI em Sorocaba. Consigo plano empresarial?',
@@ -273,15 +304,17 @@ export default {
 
 	cta: {
 		titulo: 'Fale com o consultor que atende Sorocaba',
+		// NAP-JUMIRIM 2026-09-10 — anterior: 'Agende uma conversa na sua empresa, venha até o escritório na Vila Hortência ou resolva por WhatsApp. Um consultor checa a viabilidade do endereço e a necessidade da operação — sem custo e sem obrigar você a trocar de operadora.'
 		texto:
-			'Agende uma conversa na sua empresa, venha até o escritório na Vila Hortência ou resolva por WhatsApp. Um consultor checa a viabilidade do endereço e a necessidade da operação — sem custo e sem obrigar você a trocar de operadora.'
+			'Agende uma conversa na sua empresa, venha até a unidade de Jumirim/SP ou resolva por WhatsApp. Um consultor checa a viabilidade do endereço e a necessidade da operação — sem custo e sem obrigar você a trocar de operadora.'
 	},
 
 	service: {
 		name: 'Atendimento TIM Empresas em Sorocaba',
 		serviceType: 'Representante autorizado TIM para empresas',
 		description:
-			'Atendimento consultivo TIM Empresas em Sorocaba: um consultor checa a operação, a fatura atual e a viabilidade no endereço, e apresenta proposta comparada. Atendimento presencial na cidade, com desconto progressivo a partir de dez linhas.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Atendimento consultivo TIM Empresas em Sorocaba: um consultor checa a operação, a fatura atual e a viabilidade no endereço, e apresenta proposta comparada. Atendimento presencial na cidade, com desconto progressivo a partir de dez linhas.',
+			'Atendimento consultivo TIM Empresas em Sorocaba: um consultor checa a operação, a fatura atual e a viabilidade no endereço, e apresenta proposta comparada. Visita presencial na sua empresa ou conversa na unidade de Jumirim/SP, com desconto progressivo a partir de dez linhas.',
 		areaServed: {
 			'@type': 'City',
 			name: 'Sorocaba',

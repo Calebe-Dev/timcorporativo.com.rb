@@ -66,7 +66,8 @@
 			availableChannel: {
 				'@type': 'ServiceChannel',
 				serviceUrl: canonical,
-				servicePhone: { '@type': 'ContactPoint', telephone: '+55-15-3500-8940' }
+				// NAP-JUMIRIM 2026-09-10 — anterior: telephone: '+55-15-3500-8940'
+				servicePhone: { '@type': 'ContactPoint', telephone: '+55-15-3100-0058' }
 			}
 		},
 		// Sem HowTo: o Google aposentou o rich result em 2023 e hoje ignora a

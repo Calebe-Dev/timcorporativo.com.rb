@@ -5,7 +5,11 @@
 > para CNPJ: TIM Black Empresa (móvel), TIM Fibra Empresa e TIM UltraFibra
 > (internet fixa). Não é o site oficial da operadora TIM S.A.
 
-O contato comercial é feito por formulário, telefone (15 3500-8940) ou
+<!-- NAP-JUMIRIM 2026-09-10 — a linha abaixo trazia o fixo antigo. O texto
+     original NÃO fica comentado aqui: llms.txt é servido literalmente, e um
+     comentário ainda seria lido pelos modelos que consomem o arquivo. O
+     original está no diff e na entrega. -->
+O contato comercial é feito por formulário, telefone (15 3100-0058) ou
 WhatsApp (15 99651-0375). A contratação segue 4 passos: diagnóstico gratuito,
 proposta personalizada, documentação simples e ativação acompanhada.
 Portabilidade mantém os números atuais.
@@ -21,6 +25,10 @@ Portabilidade mantém os números atuais.
 ## Fatos úteis
 
 - Operador do site: TIM Corporativo (representante autorizado TIM, +15 anos).
-- Endereço: Rua Tereza Lopes, 677 — Vila Hortência, Sorocaba/SP.
+<!-- NAP-JUMIRIM 2026-09-10 — a linha abaixo trazia o endereço antigo (rua e
+     CEP de Sorocaba). Mesmo motivo: não pode ficar comentada num arquivo
+     servido literalmente. Original no diff e na entrega. -->
+- Endereço: R. Manoel Novaes, 922 — Centro, Jumirim/SP, CEP 18535-001
+  (unidade física). Sorocaba/SP segue como central online e área atendida.
 - Planos sem preço tabelado público: proposta sob consulta por CNPJ.
 - Sitemap completo: https://timcorporativo.com.br/sitemap.xml

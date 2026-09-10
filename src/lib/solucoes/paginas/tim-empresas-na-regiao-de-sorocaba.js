@@ -6,10 +6,14 @@
 // nome de cidade do acervo antigo somaram 118 impressões e zero clique em doze
 // meses. Página-cidade sem operação local não converte; produz risco de doorway.
 //
-// Existe UMA unidade física, em Sorocaba. Nenhum trecho desta página pode
-// sugerir escritório, endereço ou unidade em outra cidade — o enquadramento
-// correto para as demais é ÁREA ATENDIDA, e é isso que o JSON-LD declara
-// (areaServed lista as cidades; address continua sendo só o de Sorocaba).
+// NAP-JUMIRIM 2026-09-10 — anterior: "Existe UMA unidade física, em Sorocaba.
+// (…) address continua sendo só o de Sorocaba."
+// Existe UMA unidade física, em JUMIRIM/SP — a que tem perfil no Google.
+// Sorocaba continua na operação como CENTRAL ONLINE e como área atendida, sem
+// endereço de rua publicado. Nenhum trecho desta página pode sugerir escritório,
+// endereço ou unidade em outra cidade — o enquadramento correto para as demais é
+// ÁREA ATENDIDA, e é isso que o JSON-LD declara (areaServed lista as cidades;
+// address é só o de Jumirim).
 //
 // ⚠ CONDIÇÃO DE PUBLICAÇÃO (obrigatória): cada bloco de cidade precisa carregar
 // pelo menos uma prova concreta — cliente atendido, caso ou particularidade de
@@ -45,12 +49,14 @@ export default {
 	h1: 'TIM Empresas no eixo de Sorocaba: as cidades atendidas e como funciona',
 
 	cardTitulo: 'Região de Sorocaba',
+	// NAP-JUMIRIM 2026-09-10 — anterior: 'Votorantim, Itu, Boituva, Iperó e entorno. Uma base só, em Sorocaba, e área atendida no entorno — sem prometer unidade onde não existe.',
 	cardTexto:
-		'Votorantim, Itu, Boituva, Iperó e entorno. Uma base só, em Sorocaba, e área atendida no entorno — sem prometer unidade onde não existe.',
+		'Sorocaba, Votorantim, Itu, Boituva, Iperó e entorno. Uma unidade física só, em Jumirim/SP, e área atendida no entorno — sem prometer unidade onde não existe.',
 
 	hero: {
 		eyebrow: 'Eixo Sorocaba',
-		sub: 'A base é uma só, em Sorocaba, e é assim que apresentamos: as cidades do entorno são área atendida, sem unidade física, e no restante do país o atendimento é remoto. O que muda de cidade para cidade é a realidade de rede — não a conferência que um consultor faz antes de qualquer proposta.',
+		// NAP-JUMIRIM 2026-09-10 — anterior: 'A base é uma só, em Sorocaba, e é assim que apresentamos: as cidades do entorno são área atendida, sem unidade física, e no restante do país o atendimento é remoto. O que muda de cidade para cidade é a realidade de rede — não a conferência que um consultor faz antes de qualquer proposta.',
+		sub: 'A unidade física é uma só, em Jumirim/SP, com central online em Sorocaba, e é assim que apresentamos: as cidades do eixo são área atendida, sem unidade física, e no restante do país o atendimento é remoto. O que muda de cidade para cidade é a realidade de rede — não a conferência que um consultor faz antes de qualquer proposta.',
 		bullets: [
 			'Votorantim, Itu, Boituva, Iperó e entorno na área atendida',
 			'Um consultor checa a viabilidade do endereço, como em Sorocaba',
@@ -64,15 +70,26 @@ export default {
 	},
 
 	keyFacts: [
+		// NAP-JUMIRIM 2026-09-10 — anterior:
+		// {
+		// 	label: 'Unidade física',
+		// 	value: 'Uma só, em Sorocaba',
+		// 	nota: 'Rua Tereza Lopes, 677, Vila Hortência. Nas demais cidades não há filial: elas são área atendida.'
+		// },
+		// {
+		// 	label: 'Cidades na área atendida',
+		// 	value: 'Eixo Sorocaba e entorno',
+		// 	nota: 'Votorantim, Itu, Boituva, Iperó e municípios vizinhos, atendidos a partir da unidade de Sorocaba.'
+		// },
 		{
 			label: 'Unidade física',
-			value: 'Uma só, em Sorocaba',
-			nota: 'Rua Tereza Lopes, 677, Vila Hortência. Nas demais cidades não há filial: elas são área atendida.'
+			value: 'Uma só, em Jumirim/SP',
+			nota: 'R. Manoel Novaes, 922, Centro. Em Sorocaba a operação é central online; nas demais cidades não há filial: elas são área atendida.'
 		},
 		{
 			label: 'Cidades na área atendida',
 			value: 'Eixo Sorocaba e entorno',
-			nota: 'Votorantim, Itu, Boituva, Iperó e municípios vizinhos, atendidos a partir da unidade de Sorocaba.'
+			nota: 'Sorocaba, Votorantim, Itu, Boituva, Iperó e municípios vizinhos, atendidos pela mesma equipe.'
 		},
 		{
 			label: 'Fora do eixo',
@@ -81,15 +98,17 @@ export default {
 		}
 	],
 
+	// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria tem uma unidade, em Sorocaba, e as cidades do entorno são área atendida — Votorantim, Itu, Boituva, Iperó e municípios vizinhos. Não há filial nessas cidades, e não faz falta: um consultor checa a viabilidade do endereço e a necessidade da operação do mesmo jeito, antes de qualquer proposta.',
 	resumo:
-		'Nossa consultoria tem uma unidade, em Sorocaba, e as cidades do entorno são área atendida — Votorantim, Itu, Boituva, Iperó e municípios vizinhos. Não há filial nessas cidades, e não faz falta: um consultor checa a viabilidade do endereço e a necessidade da operação do mesmo jeito, antes de qualquer proposta.',
+		'Nossa consultoria tem uma unidade física, em Jumirim/SP, central online em Sorocaba, e as cidades do eixo são área atendida — Sorocaba, Votorantim, Itu, Boituva, Iperó e municípios vizinhos. Não há filial nessas cidades, e não faz falta: um consultor checa a viabilidade do endereço e a necessidade da operação do mesmo jeito, antes de qualquer proposta.',
 
 	secoes: [
 		{
 			id: 'onde-atendemos',
 			h2: 'Onde existe unidade — e o que significa área atendida',
 			paragrafos: [
-				'A resposta direta é esta: existe um escritório, na Rua Tereza Lopes, 677, Vila Hortência, em Sorocaba. As cidades do entorno são área atendida a partir dele. Em nenhuma delas há filial, endereço comercial ou equipe fixa, e dizer o contrário seria fácil e falso. O que existe nelas é a mesma conferência de sempre: um consultor checa a viabilidade do endereço e a necessidade da operação antes de qualquer proposta.',
+				// NAP-JUMIRIM 2026-09-10 — anterior: 'A resposta direta é esta: existe um escritório, na Rua Tereza Lopes, 677, Vila Hortência, em Sorocaba. As cidades do entorno são área atendida a partir dele. Em nenhuma delas há filial, endereço comercial ou equipe fixa, e dizer o contrário seria fácil e falso. O que existe nelas é a mesma conferência de sempre: um consultor checa a viabilidade do endereço e a necessidade da operação antes de qualquer proposta.',
+				'A resposta direta é esta: existe uma unidade física, na R. Manoel Novaes, 922, Centro, em Jumirim/SP, e uma central online em Sorocaba. As cidades do eixo — Sorocaba inclusive — são área atendida. Em nenhuma delas há filial, endereço comercial ou equipe fixa, e dizer o contrário seria fácil e falso. O que existe nelas é a mesma conferência de sempre: um consultor checa a viabilidade do endereço e a necessidade da operação antes de qualquer proposta.',
 				'Fazemos questão de começar por aí porque o mercado de representação de operadora costuma fazer o oposto — anunciar presença em dezenas de cidades onde ninguém pisou. O efeito prático da mentira aparece quando a empresa precisa de alguém e descobre que “a unidade da cidade” era uma página na internet. Dizer “área atendida” é menos vistoso do que anunciar filial, e é o que de fato existe.'
 			]
 		},
@@ -275,7 +294,8 @@ export default {
 	eeat: {
 		titulo: 'Por que confiar no que está escrito aqui',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial, é representante autorizado TIM e opera de Sorocaba, na Rua Tereza Lopes, 677, Vila Hortência, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91. O perfil público no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações de grande porte, com a BYD entre os clientes.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial, é representante autorizado TIM e opera de Sorocaba, na Rua Tereza Lopes, 677, Vila Hortência, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91. O perfil público no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações de grande porte, com a BYD entre os clientes.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial, é representante autorizado TIM e opera com central online em Sorocaba e unidade física em Jumirim/SP, na R. Manoel Novaes, 922, Centro, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91. O perfil público no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações de grande porte, com a BYD entre os clientes.',
 			'A informação mais útil desta página, porém, é a que a maioria dos concorrentes omite: existe uma unidade só. Publicar isso custa alguma coisa em aparência e vale muito em previsibilidade — a empresa sabe de antemão o que vai receber, e ninguém descobre no meio de um problema que a “unidade local” não existia.',
 			'O critério que separa o que se resolve à distância do que depende do local também está publicado: quase tudo — fatura, opções, documentação, acompanhamento — independe de distância; o que não independe é o endereço exato e o ponto onde o sinal falha. Estar no local não é demonstração de dedicação, é informação; quando ela pode ser levantada de outro jeito, insistir nela só atrasa quem está esperando resposta. O que fica prometido aqui é o que dá para cumprir de qualquer cidade: um consultor checa a viabilidade e a necessidade, e o desconto progressivo melhora conforme o volume, a partir de dez linhas.'
 		]
@@ -285,11 +305,13 @@ export default {
 	faq: [
 		{
 			q: 'Vocês têm escritório na minha cidade?',
-			a: 'Não. O escritório fica em Sorocaba, na Vila Hortência, e é a única unidade física. As cidades do entorno são área atendida a partir dele, e no restante do país o atendimento é remoto — dizemos isso antes justamente para ninguém contar com uma estrutura que não existe.'
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Não. O escritório fica em Sorocaba, na Vila Hortência, e é a única unidade física. As cidades do entorno são área atendida a partir dele, e no restante do país o atendimento é remoto — dizemos isso antes justamente para ninguém contar com uma estrutura que não existe.'
+			a: 'Não. A única unidade física fica em Jumirim/SP, e em Sorocaba a operação é central online. As cidades do eixo são área atendida, e no restante do país o atendimento é remoto — dizemos isso antes justamente para ninguém contar com uma estrutura que não existe.'
 		},
 		{
 			q: 'Quais cidades estão na área atendida?',
-			a: 'Sorocaba e o entorno, incluindo Votorantim, Itu, Boituva, Iperó e municípios vizinhos. Atendimento presencial existe em Sorocaba, onde fica a unidade; nas demais, um consultor checa a viabilidade do endereço e a necessidade da operação sem que haja escritório local. Fora desse eixo o atendimento continua disponível, em formato remoto.'
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Sorocaba e o entorno, incluindo Votorantim, Itu, Boituva, Iperó e municípios vizinhos. Atendimento presencial existe em Sorocaba, onde fica a unidade; nas demais, um consultor checa a viabilidade do endereço e a necessidade da operação sem que haja escritório local. Fora desse eixo o atendimento continua disponível, em formato remoto.'
+			a: 'Sorocaba e o entorno, incluindo Votorantim, Itu, Boituva, Iperó e municípios vizinhos. O atendimento presencial acontece na sua empresa ou na unidade de Jumirim/SP; nas demais cidades, um consultor checa a viabilidade do endereço e a necessidade da operação sem que haja escritório local. Fora desse eixo o atendimento continua disponível, em formato remoto.'
 		},
 		{
 			q: 'Empresa em cidade menor consegue internet empresarial?',
@@ -315,7 +337,8 @@ export default {
 		name: 'Atendimento TIM Empresas na região de Sorocaba',
 		serviceType: 'Representante autorizado TIM para empresas',
 		description:
-			'Atendimento consultivo TIM Empresas nas cidades do eixo de Sorocaba: um consultor checa a viabilidade por endereço e apresenta proposta comparada, com desconto progressivo a partir de dez linhas. A unidade física fica em Sorocaba; as demais cidades são área atendida.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Atendimento consultivo TIM Empresas nas cidades do eixo de Sorocaba: um consultor checa a viabilidade por endereço e apresenta proposta comparada, com desconto progressivo a partir de dez linhas. A unidade física fica em Sorocaba; as demais cidades são área atendida.',
+			'Atendimento consultivo TIM Empresas nas cidades do eixo de Sorocaba: um consultor checa a viabilidade por endereço e apresenta proposta comparada, com desconto progressivo a partir de dez linhas. A unidade física fica em Jumirim/SP; Sorocaba e as demais cidades são área atendida.',
 		areaServed: [
 			{ '@type': 'City', name: 'Sorocaba' },
 			{ '@type': 'City', name: 'Votorantim' },

@@ -85,7 +85,8 @@ export default {
 		{
 			label: 'Quem responde por esta página',
 			value: '+15 anos em telecom B2B',
-			nota: 'TIM Corporativo · Sorocaba/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
+			// NAP-JUMIRIM 2026-09-10 — anterior: nota: 'TIM Corporativo · Sorocaba/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
+			nota: 'TIM Corporativo · Jumirim/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
 		}
 	],
 
@@ -303,7 +304,8 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com sede em Sorocaba/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com sede em Sorocaba/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com central online em Sorocaba/SP e unidade física em Jumirim/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A ordem de três tempos — dimensionar, distribuir, negociar — é a regra de decisão que orienta esta página, e ela nasceu de ver a sequência invertida dar errado muitas vezes. Empresa que negocia primeiro fecha condição sobre um parque que ninguém conferiu, e passa o contrato inteiro pagando desconto sobre linhas que não deveria ter contratado. Por isso a página insiste no levantamento antes da condição: um consultor checa o parque e a necessidade real da operação, e só então a faixa aplicável entra na proposta — mesmo quando isso atrasa a resposta e mesmo quando o cliente prefere o número imediato.',
 			'Publicar a seção sobre desconto em plano errado enfraquece o argumento comercial mais fácil deste mercado, e é deliberado: a alternativa é vender uma condição que parece boa e produz uma conta que não fecha — e conta que não fecha volta como reclamação na renovação seguinte. Não publicamos percentual de desconto aqui nem em nenhuma outra página do site, porque a faixa depende do conjunto do contrato e só faz sentido dentro de uma proposta.'
 		]

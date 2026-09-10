@@ -273,7 +273,8 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial e é representante autorizado TIM, com operação conduzida de Sorocaba — Rua Tereza Lopes, 677, Vila Hortência. O perfil público no Google reúne 110 avaliações com nota 4,9, e a BYD está entre os clientes atendidos.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial e é representante autorizado TIM, com operação conduzida de Sorocaba — Rua Tereza Lopes, 677, Vila Hortência. O perfil público no Google reúne 110 avaliações com nota 4,9, e a BYD está entre os clientes atendidos.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecom empresarial e é representante autorizado TIM, com central online em Sorocaba e unidade física em Jumirim/SP — R. Manoel Novaes, 922, Centro. O perfil público no Google reúne 110 avaliações com nota 4,9, e a BYD está entre os clientes atendidos.',
 			'O critério que organiza esta página é a cobertura conferida por ambiente antes de qualquer proposta. Ele não é preferência de escrita: projeto industrial vendido pela banda contratada funciona na administração e falha na expedição, e a conta desse erro chega como atraso de carga, não como reclamação de internet.',
 			'O segundo critério é tratar planta, frota e equipe externa como uma coisa só. Não é preferência comercial: é o que permite responder quantas linhas a empresa tem, quem usa cada uma e quando o contrato vence — três perguntas que a maioria das indústrias com fornecedores espalhados não consegue responder de imediato. É também o que faz o volume contar junto, e o desconto progressivo melhora conforme esse total, a partir de dez linhas.',
 			'O que fica prometido aqui é curto: um consultor checa a viabilidade no endereço industrial e a necessidade de cada ambiente, sem custo e antes de qualquer proposta. Nenhum prazo de instalação, nenhuma promessa de cobertura fechada por escrito antes dessa checagem.'
@@ -296,7 +297,8 @@ export default {
 		},
 		{
 			q: 'Vocês atendem planta em Votorantim, Itu, Boituva ou Iperó?',
-			a: 'Sim: são cidades da área atendida a partir de Sorocaba, onde fica a unidade física. Nessas cidades não há escritório nem equipe fixa, e um consultor checa a viabilidade do endereço industrial do mesmo jeito. Há uma página desta seção explicando como isso funciona.'
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Sim: são cidades da área atendida a partir de Sorocaba, onde fica a unidade física. Nessas cidades não há escritório nem equipe fixa, e um consultor checa a viabilidade do endereço industrial do mesmo jeito. Há uma página desta seção explicando como isso funciona.'
+			a: 'Sim: são cidades da mesma área atendida, junto de Sorocaba, de onde a operação é conduzida em central online. A única unidade física fica em Jumirim/SP; nas demais cidades não há escritório nem equipe fixa, e um consultor checa a viabilidade do endereço industrial do mesmo jeito. Há uma página desta seção explicando como isso funciona.'
 		},
 		{
 			q: 'Conseguem atender também a frota e a equipe externa?',

@@ -256,7 +256,8 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em telecom empresarial e é representante autorizado TIM, com operação conduzida de Sorocaba — Rua Tereza Lopes, 677, Vila Hortência. As 110 avaliações com nota 4,9 no perfil público do Google podem ser lidas por quem quiser conferir antes de ligar.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria atua há mais de 15 anos em telecom empresarial e é representante autorizado TIM, com operação conduzida de Sorocaba — Rua Tereza Lopes, 677, Vila Hortência. As 110 avaliações com nota 4,9 no perfil público do Google podem ser lidas por quem quiser conferir antes de ligar.',
+			'Nossa consultoria atua há mais de 15 anos em telecom empresarial e é representante autorizado TIM, com central online em Sorocaba e unidade física em Jumirim/SP — R. Manoel Novaes, 922, Centro. As 110 avaliações com nota 4,9 no perfil público do Google podem ser lidas por quem quiser conferir antes de ligar.',
 			'A regra de decisão que orienta a página é própria e vale explicitar: viabilidade é por ponto de atendimento, não por CEP, e nenhuma proposta sai antes de um consultor checar o que chega ao endereço. Vem de repetição — a maior parte das instalações que atrasam foi vendida antes de alguém confirmar o que chegava ao imóvel.',
 			'Também não vendemos a ideia de que existe uma tecnologia superior em qualquer situação. Fibra e rede móvel resolvem problemas diferentes e, com frequência, o arranjo correto usa as duas: uma como caminho principal, outra como garantia de que a empresa continua atendendo enquanto o reparo acontece.'
 		]

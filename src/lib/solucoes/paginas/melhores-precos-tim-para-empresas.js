@@ -83,7 +83,8 @@ export default {
 		{
 			label: 'Quem responde por esta página',
 			value: '+15 anos em telecom B2B',
-			nota: 'TIM Corporativo · Sorocaba/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
+			// NAP-JUMIRIM 2026-09-10 — anterior: nota: 'TIM Corporativo · Sorocaba/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
+			nota: 'TIM Corporativo · Jumirim/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
 		}
 	],
 
@@ -303,7 +304,8 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com sede em Sorocaba/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com sede em Sorocaba/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com central online em Sorocaba/SP e unidade física em Jumirim/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A regra de normalização em três eixos não veio de manual de fornecedor: veio de repetir a mesma cena. Empresa com duas propostas na mesa, decidida pela que tinha o menor valor de linha, descobrindo meses depois que a comparação nunca foi entre coisas equivalentes. Antes de qualquer análise, as propostas são reescritas em prazo, escopo e perfil de uso comuns — e a que não sobrevive a essa reescrita volta para o emissor mais detalhada.',
 			'Publicamos o checklist inteiro de propósito: qualquer empresa consegue aplicá-lo sem nos contratar, e régua que só funciona com quem a criou na sala não é régua, é argumento de venda. Sobre o que não fazemos — não publicamos valor nesta página nem em nenhuma outra do site, porque valor de telecom empresarial sem diagnóstico é chute com papel timbrado.',
 			'O que afirmamos sobre condição comercial é objetivo e verificável na sua própria fatura: um consultor checa a operação antes de qualquer número, e a condição melhora conforme o volume — o desconto é progressivo e começa a valer a partir de dez linhas.'

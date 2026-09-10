@@ -37,15 +37,29 @@ export const site = {
 };
 
 export const contact = {
-	phoneLabel: '15 3500-8940',
-	phoneHref: 'tel:+551535008940',
+	// NAP-JUMIRIM 2026-09-10 — anterior: phoneLabel: '15 3500-8940',
+	// Fixo da unidade de Jumirim. O WhatsApp comercial não muda.
+	phoneLabel: '15 3100-0058',
+	// NAP-JUMIRIM 2026-09-10 — anterior: phoneHref: 'tel:+551535008940',
+	phoneHref: 'tel:+551531000058',
 	whatsappNumber: '5515996510375',
 	whatsappLabel: '15 99651-0375',
 	whatsappText: 'Olá! Gostaria de saber mais sobre os planos TIM Empresa. Obrigado!',
 	emails: ['contato@grupooc.com.br', 'comercial@grupooc.com.br'],
-	address: 'Rua Tereza Lopes, 677 – Vila Hortência, Sorocaba/SP',
-	addressLocality: 'Sorocaba',
+	// NAP-JUMIRIM 2026-09-10 — anterior: address: 'Rua Tereza Lopes, 677 – Vila Hortência, Sorocaba/SP',
+	// Único endereço exposto na rede: a unidade de Jumirim/SP, que é a que tem
+	// perfil no Google. Sorocaba continua como operação (central online), sem
+	// endereço de rua publicado. CEP conferido na base dos Correios (BrasilAPI).
+	address: 'R. Manoel Novaes, 922 – Centro, Jumirim/SP – 18535-001',
+	// NAP-JUMIRIM 2026-09-10 — anterior: addressLocality: 'Sorocaba',
+	addressLocality: 'Jumirim',
 	addressRegion: 'SP',
+	// NAP-JUMIRIM 2026-09-10 — campos novos: o schema precisa do logradouro e do
+	// CEP separados, das coordenadas e do link do perfil (hasMap + sameAs).
+	streetAddress: 'R. Manoel Novaes, 922 - Centro',
+	postalCode: '18535-001',
+	geo: { latitude: -23.08667, longitude: -47.78417 },
+	googleProfile: 'https://share.google/sIzhPALKAb85uRW6n',
 	// CNPJ-REMOVIDO 2026-09-10 — o CNPJ sai de toda a superfície pública (reverter: restaurar a linha
 	// abaixo e as chamadas em Footer, SiteMap, schema.js e política de privacidade).
 	// cnpj: '23.474.830/0001-56',

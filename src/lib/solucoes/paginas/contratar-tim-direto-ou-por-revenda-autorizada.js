@@ -65,7 +65,8 @@ export default {
 		{
 			label: 'Quem responde por esta página',
 			value: '+15 anos em telecom B2B',
-			nota: 'TIM Corporativo · Sorocaba/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
+			// NAP-JUMIRIM 2026-09-10 — anterior: nota: 'TIM Corporativo · Sorocaba/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
+			nota: 'TIM Corporativo · Jumirim/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
 		}
 	],
 
@@ -94,7 +95,8 @@ export default {
 					h3: 'Como verificar se o canal é credenciado de verdade',
 					paragrafos: [
 						'Peça o CNPJ e a comprovação de credenciamento junto à operadora, confira se existe endereço físico verificável, tempo de mercado e avaliações públicas que você consiga ler antes de decidir. É uma checagem de poucos minutos e elimina a maior parte do risco da decisão.',
-						'Nossa consultoria atende por essa mesma régua e a publica aqui de propósito: sede em Sorocaba/SP, mais de 15 anos em gestão e auditoria de telecom empresarial, 110 avaliações públicas no Google com nota 4,9 e uma carteira que vai de MEI a operações do porte da BYD.'
+						// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria atende por essa mesma régua e a publica aqui de propósito: sede em Sorocaba/SP, mais de 15 anos em gestão e auditoria de telecom empresarial, 110 avaliações públicas no Google com nota 4,9 e uma carteira que vai de MEI a operações do porte da BYD.'
+						'Nossa consultoria atende por essa mesma régua e a publica aqui de propósito: central online em Sorocaba/SP e unidade física em Jumirim/SP, mais de 15 anos em gestão e auditoria de telecom empresarial, 110 avaliações públicas no Google com nota 4,9 e uma carteira que vai de MEI a operações do porte da BYD.'
 					]
 				},
 				{
@@ -280,14 +282,16 @@ export default {
 		},
 		{
 			q: '“Como sei que vocês são autorizados mesmo?”',
-			a: 'Pedindo o que você pediria a qualquer fornecedor: comprovação de credenciamento, endereço em Sorocaba/SP, tempo de mercado e as avaliações públicas no Google. É a mesma verificação que recomendamos fazer com qualquer canal, e ela não deveria ser diferente conosco.'
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Pedindo o que você pediria a qualquer fornecedor: comprovação de credenciamento, endereço em Sorocaba/SP, tempo de mercado e as avaliações públicas no Google. É a mesma verificação que recomendamos fazer com qualquer canal, e ela não deveria ser diferente conosco.'
+			a: 'Pedindo o que você pediria a qualquer fornecedor: comprovação de credenciamento, endereço físico da unidade em Jumirim/SP, tempo de mercado e as avaliações públicas no Google. É a mesma verificação que recomendamos fazer com qualquer canal, e ela não deveria ser diferente conosco.'
 		}
 	],
 
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com sede em Sorocaba/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			// NAP-JUMIRIM 2026-09-10 — anterior: 'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com sede em Sorocaba/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com central online em Sorocaba/SP e unidade física em Jumirim/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD.',
 			'A regra de decisão que orienta esta página é própria e vale explicitar: canal só se justifica quando há mais de uma variável em jogo. Se o caso tem uma variável só — uma linha, um produto, um endereço, nenhuma portabilidade —, o caminho direto costuma ser mais rápido e ninguém precisa de intermediário. A partir de duas variáveis, o resultado passa a ser definido pelo diagnóstico, e é aí que um canal consultivo muda o desfecho.',
 			'Temos interesse comercial na sua decisão e não faria sentido esconder isso. É exatamente por esse motivo que a página traz a seção sobre quando contratar direto é melhor, declara a limitação de trabalharmos com um portfólio único e publica o checklist de qualificação que se aplica a nós na mesma medida em que se aplica a qualquer concorrente.'
 		]
