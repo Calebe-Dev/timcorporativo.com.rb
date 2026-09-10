@@ -1,6 +1,10 @@
 import { error } from '@sveltejs/kit';
 import { todosArtigos, listarArtigos } from '$lib/server/artigos.js';
 import { site } from '$lib/site.js';
+// ENTIDADE-OC-TEL 2026-09-10 — a página de artigo era a única do site sem nenhum
+// nó Organization: o Article repetia dois objetos parciais em author/publisher.
+// Agora o grafo traz a entidade completa uma vez e os dois apontam para o @id.
+import { organizationNode, ORG_ID } from '$lib/schema.js';
 import { ARTIGO_PARA_LP, ANCORAS, FALLBACK } from '$lib/solucoes/links-artigos.js';
 
 // ---------------------------------------------------------------------------
@@ -89,23 +93,36 @@ function gerarSeoHtml(artigo) {
 	const kw = Array.isArray(artigo.keywords) ? artigo.keywords.join(', ') : (artigo.keywords ?? '');
 	const desc = artigo.meta_description ?? '';
 
+	// ENTIDADE-OC-TEL 2026-09-10 — anterior: `ld` era só o objeto Article abaixo,
+	// com author e publisher repetindo Organization parcial (sem @id, sem razão
+	// social, sem CNPJ).
+	//	author: { '@type': 'Organization', name: site.name, url: `${site.url}/` },
+	//	publisher: {
+	//		'@type': 'Organization',
+	//		name: site.name,
+	//		logo: { '@type': 'ImageObject', url: `${site.url}${site.logo}` }
+	//	},
 	const ld = {
 		'@context': 'https://schema.org',
-		'@type': 'Article',
-		headline: artigo.title,
-		description: desc,
-		keywords: kw,
-		url,
-		datePublished: artigo.published_at ?? artigo.created_at,
-		dateModified: artigo.date_updated ?? artigo.published_at ?? artigo.created_at,
-		image: [`${site.url}${site.ogImage}`],
-		author: { '@type': 'Organization', name: site.name, url: `${site.url}/` },
-		publisher: {
-			'@type': 'Organization',
-			name: site.name,
-			logo: { '@type': 'ImageObject', url: `${site.url}${site.logo}` }
-		},
-		mainEntityOfPage: { '@type': 'WebPage', '@id': url }
+		'@graph': [
+			// Entidade única do site (mesma função que alimenta home e /solucoes/):
+			// traz name, legalName, taxID e identifier de uma fonte só.
+			organizationNode(),
+			{
+				'@type': 'Article',
+				'@id': `${url}#article`,
+				headline: artigo.title,
+				description: desc,
+				keywords: kw,
+				url,
+				datePublished: artigo.published_at ?? artigo.created_at,
+				dateModified: artigo.date_updated ?? artigo.published_at ?? artigo.created_at,
+				image: [`${site.url}${site.ogImage}`],
+				author: { '@id': ORG_ID },
+				publisher: { '@id': ORG_ID },
+				mainEntityOfPage: { '@type': 'WebPage', '@id': url }
+			}
+		]
 	};
 
 	return [

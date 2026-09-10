@@ -24,10 +24,17 @@ export function organizationNode() {
 		'@id': ORG_ID,
 		name: site.name,
 		legalName: site.legalName,
+		// ENTIDADE-OC-TEL 2026-09-10 — CNPJ como taxID (campo que o schema.org
+		// define para identificação fiscal) e como identifier tipado, que é a
+		// forma que os motores de resposta leem sem adivinhar o país.
+		taxID: contact.cnpj,
+		identifier: { '@type': 'PropertyValue', propertyID: 'CNPJ', value: contact.cnpj },
 		url: `${site.url}/`,
 		logo: `${site.url}${site.logo}`,
 		image: `${site.url}${site.logo}`,
-		description: `Representante autorizado TIM para empresas, operado pelo ${site.legalName}. Venda consultiva de planos TIM Empresa: TIM Black Empresa, TIM Fibra e UltraFibra.`,
+		// ENTIDADE-OC-TEL 2026-09-10 — anterior: description: `Representante autorizado TIM para empresas, operado pelo ${site.legalName}. Venda consultiva de planos TIM Empresa: TIM Black Empresa, TIM Fibra e UltraFibra.`,
+		// "pelo" → "pela": a razão social real é feminina (OC Telecomunicações LTDA).
+		description: `Representante autorizado TIM para empresas, operado pela ${site.legalName}. Venda consultiva de planos TIM Empresa: TIM Black Empresa, TIM Fibra e UltraFibra.`,
 		telephone: '+55-15-3500-8940',
 		email: contact.emails[0],
 		// Sem preço tabelado: a venda é consultiva, por proposta.
@@ -42,7 +49,10 @@ export function organizationNode() {
 			addressRegion: contact.addressRegion,
 			addressCountry: 'BR'
 		},
-		identifier: { '@type': 'PropertyValue', propertyID: 'CNPJ', value: contact.cnpj },
+		// CNPJ-REMOVIDO 2026-09-10 — original:
+		// identifier: { '@type': 'PropertyValue', propertyID: 'CNPJ', value: contact.cnpj },
+		// ENTIDADE-OC-TEL 2026-09-10 — restaurado (com o CNPJ novo) logo após `name`,
+		// junto de legalName e taxID: os três campos da entidade ficam lado a lado.
 		contactPoint: {
 			'@type': 'ContactPoint',
 			telephone: '+55-15-99651-0375',

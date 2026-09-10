@@ -43,11 +43,19 @@
 		</p>
 
 		<h2 class={h2}>1. Quem é o controlador dos dados</h2>
+		<!-- ENTIDADE-OC-TEL 2026-09-10 — anterior: "O controlador é o <strong>{site.legalName}</strong>, representante autorizado TIM para empresas."
+		     Nomear a pessoa jurídica (e não a marca do site) é o que faz a
+		     identificação do controlador valer para a LGPD. "é o" → "é a": a razão
+		     social real é feminina. -->
 		<p class={p}>
-			O controlador é o <strong>{site.legalName}</strong>, representante autorizado TIM para
-			empresas.
+			O controlador é a <strong>{site.legalName}</strong>, CNPJ {contact.cnpj}, representante
+			autorizado TIM para empresas.
 		</p>
 		<ul class={ul}>
+			<!-- CNPJ-REMOVIDO 2026-09-10 (reverter: restaurar a linha abaixo)
+			<li><strong>CNPJ:</strong> {contact.cnpj}</li>
+			-->
+			<!-- ENTIDADE-OC-TEL 2026-09-10 — linha restaurada com o CNPJ da entidade real. -->
 			<li><strong>CNPJ:</strong> {contact.cnpj}</li>
 			<li><strong>Endereço:</strong> {contact.address}</li>
 			<li>
@@ -142,13 +150,15 @@
 					</tr>
 				</thead>
 				<tbody>
+					<!-- ENTIDADE-OC-TEL 2026-09-10 — anteriores: "do {site.legalName}" nas duas
+					     linhas; "do" → "da" pela razão social real (feminina). -->
 					<tr>
-						<td class={td}>Sistema de gestão comercial do {site.legalName}</td>
+						<td class={td}>Sistema de gestão comercial da {site.legalName}</td>
 						<td class={td}>Todos os dados do formulário</td>
 						<td class={td}>Registrar e acompanhar o atendimento</td>
 					</tr>
 					<tr>
-						<td class={td}>Serviço de e-mail do {site.legalName}</td>
+						<td class={td}>Serviço de e-mail da {site.legalName}</td>
 						<td class={td}>Todos os dados do formulário</td>
 						<td class={td}>Avisar a equipe comercial do novo contato</td>
 					</tr>

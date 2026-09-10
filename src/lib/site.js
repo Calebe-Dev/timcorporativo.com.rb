@@ -4,7 +4,12 @@
 export const site = {
 	name: 'TIM Corporativo',
 	// GRUPO-OC-OCULTO 2026-09-09 — original: legalName: 'Grupo OC',
-	legalName: 'TIM Corporativo',
+	// ENTIDADE-OC-TEL 2026-09-10 — anterior: legalName: 'TIM Corporativo',
+	// Razão social real do operador (Receita Federal, conferida em 10/09/2026).
+	// `name` continua sendo a MARCA do site; `legalName` é a pessoa jurídica.
+	// Atenção: sai em texto visível (Footer, mapa do site, política de
+	// privacidade) — a concordância nessas frases é feminina ("operado pela").
+	legalName: 'OC Telecomunicações LTDA',
 	tagline: 'Representante autorizado TIM para empresas',
 	url: 'https://timcorporativo.com.br',
 	// ~150 caracteres: cabe inteira na SERP e cobre a intenção de compra
@@ -41,7 +46,12 @@ export const contact = {
 	address: 'Rua Tereza Lopes, 677 – Vila Hortência, Sorocaba/SP',
 	addressLocality: 'Sorocaba',
 	addressRegion: 'SP',
-	cnpj: '23.474.830/0001-56',
+	// CNPJ-REMOVIDO 2026-09-10 — o CNPJ sai de toda a superfície pública (reverter: restaurar a linha
+	// abaixo e as chamadas em Footer, SiteMap, schema.js e política de privacidade).
+	// cnpj: '23.474.830/0001-56',
+	// ENTIDADE-OC-TEL 2026-09-10 — CNPJ de volta, agora o da entidade que de fato
+	// opera o site: OC Telecomunicações LTDA, ativa desde 12/06/2024, CNAE 6190-6/99.
+	cnpj: '55.495.228/0001-91',
 	// Perfis sociais da nossa consultoria: ocultos. Quem lê (schema.js sameAs, Footer)
 	// tolera a ausência das chaves.
 	// GRUPO-OC-OCULTO 2026-09-09 — original: facebook: 'https://www.facebook.com/grupoocwearepeople',

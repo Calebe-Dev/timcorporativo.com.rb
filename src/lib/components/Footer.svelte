@@ -16,8 +16,11 @@
 					/>
 				</span>
 			</div>
+			<!-- ENTIDADE-OC-TEL 2026-09-10 — anterior: "operado pelo {site.legalName} há mais de N anos."
+			     "pelo" → "pela": com a razão social real (OC Telecomunicações LTDA) a
+			     concordância é feminina. -->
 			<p class="mt-3 text-sm text-tim-200">
-				Representante autorizado TIM para empresas, operado pelo {site.legalName} há
+				Representante autorizado TIM para empresas, operado pela {site.legalName} há
 				mais de {contact.yearsExperience} anos.
 			</p>
 			<!-- Perfis oficiais — mesmos URLs do sameAs no JSON-LD, para
@@ -117,6 +120,11 @@
 		<div>
 			<h3 class="mb-3 text-sm font-semibold text-white">Endereço</h3>
 			<p class="text-sm text-tim-200">{contact.address}</p>
+			<!-- CNPJ-REMOVIDO 2026-09-10 (reverter: restaurar a linha abaixo)
+			<p class="mt-2 text-sm text-tim-200">CNPJ: {contact.cnpj}</p>
+			-->
+			<!-- ENTIDADE-OC-TEL 2026-09-10 — bloco restaurado com o CNPJ da entidade
+			     que opera o site. Sai em toda página, junto do © logo abaixo. -->
 			<p class="mt-2 text-sm text-tim-200">CNPJ: {contact.cnpj}</p>
 		</div>
 	</div>

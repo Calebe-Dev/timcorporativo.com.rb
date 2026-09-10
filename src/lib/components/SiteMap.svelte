@@ -120,7 +120,9 @@
 						</a>
 					</li>
 				</ul>
-				<p class="mt-4 text-xs text-slate-500">CNPJ {contact.cnpj} · {site.legalName}</p>
+				<!-- CNPJ-REMOVIDO 2026-09-10 — original: CNPJ {contact.cnpj} · {site.legalName} -->
+				<!-- ENTIDADE-OC-TEL 2026-09-10 — anterior: <p class="mt-4 text-xs text-slate-500">{site.legalName}</p> -->
+				<p class="mt-4 text-xs text-slate-500">{site.legalName} · CNPJ {contact.cnpj}</p>
 			</div>
 		</div>
 	</div>
