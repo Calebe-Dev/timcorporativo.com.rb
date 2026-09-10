@@ -77,7 +77,7 @@ export default {
 		{
 			label: 'Quem conduz',
 			value: '+15 anos em telecom B2B',
-			nota: 'TIM Corporativo · CNPJ 23.474.830/0001-56 · Sorocaba/SP · 4,9 no Google com 110 avaliações'
+			nota: 'TIM Corporativo · Sorocaba/SP · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
 		}
 	],
 
@@ -326,7 +326,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — o que significa desenhar contratos em escalas bem diferentes, com problemas que não se parecem entre si.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com sede em Sorocaba/SP, e é representante autorizado TIM para empresas. O perfil da empresa no Google reúne 110 avaliações com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — o que significa desenhar contratos em escalas bem diferentes, com problemas que não se parecem entre si.',
 			'A régua de consolidação publicada aqui vale explicitar: compensa a partir de duas variáveis — mais de um serviço, mais de um endereço ou parque acima de uma dezena de linhas, que é também o ponto em que o desconto progressivo por volume começa a melhorar. Abaixo disso, o ganho real está em dimensionar corretamente o que já existe. Dizer isso custa lead no curto prazo, mas custa menos do que entregar um projeto que a empresa não precisava.',
 			'O teste do consultor nomeado é publicado pelo mesmo motivo, e se volta contra nós na mesma medida em que se volta contra qualquer concorrente: promessa de atendimento que não pode ser verificada com uma pergunta não é promessa, é adjetivo. Por isso esta página promete pouco e promete o que dá para cobrar: um consultor checa a viabilidade no endereço e a necessidade da operação, e o desconto progressivo melhora conforme o volume, a partir de dez linhas. Não há valor nem estimativa de economia aqui, nem promessa de prazo de instalação ou de aprovação de crédito — os dois dependem da operadora e da viabilidade no endereço.'
 		]

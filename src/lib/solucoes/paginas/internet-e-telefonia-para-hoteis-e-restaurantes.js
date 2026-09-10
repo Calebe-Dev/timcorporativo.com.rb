@@ -61,7 +61,7 @@ export default {
 		{
 			label: 'Experiência',
 			value: '+15 anos em telecom B2B',
-			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google · CNPJ 55.495.228/0001-91'
 		}
 	],
 

@@ -74,7 +74,7 @@ export default {
 		{
 			label: 'Atividade de origem',
 			value: 'Auditoria de telecom',
-			nota: 'TIM Corporativo: gestão, auditoria e consultoria em telefonia empresarial há +15 anos.'
+			nota: 'TIM Corporativo: gestão, auditoria e consultoria em telefonia empresarial há +15 anos. · CNPJ 55.495.228/0001-91'
 		}
 	],
 

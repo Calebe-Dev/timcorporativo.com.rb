@@ -67,7 +67,7 @@ export default {
 		{
 			label: 'Declaração de interesse',
 			value: 'Somos canal TIM',
-			nota: 'TIM Corporativo, representante autorizado TIM · CNPJ 23.474.830/0001-56 · 4,9 no Google com 110 avaliações'
+			nota: 'TIM Corporativo, representante autorizado TIM · 4,9 no Google com 110 avaliações · CNPJ 55.495.228/0001-91'
 		}
 	],
 
@@ -268,7 +268,7 @@ export default {
 	eeat: {
 		titulo: 'De onde vem o critério deste texto',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, com sede em Sorocaba/SP e CNPJ 23.474.830/0001-56. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — perfis que convivem, no dia a dia, com os dois modelos de fornecimento comparados nesta página.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91, com sede em Sorocaba/SP. São 110 avaliações públicas no Google com nota 4,9, e a carteira vai de MEI a operações do porte da BYD — perfis que convivem, no dia a dia, com os dois modelos de fornecimento comparados nesta página.',
 			'Somos representante autorizado TIM e está escrito na própria página comparativa, não em uma nota de rodapé. O que oferecemos é a régua dos critérios e um consultor que checa a viabilidade e a sua operação antes de qualquer recomendação; o resultado depende do seu caso, e há situações em que o critério aponta para manter o fornecedor atual, inclusive um provedor regional, com o segundo acesso entrando apenas como caminho alternativo.',
 			'A regra de decisão é própria e dispensa consultor para ser aplicada: conte endereços e horas de parada toleradas. Um endereço com alguma tolerância favorece o fornecedor mais próximo; vários endereços ou tolerância próxima de zero favorecem padronização e redundância. Se a sua resposta ficar no meio do caminho, o desenho correto quase sempre é o híbrido.'
 		]

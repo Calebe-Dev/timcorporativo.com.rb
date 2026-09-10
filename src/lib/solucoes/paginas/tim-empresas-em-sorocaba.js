@@ -70,7 +70,7 @@ export default {
 		{
 			label: 'Operação',
 			value: '+15 anos em telecom B2B',
-			nota: 'Representante autorizado TIM · CNPJ 23.474.830/0001-56'
+			nota: 'Representante autorizado TIM · CNPJ 55.495.228/0001-91'
 		}
 	],
 
@@ -163,7 +163,7 @@ export default {
 				'Representante de operadora é um mercado com entrada fácil, o que torna a checagem prévia razoável — inclusive conosco. Estas são as informações que dá para conferir por fora, sem depender do que dizemos:'
 			],
 			lista: [
-				'CNPJ 23.474.830/0001-56, consultável na Receita Federal',
+				'CNPJ 55.495.228/0001-91, consultável na Receita Federal',
 				'Endereço físico em Sorocaba: Rua Tereza Lopes, 677, Vila Hortência',
 				'Perfil público no Google com nota 4,9 e 110 avaliações de clientes',
 				'Mais de 15 anos de operação em telecom empresarial, conduzida a partir de Sorocaba',
@@ -241,7 +241,7 @@ export default {
 	eeat: {
 		titulo: 'Quem assina este atendimento',
 		paragrafos: [
-			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. A operação é conduzida de Sorocaba, no endereço da Rua Tereza Lopes, 677, Vila Hortência, sob o CNPJ 23.474.830/0001-56. O perfil público no Google reúne 110 avaliações com nota 4,9.',
+			'Nossa consultoria atua há mais de 15 anos em gestão, auditoria e consultoria de telecomunicações empresariais, e é representante autorizado TIM para empresas. A operação é conduzida de Sorocaba, no endereço da Rua Tereza Lopes, 677, Vila Hortência, sob a razão social OC Telecomunicações LTDA, CNPJ 55.495.228/0001-91. O perfil público no Google reúne 110 avaliações com nota 4,9.',
 			'A carteira vai de MEI a operações de grande porte, com a BYD entre os clientes atendidos. Essa amplitude importa por um motivo bem específico: o mesmo time que dimensiona um contrato de dezenas de linhas atende quem tem três, e isso muda o padrão de resposta que a empresa pequena recebe.',
 			'Um critério que vale explicitar: proposta séria não sai sem a fatura atual na mesa. Proposta montada só com o que o cliente lembra de cabeça costuma ficar bonita e errada, e o erro só aparece na primeira fatura — quando já é problema de todo mundo. E o que fica prometido nesta página é o que dá para cobrar: um consultor checa a viabilidade do endereço e a necessidade da operação, e o desconto progressivo melhora conforme o volume, a partir de dez linhas.'
 		]
