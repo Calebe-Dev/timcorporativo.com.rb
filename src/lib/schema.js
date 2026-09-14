@@ -29,7 +29,8 @@ export function personNode() {
 		sameAs: author.sameAs,
 		knowsAbout: author.knowsAbout,
 		knowsLanguage: author.knowsLanguage,
-		worksFor: { '@id': ORG_ID }
+		worksFor: { '@id': ORG_ID },
+		mainEntityOfPage: { '@id': `${site.url}/autor/${author.slug}/` }
 	};
 }
 

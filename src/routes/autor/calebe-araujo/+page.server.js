@@ -15,7 +15,12 @@ const esc = (s) =>
 
 export async function load() {
 	const url = `${site.url}/autor/${author.slug}/`;
-	const title = `${author.name} — autor do ${site.name}`;
+	// Mesmo title que a página antiga do WordPress aplicava (continuidade do que
+	// o Google já tinha indexado para /author/calebe-araujo/).
+	const title = `${author.name} | Autor TIM Empresa e Telecom Corporativo`;
+	// Datas reais desta página (criada em 14/09/2026); o Google documenta
+	// dateCreated/dateModified para ProfilePage.
+	const criadaEm = '2026-09-14';
 	// Mesma descrição que o snippet do WordPress aplicava à página antiga.
 	const description = `Conteúdos de ${author.name} sobre TIM Empresa, TIM Black Empresa, TIM Fibra Empresa, UltraFibra e soluções de telecom para empresas.`;
 
@@ -36,6 +41,8 @@ export async function load() {
 				url,
 				name: title,
 				description,
+				dateCreated: criadaEm,
+				dateModified: criadaEm,
 				mainEntity: { '@id': PERSON_ID }
 			}
 		]

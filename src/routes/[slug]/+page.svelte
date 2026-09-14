@@ -1,6 +1,7 @@
 <script>
 	import Banner from '$lib/components/Banner.svelte';
 	import ArtigoSumario from '$lib/components/ArtigoSumario.svelte';
+	import AutorBox from '$lib/components/AutorBox.svelte';
 	import { site, author } from '$lib/site.js';
 
 	let { data } = $props();
@@ -105,6 +106,8 @@
      assunto do artigo — quem lê sobre chip e fatura já é cliente com contrato,
      e recebe auditoria/renovação, não "escolha seu plano". -->
 <Banner banner={banners.rodape} formato="rodape" pagina={article.slug} cluster={banners.cluster} />
+
+<AutorBox />
 
 {#if data.relacionados?.length}
 	<!-- Linkagem interna contextual, calculada no build por afinidade de
