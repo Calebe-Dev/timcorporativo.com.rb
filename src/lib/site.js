@@ -12,10 +12,14 @@ export const site = {
 	legalName: 'OC Telecomunicações LTDA',
 	tagline: 'Representante autorizado TIM para empresas',
 	url: 'https://timcorporativo.com.br',
-	// ~150 caracteres: cabe inteira na SERP e cobre a intenção de compra
-	// (contratar/CNPJ/proposta) além das queries de marca já consolidadas.
+	// HOME-SNIPPET 2026-09-14 — anterior:
+	//   'Planos TIM Empresa para CNPJ: TIM Black Empresa, TIM Fibra e UltraFibra. Compare, contrate com representante autorizado e receba proposta personalizada.'
+	// 153 caracteres. Meta não é fator de ranking — é só CTR — então entra tudo o
+	// que a home ranqueia e o title não diz: Empresas, Planos, Plano, Empresarial,
+	// CNPJ e PJ (GSC 90d: 40.675 / 4.527 / 22.291 / 15.370 / 1.420 / 6.601 imp).
+	// Sem preço (R1) e sem a marca antiga.
 	description:
-		'Planos TIM Empresa para CNPJ: TIM Black Empresa, TIM Fibra e UltraFibra. Compare, contrate com representante autorizado e receba proposta personalizada.',
+		'Planos TIM Empresas para CNPJ e PJ: TIM Black Empresa, TIM Fibra e UltraFibra. Plano TIM Empresarial com representante autorizado TIM. Peça sua proposta.',
 	logo: '/wp-content/uploads/2025/10/tim-logo-2022.svg',
 	// Mesma arte com o viewBox recortado na caixa do logotipo (556×162): a
 	// original centra a marca num quadrado 700×700 e fica minúscula em altura

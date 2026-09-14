@@ -4,7 +4,12 @@
 
 	let {
 		// Separador "|" (Marca | Tópico): padrão que melhora CTR na SERP.
-		title = `${site.name} | TIM Empresa: Black, Fibra e UltraFibra`,
+		// HOME-SNIPPET 2026-09-14 — anterior: title = `${site.name} | TIM Empresa: Black, Fibra e UltraFibra`,
+		// Mantém os seis tokens que carregam ranking (TIM, Corporativo, Empresa, Black,
+		// Fibra, UltraFibra) e acrescenta os dois ausentes de maior peso: "Empresas"
+		// (40.675 imp / 159 cliques em 90d, 2,8× o singular) e "Planos". 59 caracteres
+		// visíveis antes do nome do site. "PJ" fica fora até a rede arbitrar "plano tim pj".
+		title = `TIM Empresas: Planos TIM Empresa, Black, Fibra e UltraFibra | ${site.name}`,
 		description = site.description,
 		path = '/',
 		image = site.ogImage,
