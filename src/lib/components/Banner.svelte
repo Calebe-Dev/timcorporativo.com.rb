@@ -52,7 +52,11 @@
 	sem isso a tipografia do plugin reescreve margens e cores do cartão.
 
 	O rótulo "Anúncio" é deliberado — é o que o Google exige de qualquer bloco
-	promocional distinguível do conteúdo, e é o que o leitor reconhece.
+	promocional distinguível do conteúdo, e é o que o leitor reconhece. Pelo
+	mesmo motivo o link para site parceiro leva rel="sponsored": é peça de
+	anúncio para domínio do mesmo dono, e link seguido repetido em dezenas de
+	páginas entre sites da mesma rede é o padrão que o Google trata como
+	esquema de links. O clique e o lead não dependem de PageRank.
 -->
 {#if formato === 'meio'}
 	<aside
@@ -95,7 +99,7 @@
 			<a
 				{href}
 				target={externo ? '_blank' : undefined}
-				rel={externo ? 'noopener' : undefined}
+				rel={externo ? 'sponsored noopener' : undefined}
 				onclick={aoClicar}
 				class="{botao} mt-4 w-full px-6 py-3 text-sm shadow-md sm:mt-0 sm:w-auto"
 			>
@@ -132,7 +136,7 @@
 			<a
 				{href}
 				target={externo ? '_blank' : undefined}
-				rel={externo ? 'noopener' : undefined}
+				rel={externo ? 'sponsored noopener' : undefined}
 				onclick={aoClicar}
 				class="{botao} mt-6 w-full px-7 py-3.5 text-base shadow-lg shadow-black/20 md:mt-0 md:w-auto"
 			>
