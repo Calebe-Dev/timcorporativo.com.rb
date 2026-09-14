@@ -123,6 +123,17 @@
 
 # --- página de autor (14/09/2026) ---------------------------------------------
 # A migração do WordPress deixou /author/<usuario>/ em 404. A página nova vive
-# em /autor/; o splat cobre os dois usuários antigos (calebe-araujo e o legado
-# com erro de digitação, calebe-araujp) e as formas com e sem barra.
-/author/*	/autor/calebe-araujo/	301
+# em /autor/. Só os dois usuários do Calebe (o certo e o legado com erro de
+# digitação) apontam para ela — /author/elcio-silva/… é outra pessoa e segue
+# 404 de propósito, em vez de virar a página de um autor que não é o dele.
+/author/calebe-araujo/*	/autor/calebe-araujo/	301
+/author/calebe-araujp/*	/autor/calebe-araujo/	301
+
+# --- duplicatas do WordPress com o original vivo (14/09/2026) ------------------
+# Varredura de 14/09: das 498 URLs que o GSC viu em 16 meses, 94 respondem 404 e
+# somam 2 cliques em 90 dias. Estas quatro são os únicos 404 com equivalência
+# exata de intenção — o sufixo -2/-3 é cópia que o WP criou do mesmo artigo.
+/beneficios-tim-corporativo-para-empresas-2/	/beneficios-tim-corporativo-para-empresas/	301
+/como-contratar-tim-corporativo-2/	/como-contratar-tim-corporativo/	301
+/planos-tim-corporativo-precos-2/	/planos-tim-corporativo-precos/	301
+/planos-tim-corporativo-precos-3/	/planos-tim-corporativo-precos/	301
