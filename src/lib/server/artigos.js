@@ -8,6 +8,7 @@
 // do ar, o build segue só com o snapshot.
 
 import { ochubConfig } from './ochub.js';
+import { EDITORIAL } from '$lib/blog/editorial.js';
 import { stripBrandDeep } from '$lib/brand.js';
 
 // GRUPO-OC-REDIRECT 2026-09-09 — conteúdo sobre o Grupo OC → home (reverter: apagar este bloco)
@@ -75,6 +76,16 @@ export function todosArtigos() {
 			);
 			if (visiveis.length !== porSlug.size) {
 				console.log(`[artigos] ${porSlug.size - visiveis.length} ocultos (marca antiga → 301 para a home)`);
+			}
+			// Camada editorial do repo ($lib/blog/editorial.js): a data de revisão
+			// real entra aqui, no ponto único de origem, para valer também para o
+			// que vier do CMS — JSON-LD, sitemap e byline leem `date_updated`.
+			// Só avança a data; nunca recua uma edição mais nova feita no CMS.
+			for (const a of visiveis) {
+				const rev = EDITORIAL[a.slug]?.atualizadoEm;
+				if (rev && (!a.date_updated || rev.slice(0, 10) > a.date_updated.slice(0, 10))) {
+					a.date_updated = rev;
+				}
 			}
 			return visiveis.sort((x, y) => dataPublicacao(y).localeCompare(dataPublicacao(x)));
 		})();

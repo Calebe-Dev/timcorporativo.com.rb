@@ -308,3 +308,24 @@ export const formOptions = {
 	linhas: ['Até 5 linhas', '5 a 10 linhas', '10 a 30 linhas', '30 a 100 linhas', 'Mais de 100 linhas'],
 	operadoras: ['TIM', 'Vivo', 'Claro', 'Outra', 'Ainda não tenho']
 };
+
+// AUTOR-PESSOA 2026-09-14 — autor dos artigos, para E-E-A-T. Até aqui o
+// Article de cada post era assinado pela Organization e a página de autor do
+// WordPress (/author/calebe-araujo/) tinha ficado em 404 na migração. Nada
+// abaixo foi inventado: bio, cargo, redes e áreas são os que o próprio autor
+// declarou no perfil do WordPress (docs/relatorio-autor-calebe-araujo.md,
+// usuário ID 5). O site pessoal citado no perfil antigo não resolve e ficou fora.
+export const author = {
+	slug: 'calebe-araujo',
+	name: 'Calebe Araujo',
+	jobTitle: 'Desenvolvedor | SEO Manager',
+	bio: 'Calebe Araujo produz conteúdos sobre TIM Empresa, TIM Black Empresa, TIM Fibra Empresa, UltraFibra e soluções de telecom para empresas, com foco em SEO, tecnologia e comunicação corporativa.',
+	sameAs: [
+		'https://www.linkedin.com/in/calebe-dev',
+		'https://www.instagram.com/calebe_original/',
+		'https://www.facebook.com/calebearaujo101/',
+		'https://www.youtube.com/@calebe_tech'
+	],
+	knowsAbout: ['Telecom', 'Redes', 'SEO', 'Svelte', 'Angular', 'JavaScript', 'PHP'],
+	knowsLanguage: ['Português', 'Inglês', 'Espanhol', 'Alemão']
+};

@@ -1,23 +1,31 @@
 <script>
 	import Banner from '$lib/components/Banner.svelte';
-	import { site } from '$lib/site.js';
+	import ArtigoSumario from '$lib/components/ArtigoSumario.svelte';
+	import { site, author } from '$lib/site.js';
 
 	let { data } = $props();
 	const { article, seo, banners } = data;
 
 	const ogImageAbs = site.url + site.ogImage;
 
+	const formatar = (iso) =>
+		new Date(iso).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
+
 	const date = article.published_at ?? article.created_at;
-	const dateLabel = date
-		? new Date(date).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })
-		: '';
+	const dateLabel = date ? formatar(date) : '';
+	// "Atualizado em" só quando a revisão é posterior à publicação — a data vem
+	// de date_updated (CMS ou camada editorial do repo) e casa com o
+	// dateModified do JSON-LD.
+	const updated = article.date_updated;
+	const updatedLabel =
+		updated && date && updated.slice(0, 10) > date.slice(0, 10) ? formatar(updated) : '';
 </script>
 
 <svelte:head>
 	<!-- Bloco de SEO gerado pelo SDK: title, meta description, keywords, OG e JSON-LD (Article). -->
 	{@html seo.html}
 	<meta name="robots" content="index, follow, max-image-preview:large" />
-	<meta name="author" content="{site.name}" />
+	<meta name="author" content={author.name} />
 	<meta name="publisher" content="TIM Corporativo" />
 	<meta property="og:site_name" content="TIM Corporativo" />
 	<meta property="og:locale" content="pt_BR" />
@@ -33,24 +41,36 @@
 	<meta name="twitter:image:alt" content={site.ogImageAlt} />
 </svelte:head>
 
-<!-- Rotulado porque o cabeçalho do BlogShell também é um <nav>: dois landmarks
-     de mesma role sem nome ficam indistinguíveis na lista do leitor de tela. -->
-<nav aria-label="Voltar ao blog" class="mb-6 text-sm">
-	<a href="/blog" class="font-medium text-tim-600 hover:text-tim-700">← Todos os artigos</a>
+<!-- Trilha visível espelhando o BreadcrumbList do JSON-LD (mesma da LP, em
+     cores do blog). Rotulada porque o cabeçalho do BlogShell também é um <nav>. -->
+<nav aria-label="Trilha de navegação" class="mb-6 text-xs text-slate-500">
+	<ol class="flex flex-wrap items-center gap-1.5">
+		<li><a href="/" class="hover:text-tim-700 hover:underline">Início</a></li>
+		<li aria-hidden="true">›</li>
+		<li><a href="/blog" class="hover:text-tim-700 hover:underline">Blog</a></li>
+		<li aria-hidden="true">›</li>
+		<li class="max-w-[60ch] truncate text-slate-700" aria-current="page">{article.title}</li>
+	</ol>
 </nav>
 
 {#if dateLabel}
-	<!-- Byline visível casada com o author do JSON-LD (sinal E-E-A-T). -->
+	<!-- Byline visível casada com o author (Person) e as datas do JSON-LD — sinal E-E-A-T. -->
 	<p class="mb-4 text-sm font-medium text-slate-500">
-		Por <span class="text-slate-700">{site.name}</span> · Publicado em
-		<time datetime={date}>{dateLabel}</time>
+		Por
+		<a href="/autor/{author.slug}/" rel="author" class="text-slate-700 hover:text-tim-700 hover:underline">
+			{author.name}
+		</a>
+		· Publicado em <time datetime={date}>{dateLabel}</time>
+		{#if updatedLabel}
+			· Atualizado em <time datetime={updated}>{updatedLabel}</time>
+		{/if}
 	</p>
 {/if}
 
-<!-- O html_content do OC Hub já contém o <h1> do título. O servidor o entrega
-     em duas partes, cortado antes de uma seção — ver dividirParaBanner() em
-     +page.server.js — para o banner do meio entrar entre elas. Artigo sem
-     ponto de corte seguro chega com a segunda parte vazia e fica só com o
+<!-- O html_content do OC Hub já contém o <h1> do título. O servidor o entrega em
+     fatias — ver fatiarArtigo() em +page.server.js — e a ordem aqui é fixa:
+     h1 → resposta direta → intro → sumário → parte1 → banner do meio → parte2.
+     Artigo sem ponto de corte seguro chega com a parte2 vazia e fica só com o
      banner do rodapé. -->
 <article
 	class="prose prose-slate max-w-none
@@ -59,6 +79,20 @@
 	       prose-img:rounded-lg
 	       prose-table:block prose-table:overflow-x-auto"
 >
+	{@html article.html_h1}
+	{#if data.resposta}
+		<!-- Resposta direta antes de qualquer subtítulo: o trecho citável (mesmo
+		     papel do `resumo` das landing pages). Texto em $lib/blog/editorial.js. -->
+		<p
+			class="not-prose my-6 border-l-4 border-tim-500 bg-tim-50/70 px-6 py-5 text-lg leading-relaxed font-medium text-slate-800"
+		>
+			{data.resposta}
+		</p>
+	{/if}
+	{@html article.html_intro}
+	{#if data.sumario?.length}
+		<ArtigoSumario secoes={data.sumario} />
+	{/if}
 	{@html article.html_parte1}
 	{#if article.html_parte2}
 		<Banner banner={banners.meio} formato="meio" pagina={article.slug} cluster={banners.cluster} />

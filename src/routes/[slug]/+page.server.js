@@ -4,7 +4,8 @@ import { site } from '$lib/site.js';
 // ENTIDADE-OC-TEL 2026-09-10 — a página de artigo era a única do site sem nenhum
 // nó Organization: o Article repetia dois objetos parciais em author/publisher.
 // Agora o grafo traz a entidade completa uma vez e os dois apontam para o @id.
-import { organizationNode, ORG_ID } from '$lib/schema.js';
+import { organizationNode, personNode, breadcrumbNode, ORG_ID, PERSON_ID } from '$lib/schema.js';
+import { EDITORIAL } from '$lib/blog/editorial.js';
 import { ARTIGO_PARA_LP, ANCORAS, FALLBACK } from '$lib/solucoes/links-artigos.js';
 import { bannersPara } from '$lib/banners.js';
 
@@ -109,6 +110,14 @@ function gerarSeoHtml(artigo) {
 			// Entidade única do site (mesma função que alimenta home e /solucoes/):
 			// traz name, legalName, taxID e identifier de uma fonte só.
 			organizationNode(),
+			// AUTOR-PESSOA 2026-09-14 — o autor vira entidade própria (mesmo @id da
+			// página /autor/…) e o artigo ganha a trilha Início › Blog › título,
+			// que as landing pages já tinham.
+			personNode(),
+			breadcrumbNode(url, [
+				{ name: 'Blog', item: `${site.url}/blog` },
+				{ name: artigo.title, item: url }
+			]),
 			{
 				'@type': 'Article',
 				'@id': `${url}#article`,
@@ -119,7 +128,8 @@ function gerarSeoHtml(artigo) {
 				datePublished: artigo.published_at ?? artigo.created_at,
 				dateModified: artigo.date_updated ?? artigo.published_at ?? artigo.created_at,
 				image: [`${site.url}${site.ogImage}`],
-				author: { '@id': ORG_ID },
+				// AUTOR-PESSOA 2026-09-14 — anterior: author: { '@id': ORG_ID },
+				author: { '@id': PERSON_ID },
 				publisher: { '@id': ORG_ID },
 				mainEntityOfPage: { '@type': 'WebPage', '@id': url }
 			}
@@ -398,33 +408,90 @@ function linkarSolucao(html, slugArtigo) {
 }
 
 // ---------------------------------------------------------------------------
-// Ponto de corte para o banner do meio do artigo — as peças estão em
-// $lib/banners.js.
+// Fatias do artigo — o template monta, nesta ordem: h1 → resposta direta →
+// intro → sumário → parte1 → banner do meio → parte2. As peças de banner estão
+// em $lib/banners.js; resposta e data de revisão, em $lib/blog/editorial.js.
 //
-// O corte é feito ANTES de um <h2> de nível raiz: começo de seção é a única
-// fronteira que garante não cair dentro de lista, tabela, figura ou <div> do
-// WordPress (65 artigos têm <div>, 60 têm <table>). O 1º <h2> não serve —
-// costuma vir logo depois da abertura, e o banner apareceria antes de o leitor
-// ter lido qualquer coisa. Regra: antes do 2º <h2> se houver ao menos 3 <p>
-// antes dele; senão antes do 3º <h2>. Artigo sem duas seções (14 dos 189 —
-// entre eles páginas de suporte com muito tráfego) cai depois do 5º parágrafo
-// de nível raiz, desde que haja ao menos 8 no total. Sem nenhum ponto seguro,
-// volta inteiro na primeira parte, com a segunda vazia, e o template mostra só
+// Todo corte é em fronteira de nível raiz, nunca dentro de lista, tabela,
+// figura ou <div> do WordPress (65 artigos têm <div>, 60 têm <table>):
+//   intro   — do fim do <h1> ao 1º <h2> raiz;
+//   banner  — antes do 2º <h2> raiz se houver ao menos 3 <p> antes dele; senão
+//             antes do 3º; artigo sem duas seções cai depois do 5º parágrafo
+//             raiz, desde que haja ao menos 8 no total. O 1º <h2> não serve:
+//             o banner apareceria antes de o leitor ter lido qualquer coisa;
+//   sumário — só a partir de SUMARIO_MINIMO seções raiz (106 dos 189 artigos):
+//             índice de três itens é ruído. Os ids vêm de garantirIdsDeTitulos,
+//             já aplicado em corrigirLinks — os mesmos que o Google mostra como
+//             link de trecho na SERP.
+// Sem ponto seguro para o banner, a parte2 volta vazia e o template mostra só
 // o do rodapé.
 // ---------------------------------------------------------------------------
 
 const ABRE_CONTAINER = /^<(ul|ol|table|blockquote|figure|div|section|aside|nav|dl)\b/i;
 const FECHA_CONTAINER = /^<\/(ul|ol|table|blockquote|figure|div|section|aside|nav|dl)\b/i;
+const SUMARIO_MINIMO = 8;
 
-/** @returns {[string, string]} */
-function dividirParaBanner(html) {
+/** Texto visível de um título: sem tags, com as entidades mais comuns decodificadas. */
+function textoDeTitulo(html) {
+	return html
+		.replace(/<[^>]+>/g, '')
+		.replace(/&nbsp;/g, ' ')
+		.replace(/&amp;/g, '&')
+		.replace(/&lt;/g, '<')
+		.replace(/&gt;/g, '>')
+		.replace(/&quot;/g, '"')
+		.replace(/&#0*39;|&apos;/g, "'")
+		.replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+		.replace(/\s+/g, ' ')
+		.trim();
+}
+
+/**
+ * Índice do plugin de TOC do WordPress que veio colado no html_content de 38
+ * artigos: `<p>Índice de Conteúdo</p> <a href="#">Toggle</a> <ul>…</ul>`. O
+ * "Toggle" é um link morto visível, as âncoras são do formato antigo e, nos
+ * artigos longos, o bloco duplicaria o sumário gerado aqui. Sai inteiro; o
+ * artigo que o tinha ganha o sumário próprio mesmo abaixo de SUMARIO_MINIMO —
+ * quem escreveu com índice quis um índice.
+ *
+ * @returns {{ html: string, tinha: boolean }}
+ */
+function removerIndiceDoWordPress(html) {
+	const rotulo = html.match(/<p>\s*(?:<strong>)?\s*Índice de Conteúdo\s*(?:<\/strong>)?\s*<\/p>/i);
+	if (!rotulo) return { html, tinha: false };
+	const inicio = rotulo.index;
+	let fim = inicio + rotulo[0].length;
+	const toggle = html.slice(fim).match(/^\s*<a href="#">\s*Toggle\s*<\/a>/i);
+	if (toggle) fim += toggle[0].length;
+	// A lista é aninhada: caminha até o </ul> que fecha a primeira.
+	const posUl = html.indexOf('<ul', fim);
+	if (posUl >= 0 && /^\s*$/.test(html.slice(fim, posUl))) {
+		const re = /<(\/?)ul\b[^>]*>/gi;
+		re.lastIndex = posUl;
+		let profundidade = 0;
+		let m;
+		while ((m = re.exec(html))) {
+			profundidade += m[1] ? -1 : 1;
+			if (profundidade === 0) {
+				fim = m.index + m[0].length;
+				break;
+			}
+		}
+	}
+	return { html: html.slice(0, inicio) + html.slice(fim), tinha: true };
+}
+
+/**
+ * @returns {{ h1: string, intro: string, parte1: string, parte2: string,
+ *             sumario: Array<{ id: string, texto: string }> }}
+ */
+function fatiarArtigo(html, tinhaIndice = false) {
 	let profundidade = 0;
-	let h2 = 0;
 	let paragrafos = 0;
 	let fechamentosP = 0;
 	let posFallback = -1;
-	/** @type {Array<{ pos: number, h2: number, paragrafos: number }>} */
-	const candidatos = [];
+	/** @type {Array<{ pos: number, id: string, texto: string, paragrafos: number }>} */
+	const h2s = [];
 
 	for (const m of html.matchAll(/<[^>]+>/g)) {
 		const tag = m[0];
@@ -434,20 +501,61 @@ function dividirParaBanner(html) {
 			profundidade = Math.max(0, profundidade - 1);
 		} else if (/^<p\b/i.test(tag)) {
 			paragrafos++;
-		} else if (/^<h2\b/i.test(tag) && profundidade === 0) {
-			h2++;
-			candidatos.push({ pos: m.index, h2, paragrafos });
 		} else if (/^<\/p\b/i.test(tag) && profundidade === 0) {
 			fechamentosP++;
 			if (fechamentosP === 5) posFallback = m.index + tag.length;
+		} else if (/^<h2\b/i.test(tag) && profundidade === 0) {
+			const fim = html.indexOf('</h2>', m.index);
+			h2s.push({
+				pos: m.index,
+				id: tag.match(/\sid=["']([^"']+)["']/)?.[1] ?? '',
+				texto: fim > 0 ? textoDeTitulo(html.slice(m.index + tag.length, fim)) : '',
+				paragrafos
+			});
 		}
 	}
 
-	const corte =
-		candidatos.find((c) => c.h2 === 2 && c.paragrafos >= 3) ?? candidatos.find((c) => c.h2 === 3);
-	if (corte) return [html.slice(0, corte.pos), html.slice(corte.pos)];
-	if (posFallback > 0 && paragrafos >= 8) return [html.slice(0, posFallback), html.slice(posFallback)];
-	return [html, ''];
+	const h1Match = html.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i);
+	const fimH1 = h1Match ? h1Match.index + h1Match[0].length : 0;
+
+	let primeiroH2 = h2s[0]?.pos ?? -1;
+	let corte =
+		(h2s[1]?.paragrafos >= 3 ? h2s[1] : h2s[2])?.pos ??
+		(posFallback > 0 && paragrafos >= 8 ? posFallback : -1);
+	// Conteúdo herdado às vezes traz título fora de ordem: nada antes do fim do
+	// <h1> vira fronteira, senão o trecho sairia duas vezes.
+	if (primeiroH2 >= 0 && primeiroH2 < fimH1) primeiroH2 = -1;
+	if (corte >= 0 && corte < fimH1) corte = -1;
+
+	let intro;
+	let parte1;
+	let parte2;
+	if (primeiroH2 < 0) {
+		intro = corte > 0 ? html.slice(fimH1, corte) : html.slice(fimH1);
+		parte1 = '';
+		parte2 = corte > 0 ? html.slice(corte) : '';
+	} else if (corte > primeiroH2) {
+		intro = html.slice(fimH1, primeiroH2);
+		parte1 = html.slice(primeiroH2, corte);
+		parte2 = html.slice(corte);
+	} else if (corte > 0) {
+		// Corte por parágrafo antes do único <h2>: a seção inteira vai para depois
+		// do banner.
+		intro = html.slice(fimH1, corte);
+		parte1 = '';
+		parte2 = html.slice(corte);
+	} else {
+		intro = html.slice(fimH1, primeiroH2);
+		parte1 = html.slice(primeiroH2);
+		parte2 = '';
+	}
+
+	const sumario =
+		h2s.length >= SUMARIO_MINIMO || tinhaIndice
+			? h2s.filter((h) => h.id && h.texto).map(({ id, texto }) => ({ id, texto }))
+			: [];
+
+	return { h1: html.slice(0, fimH1), intro, parte1, parte2, sumario };
 }
 
 // ---------------------------------------------------------------------------
@@ -472,18 +580,21 @@ export async function load({ params }) {
 	// Ordem importa: corrigirLinks primeiro (mexe em href existente),
 	// linkarSolucao depois (cria href novo, que não deve ser reprocessado),
 	// e o corte por último, sobre o HTML já pronto.
-	const html = linkarSolucao(
-		corrigirLinks(artigo.html_content ?? '', params.slug, artigos),
-		params.slug
-	);
-	const [html_parte1, html_parte2] = dividirParaBanner(html);
+	// O índice do WordPress sai ANTES dos links: senão o rótulo "Índice de
+	// Conteúdo" é o primeiro <p> do artigo e vira a âncora da frase de link
+	// para a LP (fallback de linkarSolucao), em vez de um parágrafo de verdade.
+	const bruto = removerIndiceDoWordPress(artigo.html_content ?? '');
+	const html = linkarSolucao(corrigirLinks(bruto.html, params.slug, artigos), params.slug);
+	const { h1, intro, parte1, parte2, sumario } = fatiarArtigo(html, bruto.tinha);
 
-	// `html_content` não vai para a página: o template só usa as duas partes, e
+	// `html_content` não vai para a página: o template só usa as fatias, e
 	// repetir o HTML inteiro no payload serializado dobraria o peso do artigo.
 	const { html_content: _descartado, ...semHtml } = artigo;
 
 	return {
-		article: { ...semHtml, html_parte1, html_parte2 },
+		article: { ...semHtml, html_h1: h1, html_intro: intro, html_parte1: parte1, html_parte2: parte2 },
+		resposta: EDITORIAL[params.slug]?.resposta ?? '',
+		sumario,
 		banners: bannersPara(artigo),
 		seo: { html: gerarSeoHtml(artigo) },
 		relacionados: leiaTambem(await listarArtigos(), params.slug)

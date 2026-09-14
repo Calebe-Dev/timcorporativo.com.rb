@@ -6,10 +6,32 @@
 // telefone atualizado num, endereço no outro — e o Google passe a ver a mesma
 // @id descrevendo coisas diferentes conforme a página. Aqui a fonte é uma só.
 
-import { site, contact } from '$lib/site.js';
+import { site, contact, author } from '$lib/site.js';
 
 export const ORG_ID = `${site.url}/#organization`;
 export const SITE_ID = `${site.url}/#website`;
+export const PERSON_ID = `${site.url}/autor/${author.slug}/#person`;
+
+/**
+ * Autor pessoa dos artigos (AUTOR-PESSOA 2026-09-14). Mesmo @id no Article de
+ * cada post e no ProfilePage de /autor/…: uma entidade só, pelo mesmo motivo
+ * que a Organization é uma só. `worksFor` fecha o vínculo com a entidade do
+ * site em vez de repetir o nome da marca.
+ */
+export function personNode() {
+	return {
+		'@type': 'Person',
+		'@id': PERSON_ID,
+		name: author.name,
+		jobTitle: author.jobTitle,
+		description: author.bio,
+		url: `${site.url}/autor/${author.slug}/`,
+		sameAs: author.sameAs,
+		knowsAbout: author.knowsAbout,
+		knowsLanguage: author.knowsLanguage,
+		worksFor: { '@id': ORG_ID }
+	};
+}
 
 /**
  * Organization + LocalBusiness.

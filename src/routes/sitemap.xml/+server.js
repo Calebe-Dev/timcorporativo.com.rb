@@ -1,6 +1,6 @@
 import { todosArtigos } from '$lib/server/artigos.js';
 import { solucoesLp } from '$lib/solucoes/index.js';
-import { site } from '$lib/site.js';
+import { site, author } from '$lib/site.js';
 import { POR_PAGINA } from '$lib/blog/paginacao.js';
 
 // Gerado no build (SSG). O crawler do SvelteKit inclui rotas sem parâmetros
@@ -43,6 +43,8 @@ export async function GET() {
 			(_, i) => ({ loc: `${site.url}/blog/pagina/${i + 2}`, priority: '0.4' })
 		),
 		{ loc: `${site.url}/politica-de-privacidade`, priority: '0.3' },
+		// Página de autor: âncora do Person que assina todos os artigos.
+		{ loc: `${site.url}/autor/${author.slug}/`, priority: '0.5' },
 		...posts.map((a) => ({
 			// Barra final: é a URL que o WordPress servia, que o Google indexou e
 			// que hoje responde 200 direto (ver trailingSlash em /[slug]).
