@@ -28,6 +28,12 @@
 
 	let pagina = $state('/');
 	let utm = $state({});
+	// Preenchidos quando um banner pede o painel (evento `abrir-atendimento`,
+	// ver $lib/components/Banner.svelte): o assunto vira a primeira linha da
+	// mensagem de WhatsApp e a origem vai no lead, para o CRM saber qual peça
+	// rendeu. Vazios no clique direto na bolha — comportamento de antes.
+	let assunto = $state('');
+	let origem = $state('');
 	/** @type {HTMLInputElement | undefined} */
 	let campoNome;
 
@@ -57,6 +63,20 @@
 		} catch {
 			utm = {};
 		}
+
+		// Um banner de WhatsApp pede o painel em vez de abrir o wa.me sozinho —
+		// assim o lead passa por /api/lead. preventDefault é o "atendido": sem
+		// ele, o banner deixa o link seguir para o WhatsApp por conta própria.
+		const atender = (e) => {
+			e.preventDefault();
+			assunto = e.detail?.assunto ?? '';
+			origem = e.detail?.origem ?? '';
+			aberto = true;
+			iniciarTurnstile();
+			setTimeout(() => campoNome?.focus(), 50);
+		};
+		window.addEventListener('abrir-atendimento', atender);
+		return () => window.removeEventListener('abrir-atendimento', atender);
 	});
 
 	function alternar(e) {
@@ -116,7 +136,7 @@
 
 	function resumo() {
 		return [
-			'Olá! Quero falar com um consultor TIM Empresas.',
+			assunto || 'Olá! Quero falar com um consultor TIM Empresas.',
 			`Nome: ${nome}`,
 			`Celular: ${celular}`,
 			`E-mail: ${email}`
@@ -135,7 +155,9 @@
 				nome,
 				email,
 				celular,
-				mensagem: 'Contato rápido pelo botão flutuante do WhatsApp',
+				mensagem: origem
+					? `${origem} — ${assunto}`
+					: 'Contato rápido pelo botão flutuante do WhatsApp',
 				website,
 				pagina,
 				'cf-turnstile-response': turnstileToken,
@@ -208,7 +230,7 @@
 					<p class="text-sm font-semibold text-slate-900">
 						Fale com um consultor
 						<span class="block text-xs font-normal text-slate-500">
-							Deixe seus dados e siga direto para o WhatsApp.
+							{#if assunto}Assunto: {assunto}{:else}Deixe seus dados e siga direto para o WhatsApp.{/if}
 						</span>
 					</p>
 					<button

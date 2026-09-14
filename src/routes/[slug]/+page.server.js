@@ -6,6 +6,7 @@ import { site } from '$lib/site.js';
 // Agora o grafo traz a entidade completa uma vez e os dois apontam para o @id.
 import { organizationNode, ORG_ID } from '$lib/schema.js';
 import { ARTIGO_PARA_LP, ANCORAS, FALLBACK } from '$lib/solucoes/links-artigos.js';
+import { bannersPara } from '$lib/banners.js';
 
 // ---------------------------------------------------------------------------
 // "Leia também": 4 artigos afins calculados no build por sobreposição de
@@ -397,6 +398,59 @@ function linkarSolucao(html, slugArtigo) {
 }
 
 // ---------------------------------------------------------------------------
+// Ponto de corte para o banner do meio do artigo — as peças estão em
+// $lib/banners.js.
+//
+// O corte é feito ANTES de um <h2> de nível raiz: começo de seção é a única
+// fronteira que garante não cair dentro de lista, tabela, figura ou <div> do
+// WordPress (65 artigos têm <div>, 60 têm <table>). O 1º <h2> não serve —
+// costuma vir logo depois da abertura, e o banner apareceria antes de o leitor
+// ter lido qualquer coisa. Regra: antes do 2º <h2> se houver ao menos 3 <p>
+// antes dele; senão antes do 3º <h2>. Artigo sem duas seções (14 dos 189 —
+// entre eles páginas de suporte com muito tráfego) cai depois do 5º parágrafo
+// de nível raiz, desde que haja ao menos 8 no total. Sem nenhum ponto seguro,
+// volta inteiro na primeira parte, com a segunda vazia, e o template mostra só
+// o do rodapé.
+// ---------------------------------------------------------------------------
+
+const ABRE_CONTAINER = /^<(ul|ol|table|blockquote|figure|div|section|aside|nav|dl)\b/i;
+const FECHA_CONTAINER = /^<\/(ul|ol|table|blockquote|figure|div|section|aside|nav|dl)\b/i;
+
+/** @returns {[string, string]} */
+function dividirParaBanner(html) {
+	let profundidade = 0;
+	let h2 = 0;
+	let paragrafos = 0;
+	let fechamentosP = 0;
+	let posFallback = -1;
+	/** @type {Array<{ pos: number, h2: number, paragrafos: number }>} */
+	const candidatos = [];
+
+	for (const m of html.matchAll(/<[^>]+>/g)) {
+		const tag = m[0];
+		if (ABRE_CONTAINER.test(tag)) {
+			if (!tag.endsWith('/>')) profundidade++;
+		} else if (FECHA_CONTAINER.test(tag)) {
+			profundidade = Math.max(0, profundidade - 1);
+		} else if (/^<p\b/i.test(tag)) {
+			paragrafos++;
+		} else if (/^<h2\b/i.test(tag) && profundidade === 0) {
+			h2++;
+			candidatos.push({ pos: m.index, h2, paragrafos });
+		} else if (/^<\/p\b/i.test(tag) && profundidade === 0) {
+			fechamentosP++;
+			if (fechamentosP === 5) posFallback = m.index + tag.length;
+		}
+	}
+
+	const corte =
+		candidatos.find((c) => c.h2 === 2 && c.paragrafos >= 3) ?? candidatos.find((c) => c.h2 === 3);
+	if (corte) return [html.slice(0, corte.pos), html.slice(corte.pos)];
+	if (posFallback > 0 && paragrafos >= 8) return [html.slice(0, posFallback), html.slice(posFallback)];
+	return [html, ''];
+}
+
+// ---------------------------------------------------------------------------
 // Rota
 // ---------------------------------------------------------------------------
 
@@ -415,16 +469,22 @@ export async function load({ params }) {
 	// Slug desconhecido = 404 real (o prerender tolera; um 500 derrubaria o build).
 	if (!artigo) throw error(404, 'Artigo não encontrado');
 
+	// Ordem importa: corrigirLinks primeiro (mexe em href existente),
+	// linkarSolucao depois (cria href novo, que não deve ser reprocessado),
+	// e o corte por último, sobre o HTML já pronto.
+	const html = linkarSolucao(
+		corrigirLinks(artigo.html_content ?? '', params.slug, artigos),
+		params.slug
+	);
+	const [html_parte1, html_parte2] = dividirParaBanner(html);
+
+	// `html_content` não vai para a página: o template só usa as duas partes, e
+	// repetir o HTML inteiro no payload serializado dobraria o peso do artigo.
+	const { html_content: _descartado, ...semHtml } = artigo;
+
 	return {
-		article: {
-			...artigo,
-			// Ordem importa: corrigirLinks primeiro (mexe em href existente),
-			// linkarSolucao depois (cria href novo, que não deve ser reprocessado).
-			html_content: linkarSolucao(
-				corrigirLinks(artigo.html_content ?? '', params.slug, artigos),
-				params.slug
-			)
-		},
+		article: { ...semHtml, html_parte1, html_parte2 },
+		banners: bannersPara(artigo),
 		seo: { html: gerarSeoHtml(artigo) },
 		relacionados: leiaTambem(await listarArtigos(), params.slug)
 	};

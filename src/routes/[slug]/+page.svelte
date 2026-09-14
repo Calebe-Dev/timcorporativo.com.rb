@@ -1,8 +1,9 @@
 <script>
-	import { site, whatsappLink } from '$lib/site.js';
+	import Banner from '$lib/components/Banner.svelte';
+	import { site } from '$lib/site.js';
 
 	let { data } = $props();
-	const { article, seo } = data;
+	const { article, seo, banners } = data;
 
 	const ogImageAbs = site.url + site.ogImage;
 
@@ -46,7 +47,11 @@
 	</p>
 {/if}
 
-<!-- O html_content do OC Hub já contém o <h1> do título. -->
+<!-- O html_content do OC Hub já contém o <h1> do título. O servidor o entrega
+     em duas partes, cortado antes de uma seção — ver dividirParaBanner() em
+     +page.server.js — para o banner do meio entrar entre elas. Artigo sem
+     ponto de corte seguro chega com a segunda parte vazia e fica só com o
+     banner do rodapé. -->
 <article
 	class="prose prose-slate max-w-none
 	       prose-headings:text-tim-900 prose-headings:scroll-mt-24
@@ -54,8 +59,18 @@
 	       prose-img:rounded-lg
 	       prose-table:block prose-table:overflow-x-auto"
 >
-	{@html article.html_content}
+	{@html article.html_parte1}
+	{#if article.html_parte2}
+		<Banner banner={banners.meio} formato="meio" pagina={article.slug} cluster={banners.cluster} />
+		{@html article.html_parte2}
+	{/if}
 </article>
+
+<!-- A oferta vem ANTES do "Leia também": quem chega ao fim do texto recebe o
+     convite antes das quatro rotas de saída, não depois. A peça muda conforme o
+     assunto do artigo — quem lê sobre chip e fatura já é cliente com contrato,
+     e recebe auditoria/renovação, não "escolha seu plano". -->
+<Banner banner={banners.rodape} formato="rodape" pagina={article.slug} cluster={banners.cluster} />
 
 {#if data.relacionados?.length}
 	<!-- Linkagem interna contextual, calculada no build por afinidade de
@@ -76,19 +91,3 @@
 		</ul>
 	</nav>
 {/if}
-
-<!-- Chamada para ação — consultoria via WhatsApp. -->
-<aside class="mt-12 rounded-xl border border-tim-100 bg-tim-50 p-6">
-	<h2 class="text-lg font-semibold text-tim-900">Precisa de ajuda para escolher o plano ideal?</h2>
-	<p class="mt-1 text-sm text-slate-600">
-		Fale com um consultor TIM Empresa e receba uma proposta alinhada à sua operação.
-	</p>
-	<a
-		href={whatsappLink()}
-		target="_blank"
-		rel="noopener"
-		class="mt-4 inline-flex rounded-full bg-tim-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-tim-700"
-	>
-		Falar no WhatsApp
-	</a>
-</aside>
