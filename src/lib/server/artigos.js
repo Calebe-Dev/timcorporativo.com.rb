@@ -7,7 +7,7 @@
 // mesmo slug (artigo editado/novo lá aparece aqui); se estiver vazio ou fora
 // do ar, o build segue só com o snapshot.
 
-import { ochubConfig } from './ochub.js';
+import { ochubConfig, ochubConfigurado } from './ochub.js';
 import { EDITORIAL } from '$lib/blog/editorial.js';
 import { stripBrandDeep } from '$lib/brand.js';
 
@@ -45,7 +45,18 @@ export function todosArtigos() {
 				if (a?.slug) porSlug.set(a.slug, a);
 			}
 
+			// Sem credencial do OC Hub o site publica direto do repo: os artigos de
+			// content/artigos/ (incluindo os escritos aqui, que nunca passaram pelo
+			// CMS) viram páginas normalmente. É o modo em que o site não depende de
+			// nenhum serviço externo para estar no ar.
+			if (!ochubConfigurado) {
+				console.log(
+					`[artigos] OC Hub não configurado — ${porSlug.size} artigos servidos do snapshot local`
+				);
+			}
+
 			try {
+				if (!ochubConfigurado) throw new Error('sem credenciais do OC Hub');
 				const { OcHubCMS } = await import('@grupooc/ochub-sdk');
 				const cms = new OcHubCMS({ config: ochubConfig });
 				let novos = 0;
@@ -58,10 +69,12 @@ export function todosArtigos() {
 				}
 				console.log(`[artigos] ${porSlug.size} no total (${novos} só no CMS, fora do snapshot)`);
 			} catch (e) {
-				console.warn(
-					'[artigos] OC Hub indisponível — build segue só com o snapshot local:',
-					String(e).slice(0, 160)
-				);
+				if (ochubConfigurado) {
+					console.warn(
+						'[artigos] OC Hub indisponível — build segue só com o snapshot local:',
+						String(e).slice(0, 160)
+					);
+				}
 			}
 
 			// GRUPO-OC-OCULTO 2026-09-09 — original:

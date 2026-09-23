@@ -17,14 +17,54 @@ function xmlEscape(s) {
 	return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+/**
+ * Artigos em DESTAQUE no sitemap: saem logo abaixo da home, acima do hub de
+ * soluções, das LPs, do /blog e de todo o resto do acervo.
+ *
+ * Por que existe: a ordem do sitemap não é fator de ranking, mas é uma dica de
+ * prioridade de rastreio — e o acervo aqui tem ~190 artigos, o bastante para
+ * conteúdo novo entrar no fim da fila de crawl. Destacar é o que se pode fazer
+ * pelo lado do site; o resto é o Google decidir.
+ *
+ * Manutenção: liste aqui o slug do que acabou de ser publicado e retire quando
+ * o artigo já estiver indexado e assentado. Slug que não existir no acervo é
+ * ignorado com aviso no build (não quebra o sitemap).
+ */
+const DESTAQUES = [
+	// Lote 18/09/2026 — publicados direto no snapshot, sem passar pelo CMS.
+	'pabx-virtual-tim-empresas-como-contratar',
+	'cadastrar-chip-no-cnpj-linha-tim-empresa',
+	'tim-fibra-empresas-cnpj-como-contratar',
+	'aparelho-plano-tim-empresas-aprovacao-e-saida-antecipada',
+	'escolher-numero-linha-tim-empresa',
+	'esim-linhas-pj-tim-empresas'
+];
+
 export async function GET() {
 	// Fonte mesclada (snapshot + CMS), já deduplicada por slug.
 	const posts = [...(await todosArtigos())].sort((a, b) =>
 		(lastmod(b) ?? '').localeCompare(lastmod(a) ?? '')
 	);
 
+	// Separa os destacados do resto, preservando a ordem de DESTAQUES.
+	const porSlug = new Map(posts.map((a) => [a.slug, a]));
+	const destacados = DESTAQUES.map((slug) => porSlug.get(slug)).filter(Boolean);
+	const ausentes = DESTAQUES.filter((slug) => !porSlug.has(slug));
+	if (ausentes.length) {
+		console.warn(`[sitemap] DESTAQUES sem artigo correspondente: ${ausentes.join(', ')}`);
+	}
+	const emDestaque = new Set(destacados.map((a) => a.slug));
+	const demais = posts.filter((a) => !emDestaque.has(a.slug));
+
 	const urls = [
 		{ loc: `${site.url}/`, priority: '1.0' },
+		// Destaques: logo abaixo da home, acima de tudo — pedido de 23/09/2026 para
+		// acelerar o rastreio do lote novo. Retirar do topo quando indexados.
+		...destacados.map((a) => ({
+			loc: `${site.url}/${a.slug}/`,
+			lastmod: lastmod(a),
+			priority: '0.9'
+		})),
 		// Hub e landing pages de conversão acima do blog na prioridade: são o
 		// destino comercial da malha, e os artigos existem para alimentá-las.
 		//
@@ -45,7 +85,7 @@ export async function GET() {
 		{ loc: `${site.url}/politica-de-privacidade`, priority: '0.3' },
 		// Página de autor: âncora do Person que assina todos os artigos.
 		{ loc: `${site.url}/autor/${author.slug}/`, priority: '0.5' },
-		...posts.map((a) => ({
+		...demais.map((a) => ({
 			// Barra final: é a URL que o WordPress servia, que o Google indexou e
 			// que hoje responde 200 direto (ver trailingSlash em /[slug]).
 			loc: `${site.url}/${a.slug}/`,
