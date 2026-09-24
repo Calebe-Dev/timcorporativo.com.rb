@@ -31,6 +31,17 @@ function xmlEscape(s) {
  * ignorado com aviso no build (não quebra o sitemap).
  */
 const DESTAQUES = [
+	// Lote 24/09/2026 — seis artigos novos e quatro reescritos no mesmo URL.
+	'plano-de-telefonia-empresarial-como-escolher',
+	'internet-empresarial-fibra-dedicada-ou-5g-como-escolher',
+	'pabx-em-nuvem-o-que-e-como-funciona-e-como-contratar',
+	'plano-tim-para-mei-como-contratar-no-cnpj',
+	'tim-controle-empresa-como-funciona-no-cnpj',
+	'tim-fixo-empresa-linha-fixa-empresarial',
+	'consultor-tim-empresa-atendimento-personalizado-negocio',
+	'quanto-custa-link-dedicado-tim-guia-de-precos-e-retorno-de-investimento',
+	'consultor-tim-explica-roaming-nacional-e-internacional',
+	'comparativo-operadoras-tim-vivo-claro-empresas',
 	// Lote 18/09/2026 — publicados direto no snapshot, sem passar pelo CMS.
 	'pabx-virtual-tim-empresas-como-contratar',
 	'cadastrar-chip-no-cnpj-linha-tim-empresa',

@@ -214,6 +214,16 @@ export const FALLBACK = {
  * comerciais no mesmo texto diluem os dois.
  */
 export const ARTIGO_PARA_LP = {
+	// Lote 24/09/2026 — artigos B2B de decisão; cada um alimenta a LP do seu tema.
+	'plano-de-telefonia-empresarial-como-escolher': 'melhores-precos-tim-para-empresas',
+	'tim-controle-empresa-como-funciona-no-cnpj': 'melhores-precos-tim-para-empresas',
+	'plano-tim-para-mei-como-contratar-no-cnpj': 'seu-negocio-com-tim-empresas',
+	'tim-fixo-empresa-linha-fixa-empresarial': 'seu-negocio-com-tim-empresas',
+	'pabx-em-nuvem-o-que-e-como-funciona-e-como-contratar': 'seu-negocio-com-tim-empresas',
+	'internet-empresarial-fibra-dedicada-ou-5g-como-escolher': 'internet-5g-para-empresas-sem-fibra-no-endereco',
+	'quanto-custa-link-dedicado-tim-guia-de-precos-e-retorno-de-investimento': 'operadora-nacional-ou-provedor-regional',
+	'consultor-tim-explica-roaming-nacional-e-internacional': 'conectividade-para-transportadoras-e-logistica',
+
 	// LP 1 — clínicas
 	'ip-fixo-empresarial-seguranca-acesso-remoto-guia': 'internet-e-telefonia-para-clinicas-e-consultorios',
 	'videoconferencias-travando-checklist-de-internet-empresarial-para-trabalho-remoto':

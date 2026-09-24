@@ -349,6 +349,10 @@ function escaparRegex(s) {
 function linkarSolucao(html, slugArtigo) {
 	const lp = ARTIGO_PARA_LP[slugArtigo];
 	if (!lp) return html;
+	// LP-JA-LINKADA 2026-09-24 — artigo que já linka a própria LP no corpo (os do
+	// lote 24/09 fazem isso no "Próximo passo") não ganha segundo link nem a frase
+	// de fallback colada no primeiro parágrafo, que é a resposta direta citável.
+	if (html.includes(`/solucoes/${lp}/`)) return html;
 
 	const frases = ANCORAS[lp] ?? [];
 	let profundidadeLink = 0;
