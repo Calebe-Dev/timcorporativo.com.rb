@@ -41,7 +41,7 @@ export const EDITORIAL = {
 	},
 	'plano-tim-pj-cnpj-2026': {
 		resposta:
-			'O Plano TIM PJ é o plano de celular contratado no CNPJ — do MEI à pequena empresa, a partir de uma única linha — com voz ilimitada para qualquer operadora e condições que os planos de pessoa física não oferecem. Abaixo: quem pode contratar, as vantagens frente ao CPF, os quatro passos da contratação e as dúvidas mais comuns.',
+			'O Plano TIM PJ é o plano de celular contratado no CNPJ — do MEI à pequena empresa, a partir de uma única linha — com a linha no nome da empresa, fatura única e gestão centralizada, o que o plano de pessoa física não oferece. Abaixo: quem pode contratar, as vantagens frente ao CPF, os quatro passos da contratação e as dúvidas mais comuns.',
 		atualizadoEm: REVISAO
 	},
 	'tim-empresas-telefone-atendimento-2026': {
@@ -52,16 +52,6 @@ export const EDITORIAL = {
 	'tim-empresas-login-guia-gestao-faturas-linhas-portal': {
 		resposta:
 			'O portal TIM Empresas é onde o gestor acessa faturas detalhadas, emite a 2ª via, adiciona ou bloqueia linhas de colaboradores e acompanha o consumo de dados da equipe. Este guia mostra como fazer o login, recuperar a senha, gerenciar várias linhas e configurar os controles de custo — no caminho “faça você mesmo”.',
-		atualizadoEm: REVISAO
-	},
-	'plano-empresarial-tim-comparativo-precos-escolher': {
-		resposta:
-			'A escolha entre os planos empresariais TIM se resolve pelo perfil de uso: o TIM Black Empresa (pós-pago) para equipes que dependem de dados e mobilidade; o TIM Empresa Controle para operações que precisam de custo previsível. Este comparativo analisa as diferenças técnicas, os cenários de cada um e a opção com aparelho — para dimensionar sem pagar por franquia que ninguém usa.',
-		atualizadoEm: REVISAO
-	},
-	'tim-black-empresa-internet-movel-para-seu-negocio': {
-		resposta:
-			'O TIM Black Empresa é o plano pós-pago da TIM para empresas que dependem de internet móvel: rede 4G e 5G, cobertura ampla no país, planos que escalam com o número de linhas e gestão centralizada das contas. Abaixo, os seis pontos que pesam na decisão e as perguntas mais frequentes.',
 		atualizadoEm: REVISAO
 	},
 	'telefone-tim-empresas-consultor-cotacao-rapida': {

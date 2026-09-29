@@ -223,6 +223,11 @@ export const ARTIGO_PARA_LP = {
 	'internet-empresarial-fibra-dedicada-ou-5g-como-escolher': 'internet-5g-para-empresas-sem-fibra-no-endereco',
 	'quanto-custa-link-dedicado-tim-guia-de-precos-e-retorno-de-investimento': 'operadora-nacional-ou-provedor-regional',
 	'consultor-tim-explica-roaming-nacional-e-internacional': 'conectividade-para-transportadoras-e-logistica',
+	// Lote 29/09/2026 — um novo e três reescritos no mesmo URL.
+	'chip-empresarial-tim-como-pedir-linhas-para-a-equipe': 'seu-negocio-com-tim-empresas',
+	'tim-black-empresa-internet-movel-para-seu-negocio': 'melhores-precos-tim-para-empresas',
+	'plano-empresarial-tim-comparativo-precos-escolher': 'desconto-tim-para-empresas',
+	'internet-tim-empresa': 'operadora-nacional-ou-provedor-regional',
 
 	// LP 1 — clínicas
 	'ip-fixo-empresarial-seguranca-acesso-remoto-guia': 'internet-e-telefonia-para-clinicas-e-consultorios',

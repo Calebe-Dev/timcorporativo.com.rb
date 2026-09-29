@@ -31,23 +31,20 @@ function xmlEscape(s) {
  * ignorado com aviso no build (não quebra o sitemap).
  */
 const DESTAQUES = [
-	// Lote 24/09/2026 — seis artigos novos e quatro reescritos no mesmo URL.
+	// Lote 29/09/2026 — um artigo novo e três reescritas comerciais no mesmo URL.
+	'chip-empresarial-tim-como-pedir-linhas-para-a-equipe',
+	'tim-black-empresa-internet-movel-para-seu-negocio',
+	'plano-empresarial-tim-comparativo-precos-escolher',
+	'internet-tim-empresa',
+	// Ainda "Discovered - currently not indexed" ou desconhecidos na inspeção de
+	// 29/09/2026. Os demais dos lotes de 18 e 24/09 já indexaram e saíram do topo.
 	'plano-de-telefonia-empresarial-como-escolher',
-	'internet-empresarial-fibra-dedicada-ou-5g-como-escolher',
 	'pabx-em-nuvem-o-que-e-como-funciona-e-como-contratar',
 	'plano-tim-para-mei-como-contratar-no-cnpj',
 	'tim-controle-empresa-como-funciona-no-cnpj',
 	'tim-fixo-empresa-linha-fixa-empresarial',
-	'consultor-tim-empresa-atendimento-personalizado-negocio',
-	'quanto-custa-link-dedicado-tim-guia-de-precos-e-retorno-de-investimento',
-	'consultor-tim-explica-roaming-nacional-e-internacional',
-	'comparativo-operadoras-tim-vivo-claro-empresas',
-	// Lote 18/09/2026 — publicados direto no snapshot, sem passar pelo CMS.
 	'pabx-virtual-tim-empresas-como-contratar',
 	'cadastrar-chip-no-cnpj-linha-tim-empresa',
-	'tim-fibra-empresas-cnpj-como-contratar',
-	'aparelho-plano-tim-empresas-aprovacao-e-saida-antecipada',
-	'escolher-numero-linha-tim-empresa',
 	'esim-linhas-pj-tim-empresas'
 ];
 
