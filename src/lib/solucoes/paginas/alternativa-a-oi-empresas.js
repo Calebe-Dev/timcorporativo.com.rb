@@ -334,7 +334,7 @@ export default {
 	],
 	artigos: [
 		'migracao-operadora-tim-empresas-processo-cuidados',
-		'portabilidade-tim-empresarial-guia-completo-trocar-operadora',
+		'portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero',
 		'tim-portabilidade-cnpj-guia-completo',
 		'migrar-de-operadora-corporativa-e-burocratico-passo-a-passo-da-portabilidade-tim'
 	]

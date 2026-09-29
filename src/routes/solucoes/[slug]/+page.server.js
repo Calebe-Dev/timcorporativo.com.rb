@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 // GRUPO-OC-OCULTO 2026-09-09 — original: import { listarArtigos } from '$lib/server/artigos.js';
-import { listarArtigos, SLUGS_OCULTOS_GRUPO_OC } from '$lib/server/artigos.js';
+import { listarArtigos, foraDaGeracao } from '$lib/server/artigos.js';
 import { solucoesLp, lpPorSlug, cartao } from '$lib/solucoes/index.js';
 
 export const prerender = true;
@@ -29,8 +29,9 @@ export async function load({ params }) {
 	// o build. As fichas em $lib/solucoes/paginas/ ficam como estão.
 	const artigosRelacionados = (lp.artigos ?? [])
 		.filter((slug) => {
-			if (!SLUGS_OCULTOS_GRUPO_OC.includes(slug)) return true;
-			console.warn(`[solucoes] LP "${lp.slug}": artigo "${slug}" oculto (TIM Corporativo) — fora dos relacionados`);
+			// CONSOLIDACAO-2026-09-29 — anterior: if (!SLUGS_OCULTOS_GRUPO_OC.includes(slug)) return true;
+			if (!foraDaGeracao(slug)) return true;
+			console.warn(`[solucoes] LP "${lp.slug}": artigo "${slug}" fora da geração (oculto ou 301) — fora dos relacionados`);
 			return false;
 		})
 		.map((slug) => {

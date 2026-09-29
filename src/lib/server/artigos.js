@@ -28,6 +28,38 @@ export const SLUGS_OCULTOS_GRUPO_OC = [
 	'consultoria-tim-black-empresa-solucoes-corporativas-com-grupo-oc',
 ];
 
+// CONSOLIDACAO-2026-09-29 — duplicatas com a MESMA intenção de busca de um
+// artigo vivo (plano de SEO de 29/09/2026, GSC até 26/09). Saem da geração pelo
+// mesmo motivo dos ocultos acima: a regra 301 de static/_redirects não pode
+// colidir com página viva. Links do corpo de outros artigos que apontavam para
+// elas são trocados pelo destino no build (CORRECOES, em routes/[slug]), sem
+// passar pelo redirect. Os JSON ficam intactos em content/artigos/.
+// Reverter = apagar a entrada aqui e a linha correspondente do _redirects.
+export const REDIRECIONADOS = {
+	// Portabilidade → artigo dono da consulta (4.268 imp em 90 dias).
+	'portabilidade-tim-empresarial-guia-completo-trocar-operadora':
+		'/portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero/',
+	'portabilidade-tim-empresas-como-fazer':
+		'/portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero/',
+	// Roaming internacional em viagem de trabalho → artigo reescrito em 24/09.
+	'roaming-internacional-guia-viagens-de-negocios-2026':
+		'/consultor-tim-explica-roaming-nacional-e-internacional/',
+	'roaming-internacional-guia-viagens-negocios-2026':
+		'/consultor-tim-explica-roaming-nacional-e-internacional/',
+	// Guias rasos de TIM Black Empresa → pilar reescrito em 29/09.
+	'tim-black-empresa-guia-completo-2025': '/tim-black-empresa-internet-movel-para-seu-negocio/',
+	'tim-black-empresa-seu-plano-corporativo-para-2025': '/tim-black-empresa-internet-movel-para-seu-negocio/',
+	'tim-black-empresa-acelere-o-crescimento-do-seu-negocio':
+		'/tim-black-empresa-internet-movel-para-seu-negocio/',
+	// Desconto progressivo por volume (title com "10% a 25%") → LP do tema.
+	'tim-empresas-planos-corporativos-descontos-progressivos-guia': '/solucoes/desconto-tim-para-empresas/',
+	// "Internet empresarial TIM" genérica, 1 H2 → hub reescrito em 29/09.
+	'internet-empresarial-tim-alta-velocidade-e-confiabilidade': '/internet-tim-empresa/'
+};
+
+/** Artigo que não vira página: marca antiga ou consolidado por 301. */
+export const foraDaGeracao = (slug) => SLUGS_OCULTOS_GRUPO_OC.includes(slug) || slug in REDIRECIONADOS;
+
 // Vite embute os JSONs no bundle do servidor (só existe durante o prerender).
 const snapshot = import.meta.glob('/content/artigos/*.json', { eager: true, import: 'default' });
 
@@ -85,10 +117,11 @@ export function todosArtigos() {
 			// A marca antiga sai aqui, no ponto único de origem: vale para o
 			// snapshot local e para o que vier do OC Hub.
 			const visiveis = stripBrandDeep(
-				[...porSlug.values()].filter((a) => !SLUGS_OCULTOS_GRUPO_OC.includes(a.slug))
+				// CONSOLIDACAO-2026-09-29 — anterior: .filter((a) => !SLUGS_OCULTOS_GRUPO_OC.includes(a.slug))
+				[...porSlug.values()].filter((a) => !foraDaGeracao(a.slug))
 			);
 			if (visiveis.length !== porSlug.size) {
-				console.log(`[artigos] ${porSlug.size - visiveis.length} ocultos (marca antiga → 301 para a home)`);
+				console.log(`[artigos] ${porSlug.size - visiveis.length} fora da geração (marca antiga ou consolidados por 301)`);
 			}
 			// Camada editorial do repo ($lib/blog/editorial.js): a data de revisão
 			// real entra aqui, no ponto único de origem, para valer também para o

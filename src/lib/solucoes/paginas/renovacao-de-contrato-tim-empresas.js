@@ -316,7 +316,7 @@ export default {
 		'plano-corporativo-para-grandes-empresas'
 	],
 	artigos: [
-		'tim-empresas-planos-corporativos-descontos-progressivos-guia',
+		'plano-empresarial-tim-comparativo-precos-escolher',
 		'tim-black-empresa-desconto-progressivo-2026',
 		'tim-conta-empresarial-como-entender-otimizar-fatura',
 		'tim-empresas-gestao-linhas-esim-governanca'

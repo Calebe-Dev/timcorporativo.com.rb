@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { todosArtigos, listarArtigos } from '$lib/server/artigos.js';
+import { todosArtigos, listarArtigos, REDIRECIONADOS } from '$lib/server/artigos.js';
 import { site } from '$lib/site.js';
 // ENTIDADE-OC-TEL 2026-09-10 — a página de artigo era a única do site sem nenhum
 // nó Organization: o Article repetia dois objetos parciais em author/publisher.
@@ -175,7 +175,13 @@ const CORRECOES = new Map([
 	['/#formulario', '/#contato'],
 	['/#form', '/#contato'],
 	['/#planostim', '/#planos'],
-	['/#autorizado', '/#topo']
+	['/#autorizado', '/#topo'],
+	// CONSOLIDACAO-2026-09-29 — artigos consolidados por 301: o link do corpo
+	// vai direto ao destino, sem passar pelo redirect (lista em server/artigos.js).
+	...Object.entries(REDIRECIONADOS).flatMap(([slug, destino]) => [
+		[`/${slug}/`, destino],
+		[`/${slug}`, destino]
+	])
 ]);
 
 // Rotas de um segmento que não são artigo — nunca reescrever.

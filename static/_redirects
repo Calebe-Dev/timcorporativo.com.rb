@@ -47,7 +47,7 @@
 /ofertas-planos-empresariais-tim-pme-2026/	/tim-empresas-planos-precos-2026-contratar/	301
 /como-contratar-tim-black-empresa-janeiro-2026/	/contratar-tim-empresa-guia-2026/	301
 /tim-corporativo-2026-solucoes-5g-iot-pabx-nuvem-grupo-oc/	/tim-corporativo-2026-iot-5g-eficiencia-industrial/	301
-/tim-black-empresa-guia-completo-2026/	/tim-black-empresa-guia-completo-2025/	301
+/tim-black-empresa-guia-completo-2026/	/tim-black-empresa-internet-movel-para-seu-negocio/	301
 
 # 20-99 impressoes/ano
 /inovando-o-futuro-dos-negocios-com-a-tim-empresas/	/empresas-tim-solucoes-para-negocios-de-todos-os-portes/	301
@@ -70,9 +70,9 @@
 /vivo-empresas-2026-por-que-empresas-migraram-tim-analise-custos/	/tim-empresas-vs-vivo-empresas-qual-operadora-corporativa-entrega-mais-estabilidade/	301
 /tim-black-empresa-5g-vantagem-competitiva-2026/	/tim-black-empresa-roi-performance-2026/	301
 /tim-black-empresa-vantagens-roi-analise-2026/	/tim-black-empresa-roi-performance-2026/	301
-/internet-empresarial-tim-o-futuro-da-internet-nas-empresas/	/internet-empresarial-tim-alta-velocidade-e-confiabilidade/	301
+/internet-empresarial-tim-o-futuro-da-internet-nas-empresas/	/internet-tim-empresa/	301
 /link-dedicado/	/link-dedicado-tim-o-que-e-quando-contratar/	301
-/a-era-da-telefonia-corporativa-mudou-com-tim-black-veja-como/	/tim-black-empresa-acelere-o-crescimento-do-seu-negocio/	301
+/a-era-da-telefonia-corporativa-mudou-com-tim-black-veja-como/	/tim-black-empresa-internet-movel-para-seu-negocio/	301
 /5g-no-agronegocio-a-revolucao-da-tim-empresas-no-campo-em-2026/	/poder-rede-movel-tim-agronegocio-industria-4-0/	301
 /5-aplicacoes-praticas-iot-agronegocio-conectividade-tim/	/internet-das-coisas-iot-empresas-aplicacoes-praticas-2025/	301
 /black-friday-empresarial-2025-comparativo-tim-vs-vivo-vs-claro/	/tim-empresas-black-friday-2025-vs-vivo-claro/	301
@@ -118,7 +118,7 @@
 # snapshot). Sobram os dois cujo slug traz "grupo-oc": restaura-los devolveria
 # a marca a URL. Em vez de mandar para a home, que o Google trata como pagina
 # inexistente, cada um aponta para o artigo equivalente no mesmo assunto.
-/tim-black-empresa-descontos-progressivos-grupo-oc/	/tim-empresas-planos-corporativos-descontos-progressivos-guia/	301
+/tim-black-empresa-descontos-progressivos-grupo-oc/	/solucoes/desconto-tim-para-empresas/	301
 /consultoria-tim-black-empresa-solucoes-corporativas-com-grupo-oc/	/cotacao-tim-black-empresa-guia-roi/	301
 
 # --- página de autor (14/09/2026) ---------------------------------------------
@@ -137,3 +137,20 @@
 /como-contratar-tim-corporativo-2/	/como-contratar-tim-corporativo/	301
 /planos-tim-corporativo-precos-2/	/planos-tim-corporativo-precos/	301
 /planos-tim-corporativo-precos-3/	/planos-tim-corporativo-precos/	301
+
+# --- consolidação de duplicatas (29/09/2026) -------------------------------------
+# Plano de SEO de 29/09 (GSC até 26/09): cada origem tem a MESMA intenção de busca
+# do destino, que é o artigo dono da consulta. Os artigos de origem saem da geração
+# (REDIRECIONADOS em src/lib/server/artigos.js) para não colidir com página viva, e
+# os links do corpo que apontavam para eles vão direto ao destino no build. As
+# quatro regras acima que apontavam para origens daqui foram repontadas ao destino
+# final, para não formar cadeia. Reverter = apagar a linha aqui e a entrada lá.
+/portabilidade-tim-empresarial-guia-completo-trocar-operadora/	/portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero/	301
+/portabilidade-tim-empresas-como-fazer/	/portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero/	301
+/roaming-internacional-guia-viagens-de-negocios-2026/	/consultor-tim-explica-roaming-nacional-e-internacional/	301
+/roaming-internacional-guia-viagens-negocios-2026/	/consultor-tim-explica-roaming-nacional-e-internacional/	301
+/tim-black-empresa-guia-completo-2025/	/tim-black-empresa-internet-movel-para-seu-negocio/	301
+/tim-black-empresa-seu-plano-corporativo-para-2025/	/tim-black-empresa-internet-movel-para-seu-negocio/	301
+/tim-black-empresa-acelere-o-crescimento-do-seu-negocio/	/tim-black-empresa-internet-movel-para-seu-negocio/	301
+/tim-empresas-planos-corporativos-descontos-progressivos-guia/	/solucoes/desconto-tim-para-empresas/	301
+/internet-empresarial-tim-alta-velocidade-e-confiabilidade/	/internet-tim-empresa/	301

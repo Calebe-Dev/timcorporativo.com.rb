@@ -315,8 +315,6 @@ export const ARTIGO_PARA_LP = {
 	// LP 13 — trocar com contrato vigente
 	'portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero':
 		'trocar-de-operadora-com-contrato-vigente',
-	'portabilidade-tim-empresarial-guia-completo-trocar-operadora':
-		'trocar-de-operadora-com-contrato-vigente',
 	'migrar-de-operadora-corporativa-e-burocratico-passo-a-passo-da-portabilidade-tim':
 		'trocar-de-operadora-com-contrato-vigente',
 	// Artigo datado (fala em "antes de 2026"): o link para a LP atemporal é o que
@@ -332,7 +330,6 @@ export const ARTIGO_PARA_LP = {
 
 	// LP 15 — renovação
 	'tim-black-empresa-desconto-progressivo-2026': 'renovacao-de-contrato-tim-empresas',
-	'tim-empresas-planos-corporativos-descontos-progressivos-guia': 'renovacao-de-contrato-tim-empresas',
 
 	// LP 16 — filial
 	'sd-wan-para-empresas-com-multiplas-filiais-como-tim-conecta-50-sites-com-seguranca':

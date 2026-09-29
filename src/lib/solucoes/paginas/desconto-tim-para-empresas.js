@@ -359,7 +359,7 @@ export default {
 	],
 	artigos: [
 		'tim-black-empresa-descontos-progressivos-grupo-oc',
-		'tim-empresas-planos-corporativos-descontos-progressivos-guia',
+		'plano-empresarial-tim-comparativo-precos-escolher',
 		'cotacao-tim-black-empresa-guia-roi',
 		'tim-empresas-reduzir-custos-linhas-dados'
 	]
