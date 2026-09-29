@@ -164,6 +164,18 @@
 					<div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
 						<h3 class="text-lg font-bold text-white sm:text-xl">{p.name}</h3>
 						<p class="mt-2 text-sm leading-relaxed text-tim-100 sm:text-base">{p.text}</p>
+						<!-- Links internos no corpo da home (plano de SEO de 29/09/2026). O texto dos
+						     cards, blocos e FAQ vem de site.js e também alimenta o JSON-LD; por isso o
+						     link entra como frase curta no template, sem mexer naquele texto. -->
+						{#if p.name === 'Pequenas Empresas e MEI'}
+							<p class="mt-2 text-sm leading-relaxed text-tim-100 sm:text-base">
+								Veja como contratar o
+								<a
+									href="/plano-tim-para-mei-como-contratar-no-cnpj/"
+									class="font-semibold text-white underline hover:text-tim-100">plano TIM para MEI</a
+								> no CNPJ.
+							</p>
+						{/if}
 						<a
 							href="#contato"
 							class="mt-4 inline-block rounded-full bg-accent-600 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-700"
@@ -251,6 +263,16 @@
 					<div class="rounded-xl border border-slate-200 bg-white p-5">
 						<h3 class="font-semibold text-tim-800">{a.title}</h3>
 						<p class="mt-1 text-sm text-slate-600">{a.text}</p>
+						{#if a.title === 'Telefonia empresarial'}
+							<p class="mt-1 text-sm text-slate-600">
+								Para o número fixo, veja a
+								<a
+									href="/tim-fixo-empresa-linha-fixa-empresarial/"
+									class="font-semibold text-tim-600 underline hover:text-tim-700"
+									>telefonia fixa empresarial na nuvem</a
+								>.
+							</p>
+						{/if}
 					</div>
 				{/each}
 			</div>
@@ -271,6 +293,25 @@
 							{#each c.paragraphs as p}
 								<p class="leading-relaxed text-slate-600 sm:text-lg">{p}</p>
 							{/each}
+							{#if c.id === 'black-em-movimento'}
+								<p class="leading-relaxed text-slate-600 sm:text-lg">
+									Para ver o que entra no plano e como é a contratação no CNPJ, confira
+									<a
+										href="/tim-black-empresa-internet-movel-para-seu-negocio/"
+										class="font-semibold text-tim-600 underline hover:text-tim-700"
+										>como funciona o TIM Black Empresa</a
+									>.
+								</p>
+							{:else if c.id === 'fibra-ultrafibra-corporativa'}
+								<p class="leading-relaxed text-slate-600 sm:text-lg">
+									Contrato no nome da empresa e consulta de viabilidade por endereço estão no guia de
+									<a
+										href="/tim-fibra-empresas-cnpj-como-contratar/"
+										class="font-semibold text-tim-600 underline hover:text-tim-700"
+										>TIM Fibra para empresas no CNPJ</a
+									>.
+								</p>
+							{/if}
 						</div>
 					</article>
 				{/each}
@@ -311,6 +352,14 @@
 						{#each portabilidade.paragraphs as p}
 							<p class="mt-3 leading-relaxed text-tim-100 sm:text-base">{p}</p>
 						{/each}
+						<p class="mt-3 leading-relaxed text-tim-100 sm:text-base">
+							Documentos e etapas, para número fixo e móvel, estão no guia de
+							<a
+								href="/portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero/"
+								class="font-semibold text-white underline hover:text-tim-100"
+								>portabilidade TIM empresarial</a
+							>.
+						</p>
 					</div>
 					<div class="flex flex-col gap-3 sm:flex-row lg:flex-col">
 						<a
