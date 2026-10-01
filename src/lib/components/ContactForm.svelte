@@ -155,7 +155,7 @@
 				mensagem,
 				website,
 				pagina,
-				// Nome exigido pelo Turnstile e lido por worker/turnstile.js.
+				// Nome exigido pelo Turnstile e lido pelo pacote @grupooc/lead-handler.
 				'cf-turnstile-response': turnstileToken,
 				...utm
 			}),

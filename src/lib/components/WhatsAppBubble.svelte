@@ -8,7 +8,7 @@
 	let { oculta = false } = $props();
 
 	// Painel de contato rápido: 3 campos (mínimo que /api/lead aceita — nome,
-	// celular e e-mail são obrigatórios no servidor, ver worker/validate.js).
+	// celular e e-mail são obrigatórios no servidor, ver worker/lead.js).
 	// O clique no botão abre o painel em vez de ir direto ao wa.me; quem preferir
 	// pular o formulário tem o atalho "ir direto" dentro do painel. Sem JS, o
 	// botão continua sendo um <a> normal para o WhatsApp.
