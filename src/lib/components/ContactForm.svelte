@@ -45,10 +45,12 @@
 	/** @type {((t: string) => void) | null} */
 	let resolverToken = null;
 
-	// Margem entre o foco no primeiro campo e o submit. Preencher nome, e-mail e
-	// celular leva dezenas de segundos; o Managed resolve em ~1s. O timeout existe
-	// só para o caso patológico, e mesmo ele não perde o lead: cai no WhatsApp.
-	const ESPERA_TOKEN_MS = 4000;
+	// Margem entre o foco no primeiro campo e o submit. Medido em 07/10/2026: o
+	// Managed levou mais de 15 s para dar "Sucesso!" num desktop com boa conexão,
+	// e quem preenche três campos rápido clica antes disso. Esperar aqui não custa
+	// nada ao visitante — o WhatsApp já abriu antes desta espera (ver `enviar`).
+	// Com 4 s, o POST saía sem token, o servidor devolvia 403 e o lead sumia.
+	const ESPERA_TOKEN_MS = 20000;
 
 	const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 	const UTM_STORE = 'tim_utm';
@@ -184,7 +186,10 @@
 		// Token ainda não chegou: com a secret gravada, o servidor rejeita lead
 		// sem ele (403 `captcha`). Como o widget só começa a carregar no primeiro
 		// foco, damos uma janela para concluir. Seguro fazer depois do window.open.
+		// Se o visitante clicou sem nunca focar um campo (autofill), o widget nem
+		// começou: iniciamos aqui para a espera abaixo ter o que esperar.
 		if (!envio) {
+			iniciarTurnstile();
 			if (tokenPronto) {
 				await Promise.race([
 					tokenPronto,
