@@ -143,3 +143,52 @@ html {
 [id] {
 	scroll-margin-top: 5rem;
 }
+
+/* Tabela que rola na horizontal (artigos e LPs).
+   No celular, uma tabela de 3+ colunas não cabe na tela: ela rola dentro desta
+   caixa e a página nunca rola de lado. O que faltava era o visitante SABER que
+   rola — antes o texto parecia só cortado na borda.
+   - `data-rola` é posto pelo layout (+layout.svelte) quando a tabela de fato
+     transborda. Sem ele, nada de aviso nem sombra numa tabela que cabe.
+   - O aviso é conteúdo gerado por CSS: não entra no texto da página nem no que
+     o Google indexa, e o "/ ''" o esconde do leitor de tela (a região já tem nome).
+   - As sombras de rolagem são o truque de background local/scroll: as "tampas"
+     brancas rolam com o conteúdo e cobrem a sombra na ponta em que não há mais
+     nada; onde há, a sombra fixa aparece. */
+.tabela-rolavel {
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+}
+.tabela-rolavel table {
+	margin: 0;
+}
+.prose .tabela-rolavel {
+	margin-block: 1.75em;
+}
+@media (max-width: 639px) {
+	/* 3+ colunas: largura mínima por coluna, em vez de espremer palavra por linha. */
+	.tabela-rolavel table:has(tr > :nth-child(3)) :is(td, th) {
+		min-width: 8.5rem;
+	}
+}
+.tabela-rolavel[data-rola] {
+	background:
+		linear-gradient(to right, #fff 30%, rgb(255 255 255 / 0)) left center / 2.5rem 100% no-repeat local,
+		linear-gradient(to left, #fff 30%, rgb(255 255 255 / 0)) right center / 2.5rem 100% no-repeat local,
+		radial-gradient(farthest-side at 0 50%, rgb(15 23 42 / 0.2), transparent) left center / 0.9rem 100% no-repeat scroll,
+		radial-gradient(farthest-side at 100% 50%, rgb(15 23 42 / 0.2), transparent) right center / 0.9rem 100% no-repeat scroll;
+}
+.tabela-rolavel[data-rola]::before {
+	content: 'Deslize para o lado para ver todas as colunas →' / '';
+	position: sticky;
+	left: 0;
+	display: block;
+	padding: 0.25rem 0 0.5rem;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	color: var(--color-tim-700);
+}
+/* LpTabela: a caixa tem borda e cantos arredondados, então o aviso ganha recuo. */
+.tabela-rolavel--caixa[data-rola]::before {
+	padding: 0.6rem 1rem 0.5rem;
+}

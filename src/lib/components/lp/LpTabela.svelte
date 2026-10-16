@@ -20,7 +20,7 @@
 		tabindex em elemento não interativo sem abrir exceção para esse caso.
 	-->
 	<div
-		class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-tim-500"
+		class="tabela-rolavel tabela-rolavel--caixa overflow-x-auto rounded-2xl border border-slate-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-tim-500"
 		tabindex="0"
 		role="region"
 		aria-labelledby="tabela-legenda"

@@ -67,7 +67,7 @@
 		aria-label="Anúncio: {banner.titulo}"
 		data-banner={banner.id}
 	>
-		<p class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] text-slate-400 uppercase">
+		<p class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] text-slate-500 uppercase">
 			<span class="rounded-sm border border-slate-300 px-1.5 py-0.5 text-[10px] tracking-[0.1em] text-slate-500">
 				Anúncio
 			</span>

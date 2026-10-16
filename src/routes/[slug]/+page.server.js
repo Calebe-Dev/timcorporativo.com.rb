@@ -461,6 +461,36 @@ function textoDeTitulo(html) {
 }
 
 /**
+ * Põe cada <table> do artigo numa caixa que rola na horizontal. No celular uma
+ * tabela de 4 colunas não cabe em 358 px: antes ela própria rolava
+ * (`prose-table:block`), sem nada que indicasse isso, e o texto parecia cortado
+ * na borda (73 artigos têm tabela). A caixa é a região rolável acessível por
+ * teclado (tabindex + role + nome); o aviso "deslize" e as sombras nas pontas
+ * são CSS em app.css (.tabela-rolavel). O texto da tabela não muda.
+ *
+ * 27 tabelas vindas do CMS não têm nenhum <th>: o cabeçalho é a primeira linha
+ * de <td><strong>. Para o leitor de tela, cada célula fica sem coluna (axe
+ * `td-has-header`). Quando a primeira linha é TODA em negrito, ela vira
+ * <th scope="col"> — mesmo texto, agora com a função de cabeçalho.
+ */
+function envolverTabelas(html) {
+	return html.replace(/<table[\s\S]*?<\/table>/gi, (t) => {
+		const tabela = /<th[\s>]/i.test(t) ? t : promoverCabecalho(t);
+		return `<div class="tabela-rolavel" tabindex="0" role="region" aria-label="Tabela">${tabela}</div>`;
+	});
+}
+
+function promoverCabecalho(tabela) {
+	const linha = tabela.match(/<tr[^>]*>([\s\S]*?)<\/tr>/i);
+	if (!linha) return tabela;
+	const celulas = [...linha[1].matchAll(/<td([^>]*)>([\s\S]*?)<\/td>/gi)];
+	const emNegrito = (c) => !c.trim() || /^\s*<strong>[\s\S]*<\/strong>\s*$/i.test(c);
+	if (!celulas.length || !celulas.every((m) => emNegrito(m[2]))) return tabela;
+	const nova = linha[0].replace(/<td([^>]*)>([\s\S]*?)<\/td>/gi, '<th scope="col"$1>$2</th>');
+	return tabela.replace(linha[0], nova);
+}
+
+/**
  * Índice do plugin de TOC do WordPress que veio colado no html_content de 38
  * artigos: `<p>Índice de Conteúdo</p> <a href="#">Toggle</a> <ul>…</ul>`. O
  * "Toggle" é um link morto visível, as âncoras são do formato antigo e, nos
@@ -598,7 +628,9 @@ export async function load({ params }) {
 	// Conteúdo" é o primeiro <p> do artigo e vira a âncora da frase de link
 	// para a LP (fallback de linkarSolucao), em vez de um parágrafo de verdade.
 	const bruto = removerIndiceDoWordPress(artigo.html_content ?? '');
-	const html = linkarSolucao(corrigirLinks(bruto.html, params.slug, artigos), params.slug);
+	const html = envolverTabelas(
+		linkarSolucao(corrigirLinks(bruto.html, params.slug, artigos), params.slug)
+	);
 	const { h1, intro, parte1, parte2, sumario } = fatiarArtigo(html, bruto.tinha);
 
 	// `html_content` não vai para a página: o template só usa as fatias, e

@@ -64,7 +64,7 @@
 	<!-- Byline visível casada com o author (Person) e as datas do JSON-LD — sinal E-E-A-T. -->
 	<p class="mb-4 text-sm font-medium text-slate-500">
 		Por
-		<a href="/autor/{author.slug}/" rel="author" class="text-slate-700 hover:text-tim-700 hover:underline">
+		<a href="/autor/{author.slug}/" rel="author" class="text-slate-700 underline decoration-slate-300 underline-offset-2 hover:text-tim-700">
 			{author.name}
 		</a>
 		· Publicado em <time datetime={date}>{dateLabel}</time>
@@ -83,8 +83,7 @@
 	class="prose prose-slate max-w-none
 	       prose-headings:text-tim-900 prose-headings:scroll-mt-24
 	       prose-a:text-tim-700 hover:prose-a:text-tim-800
-	       prose-img:rounded-lg
-	       prose-table:block prose-table:overflow-x-auto"
+	       prose-img:rounded-lg"
 >
 	{@html article.html_h1}
 	{#if data.resposta}

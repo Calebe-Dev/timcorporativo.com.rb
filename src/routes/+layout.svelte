@@ -11,6 +11,23 @@
 
 	onMount(rastrearCliquesWhatsApp);
 
+	// Marca as tabelas que de fato transbordam (ver .tabela-rolavel em app.css):
+	// só nelas aparecem o aviso "deslize" e as sombras de rolagem.
+	function marcarTabelasRolaveis() {
+		for (const el of document.querySelectorAll('.tabela-rolavel')) {
+			el.toggleAttribute('data-rola', el.scrollWidth > el.clientWidth + 1);
+		}
+	}
+	onMount(() => {
+		let quadro = 0;
+		const aoRedimensionar = () => {
+			cancelAnimationFrame(quadro);
+			quadro = requestAnimationFrame(marcarTabelasRolaveis);
+		};
+		window.addEventListener('resize', aoRedimensionar);
+		return () => window.removeEventListener('resize', aoRedimensionar);
+	});
+
 	// O SvelteKit troca de página sem recarregar, e o `config` do gtag só manda o
 	// page_view da carga inicial: sem isto o GA4 enxerga apenas a página de
 	// entrada de cada sessão. Medido em 16/10/2026 — clique interno, zero hits.
@@ -18,11 +35,12 @@
 	// Se um dia ligarem no GA4 "Mudanças de página com base em eventos do
 	// histórico do navegador" (medição otimizada), este bloco passa a duplicar.
 	afterNavigate(async ({ type, from, to }) => {
+		await tick();
+		marcarTabelasRolaveis();
 		if (type === 'enter' || !from || !to) return;
 		// Âncora na mesma página (/#como-contratar) não é página nova.
 		if (from.url.pathname === to.url.pathname && from.url.search === to.url.search) return;
-		// O <title> da página nova é aplicado num efeito; espera ele assentar.
-		await tick();
+		// O <title> da página nova já assentou: o tick() lá em cima esperou o efeito.
 		evento('page_view', {
 			page_location: to.url.href,
 			page_referrer: from.url.href,
