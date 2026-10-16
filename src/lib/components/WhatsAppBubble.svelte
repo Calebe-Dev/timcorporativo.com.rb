@@ -213,6 +213,8 @@
 
 	const field =
 		'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-tim-500 focus:ring-2 focus:ring-tim-200';
+	const rotulo = 'mb-0.5 block text-xs font-semibold text-slate-800';
+	const uid = $props.id();
 </script>
 
 <svelte:window onkeydown={aoTeclar} />
@@ -257,33 +259,46 @@
 				</div>
 
 				<form class="mt-3 space-y-2.5" onsubmit={enviar}>
-					<input
-						class={field}
-						bind:this={campoNome}
-						bind:value={nome}
-						placeholder="Nome*"
-						aria-label="Nome"
-						required
-						autocomplete="name"
-					/>
-					<input
-						class={field}
-						bind:value={celular}
-						type="tel"
-						placeholder="Celular / WhatsApp*"
-						aria-label="Celular ou WhatsApp"
-						required
-						autocomplete="tel"
-					/>
-					<input
-						class={field}
-						bind:value={email}
-						type="email"
-						placeholder="E-mail*"
-						aria-label="E-mail"
-						required
-						autocomplete="email"
-					/>
+					<!-- Rótulos visíveis, como no ContactForm: o placeholder some ao
+					     digitar. O <label for> dá o nome acessível. -->
+					<div>
+						<label class={rotulo} for="{uid}-nome">Nome <span aria-hidden="true">*</span></label>
+						<input
+							id="{uid}-nome"
+							class={field}
+							bind:this={campoNome}
+							bind:value={nome}
+							placeholder="Seu nome"
+							required
+							autocomplete="name"
+						/>
+					</div>
+					<div>
+						<label class={rotulo} for="{uid}-celular"
+							>Celular ou WhatsApp <span aria-hidden="true">*</span></label
+						>
+						<input
+							id="{uid}-celular"
+							class={field}
+							bind:value={celular}
+							type="tel"
+							placeholder="(11) 99999-0000"
+							required
+							autocomplete="tel"
+						/>
+					</div>
+					<div>
+						<label class={rotulo} for="{uid}-email">E-mail <span aria-hidden="true">*</span></label>
+						<input
+							id="{uid}-email"
+							class={field}
+							bind:value={email}
+							type="email"
+							placeholder="voce@empresa.com.br"
+							required
+							autocomplete="email"
+						/>
+					</div>
 
 					<!-- Honeypot: fora da tela e da navegação por teclado/leitor de tela. -->
 					<div class="absolute left-[-9999px]" aria-hidden="true">

@@ -217,65 +217,96 @@
 
 	const field =
 		'w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-tim-500 focus:ring-2 focus:ring-tim-200';
+	const rotulo = 'mb-1 block text-sm font-semibold text-slate-800';
+	const opcional = 'font-normal text-slate-500';
+	// Ids únicos por instância: o formulário pode aparecer mais de uma vez na página.
+	const uid = $props.id();
 </script>
 
 <!-- `focusin` (e não `focus`) porque borbulha: um único handler no <form> cobre
      todos os campos. É o gatilho do anti-spam — ver `iniciarTurnstile`. -->
 <form class="space-y-3" onsubmit={enviar} onfocusin={iniciarTurnstile}>
-	<!-- `aria-label` em todo campo com placeholder: placeholder some ao digitar e
-	     leitor de tela anuncia "editar texto" sem nome. -->
+	<!-- Rótulo visível em cada campo. Antes o placeholder fazia esse papel: some
+	     assim que a pessoa digita, e no celular ela perde o que o campo pedia no
+	     meio do preenchimento. O <label for> também dá o nome acessível, então os
+	     aria-label saíram. O placeholder ficou só como exemplo do formato. -->
 	<div class="grid gap-3 sm:grid-cols-2">
-		<input
-			class={field}
-			bind:value={nome}
-			placeholder="Nome*"
-			aria-label="Nome"
-			required
-			autocomplete="name"
-		/>
-		<input
-			class={field}
-			bind:value={email}
-			type="email"
-			placeholder="E-mail*"
-			aria-label="E-mail"
-			required
-			autocomplete="email"
-		/>
-		<input
-			class={field}
-			bind:value={celular}
-			type="tel"
-			placeholder="Celular / WhatsApp*"
-			aria-label="Celular ou WhatsApp"
-			required
-			autocomplete="tel"
-		/>
-		<input
-			class={field}
-			bind:value={cnpj}
-			placeholder="CNPJ"
-			aria-label="CNPJ"
-			inputmode="numeric"
-		/>
-		<!-- `aria-label`: a primeira <option> serve de rótulo visual, mas leitor de
-		     tela anuncia o <select> sem nome se não houver label associado. -->
-		<select class={field} bind:value={linhas} aria-label="Número de linhas">
-			<option value="">Nº de linhas</option>
-			{#each formOptions.linhas as opt}<option>{opt}</option>{/each}
-		</select>
-		<select class={field} bind:value={operadora} aria-label="Operadora atual">
-			<option value="">Operadora atual</option>
-			{#each formOptions.operadoras as opt}<option>{opt}</option>{/each}
-		</select>
+		<div>
+			<label class={rotulo} for="{uid}-nome">Nome <span aria-hidden="true">*</span></label>
+			<input
+				id="{uid}-nome"
+				class={field}
+				bind:value={nome}
+				placeholder="Seu nome"
+				required
+				autocomplete="name"
+			/>
+		</div>
+		<div>
+			<label class={rotulo} for="{uid}-email">E-mail <span aria-hidden="true">*</span></label>
+			<input
+				id="{uid}-email"
+				class={field}
+				bind:value={email}
+				type="email"
+				placeholder="voce@empresa.com.br"
+				required
+				autocomplete="email"
+			/>
+		</div>
+		<div>
+			<label class={rotulo} for="{uid}-celular"
+				>Celular ou WhatsApp <span aria-hidden="true">*</span></label
+			>
+			<input
+				id="{uid}-celular"
+				class={field}
+				bind:value={celular}
+				type="tel"
+				placeholder="(11) 99999-0000"
+				required
+				autocomplete="tel"
+			/>
+		</div>
+		<div>
+			<label class={rotulo} for="{uid}-cnpj">CNPJ <span class={opcional}>(opcional)</span></label>
+			<input
+				id="{uid}-cnpj"
+				class={field}
+				bind:value={cnpj}
+				placeholder="00.000.000/0000-00"
+				inputmode="numeric"
+			/>
+		</div>
+		<div>
+			<label class={rotulo} for="{uid}-linhas"
+				>Número de linhas <span class={opcional}>(opcional)</span></label
+			>
+			<select id="{uid}-linhas" class={field} bind:value={linhas}>
+				<option value="">Selecione</option>
+				{#each formOptions.linhas as opt}<option>{opt}</option>{/each}
+			</select>
+		</div>
+		<div>
+			<label class={rotulo} for="{uid}-operadora"
+				>Operadora atual <span class={opcional}>(opcional)</span></label
+			>
+			<select id="{uid}-operadora" class={field} bind:value={operadora}>
+				<option value="">Selecione</option>
+				{#each formOptions.operadoras as opt}<option>{opt}</option>{/each}
+			</select>
+		</div>
 	</div>
-	<textarea
-		class={field}
-		bind:value={mensagem}
-		rows="3"
-		placeholder="Mensagem (opcional)"
-		aria-label="Mensagem"
-	></textarea>
+	<div>
+		<label class={rotulo} for="{uid}-mensagem">Mensagem <span class={opcional}>(opcional)</span></label>
+		<textarea
+			id="{uid}-mensagem"
+			class={field}
+			bind:value={mensagem}
+			rows="3"
+			placeholder="Ex.: quero levar 5 linhas da Vivo para a TIM"
+		></textarea>
+	</div>
 
 	<!-- Honeypot: fora da tela e fora da navegação por teclado/leitor de tela. -->
 	<div class="absolute left-[-9999px]" aria-hidden="true">
