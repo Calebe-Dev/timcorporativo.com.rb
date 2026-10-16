@@ -3,8 +3,32 @@
 	import WhatsAppBubble from '$lib/components/WhatsAppBubble.svelte';
 	import BotChat from '$lib/components/BotChat.svelte';
 	import CookieConsent from '$lib/components/CookieConsent.svelte';
+	import { onMount, tick } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
+	import { evento, rastrearCliquesWhatsApp } from '$lib/analytics.js';
 
 	let { children } = $props();
+
+	onMount(rastrearCliquesWhatsApp);
+
+	// O SvelteKit troca de página sem recarregar, e o `config` do gtag só manda o
+	// page_view da carga inicial: sem isto o GA4 enxerga apenas a página de
+	// entrada de cada sessão. Medido em 16/10/2026 — clique interno, zero hits.
+	//
+	// Se um dia ligarem no GA4 "Mudanças de página com base em eventos do
+	// histórico do navegador" (medição otimizada), este bloco passa a duplicar.
+	afterNavigate(async ({ type, from, to }) => {
+		if (type === 'enter' || !from || !to) return;
+		// Âncora na mesma página (/#como-contratar) não é página nova.
+		if (from.url.pathname === to.url.pathname && from.url.search === to.url.search) return;
+		// O <title> da página nova é aplicado num efeito; espera ele assentar.
+		await tick();
+		evento('page_view', {
+			page_location: to.url.href,
+			page_referrer: from.url.href,
+			page_title: document.title
+		});
+	});
 
 	// Os dois canais flutuantes disputam o mesmo canto: o FAB do bot é fixo em
 	// bottom/right 24px e não dá para reposicionar de fora. Então a bolha do

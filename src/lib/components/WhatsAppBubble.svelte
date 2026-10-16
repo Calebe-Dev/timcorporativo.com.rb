@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { contact, whatsappLink, turnstileSiteKey } from '$lib/site.js';
+	import { lead } from '$lib/analytics.js';
 
 	// `oculta` chega do layout raiz quando o chat da nossa consultoria sobe: os dois são o
 	// mesmo convite ("fale com um consultor") e dois botões flutuantes ao mesmo
@@ -26,7 +27,6 @@
 	/** @type {'' | 'ok' | 'zap' | 'erro'} — mesma semântica do ContactForm. */
 	let status = $state('');
 
-	let pagina = $state('/');
 	let utm = $state({});
 	// Preenchidos quando um banner pede o painel (evento `abrir-atendimento`,
 	// ver $lib/components/Banner.svelte): o assunto vira a primeira linha da
@@ -51,7 +51,6 @@
 	const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
 	onMount(() => {
-		pagina = window.location.pathname;
 		try {
 			// Primeiro toque da sessão — gravado pelo ContactForm sob a mesma chave.
 			utm = JSON.parse(sessionStorage.getItem('tim_utm') || '{}');
@@ -159,7 +158,10 @@
 					? `${origem} — ${assunto}`
 					: 'Contato rápido pelo botão flutuante do WhatsApp',
 				website,
-				pagina,
+				// Lido no envio, não no onMount: a bolha vive no layout e não remonta
+				// na navegação interna — guardar a página de entrada atribuía o lead
+				// à página errada.
+				pagina: window.location.pathname,
 				'cf-turnstile-response': turnstileToken,
 				...utm
 			}),
@@ -182,6 +184,7 @@
 		// WhatsApp abre de forma síncrona — depois de um await o browser deixa de
 		// tratar como gesto do usuário e bloqueia o popup (ver ContactForm).
 		const janela = window.open(whatsappLink(resumo()), '_blank', 'noopener');
+		if (!website) lead('bolha', origem);
 
 		if (!envio) {
 			if (tokenPronto) {

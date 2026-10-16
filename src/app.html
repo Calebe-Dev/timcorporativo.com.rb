@@ -39,6 +39,13 @@
 		     do aceite no banner (CookieConsent.svelte). `carregarAnalytics` é chamada
 		     aqui (visitante que já aceitou) ou pelo banner, no clique de aceitar.
 
+		     Consent Mode v2 no modo BÁSICO: o estado padrão é tudo negado e o gtag.js
+		     só baixa depois do aceite, então quem recusa não gera nem ping sem cookie.
+		     O modo avançado (carregar antes e mandar pings para a modelagem do Google)
+		     mudaria o que a Política de Privacidade promete — é decisão do dono, não
+		     ajuste técnico. Os sinais de anúncio ficam negados sempre: o banner só
+		     pede consentimento para análise.
+
 		     G-N8PJH573Q8 segue DESATIVADA: essa Google Tag carrega junto a
 		     UA-250391626-1 (Universal Analytics, morto desde jul/2023) — ~123 KB de
 		     script inútil. Corrigido o GTM no painel do Google, descomente a linha
@@ -49,9 +56,18 @@
 				dataLayer.push(arguments);
 			}
 			window.gtag = gtag;
+			// Tem de ser o primeiro comando da fila: o gtag.js aplica o consentimento
+			// na ordem em que lê o dataLayer.
+			gtag('consent', 'default', {
+				ad_storage: 'denied',
+				ad_user_data: 'denied',
+				ad_personalization: 'denied',
+				analytics_storage: 'denied'
+			});
 			window.carregarAnalytics = function () {
 				if (window.__analyticsCarregado) return;
 				window.__analyticsCarregado = true;
+				gtag('consent', 'update', { analytics_storage: 'granted' });
 				var s = document.createElement('script');
 				s.async = true;
 				s.src = 'https://www.googletagmanager.com/gtag/js?id=G-KT584R0KVS';

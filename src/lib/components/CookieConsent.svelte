@@ -15,6 +15,9 @@
 			// O carregador vive no app.html — único lugar que conhece as tags.
 			window.carregarAnalytics?.();
 		} else {
+			// Se o GA4 já tinha subido nesta página (aceite antigo), para de gravar
+			// cookie a partir de agora.
+			window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
 			// Apaga cookies _ga* já existentes — visitantes antigos os receberam
 			// antes do banner existir; recusar deve limpar, não só parar de coletar.
 			const expira = 'expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';

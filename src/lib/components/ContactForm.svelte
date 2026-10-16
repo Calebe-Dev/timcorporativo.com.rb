@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { formOptions, whatsappLink, turnstileSiteKey } from '$lib/site.js';
+	import { lead } from '$lib/analytics.js';
 
 	let nome = $state('');
 	let email = $state('');
@@ -182,6 +183,8 @@
 		// não considera isto um gesto do usuário e bloqueia o popup.
 		// A captura do lead segue em paralelo, sem travar o atendimento.
 		const janela = window.open(whatsappLink(resumo()), '_blank', 'noopener');
+		// Honeypot preenchido é robô: o servidor descarta, e o GA4 também não conta.
+		if (!website) lead('formulario');
 
 		// Token ainda não chegou: com a secret gravada, o servidor rejeita lead
 		// sem ele (403 `captcha`). Como o widget só começa a carregar no primeiro
