@@ -370,3 +370,93 @@ perto de mim
 3. **Sem preço no anúncio**, mesma regra do site.
 4. **Rastreio:** com a marcação automática do Google Ads ligada (gclid), não precisa de UTM. Conversões: importar do GA4 o evento de lead e o clique de WhatsApp, que o site já mede desde 16/10/2026.
 5. **Começar pelo grupo TikTok (tim pj / CNPJ) e pelo Instagram (plano tim pj / aparelho)**: concentram as buscas com mais impressões e menos cliques.
+
+---
+
+## YouTube (campanha de Vídeo ou Demand Gen)
+
+No YouTube a palavra-chave não é a busca que a pessoa digita: ou define **quem** vê o anúncio (segmento personalizado, montado com as buscas que a pessoa fez no Google), ou define **em que vídeo** o anúncio aparece (palavras-chave de conteúdo). Não existe correspondência exata nem de frase.
+
+### 1. Segmento personalizado — "pessoas que pesquisaram qualquer um destes termos no Google"
+
+Os 20 termos de maior demanda comercial das listas acima (GSC 90d). É o uso mais forte do YouTube aqui: mostra o vídeo a quem buscou "tim pj" e não clicou em ninguém.
+
+```
+plano tim pj
+tim pj
+consultor tim pj
+plano tim empresas
+tim empresas
+tim empresa
+tim empresarial
+plano tim empresarial
+tim fibra empresarial
+plano de internet empresarial
+tim black empresa
+plano tim empresarial com aparelho
+tim empresas aparelhos 24x
+banda larga empresarial
+tim corporativo
+plano tim cnpj
+tim cnpj planos
+tim fibra empresas
+tim empresas portabilidade
+link dedicado tim
+```
+
+### 2. Palavras-chave de conteúdo — vídeos que o dono de PME e o MEI assistem
+
+Não vêm do GSC: são os temas onde está o público (abrir MEI, conta PJ, gestão, custos).
+
+```
+como abrir mei
+mei
+microempreendedor individual
+como abrir cnpj
+nota fiscal mei
+conta pj
+banco digital pj
+contabilidade para pequenas empresas
+gestão de pequenas empresas
+empreendedorismo
+como reduzir custos da empresa
+fluxo de caixa empresa
+maquininha de cartão
+pix para empresas
+whatsapp business
+marketing digital para pequenas empresas
+internet para empresa
+celular para trabalho
+melhor operadora para empresa
+internet para home office
+```
+
+### 3. Negativas de conteúdo
+
+"tim" sozinho pega Tim Maia, Tim Burton, Tim Cook; e conteúdo de pessoa física, infantil e jogos não converte.
+
+```
+tim maia
+tim burton
+tim cook
+tim beta
+tim controle
+recarga
+chip grátis
+desbloqueio
+infantil
+desenho
+música
+clipe
+gameplay
+free fire
+minecraft
+novela
+futebol ao vivo
+```
+
+Também nas configurações da campanha: excluir conteúdo infantil e jogos, e usar o inventário "Padrão" (não o "Expandido").
+
+### 4. Canal orgânico no YouTube
+
+As buscas de suporte, negativadas nos anúncios, são o melhor material para vídeos orgânicos: "ativar chip tim empresa" é a página de maior volume do site. Os 6 vídeos do TikTok (seção 3 do guia de perfis) servem também como Shorts, com o título começando pela palavra-chave.
