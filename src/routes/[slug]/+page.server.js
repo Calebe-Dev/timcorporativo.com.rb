@@ -461,6 +461,24 @@ function textoDeTitulo(html) {
 }
 
 /**
+ * Dois defeitos do HTML vindo do CMS que a varredura do Lighthouse de
+ * 16/10/2026 acusou em produção (sem tocar no CMS, e sem mudar texto):
+ *
+ * - `src="http://…"`: 39 artigos puxam ~270 imagens de img.b2bpic.net em HTTP.
+ *   É conteúdo misto ("is-on-https" e aviso no console). O Chrome já faz o
+ *   upgrade sozinho; aqui o HTML passa a pedir HTTPS de saída (260 de 261 dessas
+ *   imagens respondem 200 em HTTPS; a outra já é 404 nos dois).
+ * - <script> do banner do OC Hub apontando para ochub.timcorporativo.com.br,
+ *   host que não existe no DNS: 62 artigos, erro no console e nenhum banner.
+ *   Sai o script; o contêiner vazio fica, inofensivo.
+ */
+function higienizar(html) {
+	return html
+		.replace(/(\s(?:src|srcset)=")http:\/\//gi, '$1https://')
+		.replace(/<script[^>]*src="https?:\/\/ochub\.timcorporativo\.com\.br\/[^"]*"[^>]*>\s*<\/script>/gi, '');
+}
+
+/**
  * Põe cada <table> do artigo numa caixa que rola na horizontal. No celular uma
  * tabela de 4 colunas não cabe em 358 px: antes ela própria rolava
  * (`prose-table:block`), sem nada que indicasse isso, e o texto parecia cortado
@@ -629,7 +647,7 @@ export async function load({ params }) {
 	// para a LP (fallback de linkarSolucao), em vez de um parágrafo de verdade.
 	const bruto = removerIndiceDoWordPress(artigo.html_content ?? '');
 	const html = envolverTabelas(
-		linkarSolucao(corrigirLinks(bruto.html, params.slug, artigos), params.slug)
+		linkarSolucao(corrigirLinks(higienizar(bruto.html), params.slug, artigos), params.slug)
 	);
 	const { h1, intro, parte1, parte2, sumario } = fatiarArtigo(html, bruto.tinha);
 
