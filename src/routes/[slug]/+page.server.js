@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import { existsSync } from 'node:fs';
 import { todosArtigos, listarArtigos, REDIRECIONADOS } from '$lib/server/artigos.js';
 import { site } from '$lib/site.js';
 // ENTIDADE-OC-TEL 2026-09-10 — a página de artigo era a única do site sem nenhum
@@ -477,7 +478,22 @@ function higienizar(html) {
 		html
 			.replace(/(\s(?:src|srcset)=")http:\/\//gi, '$1https://')
 			.replace(/<script[^>]*src="https?:\/\/ochub\.timcorporativo\.com\.br\/[^"]*"[^>]*>\s*<\/script>/gi, '')
+			.replace(/<img\b[^>]*>/gi, (tag) => (imagemPropriaInexistente(tag) ? '' : tag))
 	);
+}
+
+/**
+ * <img> apontando para o nosso domínio cuja imagem não existe em static/: 5
+ * artigos vieram do CMS com caminhos de arquivo que nunca foram enviados
+ * (wp-content/uploads/2026/03/…, /assets/…). Em produção era um ícone de imagem
+ * quebrada e um 404 no console (varredura do Lighthouse de 16/10/2026). Só
+ * sai a tag; imagem de terceiro não é checada aqui.
+ */
+function imagemPropriaInexistente(tag) {
+	const src = tag.match(/\ssrc="([^"]+)"/i)?.[1] ?? '';
+	const m = src.match(/^(?:https?:\/\/(?:www\.)?timcorporativo\.com\.br)?(\/[^?#]+)/i);
+	if (!m || /^https?:\/\//i.test(src) && !/timcorporativo\.com\.br/i.test(src)) return false;
+	return !existsSync('static' + decodeURIComponent(m[1]));
 }
 
 /**
