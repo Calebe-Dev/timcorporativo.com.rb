@@ -34,15 +34,17 @@
 </script>
 
 {#if visivel}
+	<!-- Compacto no celular: na primeira visita ele cobre o pé da primeira tela,
+	     que é onde ficam os botões do hero. -->
 	<div
 		role="region"
 		aria-label="Aviso de cookies"
-		class="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white p-4 shadow-[0_-4px_16px_rgba(0,0,0,0.08)]"
+		class="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white p-3 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] sm:p-4"
 	>
 		<div
-			class="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+			class="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:gap-3 sm:items-center sm:justify-between"
 		>
-			<p class="text-sm leading-relaxed text-slate-700">
+			<p class="text-[13px] leading-snug text-slate-700 sm:text-sm sm:leading-relaxed">
 				Usamos cookies de análise (Google Analytics) para entender como o site é usado. Você pode
 				aceitar ou recusar — o site funciona do mesmo jeito.
 				<a href="/politica-de-privacidade" class="font-semibold text-tim-700 hover:underline">

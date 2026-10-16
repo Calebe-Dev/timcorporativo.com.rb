@@ -79,7 +79,7 @@
 			class="absolute inset-0 bg-gradient-to-b from-tim-900/60 via-tim-900/45 to-tim-950/70"
 			aria-hidden="true"
 		></div>
-		<div class="relative mx-auto max-w-6xl px-4 py-16 sm:py-20 lg:py-28">
+		<div class="relative mx-auto max-w-6xl px-4 py-10 sm:py-20 lg:py-28">
 			<span
 				class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-tim-100 ring-1 ring-white/20"
 			>
@@ -95,18 +95,9 @@
 				{hero.subtitle}
 			</p>
 
-			<ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-tim-100">
-				{#each hero.bullets as b}
-					<li class="flex items-center gap-2">
-						<svg class="h-5 w-5 text-accent-400" viewBox="0 0 24 24" fill="currentColor"
-							><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z" /></svg
-						>
-						{b}
-					</li>
-				{/each}
-			</ul>
-
-			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
+			<!-- Botões ANTES da lista de benefícios: no celular a lista empurrava os dois
+			     CTAs para baixo da dobra (e para baixo do banner de cookies). -->
+			<div class="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
 				<a
 					href="#contato"
 					class="rounded-full bg-accent-600 px-6 py-3 text-center text-sm font-semibold text-white shadow-lg hover:bg-accent-700 sm:px-7 sm:py-3.5 sm:text-base"
@@ -122,6 +113,17 @@
 					Falar no WhatsApp
 				</a>
 			</div>
+
+			<ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-tim-100 sm:mt-8">
+				{#each hero.bullets as b}
+					<li class="flex items-center gap-2">
+						<svg class="h-5 w-5 text-accent-400" viewBox="0 0 24 24" fill="currentColor"
+							><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z" /></svg
+						>
+						{b}
+					</li>
+				{/each}
+			</ul>
 		</div>
 	</section>
 

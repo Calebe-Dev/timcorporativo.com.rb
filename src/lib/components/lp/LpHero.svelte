@@ -51,7 +51,7 @@
 		aria-hidden="true"
 	></div>
 
-	<div class="relative mx-auto max-w-6xl px-4 py-16 sm:py-20 lg:py-24">
+	<div class="relative mx-auto max-w-6xl px-4 py-10 sm:py-20 lg:py-24">
 		<div class="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
 			<div>
 				<!-- Trilha visível espelhando o BreadcrumbList do JSON-LD. -->
@@ -80,23 +80,8 @@
 					{lp.hero.sub}
 				</p>
 
-				<ul class="mt-7 grid gap-2.5 sm:grid-cols-2">
-					{#each lp.hero.bullets as b}
-						<li class="flex items-start gap-2.5 text-sm text-white/90">
-							<svg
-								class="mt-0.5 h-5 w-5 shrink-0 text-white"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-								aria-hidden="true"
-							>
-								<path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z" />
-							</svg>
-							<span>{b}</span>
-						</li>
-					{/each}
-				</ul>
-
-				<div class="mt-9 flex flex-col gap-3 sm:flex-row">
+				<!-- Botões antes da lista: no celular ela empurrava o CTA para baixo da dobra. -->
+				<div class="mt-6 flex flex-col gap-3 sm:mt-9 sm:flex-row">
 					<a
 						href="#proposta"
 						class="rounded-full bg-accent-600 px-7 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-accent-700 sm:text-base"
@@ -112,6 +97,22 @@
 						Tirar dúvida no WhatsApp
 					</a>
 				</div>
+
+				<ul class="mt-6 grid gap-2.5 sm:mt-7 sm:grid-cols-2">
+					{#each lp.hero.bullets as b}
+						<li class="flex items-start gap-2.5 text-sm text-white/90">
+							<svg
+								class="mt-0.5 h-5 w-5 shrink-0 text-white"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+								aria-hidden="true"
+							>
+								<path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z" />
+							</svg>
+							<span>{b}</span>
+						</li>
+					{/each}
+				</ul>
 			</div>
 
 			<!-- Cartão de dados: o gancho de E-E-A-T aparece acima da dobra, não

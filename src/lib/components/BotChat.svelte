@@ -43,7 +43,7 @@
 	// isso acontecer, o código aqui simplesmente não acha o que corrigir e vira
 	// inofensivo.
 	// ---------------------------------------------------------------------------
-	/** @type {MutationObserver[]} */
+	/** @type {{ disconnect(): void }[]} */
 	let observadores = [];
 
 	function sanearWidget() {
@@ -82,6 +82,60 @@
 		}
 	}
 
+	// ---------------------------------------------------------------------------
+	// Convite proativo no celular.
+	//
+	// O `#oc-bolha` ("Atendimento TIM Empresas — Posso te ajudar…") é fixo no
+	// rodapé e só some no "×". Em 390 px ele ocupa ~15% da tela durante TODA a
+	// rolagem e cobre justamente os botões de conversão: o "Falar no WhatsApp"
+	// do hero, o envio do formulário da home, o CTA da LP e o "Pedir cotação"
+	// dos artigos (auditoria de 16/10/2026).
+	//
+	// No celular ele aparece, fica CONVITE_MS no ar e sai. Sai também na hora em
+	// que a pessoa começa a preencher um formulário. E aparece uma vez por sessão:
+	// nas páginas seguintes nasce escondido. O botão do chat (#oc-fab) segue lá.
+	// No desktop o convite fica como o widget o desenhou: ali ele não cobre nada.
+	// ---------------------------------------------------------------------------
+	const CONVITE_MS = 8000;
+	const CONVITE_VISTO = 'oc-convite-visto';
+
+	function domarConvite() {
+		const bolha = document.getElementById('oc-bolha');
+		if (!bolha || !matchMedia('(max-width: 639px)').matches) return;
+
+		let timer;
+		const esconder = () => {
+			clearTimeout(timer);
+			bolha.hidden = true;
+		};
+		const visto = () => {
+			try {
+				return sessionStorage.getItem(CONVITE_VISTO) === '1';
+			} catch {
+				return false;
+			}
+		};
+		const quandoAparecer = () => {
+			if (bolha.hidden) return;
+			if (visto()) return esconder();
+			try {
+				sessionStorage.setItem(CONVITE_VISTO, '1');
+			} catch {}
+			clearTimeout(timer);
+			timer = setTimeout(esconder, CONVITE_MS);
+		};
+		quandoAparecer();
+		const obs = new MutationObserver(quandoAparecer);
+		obs.observe(bolha, { attributes: true, attributeFilter: ['hidden'] });
+		observadores.push(obs);
+
+		const aoPreencher = (e) => {
+			if (!bolha.hidden && e.target instanceof Element && e.target.closest('form')) esconder();
+		};
+		document.addEventListener('focusin', aoPreencher);
+		observadores.push({ disconnect: () => document.removeEventListener('focusin', aoPreencher) });
+	}
+
 	onMount(() => {
 		let timer;
 		let abortado = false;
@@ -115,7 +169,10 @@
 				// sem nenhum canal de contato flutuante.
 				if (abortado) return;
 				const subiu = !!document.getElementById('oc-widget-container');
-				if (subiu) sanearWidget();
+				if (subiu) {
+					sanearWidget();
+					domarConvite();
+				}
 				onmontar?.(subiu);
 			};
 
