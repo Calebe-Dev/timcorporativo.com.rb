@@ -136,8 +136,12 @@ function gerarSeoHtml(artigo) {
 		]
 	};
 
+	// Sem <title> aqui: ele sai pelo <title> do Svelte no +page.svelte. Um <title>
+	// cru dentro deste {@html} virava uma SEGUNDA tag na navegação interna — o
+	// Svelte troca o título via `document.title`, que só altera a primeira tag, e
+	// ela era a da página anterior. Resultado: aba e page_view do GA4 com o
+	// título errado depois de qualquer clique que levasse a um artigo.
 	return [
-		`<title>${esc(artigo.title)}</title>`,
 		`<meta name="description" content="${esc(desc)}" />`,
 		kw && `<meta name="keywords" content="${esc(kw)}" />`,
 		`<link rel="canonical" href="${url}" />`,

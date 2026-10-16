@@ -5,25 +5,31 @@
 	import { site, author } from '$lib/site.js';
 
 	let { data } = $props();
-	const { article, seo, banners } = data;
+	// $derived, não desestruturação simples: de um artigo para outro o SvelteKit
+	// reaproveita este componente e só troca `data`. Com `const` o H1, o <title>,
+	// o canonical e as datas ficavam os do artigo anterior.
+	const { article, seo, banners } = $derived(data);
 
 	const ogImageAbs = site.url + site.ogImage;
 
 	const formatar = (iso) =>
 		new Date(iso).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
 
-	const date = article.published_at ?? article.created_at;
-	const dateLabel = date ? formatar(date) : '';
+	const date = $derived(article.published_at ?? article.created_at);
+	const dateLabel = $derived(date ? formatar(date) : '');
 	// "Atualizado em" só quando a revisão é posterior à publicação — a data vem
 	// de date_updated (CMS ou camada editorial do repo) e casa com o
 	// dateModified do JSON-LD.
-	const updated = article.date_updated;
-	const updatedLabel =
-		updated && date && updated.slice(0, 10) > date.slice(0, 10) ? formatar(updated) : '';
+	const updated = $derived(article.date_updated);
+	const updatedLabel = $derived(
+		updated && date && updated.slice(0, 10) > date.slice(0, 10) ? formatar(updated) : ''
+	);
 </script>
 
 <svelte:head>
-	<!-- Bloco de SEO gerado pelo SDK: title, meta description, keywords, OG e JSON-LD (Article). -->
+	<!-- O título fica fora do {@html}: ver o comentário em gerarSeoHtml. -->
+	<title>{article.title}</title>
+	<!-- Bloco de SEO gerado pelo SDK: meta description, keywords, OG e JSON-LD (Article). -->
 	{@html seo.html}
 	<meta name="robots" content="index, follow, max-image-preview:large" />
 	<meta name="author" content={author.name} />

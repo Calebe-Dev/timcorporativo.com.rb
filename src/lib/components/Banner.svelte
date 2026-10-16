@@ -14,10 +14,13 @@
 	 */
 	let { banner, formato = 'rodape', pagina = '', cluster = '' } = $props();
 
-	const externo = banner.destino.tipo === 'externo';
-	const href =
-		banner.destino.tipo === 'whatsapp' ? whatsappLink(banner.destino.assunto) : banner.destino.href;
-	const rotulo = banner.parceiro ? `Parceiro · ${banner.marca}` : banner.marca;
+	// $derived: na navegação de um artigo para outro o componente é reaproveitado
+	// e só a prop `banner` muda — com `const` o link ficava o do artigo anterior.
+	const externo = $derived(banner.destino.tipo === 'externo');
+	const href = $derived(
+		banner.destino.tipo === 'whatsapp' ? whatsappLink(banner.destino.assunto) : banner.destino.href
+	);
+	const rotulo = $derived(banner.parceiro ? `Parceiro · ${banner.marca}` : banner.marca);
 
 	function aoClicar(e) {
 		// `gtag` existe desde o app.html e enfileira até o consentimento — chamar

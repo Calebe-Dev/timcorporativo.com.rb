@@ -15,8 +15,16 @@
 	import LpRelacionadas from '$lib/components/lp/LpRelacionadas.svelte';
 
 	let { data } = $props();
-	const { lp, lpsRelacionadas, artigosRelacionados } = data;
+	const { lp, lpsRelacionadas, artigosRelacionados } = $derived(data);
 </script>
+
+<!--
+	De uma LP para outra o SvelteKit reaproveita esta página e só troca `data`.
+	Vários filhos calculam valores uma vez só (canonical e JSON-LD no SeoSolucao,
+	tema no LpHero), então o {#key} remonta tudo quando o slug muda — sem ele o
+	canonical, o JSON-LD e o hero ficavam os da LP anterior.
+-->
+{#key lp.slug}
 
 <SeoSolucao
 	title={lp.title}
@@ -178,3 +186,4 @@
 <SiteMap artigos={data.artigosRecentes} total={data.totalArtigos} solucoes={data.solucoes} />
 
 <Footer />
+{/key}
