@@ -479,7 +479,27 @@ function higienizar(html) {
 			.replace(/(\s(?:src|srcset)=")http:\/\//gi, '$1https://')
 			.replace(/<script[^>]*src="https?:\/\/ochub\.timcorporativo\.com\.br\/[^"]*"[^>]*>\s*<\/script>/gi, '')
 			.replace(/<img\b[^>]*>/gi, (tag) => (imagemPropriaInexistente(tag) ? '' : tag))
+			.replace(/<table[\s\S]*?<\/table>/gi, limparCoresDaTabela)
 	);
+}
+
+/**
+ * Cor e fundo inline dentro de tabelas do CMS saem; padding, borda e
+ * alinhamento ficam. Três artigos traziam `<tr style="background-color:#0045ad;
+ * color:white">`: o fundo valia, mas a cor do texto perdia para a tipografia
+ * do site (prose), e o cabeçalho ficava azul-escuro sobre azul — contraste
+ * 1,7:1 (axe color-contrast, varredura de 16/10/2026). Sem as cores, a tabela
+ * segue o estilo das demais.
+ */
+function limparCoresDaTabela(tabela) {
+	return tabela.replace(/\sstyle="([^"]*)"/gi, (m, css) => {
+		const limpo = css
+			.split(';')
+			.map((d) => d.trim())
+			.filter((d) => d && !/^(background(-color)?|color)\s*:/i.test(d))
+			.join('; ');
+		return limpo ? ` style="${limpo}"` : '';
+	});
 }
 
 /**
