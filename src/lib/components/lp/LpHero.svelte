@@ -55,7 +55,7 @@
 		<div class="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
 			<div>
 				<!-- Trilha visível espelhando o BreadcrumbList do JSON-LD. -->
-				<nav aria-label="Trilha de navegação" class="mb-5 text-xs text-white/70">
+				<nav aria-label="Trilha de navegação" class="mb-3 text-xs text-white/70 sm:mb-5">
 					<ol class="flex flex-wrap items-center gap-1.5">
 						<li><a href="/" class="hover:text-white hover:underline">Início</a></li>
 						<li aria-hidden="true">›</li>
@@ -72,11 +72,11 @@
 					{lp.hero.eyebrow}
 				</span>
 
-				<h1 class="mt-4 text-balance text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+				<h1 class="mt-3 text-balance text-[1.75rem] font-bold leading-tight sm:mt-4 sm:text-4xl lg:text-5xl">
 					{lp.h1}
 				</h1>
 
-				<p class="mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+				<p class="mt-3 max-w-2xl text-[15px] leading-relaxed text-white/85 sm:mt-5 sm:text-lg">
 					{lp.hero.sub}
 				</p>
 
