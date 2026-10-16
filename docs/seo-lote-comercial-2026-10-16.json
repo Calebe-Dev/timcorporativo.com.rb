@@ -1,0 +1,265 @@
+{
+  "gerado_em": "2026-10-16",
+  "escopo": "timcorporativo.com.br — artigos já rastreados; URLs inalteradas; nenhuma página nova",
+  "regra_de_aplicacao": {
+    "grupo_A_title_meta_agora": "3 páginas fora do lote de 29/09: aplicar title, meta, h1, resposta, CTA agora.",
+    "grupo_B_lote_2909_aditivo": "7 páginas com title/meta trocados em e114572 (29/09), em leitura até 26/10: aplicar só h1 (onde proposto), resposta, atualizadoEm e CTA agora; 'title_fase2' só depois da leitura de 26/10 e se a leitura não mandar reverter.",
+    "onde": {
+      "title/meta_description": "content/artigos/<slug>.json",
+      "h1": "primeiro <h1> em html_content do mesmo JSON",
+      "resposta/atualizadoEm": "src/lib/blog/editorial.js (mapa EDITORIAL)",
+      "paragrafo_cta": "html_content, na posição indicada; não duplicar link que o build já injeta via ARTIGO_PARA_LP"
+    }
+  },
+  "propostas": [
+    {
+      "slug": "plano-empresarial-tim-como-escolher-a-melhor-solucao",
+      "grupo": "A_title_meta_agora",
+      "motivo": "\"plano de internet empresarial\" tem 1.114 imp/90d (1.111 só nos últimos 28d) na posição 4,6 com ZERO clique; title e meta ainda são os do WordPress (\"Como Escolher a Melhor Solução?\", superlativo) e não citam internet. Página não foi tocada em 29/09.",
+      "title": "Plano de internet empresarial TIM: como escolher",
+      "meta_description": "Como escolher o plano empresarial TIM: internet fixa, dados móveis e telefonia conforme o porte, a área de atuação e o suporte. Proposta no CNPJ.",
+      "h1": "Plano de internet empresarial TIM: como escolher o plano certo para a empresa",
+      "resposta": "Para escolher um plano de internet empresarial TIM, parta de quatro pontos: o que a empresa precisa (porte, área de atuação, equipe em campo ou no escritório), o custo-benefício frente ao uso real, a combinação de dados móveis com internet fixa e o suporte dedicado ao plano. A proposta é montada no CNPJ a partir dessas respostas.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "paragrafo_cta": {
+        "texto_html": "<p>Se a dúvida é como reunir internet, telefonia e as linhas da equipe em um só contrato no CNPJ, veja <a href=\"/solucoes/seu-negocio-com-tim-empresas/\">o que muda na operação com a TIM Empresas</a> e peça a proposta a partir do uso real da empresa.</p>",
+        "posicao": "apos_intro"
+      },
+      "link_adicional_sugerido": "/internet-tim-empresa/ (hub de internet TIM para empresas) como segundo link no mesmo parágrafo, se o orquestrador aceitar link para artigo",
+      "observacao_cms": "Corpo tem (1) tabela \"Planos Empresariais TIM\" com nomes inexistentes (TIM Empresa 2G/4G/Ilimitado/Pro) e franquias em GB (10GB, 30GB, 50GB, 100GB/mês) — viola a R1 e é informação falsa: remover a tabela ou trocar por texto sem valores; (2) abertura \"O ano de 2025 chegou\" e promessa de texto \"engraçado\" — datado e fora do tom; (3) \"Índice de Conteúdo / Toggle\" literal herdado do plugin. Dispute: /plano-empresarial-tim-como-escolher-o-melhor-para-2025/ também aparece para a consulta (126 imp, pos 10,7); esta URL fica com ela, a de 2025 não deve ganhar \"internet\" no title."
+    },
+    {
+      "slug": "tim-vs-vivo-empresas-2025-comparativo",
+      "grupo": "A_title_meta_agora",
+      "motivo": "Meta atual contém \"TIM 30-40% mais barato\" (viola a R1: percentual + superlativo) e title traz \"2025\", \"Qual é Melhor?\" e \"[Tabela Análise]\". 1.827 imp/90d (1.001 nos últimos 28d), CTR 0,60%, pos 7,4; consultas são informacionais (\"tim e vivo são a mesma empresa\" 230 imp) — a correção é obrigatória pela R1, o ganho de clique é secundário.",
+      "title": "TIM ou Vivo Empresas: comparativo de planos para CNPJ",
+      "meta_description": "TIM ou Vivo para a empresa: apps inclusos, cobertura, roaming, fidelidade e atendimento comparados para quem contrata no CNPJ, e quando cada uma compensa.",
+      "h1": "TIM ou Vivo Empresas: comparativo de planos para CNPJ em apps, cobertura e contrato",
+      "resposta": "TIM Empresas e Vivo Empresas são duas operadoras distintas, com oferta própria para CNPJ. A comparação passa por apps inclusos, cobertura, roaming nacional, flexibilidade de contrato e atendimento, e mostra os cenários em que a Vivo ainda faz sentido, como combos com fibra dedicada e áreas rurais remotas, e aqueles em que a TIM tende a compensar.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "paragrafo_cta": {
+        "texto_html": "<p>Se a empresa está na Vivo com contrato em vigor, a troca não precisa esperar o fim da fidelidade: veja <a href=\"/solucoes/trocar-de-operadora-com-contrato-vigente/\">os caminhos para trocar de operadora com contrato vigente</a> antes de decidir.</p>",
+        "posicao": "antes_do_ultimo_h2"
+      },
+      "observacao_cms": "Corpo viola a R1 em vários pontos: H2 \"2. Preço 30-40% Inferior\", \"5. Consultoria Especializada Grupo OC (+R$ 50k em Valor Agregado)\", \"Caso Real: PME Migrou Vivo → TIM e Economizou R$ 15.600/ano\", \"R$ 50.000/mês\", \"5 Razões Por Que TIM Supera Vivo\" (superlativo), tudo datado 2025 e com CTA em caixa alta \"FALE COM UM CONSULTOR GRUPO OC\". A marca antiga é filtrada no build (brand.js), os valores não. O artigo não responde à pergunta que gera as impressões (\"TIM e Vivo são a mesma empresa?\") — um item de FAQ com essa pergunta e resposta direta (não, são grupos distintos; a TIM pertence ao grupo TIM/Telecom Italia e a Vivo à Telefônica) capturaria o snippet; é edição de CMS, não entrou na proposta."
+    },
+    {
+      "slug": "vivo-vs-claro-empresas-2025-comparativo-preco",
+      "grupo": "A_title_meta_agora",
+      "motivo": "5.250 imp/90d (2.271 nos últimos 28d), CTR 0,32%, pos 7,6 — o maior volume do conjunto com title do WordPress (\"2025\", \"[Análise]\") e meta cortada em \"consultoria Grupo.\" (marca antiga truncada). Consultas são \"vivo e claro são a mesma empresa\" (333+331+68 imp) e \"vivo ou claro\" (122).",
+      "title": "Vivo ou Claro Empresas: comparativo e a alternativa TIM",
+      "meta_description": "Vivo ou Claro para a empresa: pontos fortes e fracos em cobertura, apps, 5G e contrato, e por que a TIM entra como terceira opção na comparação para CNPJ.",
+      "h1": "Vivo ou Claro Empresas: comparativo de cobertura, apps e contrato, e a alternativa TIM",
+      "resposta": "Vivo Empresas e Claro Empresas são operadoras distintas e concorrentes. O comparativo mostra os pontos fortes e fracos de cada uma para CNPJ: a Vivo pesa em cobertura de estradas e áreas rurais e em combos com fibra; a Claro, em operação urbana com preço como decisor. E apresenta a TIM como terceira opção a avaliar antes de fechar.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "paragrafo_cta": {
+        "texto_html": "<p>Qualquer que seja a operadora, a forma de contratar também muda a conta: veja <a href=\"/solucoes/contratar-tim-direto-ou-por-revenda-autorizada/\">o que muda entre contratar direto com a operadora ou por um canal autorizado</a>.</p>",
+        "posicao": "antes_do_ultimo_h2"
+      },
+      "observacao_cms": "Corpo datado (\"2025\" em H2s e texto), \"Grupo OC\" em H2 (\"via Grupo OC\" — filtrado no build) e trechos com percentual (\"95% da necessidade\"); FAQ não responde \"Vivo e Claro são a mesma empresa?\", que é a consulta que gera as impressões — um item de FAQ direto (não; Vivo é da Telefônica, Claro é da América Movil) é a edição de maior retorno aqui e só se faz no CMS."
+    },
+    {
+      "slug": "portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero",
+      "grupo": "B_lote_2909_aditivo",
+      "motivo": "\"portabilidade tim\" 4.315 imp/90d (3.001 nos últimos 28d) na posição 10,4 com 1 clique; CTR da página 0,52%. Title/meta foram trocados em 29/09 e a URL irmã (…-guia-completo-trocar-operadora) já é 301 para cá, então esta página fica com a consulta. A alavanca que resta antes de 26/10 é a resposta direta: a atual (14/09) não explica CPF×CNPJ, que é o que a maioria das 3.001 impressões procura.",
+      "title_manter": "Portabilidade TIM empresarial: como fazer e manter o número (29/09, em leitura até 26/10)",
+      "resposta": "A portabilidade TIM leva o número da empresa para a TIM sem trocá-lo. A regra da Anatel é a mesma para CPF e CNPJ; muda o caminho: no CPF, o pedido é feito nos canais da própria TIM; no CNPJ, entra com a contratação do plano empresarial, pelo representante autorizado, que confere titularidade, documentos e linhas antes da troca.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "observacao_cms": "H1 já está alinhado ao title; sem CTA novo porque o corpo já linka /solucoes/trocar-de-operadora-com-contrato-vigente/. \"Índice de Conteúdo\" literal como primeiro <p> é herança do plugin."
+    },
+    {
+      "slug": "ip-fixo-empresarial-seguranca-acesso-remoto-guia",
+      "grupo": "B_lote_2909_aditivo",
+      "motivo": "\"banda larga empresarial\" apareceu depois da troca de 29/09: 643 imp em 28d na posição 5,7 com ZERO clique (a página saiu de 4/445 para 7/1.364 imp). O corpo trata banda larga só como contraponto do IP dinâmico, então o title não deve virar \"banda larga\" agora; a resposta direta pode nomear a consulta com honestidade e o title_fase2 fica para 26/10.",
+      "title_manter": "IP fixo empresarial na TIM: quando precisa e como contratar (29/09, em leitura até 26/10)",
+      "title_fase2": "Banda larga empresarial com IP fixo: quando precisa",
+      "resposta": "A banda larga empresarial comum trabalha com IP dinâmico, que muda quando o modem reinicia; o IP fixo mantém sempre o mesmo endereço e é o que VPN, câmeras, servidor e acesso remoto exigem. Na TIM, o IP fixo faz parte do Link Dedicado; na TIM Fibra Empresa depende do plano e do contrato, confirmado na proposta.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "observacao_cms": "Sem CTA novo: o build já injeta o link da LP de clínicas (ARTIGO_PARA_LP). H1 já alinhado ao title. H2s em estilo \"Os 5 Pilares de Valor (O ROI da Estabilidade)\" são herança; não bloqueiam."
+    },
+    {
+      "slug": "plano-tim-empresarial-black-controle-pre-comparativo",
+      "grupo": "B_lote_2909_aditivo",
+      "motivo": "5.854 imp/90d (3.212 nos últimos 28d, 12 cliques, CTR 0,37%). A maior consulta é a cabeça \"tim empresarial\" (1.926 imp), que não entra em title; a comercial própria é \"plano empresarial celular\" (265 imp, pos 9,7, zero clique). Title de 29/09 em leitura; a abertura atual começa por \"Um erro comum…\" sem resposta direta, e a página não está no mapa de LPs do build.",
+      "title_manter": "TIM Black ou Controle: qual plano usar nas linhas do CNPJ (29/09, em leitura até 26/10)",
+      "title_fase2": "Plano empresarial de celular TIM: Black ou Controle no CNPJ",
+      "resposta": "TIM Black Empresa é o pós-pago para equipes que dependem de dados fora do escritório; TIM Controle Empresa tem franquia definida em contrato, com teto por linha e fatura previsível. A oferta da TIM para empresas é pós-paga ou controle; pré-pago fica no CPF. A escolha sai do perfil de uso de cada pessoa, e os dois convivem na conta.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "paragrafo_cta": {
+        "texto_html": "<p>Antes de comparar modalidades pelo valor por linha, vale entender <a href=\"/solucoes/melhores-precos-tim-para-empresas/\">por que a comparação por linha engana</a> e o que de fato muda a condição da proposta no CNPJ.</p>",
+        "posicao": "apos_intro"
+      },
+      "observacao_cms": "Último H2 é uma frase de CTA inteira (\"Quer uma análise gratuita do perfil de uso…\") — funciona, mas é heading de 20+ palavras; opcional encurtar. Corpo já está limpo de R$/GB/%."
+    },
+    {
+      "slug": "tim-corporativo-planos-empresariais",
+      "grupo": "B_lote_2909_aditivo",
+      "motivo": "\"tim fibra empresas\" 410 imp (pos 7,6) + \"tim fibra empresa\" 247 (pos 8,3) + \"internet pessoa juridica\" 109 (pos 6,9) + \"tim empresas internet\" 97 (pos 8,1): 863 imp/90d em posição de clique com 1 clique no total. A página disputa \"tim fibra empresas\" com a home (444 imp, pos 7,0); a home é intocável, então esta URL fica com a consulta via resposta direta agora e title_fase2 depois. Title de 29/09 em leitura; 28d subiu de 1/1.085 para 4/1.872.",
+      "title_manter": "TIM Corporativo: planos de fibra e telefonia para empresas (29/09, em leitura até 26/10)",
+      "title_fase2": "TIM Fibra Empresas e telefonia: planos TIM Corporativo",
+      "h1": "TIM Corporativo: planos de internet fibra e telefonia para empresas",
+      "resposta": "O TIM Corporativo reúne, no CNPJ, internet por fibra (TIM Fibra Empresa e TIM UltraFibra), Link Dedicado TIM quando a operação precisa de banda garantida, IP fixo e SLA em contrato, telefonia fixa e PABX virtual, e linhas móveis TIM Black Empresa e TIM Controle Empresa. A proposta parte da viabilidade no endereço e do perfil de uso da empresa.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "observacao_cms": "H1 só muda caixa (Title Case → frase), sem mudar palavras. Sem CTA novo: a página já linka /#form, o hub de internet e os guias de fibra e link dedicado. O NAP antigo no rodapé do html_content é reescrito no build (NAP_RULES); no CMS continua errado."
+    },
+    {
+      "slug": "tim-ultrafibra-1-giga-vs-vivo-1-giga",
+      "grupo": "B_lote_2909_aditivo",
+      "motivo": "4.329 imp/90d (2.280 nos últimos 28d, 4 cliques, CTR 0,18%); dona da família genérica entre as três páginas de UltraFibra: \"tim ultrafibra\" (218 imp, pos 4,2), \"ultrafibra\" (239), \"tim fibra\" (293, pos 6,3), \"tim ultrafibra 1 giga\" (386). H1 ainda é o antigo (\"…2026: Qual Realmente Vale a Pena Para Seu Home Office?\") e contradiz o title de 29/09 (\"como comparar\"); o corpo não tem nenhum link interno.",
+      "title_manter": "TIM UltraFibra 1 Giga ou Vivo Fibra 1 Giga: como comparar (29/09, em leitura até 26/10)",
+      "title_fase2": "TIM UltraFibra 1 Giga ou Vivo Fibra 1 Giga: qual escolher",
+      "h1": "TIM UltraFibra 1 Giga ou Vivo Fibra 1 Giga: como comparar as duas antes de contratar",
+      "resposta": "TIM UltraFibra 1 Giga e Vivo Fibra 1 Giga têm o mesmo nome de velocidade, mas o número indica a velocidade contratada, não a que chega em cada aparelho. A diferença costuma estar em viabilidade no endereço, estabilidade no horário de pico, upload, suporte, prazo de fidelidade e o que vem junto na oferta; compare pelos mesmos critérios.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "paragrafo_cta": {
+        "texto_html": "<p>Se a conexão é para a empresa, a contratação é no CNPJ e a proposta sai da viabilidade no endereço: <a href=\"/#contato\">peça a proposta da TIM Fibra Empresa</a>. Sem fibra no endereço, veja <a href=\"/solucoes/internet-5g-para-empresas-sem-fibra-no-endereco/\">internet 5G para empresas sem fibra no endereço</a>.</p>",
+        "posicao": "antes_do_ultimo_h2"
+      },
+      "observacao_cms": "\"1 Giga\" é nome do plano e já está no title de 29/09; não é promessa de velocidade (a R1 do validador de LPs não casa com ele, e o artigo não está em build/solucoes/). Consulta \"tim ultrafibra 2 giga\" (124 imp) não tem resposta no corpo — não perseguir. \"Índice de Conteúdo / Toggle\" literal herdado do plugin."
+    },
+    {
+      "slug": "tim-ultra-fibra-empresarial-vale-a-pena",
+      "grupo": "B_lote_2909_aditivo",
+      "motivo": "Impressões saltaram de 89 para 1.009 em 28d após o title de 29/09, com ZERO clique (pos 9,6). 492 imp são \"tim ultracombo vale a pena\" (combo residencial que o artigo não cita) e 211 \"tim fibra\" (pos 6,6). O H1 antigo (\"Vale a Pena? Uma Análise Técnica Profunda\") contradiz o title (\"quando basta e quando não basta\") e está dentro de <p>.",
+      "title_manter": "TIM UltraFibra na empresa: quando basta e quando não basta (29/09, em leitura até 26/10)",
+      "h1": "TIM UltraFibra na empresa: vale a pena? Quando a fibra basta e quando não basta",
+      "resposta": "A TIM UltraFibra empresarial resolve o dia a dia de PMEs e filiais: sistemas em nuvem, backups, VoIP com vários ramais e videoconferência, desde que upload, latência e jitter estejam adequados. Ela não basta quando a operação exige banda garantida (CIR), rotas exclusivas e tempo de reparo definido em contrato; nesses casos, o caminho é o link dedicado.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "observacao_cms": "html_content começa com <p><h1>…</h1></p> (H1 dentro de parágrafo) seguido de <div id=\"ochub-banners-top\"> morto (script já removido do build) — limpar no CMS. H2 \"Perguntas Frequentes (AEO)\" expõe jargão interno: renomear para \"Perguntas frequentes\". Sem CTA novo: o build injeta a LP de hotéis (ARTIGO_PARA_LP). Decisão de disputa: esta página fica com o ângulo \"empresarial / vale a pena\"; não perseguir \"ultracombo\" (produto residencial, fora do texto)."
+    },
+    {
+      "slug": "tim-ultrafibra-planos-2026-preco-cobertura",
+      "grupo": "B_lote_2909_aditivo",
+      "motivo": "\"tim ultrafibra preco\" 621 imp/90d (574 nos últimos 28d) na posição 9,9 com ZERO clique; \"tim ultrafibra cobertura\" 120 (pos 10,1); CTR da página 0,28%. Entre as três páginas de UltraFibra, esta fica com preço/cobertura/CEP (as outras duas somam 110 imp nessas consultas). Title de 29/09 em leitura; o H1 traz \"em 2026\" que a consulta não tem.",
+      "title_manter": "TIM UltraFibra: planos, cobertura e o que define o preço (29/09, em leitura até 26/10)",
+      "title_fase2": "TIM UltraFibra: preço, planos e cobertura no seu endereço",
+      "h1": "TIM UltraFibra: planos, cobertura no endereço e o que define o preço",
+      "resposta": "Não há tabela única de preço para a TIM UltraFibra: o valor sai da oferta disponível para o endereço e muda com a velocidade escolhida, o prazo de fidelidade e o que vem junto no plano. O primeiro passo é consultar o CEP e o número do imóvel; para empresa, a contratação é no CNPJ, pela TIM Fibra Empresa.",
+      "atualizadoEm": "2026-10-16T00:00:00",
+      "observacao_cms": "Sem CTA novo: o build injeta a LP de 5G sem fibra (ARTIGO_PARA_LP) e o corpo já linka o guia de contratação no CNPJ. H2 \"6. TIM Ultra Fibra vs Vivo Fibra: Comparativo Final 2026\" duplica o tema da página 1 Giga — deixar como H2, não virar página."
+    }
+  ],
+  "fora_do_lote": [
+    {
+      "slug": "tim-black-empresa-internet-movel-para-seu-negocio",
+      "motivo": "Reescrito em 29/09 (pilar Black); 28d passou de 1 cl/1.872 imp para 5 cl/1.805 e \"tim black empresa\" de pos 9,0 para 8,2; o primeiro parágrafo já é resposta direta. Esperar a leitura de 26/10."
+    },
+    {
+      "slug": "internet-tim-empresa",
+      "motivo": "Hub reescrito em 29/09; 1.043 das 1.673 imp/28d são \"tim fibra empresarial\", consulta automatizada fora de KPI (memória 29/09). Tirando-a, CTR real é ~0,6%. Esperar 26/10."
+    },
+    {
+      "slug": "plano-empresarial-tim-comparativo-precos-escolher",
+      "motivo": "Reescrito em 29/09; 2.648 das 6.249 imp/90d são as cabeças \"tim empresas\"/\"tim empresarial\", que não entram em title de artigo. Nada a propor antes de 26/10."
+    },
+    {
+      "slug": "empresas-tim-solucoes-para-negocios-de-todos-os-portes",
+      "motivo": "561 das 2.063 imp/90d são \"tim empresas\" (cabeça em leitura no nível do site) — disputa com a home, então não mexer agora. Conteúdo datado (\"Promessas Para 2025\") é tarefa de CMS; reavaliar após 26/10."
+    },
+    {
+      "slug": "consultor-tim-empresa-atendimento-personalizado-negocio",
+      "motivo": "CTR 1,04% (90d), title novo, já linka a LP de revenda × direto. Sem ganho claro."
+    },
+    {
+      "slug": "tim-ultra-fibra-voip-requisitos-qos",
+      "motivo": "CTR 1,22%, o melhor do conjunto; consultas são residenciais/suporte (\"tim banda larga\" 184, \"tim fibra telefone\" 108). Único defeito é o title de 73 caracteres (corta na SERP) — candidato a fase 2, sem urgência."
+    },
+    {
+      "slug": "tim-fibra-empresas-cnpj-como-contratar",
+      "motivo": "Fora do candidatos.txt; 765 das 1.229 imp/28d são \"tim fibra telefone\" (intenção de suporte: número da TIM Fibra). Pela regra de 29/09, suporte continua suporte."
+    },
+    {
+      "slug": "plano-empresarial-tim-como-escolher-o-melhor-para-2025",
+      "motivo": "Disputa \"plano de internet empresarial\" em pos 10,7 (126 imp) com a URL irmã que fica com a consulta (pos 4,6). Não mexer; candidata a consolidação futura — decisão do dono, sem redirect nesta proposta."
+    },
+    {
+      "slug": "canais-de-atendimento-tim-empresarial",
+      "motivo": "Excluída por regra: 47% suporte; cabeça \"tim empresas\"."
+    },
+    {
+      "slug": "como-agendar-uma-visita-tecnica-do-plano-tim-empresa",
+      "motivo": "Excluída por regra: consultas de suporte técnico."
+    },
+    {
+      "slug": "conheca-os-planos-tim-empresa",
+      "motivo": "Excluída por regra: presa à leitura de \"tim empresas\" de 26/10."
+    },
+    {
+      "slug": "tim-empresas-gestao-linhas-esim-governanca",
+      "motivo": "Excluída por regra: presa à leitura de \"tim empresas\" de 26/10 (fase 2 do lote anterior)."
+    },
+    {
+      "slug": "tim-empresas-planos-corporativos-descontos-progressivos-guia",
+      "motivo": "Já é 301."
+    },
+    {
+      "slug": "portabilidade-tim-empresarial-guia-completo-trocar-operadora",
+      "motivo": "Já é 301 para a página de portabilidade do lote."
+    }
+  ],
+  "estimativa": {
+    "metodo": "Impressões dos últimos 28d (GSC via API, até 13/10) ÷ 4 = imp/semana. CTR-alvo pela curva do próprio site em 90d (consultas ≥30 imp, sem automatizadas): pos 4 → 3,75%, pos 5 → 1,25%, pos 6 → 0,52%, pos 7–9 → ~0,3%, pos 10 → 0,08%. Conservador = metade do alvo; otimista = alvo. Resposta direta sozinha (sem troca de title) vale 0 no conservador porque só muda a SERP se virar snippet/AIO.",
+    "linhas": [
+      {
+        "slug": "plano-empresarial-tim-como-escolher-a-melhor-solucao",
+        "base": "\"plano de internet empresarial\" 1.111 imp/28d = 278/sem, pos 4,6, CTR 0%",
+        "alvo": "1,0% a 2,5%",
+        "ganho_cl_sem": "+2,8 a +7,0"
+      },
+      {
+        "slug": "vivo-vs-claro-empresas-2025-comparativo-preco",
+        "base": "2.271 imp/28d = 568/sem, CTR 0,31%, pos ~8,5",
+        "alvo": "0,5% a 0,7%",
+        "ganho_cl_sem": "+1,1 a +2,2"
+      },
+      {
+        "slug": "tim-vs-vivo-empresas-2025-comparativo",
+        "base": "1.001 imp/28d = 250/sem, CTR 0,50%, pos 7,4",
+        "alvo": "0,8% a 1,0%",
+        "ganho_cl_sem": "+0,8 a +1,3"
+      },
+      {
+        "slug": "tim-ultrafibra-1-giga-vs-vivo-1-giga",
+        "base": "2.280 imp/28d = 570/sem, CTR 0,18%; H1 alinhado + resposta",
+        "alvo": "0,3% a 0,5%",
+        "ganho_cl_sem": "+0,7 a +1,8"
+      },
+      {
+        "slug": "tim-ultra-fibra-empresarial-vale-a-pena",
+        "base": "1.009 imp/28d = 252/sem, CTR 0%; H1 + resposta",
+        "alvo": "0 a 0,3%",
+        "ganho_cl_sem": "0 a +0,8"
+      },
+      {
+        "slug": "tim-ultrafibra-planos-2026-preco-cobertura",
+        "base": "2.045 imp/28d = 511/sem, CTR 0,20%; resposta",
+        "alvo": "0,2% a 0,4%",
+        "ganho_cl_sem": "0 a +1,0"
+      },
+      {
+        "slug": "portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero",
+        "base": "6.199 imp/28d = 1.550/sem, CTR 0,44%; só resposta",
+        "alvo": "0,44% a 0,6%",
+        "ganho_cl_sem": "0 a +2,5"
+      },
+      {
+        "slug": "ip-fixo + black-controle + tim-corporativo-planos (só resposta/CTA agora)",
+        "base": "1.364 + 3.212 + 1.872 imp/28d",
+        "alvo": "+0,1 pp",
+        "ganho_cl_sem": "0 a +1,6"
+      },
+      {
+        "slug": "fase 2 (titles após 26/10): ip-fixo, black-controle, tim-corporativo-planos, 1-giga, planos-2026",
+        "base": "\"banda larga empresarial\" 160/sem pos 5,7; \"plano empresarial celular\" 66/sem; \"tim fibra empresa(s)\" ~165/sem",
+        "alvo": "0,5% a 1,0%",
+        "ganho_cl_sem": "+1,5 a +3,5 (não somado no total abaixo)"
+      }
+    ],
+    "total_agora_cl_sem": "+5 a +18 cliques/semana (conservador a otimista), contra ~300 cl/sem do site; em leads, o que pesa é a página de \"plano de internet empresarial\" (pos 4,6, intenção de compra) — as demais são residenciais/informacionais e valem mais pela limpeza de R1 e pelo CTA do que pelo clique.",
+    "caveats": [
+      "Dimensão query cobre ~30% dos cliques (anonimização); totais por page.",
+      "Curva CTR do site é deprimida por consultas de marca TIM (site oficial no topo); alvo pode ser otimista em consultas com \"tim\".",
+      "Trocar title em 10 páginas ao mesmo tempo com a leitura de 26/10 em curso foi evitado de propósito: só 3 titles mudam agora."
+    ]
+  }
+}
