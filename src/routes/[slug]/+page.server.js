@@ -473,9 +473,79 @@ function textoDeTitulo(html) {
  *   Sai o script; o contêiner vazio fica, inofensivo.
  */
 function higienizar(html) {
-	return html
-		.replace(/(\s(?:src|srcset)=")http:\/\//gi, '$1https://')
-		.replace(/<script[^>]*src="https?:\/\/ochub\.timcorporativo\.com\.br\/[^"]*"[^>]*>\s*<\/script>/gi, '');
+	return corrigirListas(
+		html
+			.replace(/(\s(?:src|srcset)=")http:\/\//gi, '$1https://')
+			.replace(/<script[^>]*src="https?:\/\/ochub\.timcorporativo\.com\.br\/[^"]*"[^>]*>\s*<\/script>/gi, '')
+	);
+}
+
+/**
+ * 43 artigos do CMS têm <li> fora de qualquer lista, quase sempre assim:
+ * `<p><li>…</li><br><li>…</li></p>`. O navegador fecha o <p> no primeiro <li>
+ * e o item fica pendurado no <article>: o leitor de tela não anuncia lista
+ * nenhuma (axe `listitem`, 43 páginas na varredura de 16/10/2026). Cada
+ * sequência de <li> soltos ganha um <ul>, e saem o <p> que a envolvia e os
+ * <br> entre os itens. O texto não muda.
+ */
+function corrigirListas(html) {
+	const tokens = /<(\/?)(ul|ol|li|p|br)\b[^>]*>/gi;
+	let saida = '';
+	let ultimo = 0;
+	let profundidade = 0; // dentro de <ul>/<ol> legítimos
+	let solta = false; // dentro de um <ul> que nós abrimos
+	let dentroItem = false; // entre o <li> e o </li> de um item solto
+	let engolirFechaP = false;
+	let m;
+	while ((m = tokens.exec(html))) {
+		const [tag, fecha, nomeBruto] = m;
+		const nome = nomeBruto.toLowerCase();
+		let trecho = html.slice(ultimo, m.index);
+		ultimo = tokens.lastIndex;
+
+		if (solta && dentroItem) {
+			// Conteúdo do item passa como veio, até o </li>.
+			saida += trecho + tag;
+			if (nome === 'li' && fecha) dentroItem = false;
+			continue;
+		}
+		if (solta) {
+			// Entre itens só pode haver espaço e <br>; qualquer outra coisa encerra a lista.
+			if (!trecho.trim() && nome === 'br') continue;
+			if (!trecho.trim() && nome === 'li' && !fecha) {
+				saida += tag;
+				dentroItem = true;
+				continue;
+			}
+			saida += '</ul>';
+			solta = false;
+			if (engolirFechaP && !trecho.trim() && nome === 'p' && fecha) {
+				engolirFechaP = false;
+				continue;
+			}
+			engolirFechaP = false;
+		}
+
+		if (nome === 'ul' || nome === 'ol') profundidade = Math.max(0, profundidade + (fecha ? -1 : 1));
+
+		if (nome === 'li' && !fecha && profundidade === 0) {
+			// Um <p> aberto logo antes (só espaço entre eles) sai junto.
+			const pAberto = (saida + trecho).match(/<p\b[^>]*>\s*$/i);
+			if (pAberto) {
+				saida = (saida + trecho).slice(0, pAberto.index);
+				trecho = '';
+				engolirFechaP = true;
+			}
+			saida += trecho + '<ul>' + tag;
+			solta = true;
+			dentroItem = true;
+			continue;
+		}
+		saida += trecho + tag;
+	}
+	saida += html.slice(ultimo);
+	if (solta) saida += '</ul>';
+	return saida;
 }
 
 /**
