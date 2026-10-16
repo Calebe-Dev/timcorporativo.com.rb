@@ -61,7 +61,7 @@
 					{#if post.keywords?.length}
 						<div class="mt-3 flex flex-wrap gap-1.5">
 							{#each post.keywords.slice(0, 3) as kw}
-								<span class="rounded-full bg-tim-50 px-2 py-0.5 text-[11px] font-medium text-tim-700">
+								<span class="rounded-full bg-tim-50 px-2 py-0.5 text-xs font-medium text-tim-700">
 									{kw}
 								</span>
 							{/each}

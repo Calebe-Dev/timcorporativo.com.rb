@@ -67,8 +67,8 @@
 		aria-label="Anúncio: {banner.titulo}"
 		data-banner={banner.id}
 	>
-		<p class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] text-slate-500 uppercase">
-			<span class="rounded-sm border border-slate-300 px-1.5 py-0.5 text-[10px] tracking-[0.1em] text-slate-500">
+		<p class="flex items-center gap-2 text-xs font-semibold tracking-[0.12em] text-slate-500 uppercase">
+			<span class="rounded-sm border border-slate-300 px-1.5 py-0.5 text-[11px] tracking-[0.1em] text-slate-500">
 				Anúncio
 			</span>
 			<span>{rotulo}</span>
@@ -93,7 +93,7 @@
 					{/if}
 				</span>
 				<div class="min-w-0">
-					<p class="text-[11px] font-semibold tracking-wide text-tim-700 uppercase">{banner.eyebrow}</p>
+					<p class="text-xs font-semibold tracking-wide text-tim-700 uppercase">{banner.eyebrow}</p>
 					<p class="mt-1 text-lg leading-snug font-bold text-balance text-slate-900">{banner.titulo}</p>
 					<p class="mt-1.5 text-sm leading-relaxed text-slate-600">{banner.texto}</p>
 				</div>
@@ -124,8 +124,8 @@
 			aria-hidden="true"
 		></div>
 
-		<p class="relative flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] text-white/60 uppercase">
-			<span class="rounded-sm border border-white/30 px-1.5 py-0.5 text-[10px] tracking-[0.1em]">Anúncio</span>
+		<p class="relative flex items-center gap-2 text-xs font-semibold tracking-[0.12em] text-white/60 uppercase">
+			<span class="rounded-sm border border-white/30 px-1.5 py-0.5 text-[11px] tracking-[0.1em]">Anúncio</span>
 			<span>{rotulo}</span>
 		</p>
 

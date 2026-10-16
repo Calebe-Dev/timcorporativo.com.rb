@@ -402,9 +402,11 @@
 			</div>
 		</div>
 		<div class="mx-auto mt-6 max-w-6xl px-4">
-			<div class="rounded-2xl bg-tim-900 p-8 text-center text-white">
+			<!-- Alinhado à esquerda no celular: 9 linhas centralizadas são difíceis de
+			     ler, porque cada linha começa num ponto diferente. -->
+			<div class="rounded-2xl bg-tim-900 p-6 text-left text-white sm:p-8 sm:text-center">
 				<h2 class="text-xl font-bold sm:text-2xl">{authority.fechamento.title}</h2>
-				<p class="mx-auto mt-3 max-w-3xl text-tim-100">{authority.fechamento.text}</p>
+				<p class="mt-3 max-w-3xl leading-relaxed text-tim-100 sm:mx-auto">{authority.fechamento.text}</p>
 			</div>
 		</div>
 	</section>

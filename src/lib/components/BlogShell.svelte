@@ -20,23 +20,25 @@
 -->
 <div class="min-h-screen bg-white text-slate-800">
 	<!-- Cabeçalho enxuto (links absolutos — funciona em qualquer página do blog). -->
+	<!-- Celular: tudo numa linha. Antes o botão quebrava em duas e o subtítulo
+	     tinha 11 px. Mesmos links e mesmo texto. -->
 	<header class="sticky top-0 z-40 border-b border-tim-100 bg-white/95 backdrop-blur">
-		<div class="mx-auto flex max-w-4xl items-center justify-between gap-3 px-4 py-3">
-			<a href="/" class="flex items-center gap-2">
+		<div class="mx-auto flex max-w-4xl items-center justify-between gap-2 px-4 py-3 sm:gap-3">
+			<a href="/" class="flex min-w-0 items-center gap-2">
 				<img src={site.logo} alt="TIM" class="h-9 w-9" width="36" height="36" />
 				<span class="leading-tight">
-					<span class="block text-base font-bold text-tim-800">TIM Corporativo</span>
-					<span class="block text-[11px] font-medium text-tim-500">{subtitulo}</span>
+					<span class="block text-[15px] font-bold whitespace-nowrap text-tim-800 sm:text-base">TIM Corporativo</span>
+					<span class="block text-xs font-medium text-tim-600">{subtitulo}</span>
 				</span>
 			</a>
-			<nav aria-label="Navegação principal" class="flex items-center gap-4 text-sm font-medium">
+			<nav aria-label="Navegação principal" class="flex shrink-0 items-center gap-3 text-sm font-medium sm:gap-4">
 				<a href="/" class="hidden text-slate-700 hover:text-tim-600 sm:inline">Site</a>
 				<a href="/blog" class="text-slate-700 hover:text-tim-600">Blog</a>
 				<a
 					href={whatsappLink()}
 					target="_blank"
 					rel="noopener"
-					class="rounded-full bg-tim-600 px-3 py-1.5 font-semibold text-white hover:bg-tim-700"
+					class="rounded-full bg-tim-600 px-3 py-1.5 text-[13px] font-semibold whitespace-nowrap text-white hover:bg-tim-700 sm:text-sm"
 				>
 					Falar com consultor
 				</a>

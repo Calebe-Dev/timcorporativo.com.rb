@@ -26,7 +26,9 @@
 		<div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
 			<nav aria-label="Páginas principais">
 				<h3 class="text-sm font-semibold text-tim-800">Navegação</h3>
-				<ul class="mt-3 space-y-2 text-sm">
+				<!-- Duas colunas no celular: o mapa ocupava ~3 telas. Nada fica escondido —
+				     estes links são a malha interna que as LPs recebem de toda página. -->
+				<ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm sm:block sm:space-y-2">
 					<li><a class="text-slate-600 hover:text-tim-600 hover:underline" href="/">Início</a></li>
 					{#each secoes as s}
 						<li>
@@ -46,7 +48,7 @@
 					<h3 class="text-sm font-semibold text-tim-800">
 						<a class="hover:text-tim-600 hover:underline" href="/solucoes/">Soluções</a>
 					</h3>
-					<ul class="mt-3 space-y-2 text-sm">
+					<ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm sm:block sm:space-y-2">
 						{#each solucoes as s}
 							<li>
 								<a
