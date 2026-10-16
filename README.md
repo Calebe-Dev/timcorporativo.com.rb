@@ -60,13 +60,12 @@ preço na copy ou link interno quebrado custa muito mais caro do que parar e cor
    duplicado entre páginas (canibalização), nenhum valor monetário, nenhum link interno morto
 2. `npm run build`
 3. `scripts/verificar-precos-build.mjs` — varre o HTML **gerado**, separando a copy das páginas do
-   conteúdo herdado do CMS (título de artigo no bloco de relacionados, JSON-LD, payload de hidratação)
+   conteúdo dos artigos (título de artigo no bloco de relacionados, JSON-LD, payload de hidratação)
 4. Integridade do HTML: H1 único, canonical autorreferente, JSON-LD completo, ausência de `HowTo`
 5. `wrangler pages deploy`
 
-Requer `npx wrangler whoami` autenticado. Para o build puxar artigos novos do OC Hub em vez de usar
-só o snapshot de `content/artigos/`, exporte `OCHUB_DIRECTUS_URL`, `OCHUB_API_TOKEN` e
-`OCHUB_SITE_UUID` antes de rodar.
+Requer `npx wrangler whoami` autenticado. O build não depende de variável de ambiente: os artigos
+vêm só de `content/artigos/`.
 
 Se um dia o CI voltar, o token precisa de permissão de **Cloudflare Pages — Edit** na conta
 `73251602a4aa9ee45d274fbdfc7eac2d`.

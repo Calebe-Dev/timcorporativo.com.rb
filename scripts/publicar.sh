@@ -12,17 +12,13 @@
 #
 #   bash scripts/publicar.sh
 #
-# Requer wrangler autenticado (`npx wrangler whoami`) e as variáveis do OC Hub.
+# Requer wrangler autenticado (`npx wrangler whoami`).
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-# Sem credencial real do CMS o build cai no snapshot local de content/artigos/,
-# que é a fonte de verdade das 189 URLs indexadas. Passe as reais no ambiente
-# para que artigos novos criados no OC Hub também entrem.
-export OCHUB_DIRECTUS_URL="${OCHUB_DIRECTUS_URL:-https://ochub-api.grupooc.com.br}"
-export OCHUB_API_TOKEN="${OCHUB_API_TOKEN:-dummy}"
-export OCHUB_SITE_UUID="${OCHUB_SITE_UUID:-9a8c40f4-b63c-42af-8de8-1b28cbf150e9}"
+# Os artigos vêm só de content/artigos/ (o OC Hub deixou de ser CMS em
+# 16/10/2026): o build não precisa de variável nenhuma.
 
 passo() { printf '\n\033[1m▸ %s\033[0m\n' "$1"; }
 
