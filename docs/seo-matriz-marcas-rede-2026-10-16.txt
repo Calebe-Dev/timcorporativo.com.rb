@@ -1,0 +1,77 @@
+impressões/cliques em 90d por marca × família × site (consultas visíveis; cabeça = sem outra intenção detectada)
+
+=== TIM
+  troca/portabilidade                      timcor  8555/ 15
+                                            ex.: "portabilidade tim"(5422), "tim portabilidade"(573), "portabilidade para tim"(315), "tim empresas portabilidade"(255)
+  comparacao                               timcor   863/  4
+                                            ex.: "tim e vivo são a mesma empresa"(230), "tim ou vivo"(128), "vivo e tim são a mesma empresa"(77), "tim fibra ou vivo fibra"(65)
+  suporte                                  timcor 355471/694
+                                            ex.: "ativar chip tim"(56561), "troca de chip tim"(25200), "como ativar chip da tim"(13247), "como cadastrar chip da tim"(12659)
+  comercial: plano/internet/fibra/link/ip  timcor 23020/137 | planov     3/  0
+                                            ex.: "tim black empresa"(1522), "tim black"(967), "tim fibra empresas"(913), "tim empresas planos"(798)
+  cabeça: X empresas/empresarial           timcor 92042/415
+                                            ex.: "tim empresas"(47564), "tim empresa"(13566), "tim empresarial"(13225), "meu tim empresas"(6441)
+  outros                                   timcor 19615/ 55
+                                            ex.: "tim"(970), "numero da tim para cadastro"(707), "tim movel"(508), "bonus convergencia tim"(478)
+=== VIVO
+  troca/portabilidade                      timcor    26/  0 | planov    20/  0
+                                            ex.: "portabilidade vivo empresas porabilidade vivo fibra portabilidade link dedicado vivo link dedicado"(20), "como fazer portabilidade para vivo"(7), "como fazer portabilida
+  comparacao                               timcor  1433/  3 | planov     1/  0
+                                            ex.: "vivo e claro são a mesma empresa"(333), "claro e vivo são a mesma empresa"(333), "vivo ou claro"(122), "vivo vs claro"(74)
+  suporte                                  timcor    79/  0 | planov   141/  0
+                                            ex.: "vivo empresas login cnpj"(84), "como fazer auditoria de fatura da vivo empresas"(16), "segunda via chip vivo"(8), "como ativar chip da vivo"(5)
+  comercial: plano/internet/fibra/link/ip  timcor    16/  0 | planov  4883/ 31
+                                            ex.: "ip fixo vivo"(772), "vivo ip fixo"(422), "link dedicado vivo"(291), "vivo fibra empresa"(224)
+  cabeça: X empresas/empresarial           timcor    16/  0 | planov  8931/  8
+                                            ex.: "vivo empresas"(7848), "vivo empresa"(309), "vivo empresarial"(261), "vivo em dia empresas"(62)
+  outros                                   timcor   267/  0 | planov  1024/  3
+                                            ex.: "vivo mei"(135), "vivo e claro"(131), "vivo voip"(80), "vivo contingência"(75)
+=== CLARO
+  troca/portabilidade                      timcor    43/  0 | planoe     1/  0
+                                            ex.: "portabilidade claro empresas"(25), "claro empresa portabilidade"(14), "recebi o chip da claro portabilidade como ativar"(1), "portabilidade claro empresas movel"(1)
+  suporte                                  timcor    94/  0 | planoe  3131/  0
+                                            ex.: "telefone claro empresas"(1567), "claro empresas telefone"(1437), "claro empresarial telefone"(49), "claro empresas telefone fixo"(12)
+  comercial: plano/internet/fibra/link/ip  timcor    65/  0 | planov    34/  0 | planoe  5322/ 14 | algart     2/  0
+                                            ex.: "plano empresarial claro celular"(1571), "claro empresarial internet"(1403), "internet empresarial claro"(409), "claro fibra empresas"(207)
+  cabeça: X empresas/empresarial           timcor   174/  0 | planov     2/  0 | planoe  4909/  3 | algart    21/  0
+                                            ex.: "claro empresa fixo"(1503), "claro net empresarial"(1379), "net claro empresa"(736), "claro fixo empresarial"(520)
+  outros                                   timcor    27/  0 | planoe   892/  0 | algart    14/  0
+                                            ex.: "altair claro"(88), "claro voip"(57), "contingência claro"(56), "voip claro"(55)
+=== OI
+  troca/portabilidade                      timcor     9/  0
+                                            ex.: "portabilidade oi"(4), "oi portabilidade"(4), "portabilidade da oi"(1)
+  suporte                                  timcor     3/  0
+                                            ex.: "como recuperar um número antigo da oi"(1), "como recuperar chip oi"(1), "chip da oi ainda existe"(1)
+  comercial: plano/internet/fibra/link/ip  timcor     1/  0
+                                            ex.: "ip fixo oi velox"(1)
+  cabeça: X empresas/empresarial           timcor     1/  0
+                                            ex.: "oi email empresarial"(1)
+  outros                                   timcor     8/  0
+                                            ex.: "oi.com.br/migre"(6), "oi soluções"(1), "nio e oi são a mesma coisa"(1)
+=== ALGAR
+  troca/portabilidade                      algart    62/  1
+                                            ex.: "portabilidade algar"(33), "algar portabilidade"(14), "portabilidade algar telecom"(8), "portabilidade para algar"(7)
+  suporte                                  timcor     1/  0 | algart   238/  1
+                                            ex.: "algar telefone"(27), "telefone da algar de franca"(26), "algar jaboticabal telefone"(20), "algar batatais telefone"(20)
+  comercial: plano/internet/fibra/link/ip  algart   632/ 15
+                                            ex.: "link dedicado algar"(128), "algar internet"(83), "algar link dedicado"(52), "algar internet guarulhos"(52)
+  cabeça: X empresas/empresarial           algart   441/ 34
+                                            ex.: "algar empresarial"(201), "algar empresas"(163), "algar telecom empresas"(32), "algar corporativo"(26)
+  outros                                   algart  2522/  8
+                                            ex.: "algar franca"(337), "ctbc"(218), "algartelecom"(213), "algar franca sp"(139)
+=== NEXTEL
+  comercial: plano/internet/fibra/link/ip  planoe     2/  0
+                                            ex.: "planos nextel empresa"(1), "nextel planos pessoa juridica"(1)
+=== GENERICO
+  troca/portabilidade                      timcor   155/  0 | planov     1/  0 | algart    21/  0
+                                            ex.: "portabilidade"(22), "portabilidade tin"(12), "portabilidade chip"(8), "portabilidade ti"(6)
+  comparacao                               timcor   101/  0 | planov    15/  0 | planoe    19/  0 | algart    30/  0
+                                            ex.: "qual é a melhor operadora de internet empresarial em sorocaba, sp?"(20), "context: location: brazil (not for language). do not include location references in your respon
+  suporte                                  timcor  4651/ 23 | planov    86/  0 | planoe   124/  1 | algart     3/  0
+                                            ex.: "como cadastrar um chip com cnpj"(237), "tem como cadastrar chip no cnpj"(156), "cadastrar chip pré pago cnpj"(141), "como pedir outro chip com o mesmo numero"(138)
+  comercial: plano/internet/fibra/link/ip  timcor  5251/  4 | planov  1533/  1 | planoe  1140/  1 | algart  2873/ 12
+                                            ex.: "plano de internet empresarial"(1177), "internet empresarial"(802), "internet empresarial"(401), "ultrafibra"(320)
+  cabeça: X empresas/empresarial           timcor  2810/  4 | planov  1365/  0 | planoe   215/  0 | algart   363/  0
+                                            ex.: "vivoempresa"(802), "banda larga empresarial"(750), "timempresas"(534), "banda larga empresa"(197)
+  outros                                   timcor  1098/  8 | planov   126/  0 | planoe   485/  1 | algart   117/  0
+                                            ex.: "telefonia em nuvem"(128), "telefonia nuvem"(124), "telefonia em nuvem osasco"(47), "telefonia nuvem"(45)
