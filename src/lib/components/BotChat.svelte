@@ -46,7 +46,10 @@
 	/** @type {{ disconnect(): void }[]} */
 	let observadores = [];
 
+	let saneado = false;
 	function sanearWidget() {
+		if (saneado || !document.getElementById('oc-widget-container')) return;
+		saneado = true;
 		const janela = document.getElementById('oc-chat-window');
 		if (janela) {
 			const espelhar = () =>
@@ -156,6 +159,19 @@
 			const js = document.createElement('script');
 			js.src = `${API}/widget.js`;
 			js.async = true;
+			// Saneia no instante em que o widget põe o DOM na página, e não só
+			// quando o init() resolve: nesse intervalo a janela fechada ficava
+			// aria-hidden e focável, e a varredura do Lighthouse de 16/10/2026
+			// pegou exatamente esse momento (aria-hidden-focus) num artigo.
+			const vigia = new MutationObserver(() => {
+				if (document.getElementById('oc-chat-window')) {
+					vigia.disconnect();
+					sanearWidget();
+				}
+			});
+			vigia.observe(document.body, { childList: true, subtree: true });
+			observadores.push(vigia);
+
 			js.onload = async () => {
 				// `aguardarOcioso: false` porque a espera já aconteceu aqui fora — sem
 				// isso o widget esperaria load + requestIdleCallback de novo.
@@ -167,6 +183,8 @@
 				// e retorna sem renderizar nada. Confiar na promise faria a bolha do
 				// WhatsApp sumir junto com um bot que não existe, e a página ficaria
 				// sem nenhum canal de contato flutuante.
+				// Bot que não subiu (403, rede) nunca cria a janela: o vigia sai aqui.
+				vigia.disconnect();
 				if (abortado) return;
 				const subiu = !!document.getElementById('oc-widget-container');
 				if (subiu) {
