@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { contact, whatsappLink, turnstileSiteKey } from '$lib/site.js';
 	import { lead } from '$lib/analytics.js';
 
@@ -46,7 +46,12 @@
 	let tokenPronto = null;
 	/** @type {((t: string) => void) | null} */
 	let resolverToken = null;
-	const ESPERA_TOKEN_MS = 4000;
+	// Mesmo valor e mesmo motivo do ContactForm: medido em 07/10/2026, o Managed
+	// levou mais de 15 s para entregar o token num desktop com boa conexão. Com
+	// 4 s, quem preenchia os 3 campos rápido enviava sem token, o servidor
+	// devolvia 403 e o lead sumia. A espera roda depois do window.open, então o
+	// visitante já está no WhatsApp e não sente nada.
+	const ESPERA_TOKEN_MS = 20000;
 
 	const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
@@ -117,8 +122,11 @@
 			});
 		};
 
-		// O script pode já estar na página (carregado pelo ContactForm).
-		if (window.turnstile) return render();
+		// O script pode já estar na página (carregado pelo ContactForm). Nesse caso
+		// o render tem de esperar o painel montar: esta função roda logo depois de
+		// `aberto = true`, quando `caixaTurnstile` ainda é null — e o render
+		// desistia calado, o token nunca vinha e o lead saía sem ele (403).
+		if (window.turnstile) return void tick().then(render);
 		const existente = document.querySelector('script[src^="https://challenges.cloudflare.com/turnstile"]');
 		if (existente) {
 			existente.addEventListener('load', render);
