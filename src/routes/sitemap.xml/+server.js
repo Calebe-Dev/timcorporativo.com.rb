@@ -31,15 +31,21 @@ function xmlEscape(s) {
  * ignorado com aviso no build (não quebra o sitemap).
  */
 const DESTAQUES = [
-	// Lote 29/09/2026 — um artigo novo e três reescritas comerciais no mesmo URL.
-	'chip-empresarial-tim-como-pedir-linhas-para-a-equipe',
+	// Onda 1 de concorrentes, 19/10/2026 — a única URL nova da onda e as três
+	// reescritas no mesmo URL (docs/seo-estrategia-concorrentes-2026-10-16.md).
+	'portabilidade-da-vivo-para-a-tim-no-cnpj',
+	'tim-portabilidade-cnpj-guia-completo',
+	'tim-vs-vivo-empresas-2025-comparativo',
+	'tim-black-empresa-vs-claro-empresas-onde-o-black-ganha-em-produtividade',
+	// Lote 29/09/2026 — reescritas comerciais no mesmo URL. O chip-empresarial
+	// indexou (inspeção de 19/10/2026) e saiu do topo.
 	'tim-black-empresa-internet-movel-para-seu-negocio',
 	'plano-empresarial-tim-comparativo-precos-escolher',
 	'internet-tim-empresa',
-	// Ainda "Discovered - currently not indexed" ou desconhecidos na inspeção de
-	// 29/09/2026. Os demais dos lotes de 18 e 24/09 já indexaram e saíram do topo.
+	// Inspeção de 19/10/2026: pabx-em-nuvem indexou e saiu; os seis abaixo
+	// seguem "Discovered - currently not indexed" ou desconhecidos do Google
+	// três semanas depois — o rastreio continua sendo o gargalo do site.
 	'plano-de-telefonia-empresarial-como-escolher',
-	'pabx-em-nuvem-o-que-e-como-funciona-e-como-contratar',
 	'plano-tim-para-mei-como-contratar-no-cnpj',
 	'tim-controle-empresa-como-funciona-no-cnpj',
 	'tim-fixo-empresa-linha-fixa-empresarial',

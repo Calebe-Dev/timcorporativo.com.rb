@@ -54,7 +54,21 @@ export const REDIRECIONADOS = {
 	// Desconto progressivo por volume (title com "10% a 25%") → LP do tema.
 	'tim-empresas-planos-corporativos-descontos-progressivos-guia': '/solucoes/desconto-tim-para-empresas/',
 	// "Internet empresarial TIM" genérica, 1 H2 → hub reescrito em 29/09.
-	'internet-empresarial-tim-alta-velocidade-e-confiabilidade': '/internet-tim-empresa/'
+	'internet-empresarial-tim-alta-velocidade-e-confiabilidade': '/internet-tim-empresa/',
+	// CONCORRENTES-2026-10-19 — onda 1 do plano de 16/10 (docs/seo-estrategia-
+	// concorrentes-2026-10-16.md). Três páginas de "migrar de operadora" com a
+	// mesma intenção do guia que já tem as impressões (483 imp, pos 8,4); o
+	// "TIM Empresas vs Vivo Empresas" (6 imp) duplica o comparativo (1.827 imp);
+	// "alternativas ao Vivo" é a intenção da página nova de portabilidade da Vivo.
+	'migracao-operadora-tim-empresas-processo-cuidados':
+		'/como-migrar-operadora-tim-empresas-guia-completo/',
+	'migrar-de-operadora-corporativa-e-burocratico-passo-a-passo-da-portabilidade-tim':
+		'/como-migrar-operadora-tim-empresas-guia-completo/',
+	'tim-empresa-migracao-roi-b2b': '/como-migrar-operadora-tim-empresas-guia-completo/',
+	'tim-empresas-vs-vivo-empresas-qual-operadora-corporativa-entrega-mais-estabilidade':
+		'/tim-vs-vivo-empresas-2025-comparativo/',
+	'melhores-alternativas-ao-vivo-empresas-para-operadoras-que-precisam-de-cobertura-nacional':
+		'/portabilidade-da-vivo-para-a-tim-no-cnpj/'
 };
 
 /** Artigo que não vira página: marca antiga ou consolidado por 301. */

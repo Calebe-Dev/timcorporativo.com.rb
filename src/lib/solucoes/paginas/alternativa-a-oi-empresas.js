@@ -333,9 +333,9 @@ export default {
 		'telecom-para-abertura-de-filial'
 	],
 	artigos: [
-		'migracao-operadora-tim-empresas-processo-cuidados',
+		'como-migrar-operadora-tim-empresas-guia-completo',
 		'portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero',
 		'tim-portabilidade-cnpj-guia-completo',
-		'migrar-de-operadora-corporativa-e-burocratico-passo-a-passo-da-portabilidade-tim'
+		'tim-fixo-empresa-linha-fixa-empresarial'
 	]
 };

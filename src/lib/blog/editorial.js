@@ -24,6 +24,21 @@ const REVISAO = '2026-09-14T00:00:00';
 
 /** @type {Record<string, { resposta?: string, atualizadoEm?: string }>} */
 export const EDITORIAL = {
+	'tim-black-empresa-vs-claro-empresas-onde-o-black-ganha-em-produtividade': {
+		resposta:
+			'TIM e Claro não são a mesma empresa: pertencem a grupos distintos, e a Claro incorporou a Net e a Nextel. Para comparar as duas no CNPJ, a empresa verifica em cada proposta os aplicativos inclusos, a cobertura nos endereços onde opera, o roaming nacional, as cláusulas de contrato e fidelidade e a ferramenta de gestão de linhas.',
+		atualizadoEm: '2026-10-19T00:00:00'
+	},
+	'tim-portabilidade-cnpj-guia-completo': {
+		resposta:
+			'Na portabilidade TIM no CNPJ, a empresa apresenta CNPJ ativo, contrato social ou CCMEI e documento do representante legal, e cada número precisa estar na titularidade da pessoa jurídica: linha no CPF do sócio passa antes para o CNPJ. Várias linhas entram no mesmo pedido, com chips entregues antes da janela agendada.',
+		atualizadoEm: '2026-10-19T00:00:00'
+	},
+	'portabilidade-da-vivo-para-a-tim-no-cnpj': {
+		resposta:
+			'Para portar as linhas da empresa da Vivo para a TIM no CNPJ, a empresa confere no próprio contrato se há fidelidade, reúne CNPJ, contrato social e documento do representante, regulariza linhas que estejam no CPF de sócios e envia a relação de números ao consultor. A portabilidade é agendada e os números são mantidos.',
+		atualizadoEm: '2026-10-19T00:00:00'
+	},
 	'tim-ultrafibra-planos-2026-preco-cobertura': {
 		resposta:
 			'Não há tabela única de preço para a TIM UltraFibra: o valor sai da oferta disponível para o endereço e muda com a velocidade escolhida, o prazo de fidelidade e o que vem junto no plano. O primeiro passo é consultar o CEP e o número do imóvel; para empresa, a contratação é no CNPJ, pela TIM Fibra Empresa.',
@@ -66,8 +81,8 @@ export const EDITORIAL = {
 	},
 	'tim-vs-vivo-empresas-2025-comparativo': {
 		resposta:
-			'TIM Empresas e Vivo Empresas são duas operadoras distintas, com oferta própria para CNPJ. A comparação passa por apps inclusos, cobertura, roaming nacional, flexibilidade de contrato e atendimento, e mostra os cenários em que a Vivo ainda faz sentido, como combos com fibra dedicada e áreas rurais remotas, e aqueles em que a TIM tende a compensar.',
-		atualizadoEm: '2026-10-16T00:00:00'
+			'TIM e Vivo não são a mesma empresa: pertencem a grupos distintos e têm ofertas próprias para CNPJ. Para comparar, a empresa verifica cinco critérios em cada proposta: aplicativos inclusos, cobertura no endereço e em campo, roaming nacional, contrato e fidelidade, e gestão de linhas com atendimento. Quem já é Vivo porta os números para a TIM e os mantém.',
+		atualizadoEm: '2026-10-19T00:00:00'
 	},
 	'plano-empresarial-tim-como-escolher-a-melhor-solucao': {
 		resposta:

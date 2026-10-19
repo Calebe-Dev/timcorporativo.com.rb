@@ -293,10 +293,9 @@ export const ARTIGO_PARA_LP = {
 	'solicitacao-proposta-tim-empresas-como-funciona': 'contratar-tim-direto-ou-por-revenda-autorizada',
 	'nfcom-2025-consultoria-telecom': 'contratar-tim-direto-ou-por-revenda-autorizada',
 
-	// LP 10 — alternativa à Oi
-	'migracao-operadora-tim-empresas-processo-cuidados': 'alternativa-a-oi-empresas',
-	'como-migrar-operadora-tim-empresas-guia-completo': 'alternativa-a-oi-empresas',
-	'tim-portabilidade-cnpj-guia-completo': 'alternativa-a-oi-empresas',
+	// LP 10 — alternativa à Oi. CONCORRENTES-2026-10-19: os guias de migração e
+	// de portabilidade no CNPJ saíram daqui — quem está portando de qualquer
+	// operadora precisa da LP de contrato vigente (abaixo), não da Oi.
 
 	// LP 11 — nacional × regional
 	'comparativo-operadoras-tim-vivo-claro-empresas': 'operadora-nacional-ou-provedor-regional',
@@ -315,7 +314,10 @@ export const ARTIGO_PARA_LP = {
 	// LP 13 — trocar com contrato vigente
 	'portabilidade-tim-empresarial-como-trocar-de-operadora-e-manter-numero':
 		'trocar-de-operadora-com-contrato-vigente',
-	'migrar-de-operadora-corporativa-e-burocratico-passo-a-passo-da-portabilidade-tim':
+	'como-migrar-operadora-tim-empresas-guia-completo': 'trocar-de-operadora-com-contrato-vigente',
+	'tim-portabilidade-cnpj-guia-completo': 'trocar-de-operadora-com-contrato-vigente',
+	'portabilidade-da-vivo-para-a-tim-no-cnpj': 'trocar-de-operadora-com-contrato-vigente',
+	'tim-black-empresa-vs-claro-empresas-onde-o-black-ganha-em-produtividade':
 		'trocar-de-operadora-com-contrato-vigente',
 	// Artigo datado (fala em "antes de 2026"): o link para a LP atemporal é o que
 	// preserva algum valor dele depois que a data passar.
