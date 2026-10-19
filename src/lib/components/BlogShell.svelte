@@ -2,6 +2,7 @@
 	import { site, contact, whatsappLink } from '$lib/site.js';
 	import ContactSection from '$lib/components/ContactSection.svelte';
 	import SiteMap from '$lib/components/SiteMap.svelte';
+	import RedesSociais from '$lib/components/RedesSociais.svelte';
 
 	let {
 		children,
@@ -69,10 +70,13 @@
 			<p>
 				© {site.name} · {contact.address}
 			</p>
-			<p class="flex gap-4">
+			<div class="flex flex-wrap items-center gap-4">
 				<a href="/" class="hover:text-tim-600">Voltar ao site</a>
 				<a href={contact.phoneHref} class="hover:text-tim-600">Tel. {contact.phoneLabel}</a>
-			</p>
+				<!-- Os artigos são a maior parte do tráfego: os perfis da marca também
+				     aparecem aqui, não só no rodapé do site. -->
+				<RedesSociais />
+			</div>
 		</div>
 	</footer>
 </div>

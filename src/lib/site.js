@@ -75,6 +75,16 @@ export const contact = {
 	// GRUPO-OC-OCULTO 2026-09-09 — original: facebook: 'https://www.facebook.com/grupoocwearepeople',
 	// GRUPO-OC-OCULTO 2026-09-09 — original: instagram: 'https://www.instagram.com/grupooc/',
 	// GRUPO-OC-OCULTO 2026-09-09 — original: linkedin: 'https://www.linkedin.com/company/grupo-oc-we-are-people/',
+	// REDES-TIM-CORPORATIVO 2026-10-19 — perfis próprios da marca TIM Corporativo.
+	// URLs LIMPAS, sem UTM: aqui elas identificam a entidade (sameAs) e o rodapé
+	// precisa mostrar o mesmo endereço que o JSON-LD declara. UTM é só para os
+	// links que saem das redes para o site (docs/redes-sociais-perfis-2026-10-16.md).
+	// O Facebook ainda não tem nome de usuário; quando tiver (/timcorporativo),
+	// trocar aqui — o id antigo continua redirecionando.
+	facebook: 'https://www.facebook.com/profile.php?id=61595002080957',
+	instagram: 'https://www.instagram.com/timcorporativosp/',
+	linkedin: 'https://www.linkedin.com/company/tim-corporativo/',
+	youtube: 'https://www.youtube.com/@TIMCorporativo',
 	yearsExperience: 15
 };
 

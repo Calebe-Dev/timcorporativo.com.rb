@@ -47,10 +47,15 @@ export function organizationNode() {
 	// NAP-JUMIRIM 2026-09-10 — anterior: const sameAs = [contact.facebook, contact.instagram, contact.linkedin].filter(Boolean);
 	// O perfil no Google da unidade de Jumirim entra no sameAs: é a única
 	// referência externa da entidade que sobrou depois da retirada da marca.
+	// REDES-TIM-CORPORATIVO 2026-10-19 — YouTube e TikTok entram quando existirem
+	// em `contact`. Nunca pôr aqui perfil da TIM S.A.: sameAs diz "esta é a
+	// mesma entidade", e a nossa é o representante, não a operadora.
 	const sameAs = [
 		contact.facebook,
 		contact.instagram,
 		contact.linkedin,
+		contact.youtube,
+		contact.tiktok,
 		contact.googleProfile
 	].filter(Boolean);
 	return {
