@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { formOptions, whatsappLink, turnstileSiteKey } from '$lib/site.js';
+	import { formOptions, whatsappLink, whatsappPosFormulario, turnstileSiteKey } from '$lib/site.js';
 	import { lead } from '$lib/analytics.js';
 
 	let nome = $state('');
@@ -124,13 +124,11 @@
 		document.head.appendChild(s);
 	}
 
+	// PADRAO-WHATSAPP 2026-10-22 — a mensagem pós-formulário segue o padrão da
+	// rede (whatsappPosFormulario em $lib/site.js): nome + resumo do pedido.
+	// E-mail, celular e CNPJ ficam fora da mensagem — já foram no POST.
 	function resumo() {
 		return [
-			`Novo contato pelo site TIM Corporativo`,
-			`Nome: ${nome}`,
-			`E-mail: ${email}`,
-			`Celular: ${celular}`,
-			cnpj && `CNPJ: ${cnpj}`,
 			linhas && `Nº de linhas: ${linhas}`,
 			operadora && `Operadora atual: ${operadora}`,
 			mensagem && `Mensagem: ${mensagem}`
@@ -138,6 +136,8 @@
 			.filter(Boolean)
 			.join('\n');
 	}
+
+	const linkPosFormulario = () => whatsappPosFormulario({ nome, resumo: resumo() });
 
 	/**
 	 * Registra o lead no CRM e dispara o aviso interno por e-mail.
@@ -158,6 +158,9 @@
 				mensagem,
 				website,
 				pagina,
+				// Opcionais, para o CRM saber a página e de onde o visitante veio.
+				titulo: document.title,
+				referrer: document.referrer,
 				// Nome exigido pelo Turnstile e lido pelo pacote @grupooc/lead-handler.
 				'cf-turnstile-response': turnstileToken,
 				...utm
@@ -182,7 +185,7 @@
 		// O WhatsApp abre de forma síncrona: depois de um `await` o browser já
 		// não considera isto um gesto do usuário e bloqueia o popup.
 		// A captura do lead segue em paralelo, sem travar o atendimento.
-		const janela = window.open(whatsappLink(resumo()), '_blank', 'noopener');
+		const janela = window.open(linkPosFormulario(), '_blank', 'noopener');
 		// Honeypot preenchido é robô: o servidor descarta, e o GA4 também não conta.
 		if (!website) lead('formulario');
 
@@ -338,17 +341,17 @@
 	{#if status === 'ok'}
 		<p class="text-xs font-medium text-green-700" role="status">
 			Recebemos seus dados — um consultor vai entrar em contato. Se o WhatsApp não abriu, chame em
-			<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
+			<a class="underline" href={linkPosFormulario()} target="_blank" rel="noopener">nosso número</a>.
 		</p>
 	{:else if status === 'zap'}
 		<p class="text-xs font-medium text-slate-600" role="status">
 			Continue a conversa pelo WhatsApp que abrimos para você. Se a janela não abriu, chame em
-			<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
+			<a class="underline" href={linkPosFormulario()} target="_blank" rel="noopener">nosso número</a>.
 		</p>
 	{:else if status === 'erro'}
 		<p class="text-xs font-medium text-red-700" role="alert">
 			Não conseguimos concluir o envio. Fale direto pelo
-			<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">WhatsApp</a>.
+			<a class="underline" href={linkPosFormulario()} target="_blank" rel="noopener">WhatsApp</a>.
 		</p>
 	{/if}
 

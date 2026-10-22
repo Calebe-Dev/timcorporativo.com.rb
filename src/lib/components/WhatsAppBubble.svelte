@@ -1,6 +1,6 @@
 <script>
 	import { onMount, tick } from 'svelte';
-	import { contact, whatsappLink, turnstileSiteKey } from '$lib/site.js';
+	import { contact, whatsappLink, whatsappPosFormulario, turnstileSiteKey } from '$lib/site.js';
 	import { lead } from '$lib/analytics.js';
 
 	// `oculta` chega do layout raiz quando o chat da nossa consultoria sobe: os dois são o
@@ -141,13 +141,14 @@
 		document.head.appendChild(s);
 	}
 
-	function resumo() {
-		return [
-			assunto || 'Olá! Quero falar com um consultor TIM Empresas.',
-			`Nome: ${nome}`,
-			`Celular: ${celular}`,
-			`E-mail: ${email}`
-		].join('\n');
+	// PADRAO-WHATSAPP 2026-10-22 — mensagem pós-formulário no padrão da rede
+	// (whatsappPosFormulario em $lib/site.js): nome + assunto do banner (ou a
+	// intenção padrão). Celular e e-mail ficam fora da mensagem — já foram no POST.
+	function linkPosFormulario() {
+		return whatsappPosFormulario({
+			nome,
+			resumo: assunto || 'Quero falar com um consultor TIM Empresas.'
+		});
 	}
 
 	/**
@@ -170,6 +171,9 @@
 				// na navegação interna — guardar a página de entrada atribuía o lead
 				// à página errada.
 				pagina: window.location.pathname,
+				// Opcionais, para o CRM saber a página e de onde o visitante veio.
+				titulo: document.title,
+				referrer: document.referrer,
 				'cf-turnstile-response': turnstileToken,
 				...utm
 			}),
@@ -191,7 +195,7 @@
 
 		// WhatsApp abre de forma síncrona — depois de um await o browser deixa de
 		// tratar como gesto do usuário e bloqueia o popup (ver ContactForm).
-		const janela = window.open(whatsappLink(resumo()), '_blank', 'noopener');
+		const janela = window.open(linkPosFormulario(), '_blank', 'noopener');
 		if (!website) lead('bolha', origem);
 
 		if (!envio) {
@@ -329,17 +333,17 @@
 					{#if status === 'ok'}
 						<p class="text-xs font-medium text-green-700" role="status">
 							Recebemos seus dados! Se o WhatsApp não abriu, chame em
-							<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
+							<a class="underline" href={linkPosFormulario()} target="_blank" rel="noopener">nosso número</a>.
 						</p>
 					{:else if status === 'zap'}
 						<p class="text-xs font-medium text-slate-600" role="status">
 							Continue pelo WhatsApp que abrimos para você. Se a janela não abriu, chame em
-							<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">nosso número</a>.
+							<a class="underline" href={linkPosFormulario()} target="_blank" rel="noopener">nosso número</a>.
 						</p>
 					{:else if status === 'erro'}
 						<p class="text-xs font-medium text-red-700" role="alert">
 							Não conseguimos enviar. Fale direto pelo
-							<a class="underline" href={whatsappLink(resumo())} target="_blank" rel="noopener">WhatsApp</a>.
+							<a class="underline" href={linkPosFormulario()} target="_blank" rel="noopener">WhatsApp</a>.
 						</p>
 					{/if}
 

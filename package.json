@@ -9,7 +9,7 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"@grupooc/lead-handler": "https://mail-api.grupooc.com.br/sdk/lead-handler-0.3.0.tgz",
+		"@grupooc/lead-handler": "https://mail-api.grupooc.com.br/sdk/lead-handler-0.4.0.tgz",
 		"@sveltejs/adapter-static": "^3.0.6",
 		"@sveltejs/kit": "^2.15.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",

@@ -48,7 +48,9 @@ export const contact = {
 	phoneHref: 'tel:+551531000058',
 	whatsappNumber: '5515996510375',
 	whatsappLabel: '15 99651-0375',
-	whatsappText: 'Olá! Gostaria de saber mais sobre os planos TIM Empresa. Obrigado!',
+	// PADRAO-WHATSAPP 2026-10-22 — anterior: 'Olá! Gostaria de saber mais sobre os planos TIM Empresa. Obrigado!'
+	// Só a INTENÇÃO: a saudação e a origem ("Vim pelo site…") entram em whatsappLink().
+	whatsappText: 'Quero saber mais sobre os planos TIM Empresa.',
 	emails: ['contato@grupooc.com.br', 'comercial@grupooc.com.br'],
 	// NAP-JUMIRIM 2026-09-10 — anterior: address: 'Rua Tereza Lopes, 677 – Vila Hortência, Sorocaba/SP',
 	// Único endereço exposto na rede: a unidade de Jumirim/SP, que é a que tem
@@ -97,8 +99,47 @@ export const contact = {
 // formulário sem enviar token, a Function rejeita TODOS os leads com 403.
 export const turnstileSiteKey = '0x4AAAAAAD860rBYjiTD51kA';
 
-export function whatsappLink(text = contact.whatsappText) {
-	return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}`;
+// PADRAO-WHATSAPP 2026-10-22 — toda mensagem pré-preenchida de WhatsApp diz de
+// onde o lead veio: a palavra "site", o título e o domínio. Padrão da rede:
+//   botão/link:     "Olá! Vim pelo site *<TÍTULO>* (<DOMÍNIO>). <INTENÇÃO>"
+//   pós-formulário: "Olá! Acabei de enviar o formulário no site *<TÍTULO>* (<DOMÍNIO>). Sou <NOME>[ da empresa <EMPRESA>].[ <RESUMO>]"
+// Quem chama passa SÓ a intenção ("Quero fazer a portabilidade…"); um "Olá!"/
+// "Oi!" no começo dela é descartado para não saudar duas vezes.
+export const SITE_TITULO = site.name;
+export const SITE_DOMINIO = 'timcorporativo.com.br';
+
+const ORIGEM_SITE = `site *${SITE_TITULO}* (${SITE_DOMINIO})`;
+
+/** Tira "Olá!", "Oi!", "Olá," etc. do início do texto (a saudação é do prefixo). */
+function semSaudacao(texto = '') {
+	return String(texto).replace(/^\s*(ol[áa]|oi)[!,.]?\s*/i, '').trim();
+}
+
+function linkWhatsApp(mensagem) {
+	return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
+}
+
+/** @param {string} [intencao] frase de intenção do botão; sem ela vale a padrão do site. */
+export function whatsappLink(intencao = contact.whatsappText) {
+	const frase = semSaudacao(intencao) || semSaudacao(contact.whatsappText);
+	return linkWhatsApp(`Olá! Vim pelo ${ORIGEM_SITE}. ${frase}`);
+}
+
+/**
+ * Link para depois do envio do formulário. `resumo` é o que o formulário já
+ * colocava na mensagem (nº de linhas, operadora, interesse…) — nunca e-mail
+ * nem CNPJ. Sem nome (ex.: link numa tela de sucesso) cai na frase genérica.
+ * @param {{ nome?: string, empresa?: string, resumo?: string }} dados
+ */
+export function whatsappPosFormulario({ nome = '', empresa = '', resumo = '' } = {}) {
+	const detalhe = semSaudacao(resumo);
+	const base = `Olá! Acabei de enviar o formulário no ${ORIGEM_SITE}`;
+	const quem = nome.trim()
+		? `. Sou ${nome.trim()}${empresa.trim() ? ` da empresa ${empresa.trim()}` : ''}.`
+		: ' e quero adiantar o atendimento.';
+	// Resumo de várias linhas vai em linhas próprias; de uma linha, na mesma frase.
+	const sep = detalhe.includes('\n') ? '\n' : ' ';
+	return linkWhatsApp(`${base}${quem}${detalhe ? sep + detalhe : ''}`);
 }
 
 // Hrefs absolutos (e não "#planos") porque o Header agora também serve as
