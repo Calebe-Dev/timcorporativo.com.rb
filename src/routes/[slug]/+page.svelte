@@ -3,12 +3,16 @@
 	import ArtigoSumario from '$lib/components/ArtigoSumario.svelte';
 	import AutorBox from '$lib/components/AutorBox.svelte';
 	import { site, author } from '$lib/site.js';
+	import { semConversao } from '$lib/sem-conversao.js';
 
 	let { data } = $props();
 	// $derived, não desestruturação simples: de um artigo para outro o SvelteKit
 	// reaproveita este componente e só troca `data`. Com `const` o H1, o <title>,
 	// o canonical e as datas ficavam os do artigo anterior.
 	const { article, seo, banners } = $derived(data);
+
+	// Artigo sem conversão ($lib/sem-conversao.js): nenhum dos dois banners.
+	const semConv = $derived(semConversao(`/${article.slug}/`));
 
 	const ogImageAbs = site.url + site.ogImage;
 
@@ -101,7 +105,9 @@
 	{/if}
 	{@html article.html_parte1}
 	{#if article.html_parte2}
-		<Banner banner={banners.meio} formato="meio" pagina={article.slug} cluster={banners.cluster} />
+		{#if !semConv}
+			<Banner banner={banners.meio} formato="meio" pagina={article.slug} cluster={banners.cluster} />
+		{/if}
 		{@html article.html_parte2}
 	{/if}
 </article>
@@ -110,7 +116,9 @@
      convite antes das quatro rotas de saída, não depois. A peça muda conforme o
      assunto do artigo — quem lê sobre chip e fatura já é cliente com contrato,
      e recebe auditoria/renovação, não "escolha seu plano". -->
-<Banner banner={banners.rodape} formato="rodape" pagina={article.slug} cluster={banners.cluster} />
+{#if !semConv}
+	<Banner banner={banners.rodape} formato="rodape" pagina={article.slug} cluster={banners.cluster} />
+{/if}
 
 <AutorBox />
 

@@ -3,6 +3,8 @@
 	import ContactSection from '$lib/components/ContactSection.svelte';
 	import SiteMap from '$lib/components/SiteMap.svelte';
 	import RedesSociais from '$lib/components/RedesSociais.svelte';
+	import { page } from '$app/state';
+	import { semConversao } from '$lib/sem-conversao.js';
 
 	let {
 		children,
@@ -12,6 +14,10 @@
 		tituloArtigos = 'Últimos artigos',
 		solucoes = []
 	} = $props();
+
+	// Artigos sem conversão ($lib/sem-conversao.js): sem botão de consultor,
+	// sem formulário e sem telefone na moldura.
+	const semConv = $derived(semConversao(page.url.pathname));
 </script>
 
 <!--
@@ -35,14 +41,16 @@
 			<nav aria-label="Navegação principal" class="flex shrink-0 items-center gap-3 text-sm font-medium sm:gap-4">
 				<a href="/" class="hidden text-slate-700 hover:text-tim-600 sm:inline">Site</a>
 				<a href="/blog" class="text-slate-700 hover:text-tim-600">Blog</a>
-				<a
-					href={whatsappLink()}
-					target="_blank"
-					rel="noopener"
-					class="rounded-full bg-tim-600 px-3 py-1.5 text-[13px] font-semibold whitespace-nowrap text-white hover:bg-tim-700 sm:text-sm"
-				>
-					Falar com consultor
-				</a>
+				{#if !semConv}
+					<a
+						href={whatsappLink()}
+						target="_blank"
+						rel="noopener"
+						class="rounded-full bg-tim-600 px-3 py-1.5 text-[13px] font-semibold whitespace-nowrap text-white hover:bg-tim-700 sm:text-sm"
+					>
+						Falar com consultor
+					</a>
+				{/if}
 			</nav>
 		</div>
 	</header>
@@ -58,8 +66,10 @@
 
 		<!-- Formulário e mapa do site: presentes em toda página editorial, na mesma
 		     ordem da home — conversão primeiro, mapa depois, rodapé por último. -->
-		<ContactSection id="fale-conosco" />
-		<SiteMap {artigos} {total} {tituloArtigos} {solucoes} />
+		{#if !semConv}
+			<ContactSection id="fale-conosco" />
+		{/if}
+		<SiteMap {artigos} {total} {tituloArtigos} {solucoes} {semConv} />
 	</main>
 
 	<!-- Rodapé enxuto. -->
@@ -72,7 +82,9 @@
 			</p>
 			<div class="flex flex-wrap items-center gap-4">
 				<a href="/" class="hover:text-tim-600">Voltar ao site</a>
-				<a href={contact.phoneHref} class="hover:text-tim-600">Tel. {contact.phoneLabel}</a>
+				{#if !semConv}
+					<a href={contact.phoneHref} class="hover:text-tim-600">Tel. {contact.phoneLabel}</a>
+				{/if}
 				<!-- Os artigos são a maior parte do tráfego: os perfis da marca também
 				     aparecem aqui, não só no rodapé do site. -->
 				<RedesSociais />

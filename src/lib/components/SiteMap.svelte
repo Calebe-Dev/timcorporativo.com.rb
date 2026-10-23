@@ -5,7 +5,16 @@
 	// renderiza as demais colunas — nenhuma página quebra por causa do CMS.
 	// `tituloArtigos` muda nas páginas de artigo ("Mais artigos do blog"), onde a
 	// lista vem em anel e não são necessariamente os mais recentes.
-	let { artigos = [], total = 0, tituloArtigos = 'Últimos artigos', solucoes = [] } = $props();
+	// `semConv` vem da moldura do blog nas páginas sem conversão
+	// ($lib/sem-conversao.js): o mapa fica, o atalho para o consultor e os
+	// contatos clicáveis saem.
+	let {
+		artigos = [],
+		total = 0,
+		tituloArtigos = 'Últimos artigos',
+		solucoes = [],
+		semConv = false
+	} = $props();
 
 	// Âncoras da home: de dentro de um artigo precisam do caminho absoluto,
 	// senão "#planos" tentaria uma seção que não existe naquela página.
@@ -17,6 +26,7 @@
 		{ href: '/#faq', label: 'Dúvidas frequentes' },
 		{ href: '/#contato', label: 'Falar com consultor' }
 	];
+	const secoesVisiveis = $derived(semConv ? secoes.filter((s) => s.href !== '/#contato') : secoes);
 </script>
 
 <section aria-labelledby="mapa-do-site" class="border-t border-slate-200 bg-white py-12">
@@ -30,7 +40,7 @@
 				     estes links são a malha interna que as LPs recebem de toda página. -->
 				<ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm sm:block sm:space-y-2">
 					<li><a class="text-slate-600 hover:text-tim-600 hover:underline" href="/">Início</a></li>
-					{#each secoes as s}
+					{#each secoesVisiveis as s}
 						<li>
 							<a class="text-slate-600 hover:text-tim-600 hover:underline" href={s.href}>
 								{s.label}
@@ -89,26 +99,28 @@
 			<div>
 				<h3 class="text-sm font-semibold text-tim-800">Contato</h3>
 				<ul class="mt-3 space-y-2 text-sm text-slate-600">
-					<li>
-						<a class="hover:text-tim-600 hover:underline" href={contact.phoneHref}>
-							{contact.phoneLabel}
-						</a>
-					</li>
-					<li>
-						<a
-							class="hover:text-tim-600 hover:underline"
-							href={whatsappLink()}
-							target="_blank"
-							rel="noopener"
-						>
-							WhatsApp {contact.whatsappLabel}
-						</a>
-					</li>
-					<li>
-						<a class="hover:text-tim-600 hover:underline" href="mailto:{contact.emails[0]}">
-							{contact.emails[0]}
-						</a>
-					</li>
+					{#if !semConv}
+						<li>
+							<a class="hover:text-tim-600 hover:underline" href={contact.phoneHref}>
+								{contact.phoneLabel}
+							</a>
+						</li>
+						<li>
+							<a
+								class="hover:text-tim-600 hover:underline"
+								href={whatsappLink()}
+								target="_blank"
+								rel="noopener"
+							>
+								WhatsApp {contact.whatsappLabel}
+							</a>
+						</li>
+						<li>
+							<a class="hover:text-tim-600 hover:underline" href="mailto:{contact.emails[0]}">
+								{contact.emails[0]}
+							</a>
+						</li>
+					{/if}
 					<li>{contact.address}</li>
 				</ul>
 

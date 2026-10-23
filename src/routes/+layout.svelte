@@ -5,6 +5,8 @@
 	import CookieConsent from '$lib/components/CookieConsent.svelte';
 	import { onMount, tick } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/state';
+	import { semConversao } from '$lib/sem-conversao.js';
 	import { evento, rastrearCliquesWhatsApp } from '$lib/analytics.js';
 
 	let { children } = $props();
@@ -58,16 +60,31 @@
 	// canal flutuante da página. Por isso o estado começa em `false` e só o DOM do
 	// widget o vira — ver BotChat.svelte.
 	let botAtivo = $state(false);
+
+	// Páginas sem conversão ($lib/sem-conversao.js): nem bolha nem bot. O bot
+	// só é injetado depois que a pessoa passa por uma página comum, e a partir
+	// daí fica montado: voltar a uma página sem conversão só o esconde, pelo
+	// atributo no <html> (app.css). Desmontar e remontar injetaria o widget duas vezes.
+	const semConv = $derived(semConversao(page.url.pathname));
+	let botLiberado = $state(false);
+	$effect(() => {
+		if (!semConv) botLiberado = true;
+		document.documentElement.toggleAttribute('data-sem-conversao', semConv);
+	});
 </script>
 
 {@render children()}
 
 <!-- Bolha do WhatsApp: no layout raiz para existir em toda página sem repetição. -->
-<WhatsAppBubble oculta={botAtivo} />
+{#if !semConv}
+	<WhatsAppBubble oculta={botAtivo} />
+{/if}
 
 <!-- Chat da nossa consultoria. Injetado 4s depois do `load` para ficar fora da janela de
      medição das Core Web Vitals. -->
-<BotChat onmontar={(subiu) => (botAtivo = subiu)} />
+{#if botLiberado}
+	<BotChat onmontar={(subiu) => (botAtivo = subiu)} />
+{/if}
 
 <!-- Banner LGPD: enquanto não houver resposta, o GA4 não carrega (ver app.html). -->
 <CookieConsent />

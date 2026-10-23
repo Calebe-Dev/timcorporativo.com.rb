@@ -192,3 +192,10 @@ html {
 .tabela-rolavel--caixa[data-rola]::before {
 	padding: 0.6rem 1rem 0.5rem;
 }
+
+/* Páginas sem conversão ($lib/sem-conversao.js, +layout.svelte): o chat da
+   consultoria que já subiu numa página anterior some enquanto o visitante
+   estiver nelas. */
+html[data-sem-conversao] #oc-widget-container {
+	display: none !important;
+}
