@@ -90,6 +90,23 @@
 	       prose-img:rounded-lg"
 >
 	{@html article.html_h1}
+	{#if semConv}
+		<!-- Quem chega aqui atrás de aparelho fica sabendo logo que não atendemos
+		     isso, e quem só precisa da linha tem o caminho para os planos. -->
+		<aside
+			class="not-prose my-6 rounded-lg border border-amber-300 bg-amber-50 px-5 py-4 text-base leading-relaxed text-slate-800"
+		>
+			<p>
+				<strong>Não trabalhamos com aparelho.</strong> O TIM Corporativo atende a contratação de
+				linhas no CNPJ — plano, portabilidade e gestão — para usar no celular que você já tem.
+			</p>
+			<p class="mt-2">
+				<a href="/#planos" class="font-semibold text-tim-700 underline hover:text-tim-800"
+					>Ver os planos TIM Empresas por porte de empresa</a
+				>
+			</p>
+		</aside>
+	{/if}
 	{#if data.resposta}
 		<!-- Resposta direta antes de qualquer subtítulo: o trecho citável (mesmo
 		     papel do `resumo` das landing pages). Texto em $lib/blog/editorial.js. -->
