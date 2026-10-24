@@ -9,6 +9,7 @@ import { organizationNode, personNode, breadcrumbNode, ORG_ID, PERSON_ID } from 
 import { EDITORIAL } from '$lib/blog/editorial.js';
 import { ARTIGO_PARA_LP, ANCORAS, FALLBACK } from '$lib/solucoes/links-artigos.js';
 import { bannersPara } from '$lib/banners.js';
+import { semConversao } from '$lib/sem-conversao.js';
 
 // ---------------------------------------------------------------------------
 // "Leia também": 4 artigos afins calculados no build por sobreposição de
@@ -765,7 +766,9 @@ export async function load({ params }) {
 		article: { ...semHtml, html_h1: h1, html_intro: intro, html_parte1: parte1, html_parte2: parte2 },
 		resposta: EDITORIAL[params.slug]?.resposta ?? '',
 		sumario,
-		banners: bannersPara(artigo),
+		// Sem conversão, os banners nem entram no payload: o template já não os
+		// mostra, e o __data.json não precisa carregar a oferta de WhatsApp.
+		banners: semConversao(`/${params.slug}/`) ? null : bannersPara(artigo),
 		seo: { html: gerarSeoHtml(artigo) },
 		relacionados: leiaTambem(await listarArtigos(), params.slug)
 	};
