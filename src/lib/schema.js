@@ -27,7 +27,7 @@ export function personNode() {
 		description: author.bio,
 		url: `${site.url}/autor/${author.slug}/`,
 		sameAs: author.sameAs,
-		knowsAbout: author.knowsAbout,
+		knowsAbout: [...author.knowsAbout, ...author.topicos.map((t) => ({ '@type': 'Thing', ...t }))],
 		knowsLanguage: author.knowsLanguage,
 		worksFor: { '@id': ORG_ID },
 		mainEntityOfPage: { '@id': `${site.url}/autor/${author.slug}/` }

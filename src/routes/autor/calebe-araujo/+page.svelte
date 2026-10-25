@@ -7,7 +7,14 @@
 		iso ? new Date(iso).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
 	// Rótulo da rede a partir do host: linkedin.com → LinkedIn etc.
-	const NOMES = { linkedin: 'LinkedIn', instagram: 'Instagram', facebook: 'Facebook', youtube: 'YouTube' };
+	const NOMES = {
+		calebearaujo: 'Site pessoal',
+		linkedin: 'LinkedIn',
+		instagram: 'Instagram',
+		facebook: 'Facebook',
+		youtube: 'YouTube',
+		github: 'GitHub'
+	};
 	const redes = author.sameAs.map((href) => {
 		const chave = new URL(href).hostname.replace(/^www\./, '').split('.')[0];
 		return { href, nome: NOMES[chave] ?? chave };
@@ -40,6 +47,18 @@
 		{#each author.knowsAbout as area}
 			<li class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
 				{area}
+			</li>
+		{/each}
+		{#each author.topicos as t}
+			<li>
+				<a
+					href={t.url}
+					rel="noopener"
+					target="_blank"
+					class="block rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-tim-700 hover:border-tim-300 hover:underline"
+				>
+					{t.name}
+				</a>
 			</li>
 		{/each}
 	</ul>

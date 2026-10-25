@@ -376,11 +376,22 @@ export const author = {
 	jobTitle: 'Desenvolvedor | SEO Manager',
 	bio: 'Calebe Araujo produz conteúdos sobre TIM Empresa, TIM Black Empresa, TIM Fibra Empresa, UltraFibra e soluções de telecom para empresas, com foco em SEO, tecnologia e comunicação corporativa.',
 	sameAs: [
+		'https://calebearaujo.com.br/',
 		'https://www.linkedin.com/in/calebe-dev',
 		'https://www.instagram.com/calebe_original/',
 		'https://www.facebook.com/calebearaujo101/',
-		'https://www.youtube.com/@calebe_tech'
+		'https://www.youtube.com/@calebe_tech',
+		'https://github.com/Calebe-Dev'
 	],
 	knowsAbout: ['Telecom', 'Redes', 'SEO', 'Svelte', 'Angular', 'JavaScript', 'PHP'],
+	// Tópicos com página própria no site pessoal: entram no knowsAbout do schema
+	// como Thing com url e aparecem como links na página do autor (EEAT).
+	topicos: [
+		{ name: 'Consultoria de SEO', url: 'https://calebearaujo.com.br/consultoria-seo' },
+		{ name: 'Auditoria de SEO', url: 'https://calebearaujo.com.br/auditoria-seo' },
+		{ name: 'SEO para empresas B2B', url: 'https://calebearaujo.com.br/seo-para-b2b' },
+		{ name: 'SEO para IA', url: 'https://calebearaujo.com.br/seo-para-ia' },
+		{ name: 'Desenvolvimento de sistemas web', url: 'https://calebearaujo.com.br/desenvolvimento-de-sistemas-web' }
+	],
 	knowsLanguage: ['Português', 'Inglês', 'Espanhol', 'Alemão']
 };
