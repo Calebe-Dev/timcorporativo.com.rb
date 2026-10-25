@@ -377,6 +377,7 @@ export const author = {
 	bio: 'Calebe Araujo produz conteúdos sobre TIM Empresa, TIM Black Empresa, TIM Fibra Empresa, UltraFibra e soluções de telecom para empresas, com foco em SEO, tecnologia e comunicação corporativa.',
 	sameAs: [
 		'https://calebearaujo.com.br/',
+		'https://rankingfixer.com/about',
 		'https://www.linkedin.com/in/calebe-dev',
 		'https://www.instagram.com/calebe_original/',
 		'https://www.facebook.com/calebearaujo101/',

@@ -31,6 +31,10 @@
 			<span class="font-normal text-slate-500">· {author.jobTitle}</span>
 		</p>
 		<p class="mt-1.5 text-sm leading-relaxed text-slate-600">{author.bio}</p>
+		<p class="mt-1.5 text-sm leading-relaxed text-slate-600">
+			Também faz consultoria de SEO técnico no
+			<a href="https://rankingfixer.com/about" target="_blank" rel="noopener" class="font-semibold text-tim-700 hover:underline">Ranking Fixer</a>.
+		</p>
 		<a href="/autor/{author.slug}/" class="mt-2 inline-block text-sm font-semibold text-tim-700 hover:underline">
 			Perfil e todos os artigos →
 		</a>

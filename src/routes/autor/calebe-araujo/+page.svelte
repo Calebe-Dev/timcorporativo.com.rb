@@ -9,6 +9,7 @@
 	// Rótulo da rede a partir do host: linkedin.com → LinkedIn etc.
 	const NOMES = {
 		calebearaujo: 'Site pessoal',
+		rankingfixer: 'Ranking Fixer',
 		linkedin: 'LinkedIn',
 		instagram: 'Instagram',
 		facebook: 'Facebook',
