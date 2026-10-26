@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+import { createHash } from 'node:crypto';
+import { readFile, readdir, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 // IndexNow: avisa Bing, Yandex, Seznam e Naver de que URLs foram criadas,
 // alteradas ou removidas, sem esperar o próximo rastreamento. O Google não usa
 // IndexNow; para ele continuam valendo o sitemap e o Search Console.
@@ -12,7 +15,16 @@
 //   node scripts/indexnow.mjs --sitemap                       todas as URLs do sitemap
 //   node scripts/indexnow.mjs --sitemap --contem /blog/       só as que contêm o trecho
 //   node scripts/indexnow.mjs --sitemap --desde 2026-10-25    só as com lastmod a partir da data
+//   node scripts/indexnow.mjs --mudou build                   só as páginas do build cujo conteúdo mudou
+//   node scripts/indexnow.mjs --mudou vivo                    idem, lendo as páginas do sitemap no ar
 //   --dry-run lista o que seria enviado, sem enviar.
+//
+// --mudou compara o texto de cada página (título, description e corpo, sem
+// scripts, estilos e datas) com o do último envio, guardado em
+// .indexnow-estado.json, e manda as URLs novas, alteradas e removidas. Na
+// primeira vez só grava esse estado, sem enviar nada. Se mais da metade de um
+// site grande parecer alterada, para e pede --forcar: costuma ser algo do build
+// que muda em toda página, não conteúdo novo.
 //
 // Mande só o que mudou: reenviar o sitemap inteiro a cada deploy não acelera
 // nada e pode fazer o buscador passar a ignorar os avisos do site.
@@ -21,6 +33,7 @@ const HOST = 'timcorporativo.com.br';
 const KEY = '1af77fe0a390b3131d63807f9b5650c7';
 const ENDPOINT = 'https://api.indexnow.org/indexnow';
 const LOTE = 10000; // limite do protocolo por requisição
+const ESTADO = '.indexnow-estado.json';
 
 const args = process.argv.slice(2);
 const flag = (nome) => args.includes(nome);
@@ -50,8 +63,94 @@ async function lerSitemap(url, vistos = new Set()) {
 	return blocos('url').map((b) => ({ loc: campo(b, 'loc')?.replace(/&amp;/g, '&'), lastmod: campo(b, 'lastmod') }));
 }
 
+// Impressão do conteúdo: hashes de assets, scripts e datas mudam a cada build
+// sem que a página tenha mudado, então ficam de fora.
+const DATAS = /\b\d{4}-\d{2}-\d{2}(T[\d:.]+(Z|[+-]\d{2}:?\d{2})?)?\b|\b\d{1,2}\/\d{1,2}\/\d{4}\b|\b\d{1,2}º? de [a-zç]+ de \d{4}\b/gi;
+// A Cloudflare troca e-mails por "[email protected]" no HTML servido.
+const EMAILS = /\[email(&#160;|\s)protected\]|[\w.+-]+@[\w-]+(\.[\w-]+)+/g;
+function impressao(html) {
+	const titulo = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? '';
+	const descricao = html.match(/<meta[^>]+name="description"[^>]*>/i)?.[0] ?? '';
+	const corpo = (html.match(/<body[\s\S]*<\/body>/i)?.[0] ?? html)
+		.replace(/<(script|style|noscript|svg|template)\b[\s\S]*?<\/\1>/gi, ' ')
+		.replace(/<[^>]+>/g, ' ');
+	const texto = `${titulo}\n${descricao}\n${corpo}`
+		.replace(DATAS, '')
+		.replace(EMAILS, '')
+		.replace(/\s+/g, ' ')
+		.trim();
+	return createHash('sha256').update(texto).digest('hex').slice(0, 20);
+}
+
+const indexavel = (html) => !/<meta[^>]+name="robots"[^>]+noindex/i.test(html);
+
+async function* arquivosHtml(dir) {
+	for (const e of await readdir(dir, { withFileTypes: true })) {
+		const p = join(dir, e.name);
+		if (e.isDirectory()) yield* arquivosHtml(p);
+		else if (e.name.endsWith('.html')) yield p;
+	}
+}
+
+// URL canônica -> impressão, a partir das páginas do build (sem canonical no
+// próprio host ou com noindex, a página não entra).
+async function lerBuild(dir) {
+	const mapa = {};
+	for await (const arq of arquivosHtml(dir)) {
+		const html = await readFile(arq, 'utf8');
+		const canon = html.match(/<link[^>]+rel="canonical"[^>]*>/i)?.[0].match(/href="([^"]+)"/)?.[1];
+		if (!canon || !indexavel(html)) continue;
+		const url = canon.replace(/&amp;/g, '&');
+		if (new URL(url).host !== HOST) continue;
+		mapa[url] = mapa[url] ? impressao(mapa[url] + impressao(html)) : impressao(html);
+	}
+	return mapa;
+}
+
+// Mesma coisa, lendo no ar as páginas do sitemap.
+async function lerVivo() {
+	const urls = [...new Set((await lerSitemap(`https://${HOST}/sitemap.xml`)).map((u) => u.loc).filter(Boolean))];
+	const mapa = {};
+	let i = 0;
+	await Promise.all(Array.from({ length: 6 }, async () => {
+		while (i < urls.length) {
+			const url = urls[i++];
+			const r = await fetch(url, { headers: { 'user-agent': 'indexnow-script' }, redirect: 'manual' }).catch(() => null);
+			if (r?.status !== 200) continue;
+			const html = await r.text();
+			if (indexavel(html)) mapa[url] = impressao(html);
+		}
+	}));
+	return mapa;
+}
+
+async function mudancas(fonte) {
+	const atual = fonte === 'vivo' ? await lerVivo() : await lerBuild(fonte);
+	const total = Object.keys(atual).length;
+	if (!total) throw new Error(`nenhuma página indexável encontrada em ${fonte}`);
+	const anterior = JSON.parse(await readFile(ESTADO, 'utf8').catch(() => 'null'));
+	const salvar = () => writeFile(ESTADO, JSON.stringify(atual, null, '\t') + '\n');
+	if (!anterior) {
+		if (!flag('--dry-run')) await salvar();
+		console.log(`IndexNow: primeiro registro de ${total} página(s) em ${ESTADO}; nada enviado.`);
+		return { urls: [], salvar };
+	}
+	const urls = [
+		...Object.keys(atual).filter((u) => anterior[u] !== atual[u]),
+		...Object.keys(anterior).filter((u) => !(u in atual))
+	];
+	console.log(`IndexNow: ${urls.length} de ${total} página(s) novas, alteradas ou removidas desde o último envio.`);
+	if (urls.length > 200 && urls.length > total / 2 && !flag('--forcar')) {
+		throw new Error('mudança grande demais para ser só conteúdo; confira o build e rode de novo com --forcar se for isso mesmo.');
+	}
+	return { urls, salvar };
+}
+
 async function main() {
 	let urls = avulsas;
+	let salvar;
+	const fonte = valor('--mudou');
+	if (fonte) ({ urls, salvar } = await mudancas(fonte));
 	if (flag('--sitemap')) {
 		let itens = await lerSitemap(`https://${HOST}/sitemap.xml`);
 		const contem = valor('--contem');
@@ -64,7 +163,7 @@ async function main() {
 	const fora = urls.filter((u) => new URL(u).host !== HOST);
 	if (fora.length) throw new Error(`URLs fora de ${HOST} não são aceitas: ${fora.slice(0, 3).join(', ')}`);
 	if (!urls.length) {
-		console.log('Nenhuma URL para enviar. Passe URLs ou --sitemap (veja o cabeçalho do script).');
+		if (!fonte) console.log('Nenhuma URL para enviar. Passe URLs, --sitemap ou --mudou (veja o cabeçalho do script).');
 		return;
 	}
 
@@ -77,6 +176,7 @@ async function main() {
 	const publicada = (await texto(keyLocation).catch(() => '')).trim();
 	if (publicada !== KEY) throw new Error(`${keyLocation} não está no ar com a chave; publique o site antes.`);
 
+	let falhou = false;
 	for (let i = 0; i < urls.length; i += LOTE) {
 		const urlList = urls.slice(i, i + LOTE);
 		const r = await fetch(ENDPOINT, {
@@ -89,9 +189,12 @@ async function main() {
 		console.log(`IndexNow: ${urlList.length} URL(s) -> HTTP ${r.status}`);
 		if (r.status !== 200 && r.status !== 202) {
 			console.log((await r.text()).slice(0, 500));
-			process.exitCode = 1;
+			falhou = true;
 		}
 	}
+	// O estado só avança quando tudo foi aceito; senão o próximo --mudou reenvia.
+	if (falhou) process.exitCode = 1;
+	else if (salvar) await salvar();
 }
 
 main().catch((e) => {

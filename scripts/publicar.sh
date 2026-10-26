@@ -22,16 +22,16 @@ cd "$(dirname "$0")/.."
 
 passo() { printf '\n\033[1m▸ %s\033[0m\n' "$1"; }
 
-passo '1/5 Higiene das landing pages'
+passo '1/6 Higiene das landing pages'
 node scripts/validar-lps.mjs
 
-passo '2/5 Build'
+passo '2/6 Build'
 npm run build
 
-passo '3/5 Nenhum preço na copy'
+passo '3/6 Nenhum preço na copy'
 node scripts/verificar-precos-build.mjs
 
-passo '4/5 Integridade do HTML gerado'
+passo '4/6 Integridade do HTML gerado'
 node --input-type=module -e '
 import { readdir, readFile } from "node:fs/promises";
 const base = "build/solucoes";
@@ -60,8 +60,11 @@ if (probs.length) { probs.forEach((p) => console.log("  ❌ " + p)); process.exi
 console.log("  ✅ estrutura íntegra");
 '
 
-passo '5/5 Deploy'
+passo '5/6 Deploy'
 npx wrangler pages deploy build --project-name=timcorporativo --branch=main
+
+passo '6/6 IndexNow (só as páginas cujo conteúdo mudou)'
+node scripts/indexnow.mjs --mudou build
 
 printf '\n\033[1mConfira em produção:\033[0m\n'
 printf '  curl -s -o /dev/null -w "%%{http_code}\\n" https://timcorporativo.com.br/solucoes/\n'
